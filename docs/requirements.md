@@ -1,5 +1,13 @@
 # Build Requirements
 
+## Scope
+
+This is a **new build from scratch**. No CPU platform, motherboard, memory configuration, cooling solution, storage architecture, PSU, case, UPS or operating system has been selected yet.
+
+The only fixed hardware input is the existing **NVIDIA GeForce RTX 3060 12 GB**, which will be reused initially.
+
+Previously discussed parts and configurations are research candidates only. They are not requirements and must not be treated as predetermined choices.
+
 ## Workload priority
 
 ### Primary
@@ -12,102 +20,123 @@
 ### Secondary
 
 - Occasional Genshin Impact
-- Entry-level local AI experimentation in the future
+- Local AI experimentation may become relevant
 
 ## Longevity target
 
 The system should remain useful and serviceable for approximately **7–10 years**. Component selection should therefore prioritize:
 
 - platform stability
-- maintainability
+- maintainability and serviceability
 - replaceability of failure-prone parts
 - useful I/O and expansion headroom
-- memory capacity and stability
+- adequate memory capacity and stability
 - storage endurance
 - good thermal behavior under sustained workloads
-- avoiding expenditure on features that are likely to become irrelevant before they provide value
+- mature firmware and drivers
+- avoiding expenditure on features that are unlikely to provide material value
 
-## Budget
+## Budget and procurement
 
 - Maximum total project budget: **20,000 lei**
 - Location: **Iași, Romania**
 - Self-assembled
 - Existing NVIDIA GeForce RTX 3060 12 GB will be reused initially
 
-The budget is a ceiling, not a spending target. Money should remain unspent when a more expensive component does not deliver a material benefit for the stated workload or longevity goals.
+The budget is a ceiling, not a spending target. More expensive parts should be selected only when they provide a concrete benefit for the workload, reliability, expandability or expected lifespan.
 
 ## Reliability principles
 
-- Prefer **2×64 GB** over 4×32 GB for a 128 GB memory configuration.
-- Start with conservative memory settings; enable EXPO only after establishing baseline stability.
-- Prefer a high-quality air cooler over an AIO unless liquid cooling provides a compelling workload-specific benefit.
-- Avoid manual CPU overclocking.
-- Prefer high-endurance TLC NVMe drives for sustained workstation use.
-- Keep OS and active VM/Docker storage on separate physical drives where practical.
-- Prefer a high-quality ATX 3.1 PSU with a long warranty and enough headroom for a future GPU upgrade.
-- Use good chassis airflow and dust filtration.
-- Use a UPS.
+These are evaluation principles, not component decisions:
+
+- Prefer simpler, mature solutions when performance is sufficient.
+- Avoid manual overclocking as a design objective.
+- Prioritize memory stability over headline memory speed.
+- Evaluate ECC explicitly rather than assuming either ECC or non-ECC.
+- Prefer storage with appropriate endurance and sustained-write behavior for VM/container use.
+- Evaluate whether workload separation across physical drives is operationally useful before deciding drive count/capacity.
+- Size the PSU for the selected platform plus a plausible future GPU rather than choosing wattage in advance.
+- Design for good chassis airflow, dust management and maintainability.
+- Evaluate UPS protection as part of the complete system power design.
 - Maintain external backups; RAID is not a backup.
 
-## Platform requirements
+## Platform evaluation criteria
 
 ### CPU/platform
 
-- Strong multi-core performance for development, build, VM and container workloads
-- High single-thread performance remains important
-- No requirement to optimize primarily for gaming
-- Platform should support at least 128 GB RAM comfortably
+Evaluate from first principles:
+
+- sustained multi-core performance for builds, VMs and containers
+- single-thread responsiveness
+- virtualization support
+- power efficiency and thermals
+- memory capacity/support
+- platform maturity and longevity
+- chipset/PCIe/I/O capabilities
+- total platform cost
+
+No CPU vendor, socket or model is selected yet.
 
 ### Memory
 
-- Target capacity: **128 GB**
-- Preferred topology: **2×64 GB**
-- Initial target data rate: **DDR5-5600**, subject to board/QVL and stability validation
-- Stability is more important than peak memory bandwidth
-- ECC should be evaluated explicitly before the motherboard decision is closed
+Capacity, DIMM topology, data rate and ECC/non-ECC are all open questions.
+
+The memory review should determine:
+
+- realistic capacity requirement for the workload and 7–10 year horizon
+- whether 64 GB, 96 GB, 128 GB, 192 GB, 256 GB or another capacity is justified
+- optimal DIMM count/topology for the chosen platform
+- stable supported data rate
+- ECC value and implementation quality
+- upgradeability versus initial cost
+
+Previously discussed **128 GB as 2×64 GB DDR5-5600** is a hypothesis to test, not a requirement.
 
 ### Storage
 
-At minimum:
+Determine from the workload:
 
-1. **System drive:** 2 TB NVMe SSD
-2. **Work / VM drive:** 4 TB NVMe SSD
+- required total capacity
+- whether OS and VM/container workloads benefit from separate physical drives
+- appropriate number of drives
+- PCIe generation
+- NAND type and controller characteristics
+- sustained write performance
+- endurance
+- firmware maturity and thermal behavior
 
-Preferred characteristics:
-
-- PCIe 4.0 is sufficient unless a PCIe 5.0 drive shows a compelling real workload advantage
-- TLC NAND preferred
-- DRAM cache preferred for heavy workstation usage
-- strong write endurance
-- proven firmware and thermal behavior
+Previously discussed **2 TB system + 4 TB work/VM NVMe** is a candidate architecture only.
 
 ### GPU
 
-- Reuse NVIDIA GeForce RTX 3060 12 GB initially
-- Preserve PSU, case and slot flexibility for a future substantially higher-VRAM NVIDIA GPU
-- Do not upgrade merely for higher gaming FPS
-- Future AI value should be evaluated primarily in terms of VRAM, software compatibility and power/thermal requirements
+- Reuse the existing **NVIDIA GeForce RTX 3060 12 GB** initially.
+- Ensure the new platform does not unnecessarily constrain a future substantially higher-VRAM GPU.
+- Do not replace the GPU merely to optimize gaming performance unless requirements change.
+- Future AI-oriented GPU evaluation should emphasize VRAM, software compatibility, power, thermals and physical fit.
 
 ### Networking and I/O
 
-For a 7–10 year system, the motherboard should be evaluated for:
+For a 7–10 year system, evaluate:
 
 - wired Ethernet speed and controller quality
-- Wi-Fi / Bluetooth support
+- Wi-Fi / Bluetooth only if useful
 - Linux/WSL friendliness where relevant
-- USB4 / high-speed USB availability
-- sufficient rear I/O
+- high-speed external I/O such as USB4 where justified
+- sufficient rear and front I/O
 - usable PCIe expansion after storage devices are installed
+- topology/lane sharing rather than connector count alone
 
 ## Decision philosophy
 
 Each component review should answer:
 
 1. What does the workload actually require?
-2. What does the candidate provide?
-3. Which features materially improve reliability, performance or longevity?
+2. Which architectures/classes of component satisfy it?
+3. Which features materially improve reliability, performance, serviceability or longevity?
 4. Which features are merely premium positioning?
 5. What compatibility or topology constraints does the choice impose on other components?
-6. Is there a cheaper alternative with no meaningful downside?
+6. What is the best value point in the current Romanian market?
 7. Is there a more expensive alternative with a concrete, defensible benefit?
 8. What must be validated after purchase?
+
+A model mentioned in earlier discussions should be treated as a **candidate to compare**, not as the baseline that alternatives must displace.
