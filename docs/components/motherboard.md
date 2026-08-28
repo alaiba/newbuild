@@ -1,274 +1,259 @@
-# Motherboard Deep Dive
+# Motherboard / Platform Deep Dive
 
-## Candidate
+Status: **Open / first research area**
 
-**MSI MAG X870 TOMAHAWK WIFI**
+## Scope
 
-Status: **Under review**
+No motherboard, chipset, CPU socket or CPU platform has been selected.
 
-The goal is not to determine whether this is merely a good enthusiast motherboard. The goal is to determine whether it is the right foundation for a 7–10 year development workstation built around a Ryzen 9 9950X, 128 GB RAM, multiple NVMe drives, virtualization/container workloads and a possible future high-VRAM GPU.
+The previously discussed **MSI MAG X870 TOMAHAWK WIFI** is retained only as a useful reference candidate. It does not have incumbent status, and the final review may conclude that a different AM5 board, another AMD chipset, an Intel platform, or another class of board is the better fit.
+
+The purpose of this review is to identify the right motherboard/platform foundation for a 7–10 year development workstation while reusing the existing RTX 3060 12 GB initially.
 
 ## Requirements derived from the workload
 
-The motherboard should provide:
+The motherboard/platform combination should be evaluated for:
 
-- robust sustained power delivery for Ryzen 9 9950X workloads
-- stable operation with 128 GB as 2×64 GB
-- a sensible path to ECC if ECC is judged worthwhile
-- full-performance primary GPU operation
-- at least two high-performance M.2 drives without undesirable topology compromises
-- sufficient PCIe expansion after GPU and storage are installed
-- strong wired networking
-- modern wireless networking
-- USB4 or equivalent high-speed external I/O
+- strong sustained development/build/VM/container performance when paired with the eventual CPU
+- stable support for the memory capacity the workload actually requires
+- ECC if it is judged operationally worthwhile
+- full-performance primary GPU operation where practical
+- storage bandwidth/topology appropriate to the storage architecture ultimately selected
+- useful PCIe expansion
+- good wired networking and suitable wireless networking if needed
+- modern external I/O where justified
 - useful debug/recovery features
-- good firmware/BIOS support over time
-- Linux-friendly controllers where practical
-- acceptable physical layout for a future very large GPU
+- mature firmware/BIOS support
+- virtualization/IOMMU support
+- acceptable physical layout for a future larger GPU
+- long-term serviceability and EU/Romanian warranty support
 
 ## Questions to resolve
 
-### 1. Chipset choice: X870 vs X870E vs B850
+### 1. Platform and socket choice
 
-Determine what X870 materially adds for this workload and whether X870E or B850 would be a better fit.
+Before comparing individual motherboards deeply, establish the viable CPU/platform families for the workload.
 
-Questions:
+Determine:
 
-- Which CPU/chipset PCIe lanes are available in each class?
-- Is PCIe 5.0 GPU support relevant over this system's expected lifetime?
-- Is USB4 mandatory on X870 and useful to this workload?
-- Does X870E provide genuinely useful extra expansion, or mostly enthusiast positioning?
-- Could B850 satisfy all practical requirements at materially lower cost?
+- current AMD and Intel workstation/desktop options that fit the budget
+- CPU performance/efficiency characteristics relevant to builds, VMs and containers
+- socket/platform maturity
+- expected upgrade path and practical longevity
+- memory capacity and ECC possibilities
+- PCIe lane budget and generation
+- chipset capabilities and limitations
+- platform cost
 
-### 2. CPU power delivery and thermals
+Do not assume AM5 solely because Ryzen 9 9950X was previously discussed.
 
-Assess the board's VRM design for sustained 9950X use rather than short gaming bursts.
+### 2. Chipset / board class
 
-Check:
+For each viable platform, determine the least expensive board class that satisfies the actual requirements.
 
-- VRM phase design and controller
+Questions include:
+
+- how many CPU and chipset PCIe lanes are usable
+- storage and secondary-slot topology
+- high-speed external I/O
+- networking options
+- whether premium chipsets add useful expansion or mainly enthusiast features
+
+For AM5 specifically, X870/X870E/B850 and any other relevant current options should be compared if AM5 survives the platform review.
+
+### 3. CPU power delivery and thermals
+
+For each serious board candidate:
+
+- VRM design and controller
 - power-stage ratings
-- VRM heatsink design
-- sustained high-load temperature behavior from credible independent testing where available
-- whether there is any realistic advantage to a substantially more expensive board for stock/PBO-disabled workstation operation
+- heatsink design
+- sustained high-load behavior from credible independent testing
+- whether a more expensive board provides any realistic benefit at stock/reliability-oriented CPU settings
 
-### 3. Memory architecture and 2×64 GB behavior
+Avoid paying for extreme-overclocking capability that does not serve the workload.
 
-This is one of the most important review areas.
+### 4. Memory architecture
 
-Determine:
-
-- motherboard DIMM topology
-- official maximum memory capacity
-- current 2×64 GB QVL coverage
-- supported speeds for 2-DIMM dual-rank configurations
-- BIOS/AGESA history affecting 64 GB DIMMs
-- realistic expectation for 128 GB at DDR5-5600
-- whether EXPO is appropriate or a manually conservative profile is preferable
-- whether a particular IC/vendor family is preferable for 2×64 GB stability
-
-The final motherboard decision should not be closed until at least one exact 2×64 GB kit is identified with strong compatibility evidence.
-
-### 4. ECC
-
-Resolve ECC explicitly rather than treating it as a side note.
+This is a major decision area, but capacity/topology must be justified rather than assumed.
 
 Determine:
 
-- whether Ryzen 9 9950X exposes ECC capability on AM5
-- whether this motherboard electrically supports ECC UDIMMs
-- whether BIOS exposes ECC controls/reporting
-- whether errors are actually reported to the OS
-- Windows 11 and Linux observability
-- whether an alternative board provides materially better ECC support
-- cost and availability of suitable 2×64 GB ECC UDIMMs
+- maximum supported capacity
+- DIMM topology
+- realistic supported data rates at relevant capacities
+- QVL coverage
+- BIOS history for high-density DIMMs
+- two-DIMM versus four-DIMM trade-offs
+- upgradeability
+- whether the platform supports the eventual memory requirement without operating at marginal settings
 
-Decision criterion:
+The previously discussed **128 GB / 2×64 GB / DDR5-5600** configuration is one hypothesis to test, not a requirement.
 
-ECC is worth changing boards for only if the implementation is real, observable and operationally useful, not merely 'ECC memory boots'.
+### 5. ECC
 
-### 5. PCIe lane topology
+Resolve ECC explicitly.
 
-Document the board as an explicit lane map.
+Determine for each viable platform/board candidate:
 
-For every PCIe slot and M.2 slot, identify:
+- CPU ECC capability
+- electrical support for ECC DIMMs
+- BIOS controls/reporting
+- whether correctable/uncorrectable errors are exposed to the OS
+- Windows and Linux observability
+- memory availability/cost
+- any performance or platform limitations
 
-- source: CPU or chipset
-- PCIe generation
-- lane width
+ECC should influence selection only if implementation is real and operationally useful, not merely because ECC DIMMs boot.
+
+### 6. PCIe lane topology
+
+For every serious candidate, document an explicit lane map covering:
+
+- primary GPU slot
+- secondary PCIe slots
+- M.2 sockets
+- CPU versus chipset attachment
+- PCIe generation and lane width
 - shared resources
-- conditions that disable or downshift another interface
+- interfaces disabled or downshifted under particular configurations
 
-Pay particular attention to:
+Then test topology against plausible configurations, including:
 
-- primary GPU remaining x16
-- M.2 interactions with USB4
-- interactions among secondary PCIe slots and M.2 slots
-- practical topology with exactly two NVMe drives
-- topology if a 10 GbE NIC, capture card, accelerator or other secondary card is later added
+- existing RTX 3060
+- future large/high-VRAM GPU
+- likely storage layouts
+- optional 10 GbE NIC or other secondary card
 
-Produce a recommended slot assignment for:
-
-- RTX 3060 initially / future large GPU
-- 4 TB VM/work SSD
-- 2 TB OS SSD
-
-### 6. M.2 implementation and cooling
+### 7. Storage implementation
 
 Review:
 
-- number and generation of M.2 sockets
-- tool-less retention mechanisms
+- M.2 count/generation
+- lane-sharing consequences
 - heatsink quality
-- accessibility with a large GPU installed
-- whether primary M.2 placement receives substantial GPU heat
-- whether a double-sided 4 TB SSD creates any fit/thermal issue
+- accessibility with a large GPU
+- support for double-sided drives where relevant
+- SATA availability if useful
 
-### 7. Networking
+Do not assume a particular number or capacity of SSDs before the storage review.
 
-Assess the exact controllers rather than the headline speeds.
+### 8. Networking
+
+For each candidate, inspect the exact controllers rather than headline speeds.
 
 #### Ethernet
 
 Determine:
 
 - controller model
-- 5 GbE implementation
+- link speed
 - Windows driver maturity
-- Linux kernel support
+- Linux support
 - known stability/power-management issues
-- whether a move to onboard 10 GbE would be worth paying for versus adding a NIC later
+- value of onboard 5/10 GbE versus adding a NIC later
 
 #### Wi-Fi / Bluetooth
 
-Determine:
+If useful, determine:
 
 - chipset
-- Wi-Fi standard
-- Bluetooth version
-- Windows/Linux driver support
+- Wi-Fi/Bluetooth versions
+- Windows/Linux support
 - antenna implementation
 
-### 8. USB and external I/O
+### 9. USB and external I/O
 
-Inventory:
+Inventory and evaluate:
 
-- USB4 ports and bandwidth
+- USB4/Thunderbolt or equivalent where available
 - rear USB-A/C distribution
-- front-panel USB-C header capability
-- USB charging/power-delivery features if relevant
-- display output availability for CPU iGPU diagnostics
-- internal USB headers
+- front-panel USB-C capability
+- display output for iGPU diagnostics where applicable
+- internal headers
 
-Assess whether the I/O is likely to remain useful for 7–10 years.
+Judge these against likely 7–10 year usefulness rather than specification-sheet quantity.
 
-### 9. Debug, recovery and serviceability
+### 10. Debug, recovery and serviceability
 
 Review:
 
-- BIOS Flashback
+- BIOS Flashback/recovery
 - Clear CMOS accessibility
-- debug LEDs / POST code display
-- dual BIOS or lack thereof
-- firmware recovery behavior
-- onboard power/reset controls if any
-- M.2 and PCIe retention/serviceability
+- debug LEDs / POST-code display
+- dual BIOS if present
+- onboard controls if useful
+- tool-less retention/serviceability
+- header placement
 
-These features matter more on a long-lived workstation with 128 GB RAM than RGB/overclocking features.
-
-### 10. BIOS / firmware quality
+### 11. BIOS / firmware quality
 
 Research:
 
-- BIOS release cadence
-- AGESA adoption speed
-- history of AM5 memory-training improvements
+- firmware release cadence
+- microcode/AGESA adoption speed as applicable
+- memory-training history
 - known regressions
-- boot time / memory-context-restore behavior with large memory configurations
-- stability reports for virtualization/IOMMU
-- whether firmware support quality differs materially among MSI, ASRock, ASUS and Gigabyte at this tier
+- boot-time behavior with large memory configurations
+- virtualization/IOMMU stability
+- long-term vendor support record
 
-### 11. Virtualization / IOMMU
+### 12. Virtualization / IOMMU
 
-For the intended Docker/WSL2/VM use, verify:
+Verify:
 
-- SVM support and BIOS controls
-- IOMMU support
+- CPU virtualization controls
+- IOMMU/VT-d support
 - Above 4G decoding / ReBAR controls
-- IOMMU group behavior where documented
-- any topology consequences for device passthrough
+- IOMMU grouping where documented
+- device-passthrough implications
+- topology consequences of chipset-attached devices
 
-### 12. Physical layout and future GPU
+### 13. Physical layout and future GPU
 
 Review with a future 3.5–4-slot GPU in mind:
 
-- location of secondary PCIe slots
-- whether a very thick GPU blocks all useful expansion
-- front-panel/header accessibility
-- SATA/header placement
+- secondary-slot accessibility
+- M.2 accessibility
+- header placement
 - GPU anti-sag provisions
-- clearance around M.2 heatsinks
-
-### 13. Audio
-
-Audio is low priority, but document:
-
-- codec
-- output topology
-- optical output availability
-
-Do not pay materially more for motherboard audio unless it affects an actual requirement.
+- whether thick GPUs make useful expansion impossible
 
 ### 14. Reliability and long-term ownership
 
 Assess:
 
-- component quality where meaningful
-- passive cooling
-- absence/presence of small chipset fans
-- socket/board mechanical design
-- vendor warranty in Romania/EU
-- BIOS support history
-- likelihood of replacement availability / ecosystem support
+- cooling design and absence/presence of small fans
+- mechanical design
+- vendor warranty/support in Romania/EU
+- firmware-support history
+- replacement ecosystem and standardization
 
-### 15. Alternatives to compare
+## Candidate strategy
 
-At minimum, compare the candidate against representative alternatives in three categories:
+Once the viable platform is known, compare at least:
 
-#### Cheaper / value alternative
+1. **Value board** — least expensive board satisfying all material requirements.
+2. **Mid-tier board** — useful additional I/O/serviceability/expansion without luxury features.
+3. **Higher-end/workstation-oriented board** — only if it adds concrete benefits such as real ECC, materially better PCIe topology, onboard 10 GbE, better recovery features or substantially better expansion.
 
-A B850 or less expensive X870 board that satisfies essentially all real requirements.
-
-#### Same-tier alternative
-
-A comparable board from ASRock, ASUS or Gigabyte to identify vendor-specific advantages/disadvantages.
-
-#### More expensive alternative
-
-An X870E/workstation-oriented board only if it adds a specific capability such as:
-
-- better ECC implementation
-- materially better PCIe lane topology
-- onboard 10 GbE
-- more usable expansion
-- better serviceability/recovery
-
-Avoid recommending a board merely because it has a larger VRM, more RGB or higher theoretical memory OC ratings.
+If AM5 is selected as the platform, the MSI MAG X870 TOMAHAWK WIFI should be included in this comparison because it was previously identified as a plausible candidate.
 
 ## Required output of the review
 
-The motherboard investigation should finish with:
+The platform/motherboard investigation should finish with:
 
-1. **Keep / replace / downgrade** verdict for MSI MAG X870 TOMAHAWK WIFI.
-2. Exact reasons tied to workload requirements.
-3. A complete PCIe/M.2 topology table.
-4. Recommended slot assignment for GPU and both SSDs.
-5. ECC verdict.
-6. At least one validated 2×64 GB memory path to carry into the memory review.
-7. A shortlist of alternatives only where they improve a concrete requirement.
-8. Current Romanian pricing and whether the candidate represents good value at that price.
-9. Any BIOS settings or firmware requirements that should become part of the eventual bring-up checklist.
+1. selected CPU platform/socket or a clearly documented dependency on the CPU review
+2. selected chipset/board class
+3. exact motherboard recommendation
+4. reasons tied directly to workload requirements
+5. complete PCIe/M.2 topology table for finalists
+6. ECC verdict
+7. memory-capacity/topology implications to carry into the memory review
+8. storage/expansion constraints to carry forward
+9. current Romanian pricing/value
+10. BIOS/firmware requirements for eventual bring-up
 
 ## Current position
 
-No motherboard has been selected yet. The MSI MAG X870 TOMAHAWK WIFI remains the baseline candidate pending this review.
+**No motherboard or CPU platform is selected.**
