@@ -2,42 +2,43 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
+At present, **only the existing GPU is selected**. All other rows remain intentionally open.
+
 ## Selected components
 
 | Component | Selected model | Status | Notes |
 |---|---|---|---|
-| CPU | — | Pending | |
-| Motherboard | — | Pending | |
-| Memory | — | Pending | |
-| CPU cooler | — | Pending | |
-| System SSD | — | Pending | |
-| Work / VM SSD | — | Pending | |
-| PSU | — | Pending | |
-| Case | — | Pending | |
-| Case fans | — | Pending | |
-| GPU | NVIDIA GeForce RTX 3060 12 GB | Existing / selected | Reuse initially |
-| UPS | — | Pending | |
-| OS | — | Pending | |
+| CPU | — | Open | |
+| Motherboard | — | Open | |
+| Memory | — | Open | Capacity/topology/speed/ECC undecided |
+| CPU cooler | — | Open | Air vs liquid undecided |
+| Storage | — | Open | Capacity, drive count and layout undecided |
+| PSU | — | Open | Wattage/model undecided |
+| Case | — | Open | |
+| Case fans | — | Open | Depends on case/thermal design |
+| GPU | NVIDIA GeForce RTX 3060 12 GB | **Existing / selected** | Reuse initially |
+| UPS | — | Open | |
+| OS | — | Open | |
 
 ## Final compatibility checks
 
-Before purchase/assembly, verify:
+Before purchase/assembly, verify the checks appropriate to the selected architecture, including:
 
-- CPU support with shipping BIOS
-- exact 2×64 GB memory kit on motherboard QVL or otherwise supported with strong evidence
+- CPU/socket/chipset compatibility and shipping firmware support
+- exact memory configuration support at the intended capacity and data rate
 - cooler/socket/case/RAM clearance
-- M.2 slot placement and lane-sharing behavior
-- GPU physical clearance
-- PSU connector requirements for current and plausible future GPU
+- storage slot placement and lane-sharing behavior
+- GPU physical clearance and primary-slot bandwidth
+- PSU capacity and connector requirements for the selected system and plausible future GPU
 - case front-I/O headers versus motherboard headers
 - fan/header count and control
-- UPS output wattage versus measured/estimated system load
+- UPS output wattage and waveform versus measured/estimated system load
 
 ## Bring-up and validation
 
-A detailed validation plan will be added before assembly. It should include at least:
+A detailed validation plan will be added before assembly. It should include, as applicable:
 
-- baseline boot at JEDEC memory settings
+- baseline boot at conservative/default memory settings
 - BIOS/firmware updates
 - memory stability testing
 - sustained CPU thermal/load testing
