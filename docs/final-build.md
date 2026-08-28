@@ -2,16 +2,16 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, **only the existing GPU is selected**. All other rows remain intentionally open.
+At present, the **CPU/platform and existing GPU are selected**. Other rows remain intentionally open.
 
 ## Selected components
 
 | Component | Selected model | Status | Notes |
 |---|---|---|---|
-| CPU | — | Open | |
-| Motherboard | — | Open | |
-| Memory | — | Open | Capacity/topology/speed/ECC undecided |
-| CPU cooler | — | Open | Air vs liquid undecided |
+| CPU | AMD Ryzen 9 9950X3D | **Selected** | AM5 platform; fixed input for subsequent component selection |
+| Motherboard | — | Open | Must be AM5; chipset/model still under review |
+| Memory | — | Open | Capacity/topology/speed/ECC undecided within AM5 constraints |
+| CPU cooler | — | Open | Must suit sustained Ryzen 9 9950X3D development workloads; air vs liquid undecided |
 | Storage | — | Open | Capacity, drive count and layout undecided |
 | PSU | — | Open | Wattage/model undecided |
 | Case | — | Open | |
@@ -24,7 +24,7 @@ At present, **only the existing GPU is selected**. All other rows remain intenti
 
 Before purchase/assembly, verify the checks appropriate to the selected architecture, including:
 
-- CPU/socket/chipset compatibility and shipping firmware support
+- Ryzen 9 9950X3D / AM5 motherboard compatibility and shipping firmware support
 - exact memory configuration support at the intended capacity and data rate
 - cooler/socket/case/RAM clearance
 - storage slot placement and lane-sharing behavior
