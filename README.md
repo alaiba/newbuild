@@ -2,53 +2,49 @@
 
 Research and decision record for a new long-lived workstation PC.
 
-## Primary goals
+## Fixed inputs
 
-- Programming and software development
+The build is greenfield. **No component has been selected except the GPU that will be reused initially.**
+
+- Existing GPU: **NVIDIA GeForce RTX 3060 12 GB**
+- Programming and software development are the primary workload
 - Docker and WSL2
 - Virtual machines
 - Occasional Genshin Impact
-- Possible entry-level local AI experimentation
+- Possible local AI experimentation
 - Target useful lifespan: 7–10 years
 - Budget ceiling: 20,000 lei
 - Location: Iași, Romania
 - Self-assembled
-- Reuse the existing NVIDIA GeForce RTX 3060 12 GB initially
 
-## Current target
+## Component status
 
-| Component | Current target | Status |
+| Component | Status | Notes |
 |---|---|---|
-| CPU | AMD Ryzen 9 9950X | Candidate |
-| Motherboard | MSI MAG X870 TOMAHAWK WIFI | Under review |
-| Memory | 128 GB DDR5, 2×64 GB, nominal target 5600 MT/s | Depends on motherboard |
-| CPU cooler | Noctua NH-D15 G2 | Candidate |
-| System SSD | 2 TB PCIe 4.0 TLC NVMe | Model TBD |
-| Work / VM SSD | 4 TB PCIe 4.0 TLC NVMe | Model TBD |
-| PSU | Seasonic Vertex GX-1000 or Corsair RM1000x ATX 3.1 | Candidate |
-| Case | Fractal Meshify 2 or be quiet! Silent Base 802 | Candidate |
-| GPU | Existing NVIDIA GeForce RTX 3060 12 GB | Reuse |
-| UPS | 1000–1500 VA line-interactive class | Specification TBD |
-| OS | Windows 11 Pro + WSL2 | TBD |
+| CPU/platform | Open | No vendor, socket, chipset or CPU selected |
+| Motherboard | Open | MSI MAG X870 TOMAHAWK WIFI is only an initial comparison candidate, not a decision |
+| Memory | Open | Capacity, topology, speed and ECC/non-ECC are all to be evaluated |
+| CPU cooler | Open | Air vs liquid and exact model are undecided |
+| Storage | Open | Capacity, number of drives, interface and exact models are undecided |
+| PSU | Open | Wattage, platform and exact model are undecided |
+| Case | Open | Exact case and airflow design are undecided |
+| Case fans | Open | Depends on case and thermal design |
+| GPU | **Selected / existing** | Reuse NVIDIA GeForce RTX 3060 12 GB initially |
+| UPS | Open | Topology, capacity and exact model are undecided |
+| OS | Open | To be evaluated as part of the workstation design |
+
+Previously discussed parts such as the Ryzen 9 9950X, MSI MAG X870 TOMAHAWK WIFI, 128 GB 2×64 GB DDR5, Noctua NH-D15 G2, dual NVMe drives and 1000 W ATX 3.1 PSUs are **research candidates or hypotheses only**. They must earn their place in the final build through the component reviews.
 
 ## Repository structure
 
-- [`docs/requirements.md`](docs/requirements.md) — workload, constraints and priorities
-- [`docs/decisions.md`](docs/decisions.md) — decision log
-- [`docs/compatibility.md`](docs/compatibility.md) — cross-component compatibility and topology
+- [`docs/requirements.md`](docs/requirements.md) — fixed workload, constraints and evaluation criteria
+- [`docs/decisions.md`](docs/decisions.md) — closed decisions only
+- [`docs/compatibility.md`](docs/compatibility.md) — cross-component compatibility and topology constraints as they emerge
 - [`docs/final-build.md`](docs/final-build.md) — final bill of materials when decisions are complete
 - [`docs/components/`](docs/components/) — one technical dossier per component
 
-## Review order
+## Research approach
 
-1. Motherboard
-2. Memory
-3. CPU
-4. Cooling
-5. Storage
-6. PSU
-7. Case and airflow
-8. GPU
-9. UPS
+Each component should be evaluated from first principles against the workload and longevity goals. Existing candidates provide useful comparison points but are not privileged defaults.
 
-The motherboard and memory are deliberately reviewed first because they form the most compatibility-sensitive part of the platform, particularly with a 128 GB 2×64 GB configuration.
+The order of investigation may change when one decision constrains another. Motherboard/platform and memory are natural early topics because they are tightly coupled, but even the CPU platform itself remains open.
