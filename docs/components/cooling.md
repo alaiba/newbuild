@@ -1,22 +1,36 @@
 # Cooling Deep Dive
 
-Status: **Pending**
+Status: **Open**
 
-## Working candidate
+## Scope
 
-Noctua NH-D15 G2
+No cooling architecture or model has been selected.
+
+The previously discussed **Noctua NH-D15 G2** is a reference candidate only. Air cooling, AIO liquid cooling and other appropriate solutions should be evaluated after CPU thermal requirements are understood.
 
 ## Review focus
 
-- sustained Ryzen 9 9950X cooling performance
+- sustained cooling requirement of the selected CPU
+- performance at stock/reliability-oriented settings
 - acoustic behavior
-- AM5 mounting and offset-mount considerations
-- RAM and case clearance
-- long-term reliability versus AIO alternatives
-- fan replacement/serviceability
-- realistic performance loss, if any, versus large liquid coolers
+- air versus liquid performance trade-offs
+- long-term failure modes
+- pump/fan replacement and serviceability where applicable
+- socket/mounting compatibility
+- RAM, motherboard and case clearance
+- case airflow dependence
+- dust maintenance
 - Romanian pricing/value
 
 ## Required output
 
-Finish with a keep/replace verdict, expected thermal behavior, mounting/clearance requirements and recommended fan/control configuration.
+Finish with:
+
+1. cooling requirement derived from selected CPU/power targets
+2. air versus liquid verdict
+3. serious candidate shortlist
+4. exact recommendation
+5. expected sustained thermal/acoustic behavior
+6. mounting and clearance requirements
+7. fan/pump control strategy as applicable
+8. long-term maintenance implications
