@@ -2,61 +2,115 @@
 
 This document captures cross-component constraints that should not be evaluated in isolation.
 
+The build is greenfield. Except for reuse of the existing RTX 3060 12 GB, all component choices remain open. Therefore this tracker records **questions and dependencies**, not assumed configurations.
+
+## CPU/platform ↔ motherboard
+
+Determine together:
+
+- socket/platform longevity and maturity
+- chipset capabilities actually needed by the workload
+- CPU power delivery requirements
+- PCIe lane budget and generation
+- USB/high-speed I/O requirements
+- virtualization/IOMMU behavior
+- firmware/BIOS quality and support history
+
+No CPU platform or motherboard is selected yet.
+
 ## Motherboard ↔ memory
 
-- Target: 128 GB using 2×64 GB DDR5 DIMMs.
-- Exact memory kit must be checked against the selected motherboard's current QVL and BIOS support.
-- DDR5-5600 is the working target, but stability takes precedence over nominal speed.
-- ECC support must be resolved before motherboard selection is closed.
+Resolve:
+
+- required memory capacity
+- DIMM topology for that capacity
+- supported data rates at the chosen capacity/topology
+- QVL/support evidence
+- ECC availability and whether ECC is genuinely observable/correcting on the selected platform
+- upgrade path versus initial configuration
+
+The previously discussed 128 GB / 2×64 GB / DDR5-5600 configuration is a research hypothesis, not a constraint.
 
 ## Motherboard ↔ storage
 
-The selected motherboard must provide a lane topology that allows:
+The final topology should provide enough bandwidth and usable slots for the storage architecture that is ultimately selected while preserving:
 
-- one 2 TB system NVMe drive
-- one 4 TB VM/work NVMe drive
-- full-performance primary GPU operation
-- acceptable USB4/high-speed I/O behavior
-- reasonable future expansion without unexpected lane sharing
+- full-performance primary GPU operation where practical
+- acceptable high-speed external I/O behavior
+- useful future PCIe expansion
+- sensible thermals and serviceability
 
-Exact M.2 slot placement will be documented once the motherboard is selected.
+Drive count and capacity remain open.
 
 ## Motherboard ↔ GPU / expansion
 
 - Existing RTX 3060 12 GB will be used initially.
-- Chassis, PSU and PCIe layout should preserve the option for a substantially larger future GPU.
-- The motherboard review must identify any slot-width, lane-sharing or physical-clearance limitations for secondary PCIe cards.
+- Chassis, PSU and PCIe layout should avoid unnecessarily constraining a substantially larger future GPU.
+- Motherboard evaluation must identify slot-width, lane-sharing and physical-clearance limitations for secondary PCIe devices.
 
 ## CPU ↔ cooling
 
-- Ryzen 9 9950X is the current CPU candidate.
-- Noctua NH-D15 G2 is the current cooling candidate.
-- Review must verify sustained all-core behavior, thermal limits, socket mounting and RAM/case clearance.
+Cooling selection follows the CPU/platform decision.
 
-## PSU ↔ future GPU
+Evaluate:
 
-- Current RTX 3060 does not require a 1000 W PSU.
-- A 1000 W ATX 3.1 PSU is being considered specifically to avoid replacing the PSU when moving to a future high-power/high-VRAM GPU.
-- Native modern GPU power connectors and transient handling matter more than nominal wattage alone.
+- sustained thermal load
+- acceptable acoustic target
+- air versus liquid trade-offs
+- socket/mount compatibility
+- RAM/case clearance
+- serviceability and long-term failure modes
 
-## Case ↔ cooling / GPU / storage
+No cooler architecture or model is selected yet.
+
+## Storage ↔ workload
+
+Determine whether the workload benefits materially from:
+
+- one versus multiple physical SSDs
+- OS/workload separation
+- dedicated VM/container storage
+- TLC versus other NAND classes
+- DRAM-equipped versus DRAM-less designs
+- PCIe 4.0 versus PCIe 5.0
+
+Do not assume a 2 TB + 4 TB split until this is evaluated.
+
+## PSU ↔ CPU / GPU / expansion
+
+PSU wattage must be derived from:
+
+- selected CPU/platform
+- current RTX 3060 load
+- plausible future GPU class
+- storage and expansion devices
+- transient requirements
+- efficiency/noise goals
+
+Do not assume 1000 W in advance.
+
+## Case ↔ cooling / GPU / motherboard
 
 Case selection must validate:
 
-- NH-D15 G2 height clearance
-- future large GPU length and thickness
-- adequate front-to-back airflow
+- selected cooler clearance
+- present RTX 3060 fit
+- sensible headroom for a future large GPU
+- motherboard form factor
+- airflow path and restriction
 - dust filtration
-- front I/O compatibility with the motherboard
+- front-I/O compatibility
 - maintainable fan/filter access over a 7–10 year lifespan
 
-## UPS ↔ PSU / future GPU
+## UPS ↔ PSU / full system
 
-UPS selection must be based on actual watt output, not VA rating alone. Preferred characteristics:
+UPS selection must follow a realistic system power model. Evaluate:
 
-- line-interactive topology
-- AVR
-- pure sine-wave output preferred
-- USB monitoring / graceful shutdown support
-- enough watt capacity for the present system with margin
-- decide explicitly whether it should also cover a future high-power GPU configuration
+- output wattage, not VA alone
+- waveform compatibility with the chosen PSU
+- AVR / line-interactive / other topology trade-offs
+- USB monitoring and graceful shutdown
+- runtime at current-system load
+- whether the UPS should also accommodate a future higher-power GPU
+
+No UPS capacity or model is selected yet.
