@@ -2,15 +2,15 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, the **CPU/platform and existing GPU are selected**. Other rows remain intentionally open.
+At present, the **CPU/platform, 256 GB memory-capacity target and existing GPU are selected**. Other rows remain intentionally open.
 
 ## Selected components
 
 | Component | Selected model | Status | Notes |
 |---|---|---|---|
 | CPU | AMD Ryzen 9 9950X3D | **Selected** | AM5 platform; fixed input for subsequent component selection |
-| Motherboard | — | Open | Must be AM5; chipset/model still under review |
-| Memory | — | Open | Capacity/topology/speed/ECC undecided within AM5 constraints |
+| Motherboard | — | Open | Must be AM5, officially support 256 GB, and be a credible platform for stable 4×64 GB operation |
+| Memory | 256 GB target | **Target selected** | Exact topology/kit/data rate/ECC undecided; scale back only if 256 GB cost or stability/performance trade-off is disproportionate |
 | CPU cooler | — | Open | Must suit sustained Ryzen 9 9950X3D development workloads; air vs liquid undecided |
 | Storage | — | Open | Capacity, drive count and layout undecided |
 | PSU | — | Open | Wattage/model undecided |
@@ -25,7 +25,9 @@ At present, the **CPU/platform and existing GPU are selected**. Other rows remai
 Before purchase/assembly, verify the checks appropriate to the selected architecture, including:
 
 - Ryzen 9 9950X3D / AM5 motherboard compatibility and shipping firmware support
-- exact memory configuration support at the intended capacity and data rate
+- official motherboard support for 256 GB
+- exact 4×64 GB or other selected 256 GB memory configuration support at the intended data rate
+- QVL/vendor evidence and current BIOS maturity for high-density DIMMs
 - cooler/socket/case/RAM clearance
 - storage slot placement and lane-sharing behavior
 - GPU physical clearance and primary-slot bandwidth
@@ -39,8 +41,9 @@ Before purchase/assembly, verify the checks appropriate to the selected architec
 A detailed validation plan will be added before assembly. It should include, as applicable:
 
 - baseline boot at conservative/default memory settings
-- BIOS/firmware updates
-- memory stability testing
+- BIOS/firmware updates before memory tuning
+- extended 256 GB memory stability testing
+- verification of memory error reporting where supported
 - sustained CPU thermal/load testing
 - SSD firmware/health checks and sustained I/O testing
 - GPU load testing
