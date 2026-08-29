@@ -17,6 +17,14 @@ For each decision, evaluate:
 
 Performance figures must not be mixed across unrelated benchmark suites or software versions as if they were directly comparable. Where evidence is incomplete, use qualitative ratings and mark the item for later validation.
 
+## Decision-state rule
+
+This matrix distinguishes between **closed selections** and **provisional / aspirational targets**.
+
+A provisional target is the best current candidate given the evidence available, but it must not be treated as sunk cost or a fixed dependency. It should be promoted to a closed selection only after its important cross-component dependencies are sufficiently validated.
+
+For the motherboard specifically, the preferred board should remain provisional until the exact 256 GB memory path, ECC verdict, PCIe/M.2 topology, future high-end-GPU path and firmware maturity have been checked. If later memory/storage/case/PSU work exposes a material weakness, the board should be replaced rather than forcing the rest of the build around it.
+
 ## Current decision matrix
 
 | Decision / option | Incremental cost | Performance benefit | Reliability / stability | Endurance / serviceability | Expansion / future value | 10-year value | Status / verdict |
@@ -39,7 +47,7 @@ The table below is the working checklist. Add rows as component decisions are re
 
 | Area | Baseline / value option | Premium option(s) | Cost delta | Measured workload benefit | Reliability/endurance benefit | Expansion/longevity benefit | Decision |
 |---|---|---|---:|---|---|---|---|
-| Motherboard | TBD | TBD | TBD | Usually negligible CPU-performance difference | TBD | TBD | Open |
+| Motherboard | TBD | TBD | TBD | Usually negligible CPU-performance difference | TBD | TBD | **Next: nominate provisional / aspirational target; do not close until promotion gates pass** |
 | Memory kit | 256 GB non-ECC candidate | 256 GB ECC candidate | TBD | Capacity equal; speed/timing differences TBD | ECC and validation differences TBD | Both at platform capacity | Open |
 | Cooling | TBD | TBD | TBD | Sustained clock/acoustic differences TBD | Pump/fan/serviceability trade-offs TBD | TBD | Open |
 | Storage | TBD | High-endurance / higher-capacity options | TBD | Build/cache/VM I/O differences TBD | TBW, firmware, thermal/data-integrity differences TBD | Capacity/endurance headroom TBD | Open |
@@ -65,11 +73,13 @@ Short-lived benchmark gains, prestige features and extreme-overclocking capabili
 
 ## Update rule
 
-Whenever a component decision is closed:
+Whenever a component decision is researched or closed:
 
 1. add or update its row here;
 2. record current Romanian/EU price and the relevant cheaper/premium comparison;
 3. separate measured benchmark evidence from inference;
 4. document what the price premium materially buys;
-5. record whether the benefit is expected to remain useful over the 10-year horizon; and
-6. keep rejected expensive alternatives when they are useful reference points for future reconsideration.
+5. record whether the benefit is expected to remain useful over the 10-year horizon;
+6. use **Provisional target** when important dependent validation is still outstanding;
+7. promote a provisional target to **Selected** only after its promotion gates are satisfied; and
+8. keep rejected expensive alternatives when they are useful reference points for future reconsideration.
