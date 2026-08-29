@@ -9,8 +9,9 @@ The CPU/platform decision is closed:
 - **CPU:** AMD Ryzen 9 9950X3D
 - **Socket/platform:** AM5
 - **Initial memory-capacity target:** 256 GB
+- **Secondary expansion objective:** preserve a credible future upgrade path to a very high-performance, high-VRAM GPU for local AI training/inference
 
-This review no longer compares AMD versus Intel or AM5 versus Threadripper. Its purpose is to select the best AM5 motherboard for a 9950X3D build designed around 256 GB of system memory.
+This review no longer compares AMD versus Intel or AM5 versus Threadripper. Its purpose is to select the best AM5 motherboard for a 9950X3D build designed around 256 GB of system memory and long-term stability.
 
 The previously discussed **MSI MAG X870 TOMAHAWK WIFI** remains a reference candidate only. It has no incumbent status.
 
@@ -22,7 +23,7 @@ Because 256 GB is now the intended initial build capacity, a board must do more 
 
 A board is not eligible merely because an unofficial/user-reported 256 GB configuration boots.
 
-The build may scale back to 192 GB or 128 GB only if the actual cost of a suitable 256 GB configuration is disproportionate to the overall build budget or if stable 256 GB operation imposes an unacceptable performance/stability compromise.
+The build may scale back to 192 GB or 128 GB only if the actual cost of a suitable 256 GB configuration is disproportionate or if stable 256 GB operation imposes an unacceptable performance/stability compromise.
 
 ## Requirements derived from the workload
 
@@ -32,8 +33,10 @@ The motherboard should be evaluated for:
 - official 256 GB memory capacity support
 - strong 4×64 GB / high-density DIMM BIOS maturity
 - practical stable operation at the 256 GB target
-- ECC if it is judged operationally worthwhile
+- **operationally useful ECC support as a strong preference**, subject to validation of 256 GB ECC UDIMM availability and error reporting
 - full-performance primary GPU operation where practical
+- preservation of a future single high-end/high-VRAM AI GPU upgrade path
+- CPU-connected x8/x8 bifurcation across two physical x16 slots as a desirable, not mandatory, future-facing feature
 - storage bandwidth/topology appropriate to the storage architecture ultimately selected
 - useful PCIe expansion
 - good wired networking and suitable wireless networking if needed
@@ -41,7 +44,7 @@ The motherboard should be evaluated for:
 - useful debug/recovery features
 - mature firmware/BIOS support
 - virtualization/IOMMU support
-- acceptable physical layout for a future larger GPU
+- acceptable physical layout for a future larger/high-power GPU
 - long-term serviceability and EU/Romanian warranty support
 
 ## Questions to resolve
@@ -60,8 +63,10 @@ Questions include:
 - networking options
 - whether premium chipsets add useful expansion or mainly enthusiast features
 - whether lane sharing compromises plausible GPU + NVMe + expansion configurations
+- whether the board preserves a credible future AI-GPU path without unnecessarily sacrificing the primary GPU slot or storage topology
+- whether CPU-connected x8/x8 bifurcation is available and physically usable
 
-Do not select X870E merely because it is the premium chipset; require a concrete topology, I/O, networking or serviceability benefit.
+Do not select X870E merely because it is the premium chipset; require a concrete topology, I/O, networking, ECC, recovery or serviceability benefit.
 
 ### 2. CPU power delivery and thermals
 
@@ -95,18 +100,22 @@ For each candidate determine:
 
 ### 4. ECC
 
-Resolve ECC explicitly.
+Treat **true system-level ECC as a strong reliability preference for this workstation**, but not yet as a hard eligibility gate.
 
-Determine for each serious candidate:
+The Ryzen 9 9950X3D supports ECC when the motherboard implements it. DDR5 on-die ECC is not a substitute for ECC UDIMM because on-die ECC only protects errors internal to the DRAM device and does not provide the same end-to-end memory-path protection.
+
+For each serious candidate determine:
 
 - electrical/firmware support for ECC UDIMMs
+- whether 256 GB of ECC UDIMM is officially supported or credibly validated
 - BIOS controls/reporting
 - whether correctable/uncorrectable errors are exposed to the OS
-- Windows and Linux observability
+- Windows and Linux observability/logging
 - memory availability/cost at high capacity
-- any performance or platform limitations
+- realistic supported data rate at 4×64 GB ECC
+- any performance, boot-time or platform limitations
 
-ECC should influence selection only if implementation is real and operationally useful, not merely because ECC DIMMs boot.
+ECC should influence selection only if implementation is real and operationally useful, not merely because ECC DIMMs boot. Prefer a board with complete ECC functionality when the cost and 256 GB stability trade-off are reasonable.
 
 ### 5. PCIe lane topology
 
@@ -119,13 +128,18 @@ For every serious candidate, document an explicit lane map covering:
 - PCIe generation and lane width
 - shared resources
 - interfaces disabled or downshifted under particular configurations
+- CPU bifurcation modes such as x16 versus x8/x8 where supported
 
 Then test topology against plausible configurations, including:
 
 - existing RTX 3060
-- future large/high-VRAM GPU
+- future very large/high-VRAM single GPU for local AI
+- current-reference 500–600 W-class workstation/AI GPU dimensions and cooling demands
 - several high-performance NVMe drives
 - optional 10 GbE NIC or other secondary card
+- a hypothetical two-GPU x8/x8 configuration only as a future-headroom sanity check, not as a current requirement
+
+A board that can operate two CPU-connected x16 physical slots at x8/x8 without sacrificing the key storage configuration is preferred when the feature comes without a meaningful reliability or cost penalty. Serious multi-GPU AI remains outside the current design requirement and may justify a future platform change.
 
 ### 6. Storage implementation
 
@@ -154,6 +168,7 @@ Determine:
 - Linux support
 - known stability/power-management issues
 - value of onboard 5/10 GbE versus adding a NIC later
+- whether onboard high-speed networking preserves a PCIe slot that may be valuable for future accelerator/GPU expansion
 
 #### Wi-Fi / Bluetooth
 
@@ -174,7 +189,7 @@ Inventory and evaluate:
 - display output for iGPU diagnostics
 - internal headers
 
-Judge these against likely 7–10 year usefulness rather than specification-sheet quantity.
+Judge these against likely 10-year usefulness rather than specification-sheet quantity.
 
 ### 9. Debug, recovery and serviceability
 
@@ -196,6 +211,7 @@ Research:
 - AGESA adoption speed
 - memory-training history
 - high-density DIMM support history
+- ECC-related fixes/improvements where applicable
 - known regressions
 - boot-time behavior with 256 GB configurations
 - virtualization/IOMMU stability
@@ -213,13 +229,15 @@ Verify:
 
 ### 12. Physical layout and future GPU
 
-Review with a future 3.5–4-slot GPU in mind:
+Review with a future 3.5–4-slot consumer GPU and large dual-slot professional accelerator in mind:
 
 - secondary-slot accessibility
+- physical spacing between CPU-connected GPU slots
 - M.2 accessibility
 - header placement
 - GPU anti-sag provisions
 - whether thick GPUs make useful expansion impossible
+- whether the board layout creates avoidable airflow restrictions around a high-power future GPU
 
 ### 13. Reliability and long-term ownership
 
@@ -230,6 +248,7 @@ Assess:
 - vendor warranty/support in Romania/EU
 - firmware-support history
 - replacement ecosystem and standardization
+- evidence of stable high-capacity memory support rather than peak memory-overclocking capability
 
 ## Candidate strategy
 
@@ -237,9 +256,11 @@ Compare only boards that pass the official 256 GB support gate and have credible
 
 1. **Value board** — least expensive eligible board satisfying all material requirements.
 2. **Balanced board** — useful additional I/O/serviceability/expansion without luxury features.
-3. **Higher-end/workstation-oriented AM5 board** — only if it adds concrete benefits such as materially better PCIe topology, operationally useful ECC, onboard 10 GbE, better recovery features or substantially better expansion.
+3. **Higher-end/workstation-oriented AM5 board** — only if it adds concrete benefits such as materially better PCIe topology, operationally useful ECC, onboard 10 GbE, better recovery features, stronger 256 GB validation or substantially better expansion.
 
 The **MSI MAG X870 TOMAHAWK WIFI** should be included only if its current manufacturer specification confirms 256 GB support and its current firmware/memory support makes 256 GB a credible configuration.
+
+The motherboard shortlist should include at least one board with CPU-connected **x8/x8** capability if a credible 256 GB/stability-oriented candidate exists, so that the cost and trade-off of preserving dual-GPU headroom can be quantified.
 
 ## Required output of the review
 
@@ -247,16 +268,17 @@ The motherboard investigation should finish with:
 
 1. selected chipset/board class
 2. exact motherboard recommendation
-3. reasons tied directly to workload requirements
+3. reasons tied directly to workload and 10-year stability requirements
 4. confirmation of official 256 GB memory support for every finalist
 5. evidence relevant to stable 4×64 GB / 256 GB operation
 6. complete PCIe/M.2 topology table for finalists
-7. ECC verdict
-8. expected 256 GB memory topology/data-rate implications to carry into the memory review
-9. storage/expansion constraints to carry forward
-10. current Romanian pricing/value
-11. BIOS/firmware requirements for eventual bring-up
+7. ECC verdict, including OS-visible error reporting where possible
+8. future local-AI expansion verdict, including single-GPU and x8/x8 capability
+9. expected 256 GB memory topology/data-rate implications to carry into the memory review
+10. storage/expansion constraints to carry forward
+11. current Romanian pricing/value
+12. BIOS/firmware requirements for eventual bring-up
 
 ## Current position
 
-**Ryzen 9 9950X3D + AM5 is fixed. The build targets 256 GB of system memory initially. The exact motherboard remains open, and only boards with manufacturer-documented 256 GB support and credible high-density DIMM support are eligible.**
+**Ryzen 9 9950X3D + AM5 is fixed. The build targets 256 GB of system memory initially. The exact motherboard remains open, and only boards with manufacturer-documented 256 GB support and credible high-density DIMM support are eligible. Operationally complete ECC is a strong preference. The motherboard should also preserve a credible future path to one very high-end/high-VRAM AI GPU, with x8/x8 dual-slot capability treated as useful headroom rather than a hard requirement.**
