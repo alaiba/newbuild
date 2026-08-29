@@ -12,13 +12,13 @@ The CPU/platform decision is fixed:
 The memory strategy is also fixed at the architectural level:
 
 - preserve a credible path to **256 GB** system memory;
-- the initial purchase may start lower when high-capacity DDR5 pricing is disproportionate;
-- **64 GB as 2×32 GB is the minimum acceptable initial configuration**;
-- a larger initial capacity such as 96 GB or 128 GB may still be selected if current price/value is attractive.
+- the initial purchase may start much lower when high-capacity DDR5 pricing is disproportionate;
+- **32 GB is the minimum Phase-1 capacity**;
+- Phase-1 RAM is explicitly temporary/replaceable commissioning memory and must not constrain the eventual 256 GB configuration.
 
 The existing **NVIDIA GeForce RTX 3060 12 GB** will be reused initially.
 
-The motherboard, exact memory kit/capacity above the 64 GB floor, cooling solution, storage architecture, PSU, case, UPS and operating system remain open.
+The motherboard, exact Phase-1 memory kit/configuration, eventual 256 GB memory implementation, cooling solution, storage architecture, PSU, case, UPS and operating system remain open.
 
 Previously discussed parts and configurations are research candidates only unless explicitly recorded as selected in `docs/decisions.md`.
 
@@ -101,7 +101,7 @@ Do not spend extra for prestige, unused specifications, extreme-overclocking cap
 
 If an otherwise justified configuration exceeds 30,000 lei, identify the cost driver and explain what durable benefit it buys before accepting the higher total. Do not automatically compromise core requirements, but do not allow price escalation without a concrete reliability/performance/longevity story either.
 
-The build should preserve the **256 GB architectural memory target**, but it does not have to purchase that capacity immediately when the market price is disproportionate. Memory capacity is the preferred budget-release valve because it can be increased later without weakening the CPU/platform, motherboard, chassis, cooling, storage or PSU architecture. The initial memory kit should be treated as replaceable rather than forcing the eventual 256 GB configuration to reuse it.
+The build should preserve the **256 GB architectural memory target**, but it does not have to purchase that capacity immediately when the market price is disproportionate. Phase-1 memory is the preferred budget-release valve because it can be replaced later without weakening the CPU/platform, motherboard, chassis, cooling, storage or PSU architecture. The initial kit should be treated as disposable in the architectural sense: reusable/resellable if convenient, but not a dependency of the final 256 GB configuration.
 
 ## Reliability principles
 
@@ -112,8 +112,8 @@ These are governing evaluation principles:
 - Prefer conservative stock or near-stock operation; avoid manual overclocking as a design objective.
 - Do not rely on marginal memory-controller settings, unusually high SoC/memory voltages or fragile training behavior to achieve a headline RAM speed.
 - Prioritize memory stability over headline memory speed, especially at 256 GB.
-- Prefer two-DIMM configurations for the initial lower-capacity purchase where practical, both to reduce memory-controller loading and to avoid filling all four slots with small DIMMs.
-- **System-level ECC is desirable for this workstation if it is implemented end-to-end and operationally observable.** Treat ECC as a strong preference, not yet a hard requirement, until ECC UDIMM availability, motherboard support, stable operating behavior and OS-visible error reporting are verified at the relevant capacity.
+- For Phase 1, prefer a simple two-DIMM configuration such as 2×16 GB when similarly priced, but do not over-optimize temporary RAM: any stable 32 GB-or-larger configuration that reliably commissions the system is acceptable.
+- **System-level ECC is desirable for this workstation if it is implemented end-to-end and operationally observable.** Treat ECC as a strong preference for the eventual long-term memory configuration, not a requirement for temporary Phase-1 RAM.
 - Do not treat DDR5 on-die ECC as equivalent to system-level ECC; on-die ECC protects errors internal to the DRAM device and does not provide the same end-to-end protection across the memory path.
 - Prefer cooling solutions that sustain expected loads with thermal and acoustic headroom rather than merely preventing throttling.
 - Prefer storage with appropriate endurance, power-loss/data-integrity characteristics, firmware maturity and sustained-write behavior for VM/container/build workloads.
@@ -138,7 +138,7 @@ Downstream component decisions should optimize around this platform unless the C
 
 Only consider AM5 motherboards whose **manufacturer officially specifies support for at least 256 GB of system memory**.
 
-This remains a hard eligibility criterion because 256 GB is the architectural endpoint the build must preserve even if the initial purchase starts lower.
+This remains a hard eligibility criterion because 256 GB is the architectural endpoint the build must preserve even if the initial purchase starts at 32 GB.
 
 Motherboard evaluation should cover:
 
@@ -163,25 +163,25 @@ A premium motherboard is justified only by concrete benefits such as better vali
 
 ### Memory
 
-**Architectural target: 256 GB. Minimum initial purchase: 64 GB as 2×32 GB.**
+**Architectural target: 256 GB. Phase-1 minimum: 32 GB.**
 
-The exact initial capacity above that floor, DIMM kit, operating data rate and ECC/non-ECC choice remain open.
+Phase 1 is explicitly a commissioning/temporary-memory stage. Its purpose is to make the system usable now without allowing current high-density DDR5 pricing to dictate the rest of the build.
 
 The memory review should determine:
 
-- the best stable eventual 256 GB configuration for the selected 9950X3D + motherboard combination
-- the best-value initial two-DIMM configuration at 64 GB, 96 GB or 128 GB based on current market pricing
-- whether 4×64 GB is the practical/required 256 GB topology and what operating speed is realistically stable
-- motherboard QVL and vendor support evidence for 64 GB DIMMs
-- JEDEC versus EXPO/XMP trade-offs at 256 GB
-- **whether a 256 GB ECC UDIMM configuration is available, validated and operationally useful**
-- whether the motherboard exposes correctable/uncorrectable ECC events to Windows/Linux in a way that can be monitored
-- memory-training and boot-time implications
-- safe/conservative voltage requirements
-- Romanian/EU availability and price
-- whether ECC should be pursued for the initial kit or reserved for the eventual high-capacity configuration
+- the lowest-cost stable 32 GB-or-larger configuration suitable for Phase 1;
+- whether 2×16 GB, 1×32 GB, 2×24 GB, 2×32 GB or another readily available option gives the best current commissioning value;
+- the best stable eventual 256 GB configuration for the selected 9950X3D + motherboard combination;
+- whether 4×64 GB is the practical/required 256 GB topology and what operating speed is realistically stable;
+- motherboard QVL and vendor support evidence for 64 GB DIMMs;
+- JEDEC versus EXPO/XMP trade-offs at 256 GB;
+- **whether a 256 GB ECC UDIMM configuration is available, validated and operationally useful**;
+- whether the motherboard exposes correctable/uncorrectable ECC events to Windows/Linux in a way that can be monitored;
+- memory-training and boot-time implications;
+- safe/conservative voltage requirements;
+- Romanian/EU availability and price.
 
-Stability is more important than headline memory speed. The 256 GB endpoint should remain technically viable even if the initial purchase starts at 64–128 GB for economic reasons.
+Do not pay a material premium for Phase-1 ECC, overclocked memory profiles, oversized heat spreaders or upgrade compatibility with the eventual 256 GB kit. Stability is the only hard Phase-1 memory requirement beyond the 32 GB capacity floor.
 
 ### Storage
 
