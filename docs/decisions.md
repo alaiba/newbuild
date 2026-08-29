@@ -15,15 +15,16 @@ This file records **closed decisions only**, together with their rationale and a
 | Area | Decision | Status | Rationale / reopen condition |
 |---|---|---|---|
 | CPU / platform | AMD Ryzen 9 9950X3D on AM5 | **Selected** | Best overall balance for very heavy Java/Android development, interactive desktop use and occasional gaming. Threadripper 9960X/TRX50 offers additional sustained parallel throughput, memory bandwidth and I/O, but its materially higher total platform cost and workstation specialization do not justify the expected benefit for this mixed workload. Reopen only if requirements materially change toward highly parallel sustained compute, substantially greater memory capacity/bandwidth, or unusually high PCIe expansion needs. |
-| Motherboard memory-capacity eligibility | Consider only AM5 motherboards whose manufacturer officially specifies support for **256 GB** system memory | **Selected** | Preserves the maximum memory ceiling supported by the selected Ryzen 9 9950X3D and avoids choosing a board that would artificially constrain future memory expansion. This is a board-selection requirement, not a decision to install 256 GB initially. Actual memory capacity, DIMM topology and operating data rate remain open and must be validated separately. |
+| Memory capacity target | **256 GB initial build target** | **Selected** | Design the AM5 system around a stable 256 GB configuration. Scale back to a lower capacity only if current 256 GB memory cost is disproportionate to the overall build budget or if available 4×64 GB configurations impose an unacceptable stability/performance compromise. Exact DIMM topology, kit, data rate and ECC/non-ECC mode remain open until motherboard/memory validation. |
+| Motherboard memory-capacity eligibility | Consider only AM5 motherboards whose manufacturer officially specifies support for **256 GB** system memory | **Selected** | The motherboard must support the 256 GB target configuration without relying on unofficial/user-reported capacity support. Board selection must also consider high-density DIMM QVL coverage, BIOS maturity and realistic 256 GB operating behavior. |
 | GPU | Reuse existing NVIDIA GeForce RTX 3060 12 GB initially | **Selected** | Fixed input to the new build; replacement can be reconsidered later if workload requirements justify a materially higher-VRAM GPU |
 
 ## Open decisions
 
 The following remain open:
 
-- motherboard/chipset/model within AM5, subject to the 256 GB support requirement
-- memory capacity, topology, speed and ECC/non-ECC within AM5 constraints
+- motherboard/chipset/model within AM5, subject to the 256 GB target
+- memory DIMM topology, exact kit, data rate and ECC/non-ECC mode for the 256 GB target
 - cooling architecture and model for the Ryzen 9 9950X3D
 - storage capacity, topology, interface and exact drives
 - PSU wattage/platform/model
