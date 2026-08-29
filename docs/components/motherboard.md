@@ -1,21 +1,33 @@
 # Motherboard / Platform Deep Dive
 
-Status: **Open / first research area**
+Status: **Open / AM5 motherboard selection**
 
-## Scope
+## Fixed platform input
 
-No motherboard, chipset, CPU socket or CPU platform has been selected.
+The CPU/platform decision is closed:
 
-The previously discussed **MSI MAG X870 TOMAHAWK WIFI** is retained only as a useful reference candidate. It does not have incumbent status, and the final review may conclude that a different AM5 board, another AMD chipset, an Intel platform, or another class of board is the better fit.
+- **CPU:** AMD Ryzen 9 9950X3D
+- **Socket/platform:** AM5
 
-The purpose of this review is to identify the right motherboard/platform foundation for a 7–10 year development workstation while reusing the existing RTX 3060 12 GB initially.
+This review no longer compares AMD versus Intel or AM5 versus Threadripper. Its purpose is to select the best AM5 motherboard for the build.
+
+The previously discussed **MSI MAG X870 TOMAHAWK WIFI** remains a reference candidate only. It has no incumbent status.
+
+## Hard eligibility gate
+
+Only consider motherboards whose **manufacturer officially specifies support for at least 256 GB of system memory**.
+
+This is a motherboard capability requirement, not a decision to install 256 GB initially. The eventual memory capacity, DIMM topology, memory speed and ECC/non-ECC choice remain separate decisions.
+
+A board is not eligible merely because an unofficial/user-reported 256 GB configuration boots. Vendor-documented 256 GB support is required, and later memory research must still validate BIOS maturity, QVL coverage and realistic operating speeds for high-density DIMM configurations.
 
 ## Requirements derived from the workload
 
-The motherboard/platform combination should be evaluated for:
+The motherboard should be evaluated for:
 
-- strong sustained development/build/VM/container performance when paired with the eventual CPU
-- stable support for the memory capacity the workload actually requires
+- stable support for the Ryzen 9 9950X3D under sustained development/build/test workloads
+- official 256 GB memory capacity support
+- strong high-density DIMM/BIOS maturity
 - ECC if it is judged operationally worthwhile
 - full-performance primary GPU operation where practical
 - storage bandwidth/topology appropriate to the storage architecture ultimately selected
@@ -30,26 +42,11 @@ The motherboard/platform combination should be evaluated for:
 
 ## Questions to resolve
 
-### 1. Platform and socket choice
+### 1. Chipset / board class
 
-Before comparing individual motherboards deeply, establish the viable CPU/platform families for the workload.
+Compare current AM5 board classes that pass the 256 GB eligibility gate, including **B850, X870 and X870E** where appropriate.
 
-Determine:
-
-- current AMD and Intel workstation/desktop options that fit the budget
-- CPU performance/efficiency characteristics relevant to builds, VMs and containers
-- socket/platform maturity
-- expected upgrade path and practical longevity
-- memory capacity and ECC possibilities
-- PCIe lane budget and generation
-- chipset capabilities and limitations
-- platform cost
-
-Do not assume AM5 solely because Ryzen 9 9950X was previously discussed.
-
-### 2. Chipset / board class
-
-For each viable platform, determine the least expensive board class that satisfies the actual requirements.
+Determine the least expensive board class that satisfies the actual requirements.
 
 Questions include:
 
@@ -58,10 +55,11 @@ Questions include:
 - high-speed external I/O
 - networking options
 - whether premium chipsets add useful expansion or mainly enthusiast features
+- whether lane sharing compromises plausible GPU + NVMe + expansion configurations
 
-For AM5 specifically, X870/X870E/B850 and any other relevant current options should be compared if AM5 survives the platform review.
+Do not select X870E merely because it is the premium chipset; require a concrete topology, I/O, networking or serviceability benefit.
 
-### 3. CPU power delivery and thermals
+### 2. CPU power delivery and thermals
 
 For each serious board candidate:
 
@@ -73,31 +71,30 @@ For each serious board candidate:
 
 Avoid paying for extreme-overclocking capability that does not serve the workload.
 
-### 4. Memory architecture
+### 3. Memory architecture
 
-This is a major decision area, but capacity/topology must be justified rather than assumed.
+This is a major motherboard-selection factor.
 
-Determine:
+For each candidate determine:
 
-- maximum supported capacity
+- manufacturer-specified maximum capacity; **256 GB minimum required**
 - DIMM topology
-- realistic supported data rates at relevant capacities
-- QVL coverage
-- BIOS history for high-density DIMMs
+- realistic supported data rates at 128 GB, 192 GB and 256 GB where evidence exists
+- QVL coverage for high-density DIMMs
+- BIOS history for 48 GB and 64 GB DIMMs
 - two-DIMM versus four-DIMM trade-offs
 - upgradeability
-- whether the platform supports the eventual memory requirement without operating at marginal settings
+- whether high-capacity configurations require materially reduced memory speed or unusually aggressive tuning
 
-The previously discussed **128 GB / 2×64 GB / DDR5-5600** configuration is one hypothesis to test, not a requirement.
+The eventual installed capacity is still open. Motherboard selection should preserve the option to reach 256 GB without making 256 GB the initial target.
 
-### 5. ECC
+### 4. ECC
 
 Resolve ECC explicitly.
 
-Determine for each viable platform/board candidate:
+Determine for each serious candidate:
 
-- CPU ECC capability
-- electrical support for ECC DIMMs
+- electrical/firmware support for ECC UDIMMs
 - BIOS controls/reporting
 - whether correctable/uncorrectable errors are exposed to the OS
 - Windows and Linux observability
@@ -106,7 +103,7 @@ Determine for each viable platform/board candidate:
 
 ECC should influence selection only if implementation is real and operationally useful, not merely because ECC DIMMs boot.
 
-### 6. PCIe lane topology
+### 5. PCIe lane topology
 
 For every serious candidate, document an explicit lane map covering:
 
@@ -122,10 +119,10 @@ Then test topology against plausible configurations, including:
 
 - existing RTX 3060
 - future large/high-VRAM GPU
-- likely storage layouts
+- several high-performance NVMe drives
 - optional 10 GbE NIC or other secondary card
 
-### 7. Storage implementation
+### 6. Storage implementation
 
 Review:
 
@@ -138,7 +135,7 @@ Review:
 
 Do not assume a particular number or capacity of SSDs before the storage review.
 
-### 8. Networking
+### 7. Networking
 
 For each candidate, inspect the exact controllers rather than headline speeds.
 
@@ -162,19 +159,19 @@ If useful, determine:
 - Windows/Linux support
 - antenna implementation
 
-### 9. USB and external I/O
+### 8. USB and external I/O
 
 Inventory and evaluate:
 
-- USB4/Thunderbolt or equivalent where available
+- USB4/Thunderbolt-equivalent capability where available
 - rear USB-A/C distribution
 - front-panel USB-C capability
-- display output for iGPU diagnostics where applicable
+- display output for iGPU diagnostics
 - internal headers
 
 Judge these against likely 7–10 year usefulness rather than specification-sheet quantity.
 
-### 10. Debug, recovery and serviceability
+### 9. Debug, recovery and serviceability
 
 Review:
 
@@ -186,30 +183,30 @@ Review:
 - tool-less retention/serviceability
 - header placement
 
-### 11. BIOS / firmware quality
+### 10. BIOS / firmware quality
 
 Research:
 
 - firmware release cadence
-- microcode/AGESA adoption speed as applicable
+- AGESA adoption speed
 - memory-training history
+- high-density DIMM support history
 - known regressions
 - boot-time behavior with large memory configurations
 - virtualization/IOMMU stability
 - long-term vendor support record
 
-### 12. Virtualization / IOMMU
+### 11. Virtualization / IOMMU
 
 Verify:
 
-- CPU virtualization controls
-- IOMMU/VT-d support
+- SVM/IOMMU controls
 - Above 4G decoding / ReBAR controls
 - IOMMU grouping where documented
 - device-passthrough implications
 - topology consequences of chipset-attached devices
 
-### 13. Physical layout and future GPU
+### 12. Physical layout and future GPU
 
 Review with a future 3.5–4-slot GPU in mind:
 
@@ -219,7 +216,7 @@ Review with a future 3.5–4-slot GPU in mind:
 - GPU anti-sag provisions
 - whether thick GPUs make useful expansion impossible
 
-### 14. Reliability and long-term ownership
+### 13. Reliability and long-term ownership
 
 Assess:
 
@@ -231,22 +228,22 @@ Assess:
 
 ## Candidate strategy
 
-Once the viable platform is known, compare at least:
+Compare only boards that pass the official 256 GB support gate, then choose representatives for:
 
-1. **Value board** — least expensive board satisfying all material requirements.
-2. **Mid-tier board** — useful additional I/O/serviceability/expansion without luxury features.
-3. **Higher-end/workstation-oriented board** — only if it adds concrete benefits such as real ECC, materially better PCIe topology, onboard 10 GbE, better recovery features or substantially better expansion.
+1. **Value board** — least expensive eligible board satisfying all material requirements.
+2. **Balanced board** — useful additional I/O/serviceability/expansion without luxury features.
+3. **Higher-end/workstation-oriented AM5 board** — only if it adds concrete benefits such as materially better PCIe topology, operationally useful ECC, onboard 10 GbE, better recovery features or substantially better expansion.
 
-If AM5 is selected as the platform, the MSI MAG X870 TOMAHAWK WIFI should be included in this comparison because it was previously identified as a plausible candidate.
+The **MSI MAG X870 TOMAHAWK WIFI** should be included only if its current manufacturer specification confirms 256 GB support.
 
 ## Required output of the review
 
-The platform/motherboard investigation should finish with:
+The motherboard investigation should finish with:
 
-1. selected CPU platform/socket or a clearly documented dependency on the CPU review
-2. selected chipset/board class
-3. exact motherboard recommendation
-4. reasons tied directly to workload requirements
+1. selected chipset/board class
+2. exact motherboard recommendation
+3. reasons tied directly to workload requirements
+4. confirmation of official 256 GB memory support for every finalist
 5. complete PCIe/M.2 topology table for finalists
 6. ECC verdict
 7. memory-capacity/topology implications to carry into the memory review
@@ -256,4 +253,4 @@ The platform/motherboard investigation should finish with:
 
 ## Current position
 
-**No motherboard or CPU platform is selected.**
+**Ryzen 9 9950X3D + AM5 is fixed. The exact motherboard remains open. Only boards with manufacturer-documented support for at least 256 GB system memory are eligible.**
