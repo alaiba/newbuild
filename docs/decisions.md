@@ -20,6 +20,7 @@ This file records **closed decisions only**, together with their rationale and a
 | Future local AI expansion | Preserve a credible upgrade path to a **very high-performance, high-VRAM discrete GPU for local AI training/inference** | **Selected** | AI is a secondary objective and must not distort the primary development-workstation design. Motherboard, case, PSU and cooling choices should avoid unnecessarily blocking a future single high-end GPU. CPU-connected x8/x8 dual-slot capability is desirable when it comes without a material compromise, but multi-GPU AI is not a current hard requirement; if future training needs genuinely require several accelerator GPUs, reopening the platform decision for Threadripper/WRX90 or another workstation platform is acceptable. |
 | GPU | Reuse existing NVIDIA GeForce RTX 3060 12 GB initially | **Selected** | Fixed input to the new build; replacement can be reconsidered later if workload requirements justify a materially higher-VRAM GPU, including the future local-AI objective. |
 | Cost / longevity philosophy | Prefer to remain meaningfully below 30,000 lei, but allow higher spend only when it buys a credible long-term reliability, stability, endurance, serviceability or productivity benefit | **Selected** | The budget is not a performance-per-leu optimization target. As total cost approaches or exceeds 30,000 lei, the expected useful life should approach the 10-year end of the target range. Stability and conservative operation take precedence over short-term benchmark performance. |
+| Chassis thermal strategy | **Airflow-first, spacious, serviceable chassis design** | **Selected** | Strong, low-restriction airflow supports the build's stability and longevity objectives by reducing sustained component temperatures and preserving headroom for a future high-power GPU. Prefer large low-RPM replaceable fans, easy dust filtration and conventional serviceable layouts over restrictive or showcase-oriented enclosures. Exact case and fan layout remain open until motherboard/cooling/PSU dependencies are mature. |
 
 ## Open decisions
 
@@ -31,7 +32,7 @@ The following remain open:
 - cooling architecture and model for the Ryzen 9 9950X3D
 - storage capacity, topology, interface and exact drives
 - PSU wattage/platform/model, including sensible headroom for a future substantially higher-power GPU
-- case and fan layout, including physical/thermal support for a future large GPU
+- exact chassis model and fan layout within the selected airflow-first strategy, including physical/thermal support for a future large GPU
 - UPS topology/capacity/model
 - operating system details
 
