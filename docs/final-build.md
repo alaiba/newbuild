@@ -2,7 +2,7 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, the **CPU/platform, 256 GB architectural memory target, 64 GB minimum initial memory floor and existing GPU are selected**. Other rows remain intentionally open or may be tracked as provisional targets while dependent validation is still incomplete.
+At present, the **CPU/platform, 256 GB architectural memory target, 32 GB Phase-1 memory floor and existing GPU are selected**. Other rows remain intentionally open or may be tracked as provisional targets while dependent validation is still incomplete.
 
 ## Status vocabulary for this document
 
@@ -19,7 +19,7 @@ A motherboard should remain **Provisional target** until the exact 256 GB memory
 |---|---|---|---|
 | CPU | AMD Ryzen 9 9950X3D | **Selected** | AM5 platform; fixed input for subsequent component selection |
 | Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Provisional target** | Leads on explicit 4×64 GB / 256 GB and ECC firmware evidence. **ASRock X870 Taichi Creator remains a live challenger** and may replace it if the exact 256 GB ECC memory review validates equally well; ASRock has cleaner PCIe/storage topology, stronger diagnostics and materially lower current cost. |
-| Memory | **64 GB minimum initial / 256 GB architectural target** | **Target selected** | Minimum starting point is 2×32 GB. Exact initial kit may be 64, 96 or 128 GB depending current value. Preserve a validated 256 GB endpoint; treat the initial kit as replaceable rather than assuming it will later be combined with another kit. |
+| Memory | **32 GB minimum Phase 1 / 256 GB architectural target** | **Target selected** | Phase-1 RAM is temporary commissioning memory. Any stable 32 GB-or-larger configuration is acceptable; 2×16 GB is preferred when similarly priced, but 1×32 GB is acceptable. Preserve a validated 256 GB endpoint and assume the Phase-1 kit will be replaced rather than expanded into it. |
 | CPU cooler | — | Open | Must suit sustained Ryzen 9 9950X3D development workloads; preserve both top-tier air and 360/420 mm AIO options until motherboard/RAM clearance is known. |
 | Storage | — | Open | Capacity, drive count and layout undecided |
 | PSU | — | Open | Wattage/model undecided; preserve headroom for a future high-power/high-VRAM GPU |
@@ -48,12 +48,14 @@ The current comparison is intentionally still **ProArt X870E-Creator vs X870 Tai
 
 The first build does **not** need to buy 256 GB immediately.
 
-- **64 GB (2×32 GB)** is the selected minimum acceptable starting point.
-- 96 GB (2×48 GB) or 128 GB (2×64 GB) may be selected if their current incremental cost is justified.
+- **32 GB** is the selected Phase-1 floor.
+- **2×16 GB** is preferred when similarly priced because it preserves dual-channel bandwidth.
+- **1×32 GB** or any other stable 32 GB-or-larger configuration is acceptable when it is the cheapest sensible commissioning option.
+- Larger temporary capacities are optional only when the price increment is attractive.
 - The motherboard/platform must still preserve a credible **256 GB** path.
-- Do not rely on adding a second independently purchased kit later; when upgrading to 256 GB, reassess the best matched and validated configuration available at that time.
+- Do not rely on adding more DIMMs to the Phase-1 kit later; when upgrading to 256 GB, reassess the best matched and validated configuration available at that time.
 
-This makes memory capacity the preferred budget-release valve while protecting the parts of the build that are harder or more expensive to replace later.
+This makes Phase-1 memory the preferred budget-release valve while protecting the parts of the build that are harder or more expensive to replace later.
 
 ## Final compatibility checks
 
@@ -61,7 +63,7 @@ Before purchase/assembly, verify the checks appropriate to the selected architec
 
 - Ryzen 9 9950X3D / AM5 motherboard compatibility and shipping firmware support
 - official motherboard support for 256 GB
-- compatibility of the selected initial two-DIMM memory kit
+- compatibility of the selected Phase-1 memory kit
 - exact 4×64 GB or other eventual 256 GB memory configuration support at the intended data rate
 - QVL/vendor evidence and current BIOS maturity for high-density DIMMs
 - cooler/socket/case/RAM clearance
@@ -78,7 +80,7 @@ A detailed validation plan will be added before assembly. It should include, as 
 
 - baseline boot at conservative/default memory settings
 - BIOS/firmware updates before memory tuning
-- extended memory stability testing at the installed initial capacity
+- extended memory stability testing at the installed Phase-1 capacity
 - extended 256 GB memory stability testing when/if the system is upgraded to that capacity
 - verification of memory error reporting where supported
 - sustained CPU thermal/load testing
