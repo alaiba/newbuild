@@ -39,47 +39,66 @@ Previously discussed parts and configurations are research candidates only unles
 
 ## Longevity target
 
-The system should remain useful and serviceable for approximately **7–10 years**. Component selection should therefore prioritize:
+The system should be designed around a **10-year useful-life objective**, especially if the final cost approaches or exceeds the 30,000 lei planning level.
 
-- platform stability
+This does not mean every component must remain untouched for ten years. It means the build should justify a high initial investment through long-term stability, serviceability, reliability and retained usefulness rather than through short-lived peak benchmark performance.
+
+Component selection should therefore prioritize:
+
+- platform and firmware maturity
+- conservative, stable operation rather than aggressive tuning
 - maintainability and serviceability
 - replaceability of failure-prone parts
 - useful I/O and expansion headroom
-- adequate memory capacity and stability
-- storage endurance
-- good thermal behavior under sustained workloads
-- mature firmware and drivers
-- avoiding expenditure on features that are unlikely to provide material value
+- adequate memory capacity and proven memory stability
+- storage endurance and data-integrity characteristics
+- strong sustained thermal behavior without operating components near avoidable limits
+- high-quality power delivery and PSU design
+- acoustics compatible with sustained professional use
+- mature drivers and broad OS/tool compatibility
+- avoiding expenditure on features that are unlikely to provide material long-term value
+
+For expensive components, ask not only whether they are faster today, but whether they improve the probability that the machine remains reliable, capable and easy to maintain over the intended lifetime.
 
 ## Budget and procurement
 
-- Planning budget ceiling: **30,000 lei**
+- Planning budget level: **30,000 lei**
 - Location: **Iași, Romania**
 - Self-assembled
 - Existing NVIDIA GeForce RTX 3060 12 GB will be reused initially
 
-The budget is **not a primary optimization target** and should not drive component selection ahead of workload fit, stability, reliability, acoustics, expansion capability or longevity. It is a planning ceiling rather than a spending target.
+The 30,000 lei figure is **not a hard cap and not a spending target**. The preferred outcome is to remain meaningfully below it when doing so does not compromise the workstation's technical objectives.
 
-More expensive parts are acceptable when they provide a concrete, material benefit. Conversely, do not spend extra for prestige, unused specifications, extreme-overclocking capability or other features that do not improve the actual workstation.
+Cost should not drive component selection ahead of workload fit, stability, reliability, acoustics, expansion capability, endurance or longevity. More expensive parts are acceptable when they provide a concrete and durable benefit.
 
-If an otherwise justified configuration exceeds 30,000 lei, identify the cost driver and evaluate whether the additional benefit warrants revisiting the planning ceiling rather than automatically compromising core requirements.
+If the configuration approaches or exceeds 30,000 lei, the standard of justification becomes substantially higher: the additional cost should buy a credible long-term benefit in performance, reliability, endurance, serviceability, expansion headroom or reduced operational risk. A build at that price level should be designed explicitly as a long-term investment with an approximately **10-year useful-life objective**.
+
+Do not spend extra for prestige, unused specifications, extreme-overclocking capability, marginal benchmark gains, or features likely to become irrelevant before they provide practical value.
+
+If an otherwise justified configuration exceeds 30,000 lei, identify the cost driver and explain what durable benefit it buys before accepting the higher total. Do not automatically compromise core requirements, but do not allow price escalation without a concrete reliability/performance/longevity story either.
 
 The current design should preserve the **256 GB memory target first**. Reduce memory capacity only if the real market cost of a suitable 256 GB configuration is disproportionate to its benefit or if achieving 256 GB on AM5 imposes a stability/performance compromise that outweighs the capacity benefit.
 
 ## Reliability principles
 
-These are evaluation principles, not component decisions:
+These are governing evaluation principles:
 
-- Prefer simpler, mature solutions when performance is sufficient.
-- Avoid manual overclocking as a design objective.
-- Prioritize memory stability over headline memory speed.
-- Evaluate ECC explicitly rather than assuming either ECC or non-ECC.
-- Prefer storage with appropriate endurance and sustained-write behavior for VM/container use.
+- **Stability outranks short-term peak performance.**
+- Prefer mature, well-understood components and firmware over newly introduced features with limited field history when the practical benefit is small.
+- Prefer conservative stock or near-stock operation; avoid manual overclocking as a design objective.
+- Do not rely on marginal memory-controller settings, unusually high SoC/memory voltages or fragile training behavior to achieve a headline RAM speed.
+- Prioritize memory stability over headline memory speed, especially at 256 GB.
+- Evaluate ECC explicitly rather than assuming either ECC or non-ECC; value it only when implementation and error observability are operationally useful.
+- Prefer cooling solutions that sustain expected loads with thermal and acoustic headroom rather than merely preventing throttling.
+- Prefer storage with appropriate endurance, power-loss/data-integrity characteristics, firmware maturity and sustained-write behavior for VM/container/build workloads.
 - Evaluate whether workload separation across physical drives is operationally useful before deciding drive count/capacity.
+- Prefer a high-quality PSU with electrical and thermal headroom over sizing tightly to nominal consumption.
 - Size the PSU for the selected platform plus a plausible future GPU rather than choosing wattage in advance.
-- Design for good chassis airflow, dust management and maintainability.
+- Design for good chassis airflow, dust management, low component temperature and maintainability.
+- Avoid unnecessary small fans, pumps or other wear items when a simpler solution can meet the thermal objective; when such parts are justified, favor replaceability and proven reliability.
 - Evaluate UPS protection as part of the complete system power design.
 - Maintain external backups; RAID is not a backup.
+- Treat BIOS/firmware updateability, recovery mechanisms and long-term vendor support as material motherboard-selection criteria.
 
 ## Platform evaluation criteria
 
@@ -101,14 +120,17 @@ Motherboard evaluation should cover:
 - high-density DIMM support and QVL coverage
 - realistic 256 GB behavior, including supported topology and data rate
 - memory training/boot behavior with four high-density DIMMs
+- conservative long-duration power-delivery and VRM thermal behavior
 - PCIe/M.2 lane topology and sharing
 - useful expansion after multiple NVMe drives are populated
-- networking controller quality
+- networking controller quality and driver maturity
 - USB4/high-speed external I/O where useful
 - ECC implementation and observability if supported
 - virtualization/IOMMU behavior
-- debug/recovery features
+- debug/recovery features, including BIOS recovery/Flashback where available
 - long-term firmware support and serviceability
+
+A premium motherboard is justified only by concrete benefits such as better validated high-capacity memory behavior, more useful PCIe/storage topology, superior networking, operationally useful ECC, stronger recovery/serviceability features, materially better long-term firmware support, or a demonstrably more robust implementation. Extreme-overclocking features alone have little value for this build.
 
 ### Memory
 
@@ -124,6 +146,7 @@ The memory review should determine:
 - JEDEC versus EXPO/XMP trade-offs at 256 GB
 - ECC value and implementation quality
 - memory-training and boot-time implications
+- safe/conservative voltage requirements
 - Romanian/EU availability and price
 - the exact cost/stability threshold at which scaling back to 192 GB or 128 GB would be justified
 
@@ -141,6 +164,7 @@ Determine from the workload:
 - sustained write performance
 - endurance
 - firmware maturity and thermal behavior
+- data-integrity and power-loss characteristics where they materially improve long-term reliability
 
 Previously discussed **2 TB system + 4 TB work/VM NVMe** is a candidate architecture only.
 
@@ -153,7 +177,7 @@ Previously discussed **2 TB system + 4 TB work/VM NVMe** is a candidate architec
 
 ### Networking and I/O
 
-For a 7–10 year system, evaluate:
+For a 10-year-oriented system, evaluate:
 
 - wired Ethernet speed and controller quality
 - Wi-Fi / Bluetooth only if useful
@@ -162,18 +186,22 @@ For a 7–10 year system, evaluate:
 - sufficient rear and front I/O
 - usable PCIe expansion after storage devices are installed
 - topology/lane sharing rather than connector count alone
+- driver maturity and long-term support expectations
 
 ## Decision philosophy
 
 Each component review should answer:
 
 1. What does the workload actually require?
-2. Which architectures/classes of component satisfy it?
-3. Which features materially improve reliability, performance, serviceability or longevity?
-4. Which features are merely premium positioning?
+2. Which architectures/classes of component satisfy it reliably?
+3. Which features materially improve reliability, performance, serviceability, endurance or longevity?
+4. Which features are merely premium positioning or short-term benchmark optimization?
 5. What compatibility or topology constraints does the choice impose on other components?
 6. Which option best satisfies the technical requirements, and what does each additional price increment materially buy?
-7. Is there a more expensive alternative with a concrete, defensible benefit worth paying for?
-8. What must be validated after purchase?
+7. If the more expensive option is selected, is the benefit durable enough to justify the cost over a roughly 10-year ownership horizon?
+8. Does the selected configuration operate conservatively, with sufficient thermal, electrical and memory-stability headroom?
+9. What must be validated after purchase to establish a stable baseline?
+
+When performance and stability conflict, **prefer stability unless the performance loss is material enough to affect the workstation's core purpose**.
 
 A model mentioned in earlier discussions should be treated as a **candidate to compare**, not as the baseline that alternatives must displace, unless it is explicitly recorded as selected in `docs/decisions.md`.
