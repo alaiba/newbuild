@@ -1,303 +1,264 @@
 # Motherboard / Platform Deep Dive
 
-Status: **Under review / provisional motherboard target selection**
+Status: **Provisional target nominated / dependent validation still open**
 
 ## Fixed platform input
-
-The CPU/platform decision is closed:
 
 - **CPU:** AMD Ryzen 9 9950X3D
 - **Socket/platform:** AM5
 - **Initial memory-capacity target:** 256 GB
-- **Secondary expansion objective:** preserve a credible future upgrade path to a very high-performance, high-VRAM GPU for local AI training/inference
+- **ECC:** strong preference if a stable, operationally useful 256 GB implementation is available
+- **Primary objective:** long-lived, stability-first Java/Android development workstation
+- **Secondary objective:** preserve a credible future path to one very high-performance, high-VRAM GPU for local AI training/inference
+- CPU-connected **x8/x8** dual-slot capability is desirable headroom, not a hard requirement
+- exact chassis remains open, but the build has an airflow-first, spacious ATX/E-ATX design envelope
 
-This review no longer compares AMD versus Intel or AM5 versus Threadripper. Its purpose is to identify the best AM5 motherboard target for a 9950X3D build designed around 256 GB of system memory and long-term stability.
+The motherboard is intentionally **not a closed decision**. This dossier nominates an aspirational/provisional target and keeps credible alternatives alive until the exact 256 GB memory path and cross-component constraints are validated.
 
-The previously discussed **MSI MAG X870 TOMAHAWK WIFI** remains a reference candidate only. It has no incumbent status.
+## Current provisional ranking — 2026-08-29
 
-## Decision status for this component
+1. **ASUS ProArt X870E-Creator WiFi — provisional / aspirational target**
+2. **ASRock X870 Taichi Creator — live challenger / fallback**
+3. **MSI MAG X870 Tomahawk WiFi — value/control reference**
 
-The outcome of this review is intentionally **provisional / aspirational**, not immediately final.
+The previously considered standard **ASRock X870E Taichi** is not rejected, but the newer **X870 Taichi Creator** is now the more relevant ASRock representative for this build because it combines ECC, dual CPU-connected PCIe 5.0 slots, 10 GbE + 5 GbE, ATX form factor and current workstation-oriented firmware.
 
-The motherboard deep dive should nominate the board that best satisfies the long-term design objectives, but that board must remain a **provisional target** until the dependent configuration is validated sufficiently to justify purchase.
+## Why the ProArt currently leads
 
-Promotion from provisional target to **Selected** requires, at minimum:
+The most difficult non-negotiable requirement in this build is not CPU power delivery or nominal chipset capability; it is **stable 256 GB operation**.
 
-1. an exact or sufficiently credible **256 GB memory configuration** for the board;
-2. acceptable evidence for stable 4×64 GB or equivalent operation at conservative settings;
-3. an ECC verdict, including whether system-level ECC is practical and OS-visible if ECC is pursued;
-4. confirmation of the required PCIe/M.2 topology with the planned storage configuration and future high-end GPU path;
-5. confirmation that no board-specific lane-sharing or physical-layout issue materially undermines the intended build;
-6. acceptable BIOS/AGESA maturity and recovery/serviceability characteristics; and
-7. a current cost/value review against the closest cheaper and more expensive alternatives.
+ASUS currently provides unusually direct firmware evidence for the exact target:
 
-If the preferred board fails one of those checks during memory, storage, cooling, case or GPU-path validation, the motherboard decision should be reopened without treating the earlier provisional nomination as sunk cost.
+- official maximum memory: **256 GB**;
+- official ECC and non-ECC unbuffered DDR5 support;
+- BIOS **1003 (2025-01-23)** explicitly added support for **four 64 GB DIMMs / 256 GB at up to 5200 MT/s** when compatible modules are used;
+- BIOS **1504 (2025-05-29)** specifically improved memory compatibility with a focus on all four DIMM slots and improved system stability;
+- BIOS **2103 (2026-03-16)** added more stability margin during DDR5 training and addressed Ryzen 9000 boot/stability issues;
+- BIOS **2306 (2026-06-17)** explicitly optimized **ECC-UDIMM memory performance**;
+- current BIOS **2402 (2026-07-15)** continues memory/system-stability work;
+- ASUS notes that with Ryzen 9000 and newer AGESA, ECC UDIMM operation is limited to **5200 MT/s**.
 
-## Hard eligibility gate
+That evidence maps directly to our stability-first 4×64 GB target. We should treat **5200 MT/s as an upper conservative target to validate, not an entitlement**; a lower stable JEDEC operating rate remains acceptable.
 
-Only consider motherboards whose **manufacturer officially specifies support for at least 256 GB of system memory**.
+The ProArt therefore leads because it currently has the **strongest vendor evidence for our hardest requirement**, not because X870E is inherently preferable to X870.
 
-Because 256 GB is now the intended initial build capacity, a board must do more than advertise a 256 GB ceiling. The motherboard review must look for credible evidence that 4×64 GB operation is mature and practical on current firmware, including vendor memory-support documentation/QVL coverage where available, BIOS history and realistic stable data rates.
+## Why the ASRock X870 Taichi Creator is a serious challenger
 
-A board is not eligible merely because an unofficial/user-reported 256 GB configuration boots.
+The X870 Taichi Creator is exceptionally well aligned with the rest of the workstation:
 
-The build may scale back to 192 GB or 128 GB only if the actual cost of a suitable 256 GB configuration is disproportionate or if stable 256 GB operation imposes an unacceptable performance/stability compromise.
+- official **256 GB** maximum;
+- ECC and non-ECC unbuffered DDR5 support;
+- two CPU-connected PCIe 5.0 x16 physical slots supporting **x16 or x8/x8**;
+- onboard **Marvell/Aquantia AQC113 10 GbE + Realtek RTL8126 5 GbE**;
+- two USB4 ports;
+- four M.2 sockets;
+- two-digit **Dr. Debug**, onboard power/reset, BIOS Flashback and rear Clear CMOS;
+- ATX rather than E-ATX;
+- independent review testing showed ample VRM thermal headroom under flagship-class CPU stress;
+- current Romanian pricing is approximately **1.69–1.82k lei**, materially below the ProArt;
+- BIOS **4.10 (2026-02-25)** explicitly optimized memory compatibility and fixed certain boot failures;
+- BIOS **4.50 (2026-08-27)** explicitly **optimizes workstation GPU compatibility**, directly relevant to the future local-AI objective.
 
-## Requirements derived from the workload
+Its PCIe/storage topology is also cleaner for our future single-GPU path than the ProArt's: its second Gen5 M.2 socket trades bandwidth with USB4 rather than taking lanes from the primary graphics-lane group.
 
-The motherboard should be evaluated for:
+The reason it is not currently #1 is evidence quality around **4×64 GB / 256 GB**, especially ECC. ASRock officially states the capacity and ECC capability, but during this pass we did not find an ASRock statement as explicit as ASUS BIOS 1003 specifying four 64 GB DIMMs and a supported data rate. An independent Tom's Hardware review also encountered memory-kit compatibility sensitivity on recent ASRock BIOS versions and recommended adhering closely to the QVL.
 
-- stable support for the Ryzen 9 9950X3D under sustained development/build/test workloads
-- official 256 GB memory capacity support
-- strong 4×64 GB / high-density DIMM BIOS maturity
-- practical stable operation at the 256 GB target
-- **operationally useful ECC support as a strong preference**, subject to validation of 256 GB ECC UDIMM availability and error reporting
-- full-performance primary GPU operation where practical
-- preservation of a future single high-end/high-VRAM AI GPU upgrade path
-- CPU-connected x8/x8 bifurcation across two physical x16 slots as a desirable, not mandatory, future-facing feature
-- storage bandwidth/topology appropriate to the storage architecture ultimately selected
-- useful PCIe expansion
-- good wired networking and suitable wireless networking if needed
-- modern external I/O where justified
-- useful debug/recovery features
-- mature firmware/BIOS support
-- virtualization/IOMMU support
-- acceptable physical layout for a future larger/high-power GPU
-- long-term serviceability and EU/Romanian warranty support
+If the memory deep dive finds a credible 4×64 GB ECC configuration for the Taichi Creator with conservative settings and useful error reporting, **the ASRock is allowed to overtake the ProArt as the provisional target**. The roughly 900–1,100 lei saving is secondary; the stronger reasons would be its cleaner PCIe topology, better diagnostics and equally useful onboard networking.
 
-## Questions to resolve
+## Why the MSI remains the control rather than the target
 
-### 1. Chipset / board class
+The MSI MAG X870 Tomahawk WiFi is still a strong mainstream board:
 
-Compare current AM5 board classes that pass the 256 GB eligibility gate, including **B850, X870 and X870E** where appropriate.
+- official 256 GB maximum;
+- real 4×64 GB qualification exists for at least one 256 GB G.Skill kit;
+- good VRM thermals and adequate power delivery;
+- 5 GbE, USB4, four M.2 sockets, BIOS Flashback and Clear CMOS;
+- Romanian prices have recently ranged roughly **1.43–1.67k lei** for the better offers, with substantial stock/retailer variation.
 
-Determine the least expensive board class that satisfies the actual requirements.
+However, it is **non-ECC only** and does not provide CPU-connected x8/x8 graphics slots. At current local pricing, the X870 Taichi Creator can be close enough that the MSI's feature savings are difficult to justify for a 10-year workstation. It therefore remains useful as a value/control reference rather than the aspirational choice.
 
-Questions include:
+## Finalist comparison
 
-- how many CPU and chipset PCIe lanes are usable
-- storage and secondary-slot topology
-- high-speed external I/O
-- networking options
-- whether premium chipsets add useful expansion or mainly enthusiast features
-- whether lane sharing compromises plausible GPU + NVMe + expansion configurations
-- whether the board preserves a credible future AI-GPU path without unnecessarily sacrificing the primary GPU slot or storage topology
-- whether CPU-connected x8/x8 bifurcation is available and physically usable
+| Criterion | ASUS ProArt X870E-Creator WiFi | ASRock X870 Taichi Creator | MSI MAG X870 Tomahawk WiFi |
+|---|---|---|---|
+| Status | **Provisional leader** | **Live challenger / fallback** | Value/control |
+| Form factor | ATX | ATX | ATX |
+| Official max memory | 256 GB | 256 GB | 256 GB |
+| Explicit 4×64 GB vendor evidence | **Yes — BIOS 1003: up to 5200 MT/s with 4×64 GB** | Not yet found at equivalent specificity | Credible 4×64 QVL evidence, but exact stable rate still platform-dependent |
+| ECC UDIMM | **Yes** | **Yes** | **No** |
+| Recent ECC-specific firmware work | **Yes — BIOS 2306** | No equally explicit ECC-specific release note found | N/A |
+| CPU graphics slots | 2× Gen5 x16 physical, x16 or x8/x8 | 2× Gen5 x16 physical, x16 or x8/x8 | 1× CPU Gen5 x16; secondary slots chipset-attached |
+| 10 GbE | Marvell/AQtion 10 GbE + Intel 2.5 GbE | Marvell/Aquantia 10 GbE + Realtek 5 GbE | No; Realtek 5 GbE |
+| USB4 | 2× | 2× | 2× |
+| M.2 | 4 | 4 | 4 |
+| Debug/recovery | Q-LED, BIOS FlashBack, rear Clear CMOS | **2-digit Dr. Debug, power/reset, BIOS Flashback, rear Clear CMOS** | Debug LEDs, BIOS Flashback, rear Clear CMOS |
+| Recent workstation-GPU firmware | General compatibility updates | **BIOS 4.50, 2026-08-27: workstation GPU compatibility** | No equivalent finding in this pass |
+| Approx. Romanian price snapshot | **~2.68–2.90k lei** | **~1.69–1.82k lei** | **~1.43–1.67k lei for competitive offers; highly variable** |
+| Main advantage | strongest explicit 256 GB/ECC firmware evidence | topology, diagnostics, networking, price, current workstation-GPU focus | lower-cost control |
+| Main concern | M.2_2 shares CPU graphics lanes; premium price | exact 4×64/ECC validation still needs stronger evidence | no system ECC; no CPU x8/x8 |
 
-Do not select X870E merely because it is the premium chipset; require a concrete topology, I/O, networking, ECC, recovery or serviceability benefit.
+## PCIe / M.2 topology
 
-### 2. CPU power delivery and thermals
+### ASUS ProArt X870E-Creator WiFi
 
-For each serious board candidate:
+With Ryzen 9000:
 
-- VRM design and controller
-- power-stage ratings
-- heatsink design
-- sustained high-load behavior from credible independent testing
-- whether a more expensive board provides any realistic benefit at stock/reliability-oriented CPU settings
+- `PCIEX16(G5)_1`: CPU PCIe 5.0, x16 when used alone;
+- `PCIEX16(G5)_2`: CPU PCIe 5.0, allows x8/x8 with the first slot;
+- `M.2_1`: CPU PCIe 5.0 x4, independent of the graphics-lane split;
+- `M.2_2`: CPU PCIe 5.0 x4, **shares bandwidth with the second Gen5 graphics slot**;
+- `M.2_3`: chipset PCIe 4.0 x4;
+- `M.2_4`: chipset PCIe 4.0 x4;
+- third full-length PCIe slot: chipset PCIe 4.0 x4.
 
-Avoid paying for extreme-overclocking capability that does not serve the workload.
+Important practical configurations:
 
-### 3. Memory architecture
+| Configuration | Result |
+|---|---|
+| One GPU + M.2_1 + M.2_3 + M.2_4 | GPU remains **Gen5 x16**; three M.2 drives available without graphics-lane reduction |
+| One GPU + all four M.2 including M.2_2 | primary GPU runs **x8** because M.2_2 uses part of the CPU graphics-lane group |
+| Two GPUs, M.2_2 unused | CPU slots operate **x8/x8** |
+| Two GPUs + M.2_2 | graphics/storage split becomes x8/x4/x4 according to ASUS topology |
 
-This is a major motherboard-selection factor because the build is targeting **256 GB initially**.
+This is acceptable for the current design, but it means the storage plan should preferentially use **M.2_1, M.2_3 and M.2_4** if preserving x16 for a future single accelerator matters.
 
-For each candidate determine:
+### ASRock X870 Taichi Creator
 
-- manufacturer-specified maximum capacity; **256 GB minimum required**
-- explicit support/documentation for 64 GB DIMMs where available
-- QVL coverage for 4×64 GB or equivalent 256 GB configurations
-- DIMM topology
-- realistic stable data rate at 256 GB on current BIOS/AGESA
-- BIOS history for 64 GB DIMMs and four-DIMM operation
-- memory-training and boot-time behavior
-- whether 256 GB requires materially reduced memory speed or unusually aggressive manual tuning
-- whether the board offers any concrete stability advantage over cheaper alternatives at 256 GB
+With Ryzen 9000:
 
-128 GB and 192 GB are fallback capacities, not equal target candidates. They should be evaluated only to quantify the cost/performance/stability trade if 256 GB proves disproportionate.
+- `PCIE1` + `PCIE2`: two CPU PCIe 5.0 x16 physical slots, **x16 or x8/x8**;
+- `M2_1`: CPU PCIe 5.0 x4;
+- `M2_2`: CPU PCIe 5.0 x4;
+- `M2_3`: chipset PCIe 4.0 x4;
+- `M2_4`: chipset PCIe 3.0 x4;
+- `PCIE3`: chipset PCIe 3.0 x4 physical full-length slot.
 
-### 4. ECC
+Sharing rules:
 
-Treat **true system-level ECC as a strong reliability preference for this workstation**, but not yet as a hard eligibility gate.
+- populating `M2_2` makes `M2_2` and both rear USB4 ports operate at x2-equivalent bandwidth; BIOS can restore M2_2 to x4 by disabling the USB4 ports;
+- populating `M2_4` makes `M2_4` and `PCIE3` operate at x2 each;
+- importantly, these M.2 sharing rules **do not take the primary GPU from x16 merely because M2_2 is populated**.
 
-The Ryzen 9 9950X3D supports ECC when the motherboard implements it. DDR5 on-die ECC is not a substitute for ECC UDIMM because on-die ECC only protects errors internal to the DRAM device and does not provide the same end-to-end memory-path protection.
+For a future single high-end AI GPU plus several NVMe drives, this is a particularly attractive topology.
 
-For each serious candidate determine:
+### MSI MAG X870 Tomahawk WiFi
 
-- electrical/firmware support for ECC UDIMMs
-- whether 256 GB of ECC UDIMM is officially supported or credibly validated
-- BIOS controls/reporting
-- whether correctable/uncorrectable errors are exposed to the OS
-- Windows and Linux observability/logging
-- memory availability/cost at high capacity
-- realistic supported data rate at 4×64 GB ECC
-- any performance, boot-time or platform limitations
+The MSI provides a single CPU-connected Gen5 x16 graphics slot rather than an x8/x8 pair. Its storage topology also contains sharing between the second Gen5 M.2 and USB4, and between another M.2 socket and a chipset PCIe slot. This is adequate for the primary workstation but offers less accelerator/expansion headroom than either Creator-oriented finalist.
 
-ECC should influence selection only if implementation is real and operationally useful, not merely because ECC DIMMs boot. Prefer a board with complete ECC functionality when the cost and 256 GB stability trade-off are reasonable.
+## Power delivery and thermals
 
-### 5. PCIe lane topology
+None of the finalists is remotely power-delivery-limited for a stock/reliability-oriented 9950X3D.
 
-For every serious candidate, document an explicit lane map covering:
+Independent testing found:
 
-- primary GPU slot
-- secondary PCIe slots
-- M.2 sockets
-- CPU versus chipset attachment
-- PCIe generation and lane width
-- shared resources
-- interfaces disabled or downshifted under particular configurations
-- CPU bifurcation modes such as x16 versus x8/x8 where supported
+- X870 Taichi Creator VRM temperatures around the low-to-mid 50s Celsius under worst-case board stress, with ample headroom;
+- MSI X870 Tomahawk similarly has good thermal/power behavior;
+- independent ProArt testing has also shown ample VRM thermal margin for flagship Ryzen loads.
 
-Then test topology against plausible configurations, including:
+Therefore **VRM phase-count marketing is not a deciding criterion**. All serious finalists pass this part of the workload requirement. We should prefer the board with better memory behavior, topology, diagnostics and firmware rather than paying for extreme-overclocking power delivery.
 
-- existing RTX 3060
-- future very large/high-VRAM single GPU for local AI
-- current-reference 500–600 W-class workstation/AI GPU dimensions and cooling demands
-- several high-performance NVMe drives
-- optional 10 GbE NIC or other secondary card
-- a hypothetical two-GPU x8/x8 configuration only as a future-headroom sanity check, not as a current requirement
+## ECC status
 
-A board that can operate two CPU-connected x16 physical slots at x8/x8 without sacrificing the key storage configuration is preferred when the feature comes without a meaningful reliability or cost penalty. Serious multi-GPU AI remains outside the current design requirement and may justify a future platform change.
+ECC remains a **strong preference, not yet a closed requirement**.
 
-### 6. Storage implementation
+What is established:
 
-Review:
+- ASUS officially supports ECC unbuffered DDR5 and is actively maintaining ECC behavior in 2026 firmware;
+- ASRock officially supports ECC unbuffered DDR5 on the X870 Taichi Creator;
+- MSI X870 Tomahawk is non-ECC;
+- Linux has AMD EDAC/RAS support capable of reporting DDR5 ECC events when the platform exposes them;
+- community testing on AM5 has demonstrated corrected errors reaching Windows WHEA and Linux EDAC on functioning implementations.
 
-- M.2 count/generation
-- lane-sharing consequences
-- heatsink quality
-- accessibility with a large GPU
-- support for double-sided drives where relevant
-- SATA availability if useful
+What is **not yet established for our exact target**:
 
-Do not assume a particular number or capacity of SSDs before the storage review.
+- a specific 4×64 GB ECC kit validated for the 9950X3D + ProArt or Taichi Creator;
+- confirmed corrected/uncorrected error observability with that exact 256 GB configuration;
+- final conservative operating rate and memory-training behavior.
 
-### 7. Networking
+Those questions move directly into the memory deep dive and remain promotion gates.
 
-For each candidate, inspect the exact controllers rather than headline speeds.
+## Firmware maturity assessment
 
-#### Ethernet
+### ASUS
 
-Determine:
+ASUS currently has the strongest firmware trail for our exact memory objective. The board has received repeated high-capacity/four-DIMM, DDR5-training, system-stability and ECC-specific updates from early 2025 through July 2026. This materially improves confidence in the ProArt as a 256 GB workstation platform.
 
-- controller model
-- link speed
-- Windows driver maturity
-- Linux support
-- known stability/power-management issues
-- value of onboard 5/10 GbE versus adding a NIC later
-- whether onboard high-speed networking preserves a PCIe slot that may be valuable for future accelerator/GPU expansion
+### ASRock
 
-#### Wi-Fi / Bluetooth
+ASRock's X870 Taichi Creator is newer, but firmware activity is strong:
 
-If useful, determine:
+- 3.40 (2025-09): memory compatibility + system/CPU stability improvements;
+- 4.10 (2026-02): optimized memory compatibility and resolved certain boot failures;
+- 4.43 (2026-07): current AGESA 1.3.0.1b Patch A generation;
+- 4.50 (2026-08-27): workstation GPU compatibility optimization.
 
-- chipset
-- Wi-Fi/Bluetooth versions
-- Windows/Linux support
-- antenna implementation
+This is a positive sign, but the memory review must still find stronger evidence around the exact 4×64 GB target.
 
-### 8. USB and external I/O
+## Networking note
 
-Inventory and evaluate:
+Both leading candidates use the **Marvell/Aquantia AQC113 family for 10 GbE**. Onboard 10 GbE is useful because it avoids consuming a PCIe slot later, but it should not be treated as automatically more reliable than a discrete server-grade NIC. Driver/firmware stability, sleep/resume behavior and sustained-transfer thermals should be tested during bring-up.
 
-- USB4/Thunderbolt-equivalent capability where available
-- rear USB-A/C distribution
-- front-panel USB-C capability
-- display output for iGPU diagnostics
-- internal headers
+The ASRock additionally provides 5 GbE, while the ASUS provides 2.5 GbE as its second wired interface.
 
-Judge these against likely 10-year usefulness rather than specification-sheet quantity.
+## Current cost/value interpretation
 
-### 9. Debug, recovery and serviceability
+Current Romanian pricing changes the value picture materially:
 
-Review:
+- **ASUS ProArt X870E-Creator WiFi:** roughly 2.68–2.90k lei;
+- **ASRock X870 Taichi Creator:** roughly 1.69–1.82k lei;
+- **MSI MAG X870 Tomahawk WiFi:** competitive offers roughly 1.43–1.67k lei, but pricing/stock varies substantially.
 
-- BIOS Flashback/recovery
-- Clear CMOS accessibility
-- debug LEDs / POST-code display
-- dual BIOS if present
-- onboard controls if useful
-- tool-less retention/serviceability
-- header placement
+The ProArt premium over the ASRock is therefore roughly **900–1,100 lei** today. That premium is **not justified by CPU performance**. Its current justification is the substantially stronger explicit vendor evidence for 4×64 GB / 256 GB and the continuing ECC-specific firmware work.
 
-### 10. BIOS / firmware quality
+If the memory review proves that the ASRock handles the exact 256 GB ECC configuration equally well, the ProArt premium loses much of its justification and the Taichi Creator would likely become the better 10-year value.
 
-Research:
+## Provisional recommendation
 
-- firmware release cadence
-- AGESA adoption speed
-- memory-training history
-- high-density DIMM support history
-- ECC-related fixes/improvements where applicable
-- known regressions
-- boot-time behavior with 256 GB configurations
-- virtualization/IOMMU stability
-- long-term vendor support record
+### Provisional / aspirational target: ASUS ProArt X870E-Creator WiFi
 
-### 11. Virtualization / IOMMU
+Reason: **lowest uncertainty around the primary 256 GB stability requirement**, with real ECC support and strong ongoing firmware attention.
 
-Verify:
+This is deliberately not a final selection.
 
-- SVM/IOMMU controls
-- Above 4G decoding / ReBAR controls
-- IOMMU grouping where documented
-- device-passthrough implications
-- topology consequences of chipset-attached devices
+### Live challenger / fallback: ASRock X870 Taichi Creator
 
-### 12. Physical layout and future GPU
+The ASRock may become the preferred board if the next memory pass establishes a credible 4×64 GB ECC path. It is better on several secondary dimensions: lane topology, diagnostics, dual 10/5 GbE and current price.
 
-Review with a future 3.5–4-slot consumer GPU and large dual-slot professional accelerator in mind:
+### Value/control: MSI MAG X870 Tomahawk WiFi
 
-- secondary-slot accessibility
-- physical spacing between CPU-connected GPU slots
-- M.2 accessibility
-- header placement
-- GPU anti-sag provisions
-- whether thick GPUs make useful expansion impossible
-- whether the board layout creates avoidable airflow restrictions around a high-power future GPU
+Keep as a sanity check. It demonstrates what can be saved if ECC and x8/x8 are abandoned, but those compromises are currently hard to justify for a long-lived workstation when the Taichi Creator is available near the same price class.
 
-### 13. Reliability and long-term ownership
+## Promotion gates before motherboard can become Selected
 
-Assess:
+The provisional motherboard must not be promoted until all of the following are checked:
 
-- cooling design and absence/presence of small fans
-- mechanical design
-- vendor warranty/support in Romania/EU
-- firmware-support history
-- replacement ecosystem and standardization
-- evidence of stable high-capacity memory support rather than peak memory-overclocking capability
+1. identify the exact **4×64 GB / 256 GB** memory candidates for ProArt and Taichi Creator;
+2. prefer a true ECC UDIMM option if it is available and stable;
+3. establish the expected conservative data rate — target up to **5200 MT/s only when validated**, otherwise use the lower stable rate;
+4. confirm memory training/cold-boot behavior on current BIOS;
+5. confirm Windows WHEA and/or Linux EDAC observability if ECC is selected;
+6. choose a provisional storage topology and verify that it does not unnecessarily reduce future GPU bandwidth;
+7. validate 10 GbE controller firmware/drivers and sleep/resume during bring-up;
+8. confirm CPU cooler/RAM clearance after the memory module choice;
+9. confirm the chosen chassis provides practical access and airflow for the board, M.2 devices and future large GPU; and
+10. refresh Romanian price/warranty immediately before purchase.
 
-## Candidate strategy
+## Immediate next step
 
-Compare only boards that pass the official 256 GB support gate and have credible prospects for stable 4×64 GB operation, then choose representatives for:
+The next research step is **the exact 256 GB memory configuration**, performed against **both** the ProArt provisional target and X870 Taichi Creator challenger. That review should decide whether ECC is practical and whether the ASRock can match ASUS's 4×64 GB stability evidence. The motherboard remains provisional until that work is complete.
 
-1. **Value board** — least expensive eligible board satisfying all material requirements.
-2. **Balanced board** — useful additional I/O/serviceability/expansion without luxury features.
-3. **Higher-end/workstation-oriented AM5 board** — only if it adds concrete benefits such as materially better PCIe topology, operationally useful ECC, onboard 10 GbE, better recovery features, stronger 256 GB validation or substantially better expansion.
+## Sources used for this 2026-08-29 pass
 
-The **MSI MAG X870 TOMAHAWK WIFI** should be included only if its current manufacturer specification confirms 256 GB support and its current firmware/memory support makes 256 GB a credible configuration.
+Primary/vendor sources:
 
-The motherboard shortlist should include at least one board with CPU-connected **x8/x8** capability if a credible 256 GB/stability-oriented candidate exists, so that the cost and trade-off of preserving dual-GPU headroom can be quantified.
+- ASUS ProArt X870E-Creator WiFi technical specifications and support/BIOS history: https://www.asus.com/motherboards-components/motherboards/proart/proart-x870e-creator-wifi/
+- ASRock X870 Taichi Creator specifications: https://www.asrock.com/mb/AMD/X870%20Taichi%20Creator/
+- ASRock current BIOS list: https://www.asrock.com/support/index.asp?cat=BIOS
+- MSI MAG X870 Tomahawk WiFi specifications: https://www.msi.com/Motherboard/MAG-X870-TOMAHAWK-WIFI/Specification
 
-## Required output of the review
+Independent/market references:
 
-The motherboard investigation should finish with:
-
-1. selected chipset/board class;
-2. **provisional / aspirational motherboard target**, not a closed final selection;
-3. reasons tied directly to workload and 10-year stability requirements;
-4. confirmation of official 256 GB memory support for every finalist;
-5. evidence relevant to stable 4×64 GB / 256 GB operation;
-6. complete PCIe/M.2 topology table for finalists;
-7. ECC verdict, including OS-visible error reporting where possible;
-8. future local-AI expansion verdict, including single-GPU and x8/x8 capability;
-9. expected 256 GB memory topology/data-rate implications to carry into the memory review;
-10. storage/expansion constraints to carry forward;
-11. current Romanian pricing/value;
-12. BIOS/firmware requirements for eventual bring-up; and
-13. explicit list of **promotion gates** that must be satisfied before the provisional motherboard becomes a closed selection.
-
-## Current position
-
-**Ryzen 9 9950X3D + AM5 is fixed. The build targets 256 GB of system memory initially. The exact motherboard remains open. The next step is to nominate a provisional/aspirational motherboard target, not to close the motherboard decision. Only boards with manufacturer-documented 256 GB support and credible high-density DIMM support are eligible. Operationally complete ECC is a strong preference. The motherboard should also preserve a credible future path to one very high-end/high-VRAM AI GPU, with x8/x8 dual-slot capability treated as useful headroom rather than a hard requirement.**
+- Tom's Hardware, ASRock X870 Taichi Creator review, 2025-12-23
+- PC Gamer, MSI MAG X870 Tomahawk WiFi review
+- Romanian price snapshots from Compari.ro, Price.ro and current retailer listings
+- Level1Techs community ECC testing is used only as supplementary evidence, not as a substitute for vendor validation
