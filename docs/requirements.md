@@ -9,7 +9,7 @@ The CPU/platform decision is fixed:
 - **AMD Ryzen 9 9950X3D**
 - **AM5**
 
-The memory-capacity target is also fixed at **256 GB for the initial build**, subject to a fallback only if current 256 GB cost is disproportionate to the overall budget or stable AM5 operation at that capacity requires an unacceptable performance/stability compromise.
+The memory-capacity target is also fixed at **256 GB for the initial build**, subject to a fallback only if current 256 GB cost is disproportionate or stable AM5 operation at that capacity requires an unacceptable performance/stability compromise.
 
 The existing **NVIDIA GeForce RTX 3060 12 GB** will be reused initially.
 
@@ -53,14 +53,18 @@ The system should remain useful and serviceable for approximately **7–10 years
 
 ## Budget and procurement
 
-- Maximum total project budget: **20,000 lei**
+- Planning budget ceiling: **30,000 lei**
 - Location: **Iași, Romania**
 - Self-assembled
 - Existing NVIDIA GeForce RTX 3060 12 GB will be reused initially
 
-The budget is a ceiling, not a spending target. More expensive parts should be selected only when they provide a concrete benefit for the workload, reliability, expandability or expected lifespan.
+The budget is **not a primary optimization target** and should not drive component selection ahead of workload fit, stability, reliability, acoustics, expansion capability or longevity. It is a planning ceiling rather than a spending target.
 
-The current design should attempt to preserve the **256 GB memory target first**. Reduce memory capacity only if the real market cost of a suitable 256 GB configuration materially distorts the build or if achieving 256 GB on AM5 imposes a stability/performance compromise that outweighs the capacity benefit.
+More expensive parts are acceptable when they provide a concrete, material benefit. Conversely, do not spend extra for prestige, unused specifications, extreme-overclocking capability or other features that do not improve the actual workstation.
+
+If an otherwise justified configuration exceeds 30,000 lei, identify the cost driver and evaluate whether the additional benefit warrants revisiting the planning ceiling rather than automatically compromising core requirements.
+
+The current design should preserve the **256 GB memory target first**. Reduce memory capacity only if the real market cost of a suitable 256 GB configuration is disproportionate to its benefit or if achieving 256 GB on AM5 imposes a stability/performance compromise that outweighs the capacity benefit.
 
 ## Reliability principles
 
@@ -168,8 +172,8 @@ Each component review should answer:
 3. Which features materially improve reliability, performance, serviceability or longevity?
 4. Which features are merely premium positioning?
 5. What compatibility or topology constraints does the choice impose on other components?
-6. What is the best value point in the current Romanian market?
-7. Is there a more expensive alternative with a concrete, defensible benefit?
+6. Which option best satisfies the technical requirements, and what does each additional price increment materially buy?
+7. Is there a more expensive alternative with a concrete, defensible benefit worth paying for?
 8. What must be validated after purchase?
 
 A model mentioned in earlier discussions should be treated as a **candidate to compare**, not as the baseline that alternatives must displace, unless it is explicitly recorded as selected in `docs/decisions.md`.
