@@ -35,7 +35,26 @@ Previously discussed parts and configurations are research candidates only unles
 ### Secondary
 
 - Occasional PC gaming
-- Local AI experimentation may become relevant
+- **Future local AI experimentation, inference and model training using a substantially more capable discrete GPU**
+
+The AI objective is secondary: preserve a credible upgrade path without turning the current system into a specialized multi-GPU AI workstation or compromising the primary development/reliability goals.
+
+## Future local AI upgrade objective
+
+The system should be designed so that a future move from the existing RTX 3060 to a **very high-performance, high-VRAM GPU** does not require replacing otherwise suitable core components unnecessarily.
+
+Design implications:
+
+- prefer a motherboard that preserves a full-performance CPU-connected primary GPU slot with the intended storage configuration;
+- consider CPU-connected **x8/x8 bifurcation across two physical x16 slots** a useful future-facing feature when it does not materially compromise stability, layout or cost, but do not make dual-GPU support a hard requirement;
+- preserve physical space and airflow for a future very large/high-power GPU;
+- size the eventual PSU and case with a plausible future 500–600 W-class accelerator in mind rather than only the current RTX 3060;
+- avoid consuming the only useful secondary PCIe slot for functionality that could reasonably be integrated on the motherboard, where that would restrict future expansion;
+- consider onboard 5/10 GbE useful when it avoids a future NIC consuming scarce expansion resources;
+- treat **GPU VRAM as the primary capacity constraint for local model training/inference**; 256 GB of system RAM is valuable for data preparation, CPU offload, model loading and concurrent tooling, but it does not substitute for GPU VRAM;
+- retain NVIDIA/CUDA compatibility as an important consideration for a future AI GPU, without selecting the future GPU model now.
+
+A single very high-end GPU is a credible upgrade within AM5. If future requirements grow into **serious multi-GPU training**, the AM5 platform may become the limiting architecture because of PCIe lane count, physical slot layout, power and cooling. At that point it is acceptable to reopen the platform decision and consider Threadripper/WRX90 or another workstation/server-class platform rather than over-designing the current machine for an uncertain multi-GPU requirement.
 
 ## Longevity target
 
@@ -88,7 +107,8 @@ These are governing evaluation principles:
 - Prefer conservative stock or near-stock operation; avoid manual overclocking as a design objective.
 - Do not rely on marginal memory-controller settings, unusually high SoC/memory voltages or fragile training behavior to achieve a headline RAM speed.
 - Prioritize memory stability over headline memory speed, especially at 256 GB.
-- Evaluate ECC explicitly rather than assuming either ECC or non-ECC; value it only when implementation and error observability are operationally useful.
+- **System-level ECC is desirable for this workstation if it is implemented end-to-end and operationally observable.** Treat ECC as a strong preference, not yet a hard requirement, until 256 GB ECC UDIMM availability, motherboard support, stable operating behavior and OS-visible error reporting are verified.
+- Do not treat DDR5 on-die ECC as equivalent to system-level ECC; on-die ECC protects errors internal to the DRAM device and does not provide the same end-to-end protection across the memory path.
 - Prefer cooling solutions that sustain expected loads with thermal and acoustic headroom rather than merely preventing throttling.
 - Prefer storage with appropriate endurance, power-loss/data-integrity characteristics, firmware maturity and sustained-write behavior for VM/container/build workloads.
 - Evaluate whether workload separation across physical drives is operationally useful before deciding drive count/capacity.
@@ -122,6 +142,9 @@ Motherboard evaluation should cover:
 - memory training/boot behavior with four high-density DIMMs
 - conservative long-duration power-delivery and VRM thermal behavior
 - PCIe/M.2 lane topology and sharing
+- preservation of a strong primary-GPU path for the future AI objective
+- availability of CPU-connected x8/x8 slot bifurcation where practical
+- physical slot spacing and compatibility with very large/high-power future GPUs
 - useful expansion after multiple NVMe drives are populated
 - networking controller quality and driver maturity
 - USB4/high-speed external I/O where useful
@@ -144,7 +167,8 @@ The memory review should determine:
 - whether 4×64 GB is the practical/required topology and what operating speed is realistically stable
 - motherboard QVL and vendor support evidence for 64 GB DIMMs
 - JEDEC versus EXPO/XMP trade-offs at 256 GB
-- ECC value and implementation quality
+- **whether a 256 GB ECC UDIMM configuration is available, validated and operationally useful**
+- whether the motherboard exposes correctable/uncorrectable ECC events to Windows/Linux in a way that can be monitored
 - memory-training and boot-time implications
 - safe/conservative voltage requirements
 - Romanian/EU availability and price
@@ -171,9 +195,11 @@ Previously discussed **2 TB system + 4 TB work/VM NVMe** is a candidate architec
 ### GPU
 
 - Reuse the existing **NVIDIA GeForce RTX 3060 12 GB** initially.
-- Ensure the new platform does not unnecessarily constrain a future substantially higher-VRAM GPU.
+- Preserve a credible upgrade path to a future **very high-performance, high-VRAM GPU for local AI training/inference**.
+- Ensure the motherboard, case, PSU and cooling choices do not unnecessarily constrain that upgrade.
 - Do not replace the GPU merely to optimize gaming performance unless requirements change.
-- Future AI-oriented GPU evaluation should emphasize VRAM, software compatibility, power, thermals and physical fit.
+- Future AI-oriented GPU evaluation should emphasize VRAM, CUDA/software compatibility, sustained compute performance, power, thermals and physical fit.
+- Multi-GPU AI is not a current requirement; if it later becomes necessary, reassess whether AM5 remains the correct platform rather than accepting severe lane/power/layout compromises.
 
 ### Networking and I/O
 
@@ -186,6 +212,7 @@ For a 10-year-oriented system, evaluate:
 - sufficient rear and front I/O
 - usable PCIe expansion after storage devices are installed
 - topology/lane sharing rather than connector count alone
+- whether onboard networking avoids consuming PCIe expansion needed for future accelerator/GPU use
 - driver maturity and long-term support expectations
 
 ## Decision philosophy
@@ -200,7 +227,8 @@ Each component review should answer:
 6. Which option best satisfies the technical requirements, and what does each additional price increment materially buy?
 7. If the more expensive option is selected, is the benefit durable enough to justify the cost over a roughly 10-year ownership horizon?
 8. Does the selected configuration operate conservatively, with sufficient thermal, electrical and memory-stability headroom?
-9. What must be validated after purchase to establish a stable baseline?
+9. Does the choice preserve the secondary future-AI upgrade path without compromising the primary development workstation?
+10. What must be validated after purchase to establish a stable baseline?
 
 When performance and stability conflict, **prefer stability unless the performance loss is material enough to affect the workstation's core purpose**.
 
