@@ -14,22 +14,24 @@ This file records **closed decisions only**, together with their rationale and a
 
 | Area | Decision | Status | Rationale / reopen condition |
 |---|---|---|---|
-| CPU / platform | AMD Ryzen 9 9950X3D on AM5 | **Selected** | Best overall balance for very heavy Java/Android development, interactive desktop use and occasional gaming. Threadripper 9960X/TRX50 offers additional sustained parallel throughput, memory bandwidth and I/O, but its materially higher total platform cost and workstation specialization do not justify the expected benefit for this mixed workload. Reopen only if requirements materially change toward highly parallel sustained compute, substantially greater memory capacity/bandwidth, or unusually high PCIe expansion needs. |
-| Memory capacity target | **256 GB initial build target** | **Selected** | Design the AM5 system around a stable 256 GB configuration. Scale back to a lower capacity only if current 256 GB memory cost is disproportionate to the overall build budget or if available 4×64 GB configurations impose an unacceptable stability/performance compromise. Exact DIMM topology, kit, data rate and ECC/non-ECC mode remain open until motherboard/memory validation. |
+| CPU / platform | AMD Ryzen 9 9950X3D on AM5 | **Selected** | Best overall balance for very heavy Java/Android development, interactive desktop use and occasional gaming. Threadripper 9960X/TRX50 offers additional sustained parallel throughput, memory bandwidth and I/O, but its materially higher total platform cost and workstation specialization do not justify the expected benefit for this mixed workload. Reopen only if requirements materially change toward highly parallel sustained compute, substantially greater memory capacity/bandwidth, unusually high PCIe expansion needs, or a future multi-GPU AI workload that materially exceeds AM5 capabilities. |
+| Memory capacity target | **256 GB initial build target** | **Selected** | Design the AM5 system around a stable 256 GB configuration. Scale back to a lower capacity only if current 256 GB memory cost is disproportionate or if available 4×64 GB configurations impose an unacceptable stability/performance compromise. Exact DIMM topology, kit, data rate and ECC/non-ECC mode remain open until motherboard/memory validation. |
 | Motherboard memory-capacity eligibility | Consider only AM5 motherboards whose manufacturer officially specifies support for **256 GB** system memory | **Selected** | The motherboard must support the 256 GB target configuration without relying on unofficial/user-reported capacity support. Board selection must also consider high-density DIMM QVL coverage, BIOS maturity and realistic 256 GB operating behavior. |
-| Budget / longevity philosophy | **30,000 lei is a planning level, not a hard cap; stability and long-term value outrank short-term peak performance** | **Selected** | Prefer to stay meaningfully below 30,000 lei when that does not compromise the workstation's technical objectives. Spending at or above this level is acceptable only when the additional cost buys a credible durable benefit in performance, reliability, endurance, serviceability, expansion headroom or reduced operational risk. If the build approaches/exceeds 30,000 lei, it should be designed explicitly around an approximately 10-year useful-life objective. Reopen only if the intended ownership horizon or workload priorities materially change. |
-| GPU | Reuse existing NVIDIA GeForce RTX 3060 12 GB initially | **Selected** | Fixed input to the new build; replacement can be reconsidered later if workload requirements justify a materially higher-VRAM GPU |
+| Future local AI expansion | Preserve a credible upgrade path to a **very high-performance, high-VRAM discrete GPU for local AI training/inference** | **Selected** | AI is a secondary objective and must not distort the primary development-workstation design. Motherboard, case, PSU and cooling choices should avoid unnecessarily blocking a future single high-end GPU. CPU-connected x8/x8 dual-slot capability is desirable when it comes without a material compromise, but multi-GPU AI is not a current hard requirement; if future training needs genuinely require several accelerator GPUs, reopening the platform decision for Threadripper/WRX90 or another workstation platform is acceptable. |
+| GPU | Reuse existing NVIDIA GeForce RTX 3060 12 GB initially | **Selected** | Fixed input to the new build; replacement can be reconsidered later if workload requirements justify a materially higher-VRAM GPU, including the future local-AI objective. |
+| Cost / longevity philosophy | Prefer to remain meaningfully below 30,000 lei, but allow higher spend only when it buys a credible long-term reliability, stability, endurance, serviceability or productivity benefit | **Selected** | The budget is not a performance-per-leu optimization target. As total cost approaches or exceeds 30,000 lei, the expected useful life should approach the 10-year end of the target range. Stability and conservative operation take precedence over short-term benchmark performance. |
 
 ## Open decisions
 
 The following remain open:
 
-- motherboard/chipset/model within AM5, subject to the 256 GB target
+- motherboard/chipset/model within AM5, subject to the 256 GB target and future high-end-GPU expansion objective
 - memory DIMM topology, exact kit, data rate and ECC/non-ECC mode for the 256 GB target
+- whether operationally complete system-level ECC should be selected; this requires validation of 256 GB ECC UDIMM availability, motherboard firmware support and OS-visible error reporting
 - cooling architecture and model for the Ryzen 9 9950X3D
 - storage capacity, topology, interface and exact drives
-- PSU wattage/platform/model
-- case and fan layout
+- PSU wattage/platform/model, including sensible headroom for a future substantially higher-power GPU
+- case and fan layout, including physical/thermal support for a future large GPU
 - UPS topology/capacity/model
 - operating system details
 
