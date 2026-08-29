@@ -25,7 +25,7 @@ A provisional target is the best current candidate given the evidence available,
 
 For the motherboard specifically, the preferred board should remain provisional until the exact 256 GB memory path, ECC verdict, PCIe/M.2 topology, future high-end-GPU path and firmware maturity have been checked. If later memory/storage/case/PSU work exposes a material weakness, the board should be replaced rather than forcing the rest of the build around it.
 
-For memory, distinguish **initial purchase capacity** from the **architectural endpoint**. The build may begin at 64–128 GB while still requiring the motherboard/platform to preserve a credible 256 GB path.
+For memory, distinguish **Phase-1 commissioning memory** from the **architectural endpoint**. The build may begin with any stable 32 GB-or-larger configuration while still requiring the motherboard/platform to preserve a credible 256 GB path.
 
 ## Current decision matrix
 
@@ -33,9 +33,8 @@ For memory, distinguish **initial purchase capacity** from the **architectural e
 |---|---:|---|---|---|---|---|---|
 | **Ryzen 9 9950X3D + AM5** | Baseline | Excellent mixed workstation performance; strong Java/build throughput and interactive responsiveness; excellent gaming | Strong when operated conservatively; mature AM5 ecosystem is a major factor | Mainstream parts ecosystem and broad replacement availability | Up to 256 GB system memory; adequate PCIe for a powerful single-GPU AI system | **High** | **Selected** |
 | Threadripper 9960X + TRX50 | Approx. +7–8k lei 5-year TCO versus 9950X3D platform from Aug 2026 analysis; refresh before purchase | Potentially materially faster in highly parallel builds/tests; much less benefit in ordinary IDE/interactive work | RDIMM platform and four memory channels are workstation strengths | Strong workstation platform, but higher power/cooling complexity and more specialized replacement ecosystem | Much stronger PCIe and memory-bandwidth headroom | Medium for this workload | **Rejected** — extra throughput and workstation specialization do not justify TCO for the current mixed workload |
-| **64 GB initial memory floor (2×32 GB)** | **Initial baseline** | Already doubles the current working capacity; enough for serious Java/Android development, IDEs, builds, Docker/WSL2 and ordinary emulator/service concurrency | **Strong initial stability posture** from two-DIMM loading; much easier target than four high-density DIMMs | Initial kit can be replaced later without redesigning the workstation | Preserves budget for harder-to-replace platform components while motherboard still targets 256 GB | **High as a budget-control mechanism** | **Selected minimum initial configuration** |
-| 96 GB initial memory (2×48 GB) | TBD versus 64 GB | More concurrency/headroom before memory pressure | Similar two-DIMM stability advantages | Can remain useful longer before replacement | More runway while still preserving 256 GB endpoint | Potentially high | Candidate if price premium is modest |
-| 128 GB initial memory (2×64 GB) | TBD versus 64/96 GB | Substantial immediate headroom for JVMs, VMs, containers and Android tooling | Two-DIMM configuration is attractive electrically; exact ECC/non-ECC path TBD | May defer the need for 256 GB upgrade | Uses DIMM density relevant to eventual 256 GB validation | High if price is reasonable | Candidate, but not required to preserve the rest of the build |
+| **32 GB Phase-1 commissioning memory** | **Initial baseline** | No intentional performance uplift versus the current working environment; sufficient to commission and use the new platform | A simple 1- or 2-DIMM configuration is easy to stabilize; 2×16 GB preferred when similarly priced | Explicitly temporary/replaceable; minimize sunk cost | Frees budget for harder-to-replace platform components while motherboard still targets 256 GB | **Very high as a budget-control mechanism** | **Selected Phase-1 floor** |
+| 48–128 GB temporary memory | TBD versus 32 GB | More concurrency/headroom before memory pressure | Still easy to operate conservatively with one or two DIMMs | May remain useful longer before replacement | More runway, but no architectural requirement | Medium-high only if incremental price is attractive | Optional; do not pay heavily for temporary capacity |
 | **256 GB system memory endpoint** | Deferred until price/stability justify purchase | Capacity benefit rather than direct speed; allows large JVM heaps, concurrent IDEs/services/VMs/containers and future AI support workflows without paging pressure | Potentially strong if configuration is validated conservatively; four-DIMM AM5 stability is the main technical risk | High capacity should remain useful throughout ownership period | Preserves substantial local development/VM/data/AI headroom | **Potentially very high** | **Architectural target selected; not mandatory day-one purchase** |
 | ECC UDIMM at 256 GB | TBD | No meaningful performance advantage; may have small implementation-specific cost/latency trade-offs | **Potentially high**: protects against correctable memory errors and improves data-integrity story if ECC is truly end-to-end and OS-visible | Strong fit for long-lived 256 GB workstation if supported reliably | Helpful for long-running JVM/VM/database/AI workloads | Potentially high | **Strong preference / under review** — require stable 256 GB configuration and real error reporting, not merely DIMMs that boot |
 | Non-ECC UDIMM at 256 GB | Baseline memory alternative | Potentially easier availability and/or higher clocks | Acceptable if thoroughly validated, but lacks system-level ECC protection | Good if conservative, high-quality DIMMs are used | Same capacity; less data-integrity protection | Medium-high | Fallback if ECC implementation or availability compromises stability |
@@ -58,25 +57,27 @@ The current motherboard contest is deliberately **not** simply premium versus va
 - the **Taichi Creator saving** does not buy a weaker feature set — it actually has cleaner PCIe/storage topology, better POST diagnostics and 10 GbE + 5 GbE — but its exact 4×64 GB ECC evidence still needs to be proven to the same confidence level;
 - the **MSI saving versus the Taichi Creator is relatively small** in current Romanian pricing, while giving up ECC, CPU x8/x8 and 10 GbE.
 
-Therefore the next memory review can materially change the ranking. If the ASRock proves equally stable with a credible 256 GB ECC configuration, its lower price and topology advantages are durable enough that it would likely become the better 10-year value. If it does not, paying roughly 1,000 lei more for the ProArt may be justified as risk reduction on a 256 GB workstation.
+Therefore the next long-term memory review can materially change the ranking. If the ASRock proves equally stable with a credible 256 GB ECC configuration, its lower price and topology advantages are durable enough that it would likely become the better 10-year value. If it does not, paying roughly 1,000 lei more for the ProArt may be justified as risk reduction on a 256 GB workstation.
 
 ## Memory cost/value interpretation
 
-Memory is now explicitly the preferred **budget-release valve**:
+Memory is now explicitly the strongest **budget-release valve**:
 
-- **64 GB (2×32 GB)** is enough to start productively and already doubles the current working capacity;
-- spending more for 96 or 128 GB is optional and should be driven by current price/value, not by architectural necessity;
+- **32 GB is enough for Phase 1** because it matches the capacity already supporting the current workload;
+- temporary RAM is a commissioning purchase, not a long-term investment;
+- 2×16 GB is preferable when pricing is similar, but 1×32 GB or any other stable 32 GB+ configuration is acceptable if cheaper;
+- spending more for temporary capacity should happen only when the incremental price is unusually attractive;
 - **256 GB remains the endpoint**, but buying it immediately is not worth distorting the rest of the build when high-density DDR5 pricing is disproportionate;
-- the initial kit should be treated as replaceable, so the eventual 256 GB configuration can be chosen from the best validated matched set available at that time rather than being constrained by sunk cost.
+- the temporary kit should be treated as replaceable so the eventual 256 GB configuration can be chosen from the best validated matched set available at that time rather than being constrained by sunk cost.
 
-This preserves the motherboard, chassis, cooling, storage and PSU quality while keeping the initial system within budget.
+This preserves the motherboard, chassis, cooling, storage and PSU quality while minimizing initial memory spend.
 
 ## Component-level matrix to complete
 
 | Area | Baseline / value option | Premium option(s) | Cost delta | Measured workload benefit | Reliability/endurance benefit | Expansion/longevity benefit | Decision |
 |---|---|---|---:|---|---|---|---|
 | Motherboard | MSI MAG X870 Tomahawk WiFi | **ASRock X870 Taichi Creator** / **ASUS ProArt X870E-Creator WiFi** | MSI→ASRock roughly +0–0.4k lei at competitive offers; ASRock→ASUS roughly +0.9–1.1k lei | Essentially none in CPU throughput at stock | ASUS currently strongest 256 GB/ECC firmware evidence; ASRock stronger diagnostics and needs exact RAM validation | ASRock/ASUS add ECC, CPU x8/x8 and 10 GbE; ASRock has cleaner NVMe/GPU sharing | **ProArt provisional target; Taichi Creator live challenger; MSI control** |
-| Memory kit | **64 GB 2×32 GB minimum** | 96 GB 2×48 / 128 GB 2×64 initial; eventual 256 GB matched configuration | TBD from current market | More capacity mainly increases concurrency/headroom | Two-DIMM initial config is conservative; eventual ECC may add data-integrity protection | Platform still preserves 256 GB endpoint | **64 GB floor selected; exact initial kit is next research step** |
+| Memory kit | **32 GB+ commissioning RAM** | Larger temporary kit only if unusually good value; eventual 256 GB matched configuration | Keep Phase-1 delta minimal | Temporary capacity only affects concurrency/headroom | Simple one/two-DIMM config is easy to stabilize; eventual ECC may add data-integrity protection | Platform still preserves 256 GB endpoint | **32 GB floor selected; minimize temporary RAM spend** |
 | Cooling | TBD | TBD | TBD | Sustained clock/acoustic differences TBD | Pump/fan/serviceability trade-offs TBD | TBD | Open |
 | Storage | TBD | High-endurance / higher-capacity options | TBD | Build/cache/VM I/O differences TBD | TBW, firmware, thermal/data-integrity differences TBD | Capacity/endurance headroom TBD | Open |
 | PSU | TBD | Higher-quality / higher-headroom option | TBD | None directly | Electrical quality, thermal margin and warranty TBD | Future high-power GPU support TBD | Open |
