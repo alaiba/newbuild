@@ -2,7 +2,7 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, the **CPU/platform, 256 GB memory-capacity target and existing GPU are selected**. Other rows remain intentionally open or may be tracked as provisional targets while dependent validation is still incomplete.
+At present, the **CPU/platform, 256 GB architectural memory target, 64 GB minimum initial memory floor and existing GPU are selected**. Other rows remain intentionally open or may be tracked as provisional targets while dependent validation is still incomplete.
 
 ## Status vocabulary for this document
 
@@ -19,7 +19,7 @@ A motherboard should remain **Provisional target** until the exact 256 GB memory
 |---|---|---|---|
 | CPU | AMD Ryzen 9 9950X3D | **Selected** | AM5 platform; fixed input for subsequent component selection |
 | Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Provisional target** | Leads on explicit 4×64 GB / 256 GB and ECC firmware evidence. **ASRock X870 Taichi Creator remains a live challenger** and may replace it if the exact 256 GB ECC memory review validates equally well; ASRock has cleaner PCIe/storage topology, stronger diagnostics and materially lower current cost. |
-| Memory | 256 GB target | **Target selected** | Exact topology/kit/data rate/ECC undecided; next step is to validate 4×64 GB against both motherboard finalists. Scale back only if 256 GB cost or stability/performance trade-off is disproportionate. |
+| Memory | **64 GB minimum initial / 256 GB architectural target** | **Target selected** | Minimum starting point is 2×32 GB. Exact initial kit may be 64, 96 or 128 GB depending current value. Preserve a validated 256 GB endpoint; treat the initial kit as replaceable rather than assuming it will later be combined with another kit. |
 | CPU cooler | — | Open | Must suit sustained Ryzen 9 9950X3D development workloads; preserve both top-tier air and 360/420 mm AIO options until motherboard/RAM clearance is known. |
 | Storage | — | Open | Capacity, drive count and layout undecided |
 | PSU | — | Open | Wattage/model undecided; preserve headroom for a future high-power/high-VRAM GPU |
@@ -44,13 +44,25 @@ Before a provisional motherboard target is promoted to **Selected**, verify:
 
 The current comparison is intentionally still **ProArt X870E-Creator vs X870 Taichi Creator**, not a closed ASUS purchase decision.
 
+## Memory purchase strategy
+
+The first build does **not** need to buy 256 GB immediately.
+
+- **64 GB (2×32 GB)** is the selected minimum acceptable starting point.
+- 96 GB (2×48 GB) or 128 GB (2×64 GB) may be selected if their current incremental cost is justified.
+- The motherboard/platform must still preserve a credible **256 GB** path.
+- Do not rely on adding a second independently purchased kit later; when upgrading to 256 GB, reassess the best matched and validated configuration available at that time.
+
+This makes memory capacity the preferred budget-release valve while protecting the parts of the build that are harder or more expensive to replace later.
+
 ## Final compatibility checks
 
 Before purchase/assembly, verify the checks appropriate to the selected architecture, including:
 
 - Ryzen 9 9950X3D / AM5 motherboard compatibility and shipping firmware support
 - official motherboard support for 256 GB
-- exact 4×64 GB or other selected 256 GB memory configuration support at the intended data rate
+- compatibility of the selected initial two-DIMM memory kit
+- exact 4×64 GB or other eventual 256 GB memory configuration support at the intended data rate
 - QVL/vendor evidence and current BIOS maturity for high-density DIMMs
 - cooler/socket/case/RAM clearance
 - storage slot placement and lane-sharing behavior
@@ -66,7 +78,8 @@ A detailed validation plan will be added before assembly. It should include, as 
 
 - baseline boot at conservative/default memory settings
 - BIOS/firmware updates before memory tuning
-- extended 256 GB memory stability testing
+- extended memory stability testing at the installed initial capacity
+- extended 256 GB memory stability testing when/if the system is upgraded to that capacity
 - verification of memory error reporting where supported
 - sustained CPU thermal/load testing
 - SSD firmware/health checks and sustained I/O testing
