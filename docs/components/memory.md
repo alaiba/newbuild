@@ -1,25 +1,27 @@
 # Memory Deep Dive
 
-Status: **Under review / initial purchase + 256 GB endpoint**
+Status: **Under review / Phase-1 commissioning memory + 256 GB endpoint**
 
 ## Fixed strategy
 
-The memory strategy has two distinct levels:
+The memory strategy has two deliberately independent levels:
 
 - **Architectural endpoint:** preserve a credible path to **256 GB** system memory.
-- **Minimum initial purchase:** **64 GB as 2×32 GB**.
+- **Phase-1 minimum:** **32 GB** in any simple, stable configuration that reliably boots and runs the workstation.
 
-The initial kit does not have to reach 256 GB if current high-capacity DDR5 pricing is disproportionate. A larger starting point such as 96 GB (2×48 GB) or 128 GB (2×64 GB) may still be selected if the price/value is sensible, but 64 GB is the accepted floor.
+Phase-1 RAM is explicitly **temporary commissioning memory**. It does not need to resemble the eventual 256 GB configuration, use ECC, maximize frequency, or preserve an upgrade path through the same DIMMs.
 
-This lets memory act as the build's budget-release valve without weakening the CPU/platform, motherboard, chassis, cooling, storage or PSU architecture.
+If buying new, **2×16 GB** is preferred when it costs about the same as alternatives because it preserves dual-channel bandwidth. However, **1×32 GB or any other stable 32 GB-or-larger configuration is acceptable** if it is materially cheaper or more convenient.
 
-The initial lower-capacity kit should be treated as **replaceable**, not as a sunk-cost constraint on the eventual 256 GB configuration. Do not assume that buying a second nominally identical kit later is equivalent to a vendor-validated four-DIMM set.
+This lets memory act as the build's strongest budget-release valve without weakening the CPU/platform, motherboard, chassis, cooling, storage or PSU architecture.
+
+The Phase-1 kit should be treated as **replaceable**, not as a sunk-cost constraint on the eventual 256 GB configuration. Reuse or resale later is a bonus, not a design requirement.
 
 ## ECC posture
 
-**System-level ECC is a strong preference for this workstation, but not yet a hard requirement.**
+**System-level ECC is a strong preference for the eventual long-term memory configuration, but not a requirement for Phase 1.**
 
-The rationale is reliability rather than performance. A workstation with long uptimes, large JVM heaps, multiple VMs/containers, databases and long-running build/test/analysis workloads has meaningful memory-resident state worth protecting. ECC can reduce the risk that a memory fault becomes a silent data corruption, unexplained process/test failure, VM crash or corrupted in-memory/page-cache state.
+The rationale is reliability rather than performance. A long-lived workstation with large JVM heaps, multiple VMs/containers, databases and long-running build/test/analysis workloads has meaningful memory-resident state worth protecting. ECC can reduce the risk that a memory fault becomes a silent data corruption, unexplained process/test failure, VM crash or corrupted in-memory/page-cache state.
 
 The Ryzen 9 9950X3D supports ECC when the motherboard implements it. DDR5 on-die ECC is not equivalent to system-level ECC: on-die ECC only corrects errors internal to individual DRAM devices and does not provide the same end-to-end protection across the module/bus/controller path.
 
@@ -33,25 +35,24 @@ For the eventual high-capacity configuration, prefer ECC UDIMM if all of the fol
 
 Do not select ECC merely because a board can boot ECC DIMMs. If ECC reporting is hidden/non-functional, capacity support is weak, or the available configuration is materially less stable than a proven non-ECC configuration, prefer the more reliable overall system rather than the ECC label.
 
-For the **initial 64–128 GB purchase**, ECC should be evaluated on its own price/availability merits. We should not overpay heavily for a temporary ECC kit if the long-term plan is to replace it with a separately validated 256 GB ECC configuration.
+For **Phase 1**, do not pay a material premium for ECC. The temporary kit's job is simply to commission and use the system reliably until the long-term 256 GB purchase makes sense.
 
 ## Review focus
 
 The review now has two outputs to optimize separately.
 
-### Initial purchase
+### Phase-1 commissioning memory
 
-Determine the best current-value two-DIMM starting configuration:
+Determine the lowest-cost stable current option at **32 GB or more**:
 
-- 64 GB as **2×32 GB** — selected minimum floor;
-- 96 GB as **2×48 GB** — candidate if price premium is modest;
-- 128 GB as **2×64 GB** — candidate if price/value becomes attractive;
-- JEDEC versus EXPO/XMP characteristics;
-- ECC versus non-ECC price and implementation;
-- conservative stable settings;
+- 32 GB as **2×16 GB** — preferred when similarly priced because it preserves dual-channel bandwidth;
+- 32 GB as **1×32 GB** — acceptable when it is cheaper or easier to source;
+- 48/64/96/128 GB — acceptable only when the incremental price is attractive enough to justify more temporary capacity;
+- ordinary JEDEC or conservative EXPO/XMP operation;
+- non-ECC is fully acceptable;
 - Romanian/EU availability and price.
 
-Prefer two DIMMs for the initial configuration to reduce memory-controller loading and preserve a simple, conservative operating point.
+Do not optimize temporary RAM for eventual reuse. Do not let heat-spreader height, RGB, extreme timings or overclocking profiles complicate cooling or stability.
 
 ### Eventual 256 GB configuration
 
@@ -75,7 +76,9 @@ Stability is more important than headline memory frequency. Avoid configurations
 
 ## Workload implications
 
-A 64 GB starting configuration is legitimate for this build because it already doubles the user's current working capacity while preserving every other architectural decision. It is sufficient to make serious use of IntelliJ, Android Studio, builds, Docker/WSL2, Android emulators and ordinary local services, though heavier concurrent VM/container/JVM use will benefit from later capacity increases.
+A 32 GB Phase-1 configuration is acceptable because that capacity is already sufficient for the current working environment. The new system can therefore deliver most of its CPU/platform responsiveness immediately without requiring an expensive memory purchase merely to commission the build.
+
+The main limitation of remaining at 32 GB is concurrency headroom: heavier combinations of IntelliJ, Android Studio, emulators, Docker/WSL2, local services and VMs may create memory pressure sooner. That is acceptable in Phase 1 because the kit is intentionally temporary.
 
 The 256 GB endpoint remains valuable for:
 
@@ -92,18 +95,18 @@ System RAM ECC is separate from GPU-memory ECC. A future professional AI GPU may
 
 ## Upgrade policy
 
-Do **not** assume the initial two-DIMM kit will be expanded by adding a second independently purchased kit later.
+Do **not** assume the Phase-1 kit will be expanded into the final 256 GB configuration.
 
 When the move to 256 GB becomes economically justified:
 
 1. reassess the motherboard's current BIOS/AGESA and QVL state;
 2. select the best validated 4×64 GB (or equivalent) configuration available at that time;
 3. prefer a single matched kit/configuration where possible;
-4. replace/resell the initial kit if necessary rather than compromising stability to preserve sunk cost.
+4. replace/resell/reuse the Phase-1 kit if convenient rather than compromising stability to preserve sunk cost.
 
 ## Dependencies
 
-The initial 64–128 GB kit can be selected once the motherboard shortlist is sufficiently mature to evaluate ordinary two-DIMM compatibility.
+The Phase-1 kit only requires ordinary compatibility with the provisional motherboard and stable operation at 32 GB or more.
 
 The eventual 256 GB configuration still requires:
 
@@ -120,14 +123,13 @@ The eventual 256 GB configuration still requires:
 
 The memory review must finish with:
 
-1. exact **initial** memory recommendation, at least 64 GB as 2×32 GB;
-2. current price/value comparison for 64 GB, 96 GB and 128 GB two-DIMM options;
-3. ECC/non-ECC recommendation for the initial kit;
-4. exact **eventual 256 GB** capacity/topology recommendation;
-5. exact 256 GB kit/model recommendation or shortlist when economically relevant;
-6. QVL/platform support evidence;
-7. JEDEC and EXPO/XMP characteristics;
-8. expected stable operating settings;
-9. **ECC/non-ECC verdict based on real implementation, observability, stability and cost**;
-10. stability-test procedure, including ECC-event validation where applicable; and
-11. Romanian/EU availability and price.
+1. exact **Phase-1** recommendation at 32 GB or more, optimized for lowest reasonable cost and stability;
+2. current price/value comparison only where a larger temporary configuration is compelling;
+3. exact **eventual 256 GB** capacity/topology recommendation;
+4. exact 256 GB kit/model recommendation or shortlist when economically relevant;
+5. QVL/platform support evidence;
+6. JEDEC and EXPO/XMP characteristics;
+7. expected stable operating settings;
+8. **ECC/non-ECC verdict based on real implementation, observability, stability and cost** for the long-term configuration;
+9. stability-test procedure, including ECC-event validation where applicable; and
+10. Romanian/EU availability and price.
