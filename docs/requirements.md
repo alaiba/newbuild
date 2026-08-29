@@ -2,24 +2,37 @@
 
 ## Scope
 
-This is a **new build from scratch**. No CPU platform, motherboard, memory configuration, cooling solution, storage architecture, PSU, case, UPS or operating system has been selected yet.
+This is a **new build from scratch**.
 
-The only fixed hardware input is the existing **NVIDIA GeForce RTX 3060 12 GB**, which will be reused initially.
+The CPU/platform decision is fixed:
 
-Previously discussed parts and configurations are research candidates only. They are not requirements and must not be treated as predetermined choices.
+- **AMD Ryzen 9 9950X3D**
+- **AM5**
+
+The existing **NVIDIA GeForce RTX 3060 12 GB** will be reused initially.
+
+The motherboard, memory configuration, cooling solution, storage architecture, PSU, case, UPS and operating system remain open.
+
+Previously discussed parts and configurations are research candidates only unless explicitly recorded as selected in `docs/decisions.md`.
 
 ## Workload priority
 
 ### Primary
 
-- Programming and general software development
+- Very heavy Java software development, including codebases with millions of lines
+- IntelliJ IDEA and Android Studio
+- Maven and Gradle builds
+- Large automated test suites
+- Static analysis and annotation processing
+- Multiple concurrent JVM processes and local services
 - Docker workloads
 - WSL2
-- Multiple virtual machines
+- Android Emulator
+- Occasional virtual machines
 
 ### Secondary
 
-- Occasional Genshin Impact
+- Occasional PC gaming
 - Local AI experimentation may become relevant
 
 ## Longevity target
@@ -64,33 +77,44 @@ These are evaluation principles, not component decisions:
 
 ### CPU/platform
 
-Evaluate from first principles:
+**Selected:** AMD Ryzen 9 9950X3D on AM5.
 
-- sustained multi-core performance for builds, VMs and containers
-- single-thread responsiveness
-- virtualization support
-- power efficiency and thermals
-- memory capacity/support
-- platform maturity and longevity
-- chipset/PCIe/I/O capabilities
-- total platform cost
+Downstream component decisions should optimize around this platform unless the CPU/platform decision is explicitly reopened.
 
-No CPU vendor, socket or model is selected yet.
+### Motherboard
+
+Only consider AM5 motherboards whose **manufacturer officially specifies support for at least 256 GB of system memory**.
+
+This is a hard eligibility criterion intended to preserve long-term memory expansion headroom. It does **not** mean that 256 GB must be installed initially.
+
+Motherboard evaluation should also cover:
+
+- BIOS/AGESA maturity with the Ryzen 9 9950X3D
+- high-density DIMM support and QVL coverage
+- realistic memory behavior at 128 GB, 192 GB and 256 GB
+- PCIe/M.2 lane topology and sharing
+- useful expansion after multiple NVMe drives are populated
+- networking controller quality
+- USB4/high-speed external I/O where useful
+- ECC implementation and observability if supported
+- virtualization/IOMMU behavior
+- debug/recovery features
+- long-term firmware support and serviceability
 
 ### Memory
 
-Capacity, DIMM topology, data rate and ECC/non-ECC are all open questions.
+The installed capacity, DIMM topology, data rate and ECC/non-ECC choice remain open.
 
 The memory review should determine:
 
 - realistic capacity requirement for the workload and 7–10 year horizon
-- whether 64 GB, 96 GB, 128 GB, 192 GB, 256 GB or another capacity is justified
-- optimal DIMM count/topology for the chosen platform
-- stable supported data rate
+- whether 128 GB, 192 GB, 256 GB or another capacity is justified
+- optimal DIMM count/topology for AM5
+- stable supported data rate at the selected capacity
 - ECC value and implementation quality
 - upgradeability versus initial cost
 
-Previously discussed **128 GB as 2×64 GB DDR5-5600** is a hypothesis to test, not a requirement.
+The motherboard must not constrain a future move to 256 GB, but actual memory selection must prioritize stability over headline speed.
 
 ### Storage
 
@@ -139,4 +163,4 @@ Each component review should answer:
 7. Is there a more expensive alternative with a concrete, defensible benefit?
 8. What must be validated after purchase?
 
-A model mentioned in earlier discussions should be treated as a **candidate to compare**, not as the baseline that alternatives must displace.
+A model mentioned in earlier discussions should be treated as a **candidate to compare**, not as the baseline that alternatives must displace, unless it is explicitly recorded as selected in `docs/decisions.md`.
