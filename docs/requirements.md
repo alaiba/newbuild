@@ -9,9 +9,11 @@ The CPU/platform decision is fixed:
 - **AMD Ryzen 9 9950X3D**
 - **AM5**
 
+The memory-capacity target is also fixed at **256 GB for the initial build**, subject to a fallback only if current 256 GB cost is disproportionate to the overall budget or stable AM5 operation at that capacity requires an unacceptable performance/stability compromise.
+
 The existing **NVIDIA GeForce RTX 3060 12 GB** will be reused initially.
 
-The motherboard, memory configuration, cooling solution, storage architecture, PSU, case, UPS and operating system remain open.
+The motherboard, exact memory configuration, cooling solution, storage architecture, PSU, case, UPS and operating system remain open.
 
 Previously discussed parts and configurations are research candidates only unless explicitly recorded as selected in `docs/decisions.md`.
 
@@ -58,6 +60,8 @@ The system should remain useful and serviceable for approximately **7–10 years
 
 The budget is a ceiling, not a spending target. More expensive parts should be selected only when they provide a concrete benefit for the workload, reliability, expandability or expected lifespan.
 
+The current design should attempt to preserve the **256 GB memory target first**. Reduce memory capacity only if the real market cost of a suitable 256 GB configuration materially distorts the build or if achieving 256 GB on AM5 imposes a stability/performance compromise that outweighs the capacity benefit.
+
 ## Reliability principles
 
 These are evaluation principles, not component decisions:
@@ -85,13 +89,14 @@ Downstream component decisions should optimize around this platform unless the C
 
 Only consider AM5 motherboards whose **manufacturer officially specifies support for at least 256 GB of system memory**.
 
-This is a hard eligibility criterion intended to preserve long-term memory expansion headroom. It does **not** mean that 256 GB must be installed initially.
+This is a hard eligibility criterion because **256 GB is the initial build target**, not merely theoretical future headroom.
 
-Motherboard evaluation should also cover:
+Motherboard evaluation should cover:
 
 - BIOS/AGESA maturity with the Ryzen 9 9950X3D
 - high-density DIMM support and QVL coverage
-- realistic memory behavior at 128 GB, 192 GB and 256 GB
+- realistic 256 GB behavior, including supported topology and data rate
+- memory training/boot behavior with four high-density DIMMs
 - PCIe/M.2 lane topology and sharing
 - useful expansion after multiple NVMe drives are populated
 - networking controller quality
@@ -103,18 +108,22 @@ Motherboard evaluation should also cover:
 
 ### Memory
 
-The installed capacity, DIMM topology, data rate and ECC/non-ECC choice remain open.
+**Target installed capacity: 256 GB.**
+
+The exact DIMM topology, kit, operating data rate and ECC/non-ECC choice remain open.
 
 The memory review should determine:
 
-- realistic capacity requirement for the workload and 7–10 year horizon
-- whether 128 GB, 192 GB, 256 GB or another capacity is justified
-- optimal DIMM count/topology for AM5
-- stable supported data rate at the selected capacity
+- the best stable 256 GB configuration for the selected 9950X3D + motherboard combination
+- whether 4×64 GB is the practical/required topology and what operating speed is realistically stable
+- motherboard QVL and vendor support evidence for 64 GB DIMMs
+- JEDEC versus EXPO/XMP trade-offs at 256 GB
 - ECC value and implementation quality
-- upgradeability versus initial cost
+- memory-training and boot-time implications
+- Romanian/EU availability and price
+- the exact cost/stability threshold at which scaling back to 192 GB or 128 GB would be justified
 
-The motherboard must not constrain a future move to 256 GB, but actual memory selection must prioritize stability over headline speed.
+Stability is more important than headline memory speed. Capacity should be reduced only when the 256 GB configuration is economically or technically disproportionate, not merely because a smaller configuration is cheaper or faster on paper.
 
 ### Storage
 
