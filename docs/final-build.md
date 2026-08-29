@@ -18,14 +18,14 @@ A motherboard should remain **Provisional target** until the exact 256 GB memory
 | Component | Selected model | Status | Notes |
 |---|---|---|---|
 | CPU | AMD Ryzen 9 9950X3D | **Selected** | AM5 platform; fixed input for subsequent component selection |
-| Motherboard | — | Open | Next decision will nominate a **provisional target**; final selection requires 256 GB memory/ECC/topology/firmware validation |
-| Memory | 256 GB target | **Target selected** | Exact topology/kit/data rate/ECC undecided; scale back only if 256 GB cost or stability/performance trade-off is disproportionate |
-| CPU cooler | — | Open | Must suit sustained Ryzen 9 9950X3D development workloads; air vs liquid undecided |
+| Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Provisional target** | Leads on explicit 4×64 GB / 256 GB and ECC firmware evidence. **ASRock X870 Taichi Creator remains a live challenger** and may replace it if the exact 256 GB ECC memory review validates equally well; ASRock has cleaner PCIe/storage topology, stronger diagnostics and materially lower current cost. |
+| Memory | 256 GB target | **Target selected** | Exact topology/kit/data rate/ECC undecided; next step is to validate 4×64 GB against both motherboard finalists. Scale back only if 256 GB cost or stability/performance trade-off is disproportionate. |
+| CPU cooler | — | Open | Must suit sustained Ryzen 9 9950X3D development workloads; preserve both top-tier air and 360/420 mm AIO options until motherboard/RAM clearance is known. |
 | Storage | — | Open | Capacity, drive count and layout undecided |
-| PSU | — | Open | Wattage/model undecided |
-| Case | — | Open | |
-| Case fans | — | Open | Depends on case/thermal design |
-| GPU | NVIDIA GeForce RTX 3060 12 GB | **Existing / selected** | Reuse initially |
+| PSU | — | Open | Wattage/model undecided; preserve headroom for a future high-power/high-VRAM GPU |
+| Case | — | Open | Airflow-first strategy selected; current research shortlist remains open |
+| Case fans | — | Open | Depends on final case/thermal design; prefer large standard replaceable fans |
+| GPU | NVIDIA GeForce RTX 3060 12 GB | **Existing / selected** | Reuse initially; preserve future upgrade path to one very high-end/high-VRAM GPU |
 | UPS | — | Open | |
 | OS | — | Open | |
 
@@ -41,6 +41,8 @@ Before a provisional motherboard target is promoted to **Selected**, verify:
 - physical layout for a future large/high-power GPU;
 - mature BIOS/AGESA support and useful recovery/serviceability features; and
 - current cost/value versus the closest credible alternatives.
+
+The current comparison is intentionally still **ProArt X870E-Creator vs X870 Taichi Creator**, not a closed ASUS purchase decision.
 
 ## Final compatibility checks
 
@@ -70,4 +72,5 @@ A detailed validation plan will be added before assembly. It should include, as 
 - SSD firmware/health checks and sustained I/O testing
 - GPU load testing
 - sleep/resume and WSL2/virtualization validation
+- 10 GbE driver/firmware and sleep/resume validation if onboard 10 GbE is used
 - UPS communication and graceful shutdown testing
