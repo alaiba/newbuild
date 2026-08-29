@@ -1,6 +1,6 @@
 # Motherboard / Platform Deep Dive
 
-Status: **Open / AM5 motherboard selection**
+Status: **Under review / provisional motherboard target selection**
 
 ## Fixed platform input
 
@@ -11,9 +11,27 @@ The CPU/platform decision is closed:
 - **Initial memory-capacity target:** 256 GB
 - **Secondary expansion objective:** preserve a credible future upgrade path to a very high-performance, high-VRAM GPU for local AI training/inference
 
-This review no longer compares AMD versus Intel or AM5 versus Threadripper. Its purpose is to select the best AM5 motherboard for a 9950X3D build designed around 256 GB of system memory and long-term stability.
+This review no longer compares AMD versus Intel or AM5 versus Threadripper. Its purpose is to identify the best AM5 motherboard target for a 9950X3D build designed around 256 GB of system memory and long-term stability.
 
 The previously discussed **MSI MAG X870 TOMAHAWK WIFI** remains a reference candidate only. It has no incumbent status.
+
+## Decision status for this component
+
+The outcome of this review is intentionally **provisional / aspirational**, not immediately final.
+
+The motherboard deep dive should nominate the board that best satisfies the long-term design objectives, but that board must remain a **provisional target** until the dependent configuration is validated sufficiently to justify purchase.
+
+Promotion from provisional target to **Selected** requires, at minimum:
+
+1. an exact or sufficiently credible **256 GB memory configuration** for the board;
+2. acceptable evidence for stable 4×64 GB or equivalent operation at conservative settings;
+3. an ECC verdict, including whether system-level ECC is practical and OS-visible if ECC is pursued;
+4. confirmation of the required PCIe/M.2 topology with the planned storage configuration and future high-end GPU path;
+5. confirmation that no board-specific lane-sharing or physical-layout issue materially undermines the intended build;
+6. acceptable BIOS/AGESA maturity and recovery/serviceability characteristics; and
+7. a current cost/value review against the closest cheaper and more expensive alternatives.
+
+If the preferred board fails one of those checks during memory, storage, cooling, case or GPU-path validation, the motherboard decision should be reopened without treating the earlier provisional nomination as sunk cost.
 
 ## Hard eligibility gate
 
@@ -266,19 +284,20 @@ The motherboard shortlist should include at least one board with CPU-connected *
 
 The motherboard investigation should finish with:
 
-1. selected chipset/board class
-2. exact motherboard recommendation
-3. reasons tied directly to workload and 10-year stability requirements
-4. confirmation of official 256 GB memory support for every finalist
-5. evidence relevant to stable 4×64 GB / 256 GB operation
-6. complete PCIe/M.2 topology table for finalists
-7. ECC verdict, including OS-visible error reporting where possible
-8. future local-AI expansion verdict, including single-GPU and x8/x8 capability
-9. expected 256 GB memory topology/data-rate implications to carry into the memory review
-10. storage/expansion constraints to carry forward
-11. current Romanian pricing/value
-12. BIOS/firmware requirements for eventual bring-up
+1. selected chipset/board class;
+2. **provisional / aspirational motherboard target**, not a closed final selection;
+3. reasons tied directly to workload and 10-year stability requirements;
+4. confirmation of official 256 GB memory support for every finalist;
+5. evidence relevant to stable 4×64 GB / 256 GB operation;
+6. complete PCIe/M.2 topology table for finalists;
+7. ECC verdict, including OS-visible error reporting where possible;
+8. future local-AI expansion verdict, including single-GPU and x8/x8 capability;
+9. expected 256 GB memory topology/data-rate implications to carry into the memory review;
+10. storage/expansion constraints to carry forward;
+11. current Romanian pricing/value;
+12. BIOS/firmware requirements for eventual bring-up; and
+13. explicit list of **promotion gates** that must be satisfied before the provisional motherboard becomes a closed selection.
 
 ## Current position
 
-**Ryzen 9 9950X3D + AM5 is fixed. The build targets 256 GB of system memory initially. The exact motherboard remains open, and only boards with manufacturer-documented 256 GB support and credible high-density DIMM support are eligible. Operationally complete ECC is a strong preference. The motherboard should also preserve a credible future path to one very high-end/high-VRAM AI GPU, with x8/x8 dual-slot capability treated as useful headroom rather than a hard requirement.**
+**Ryzen 9 9950X3D + AM5 is fixed. The build targets 256 GB of system memory initially. The exact motherboard remains open. The next step is to nominate a provisional/aspirational motherboard target, not to close the motherboard decision. Only boards with manufacturer-documented 256 GB support and credible high-density DIMM support are eligible. Operationally complete ECC is a strong preference. The motherboard should also preserve a credible future path to one very high-end/high-VRAM AI GPU, with x8/x8 dual-slot capability treated as useful headroom rather than a hard requirement.**
