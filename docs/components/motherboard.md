@@ -8,8 +8,9 @@ The CPU/platform decision is closed:
 
 - **CPU:** AMD Ryzen 9 9950X3D
 - **Socket/platform:** AM5
+- **Initial memory-capacity target:** 256 GB
 
-This review no longer compares AMD versus Intel or AM5 versus Threadripper. Its purpose is to select the best AM5 motherboard for the build.
+This review no longer compares AMD versus Intel or AM5 versus Threadripper. Its purpose is to select the best AM5 motherboard for a 9950X3D build designed around 256 GB of system memory.
 
 The previously discussed **MSI MAG X870 TOMAHAWK WIFI** remains a reference candidate only. It has no incumbent status.
 
@@ -17,9 +18,11 @@ The previously discussed **MSI MAG X870 TOMAHAWK WIFI** remains a reference cand
 
 Only consider motherboards whose **manufacturer officially specifies support for at least 256 GB of system memory**.
 
-This is a motherboard capability requirement, not a decision to install 256 GB initially. The eventual memory capacity, DIMM topology, memory speed and ECC/non-ECC choice remain separate decisions.
+Because 256 GB is now the intended initial build capacity, a board must do more than advertise a 256 GB ceiling. The motherboard review must look for credible evidence that 4×64 GB operation is mature and practical on current firmware, including vendor memory-support documentation/QVL coverage where available, BIOS history and realistic stable data rates.
 
-A board is not eligible merely because an unofficial/user-reported 256 GB configuration boots. Vendor-documented 256 GB support is required, and later memory research must still validate BIOS maturity, QVL coverage and realistic operating speeds for high-density DIMM configurations.
+A board is not eligible merely because an unofficial/user-reported 256 GB configuration boots.
+
+The build may scale back to 192 GB or 128 GB only if the actual cost of a suitable 256 GB configuration is disproportionate to the overall build budget or if stable 256 GB operation imposes an unacceptable performance/stability compromise.
 
 ## Requirements derived from the workload
 
@@ -27,7 +30,8 @@ The motherboard should be evaluated for:
 
 - stable support for the Ryzen 9 9950X3D under sustained development/build/test workloads
 - official 256 GB memory capacity support
-- strong high-density DIMM/BIOS maturity
+- strong 4×64 GB / high-density DIMM BIOS maturity
+- practical stable operation at the 256 GB target
 - ECC if it is judged operationally worthwhile
 - full-performance primary GPU operation where practical
 - storage bandwidth/topology appropriate to the storage architecture ultimately selected
@@ -73,20 +77,21 @@ Avoid paying for extreme-overclocking capability that does not serve the workloa
 
 ### 3. Memory architecture
 
-This is a major motherboard-selection factor.
+This is a major motherboard-selection factor because the build is targeting **256 GB initially**.
 
 For each candidate determine:
 
 - manufacturer-specified maximum capacity; **256 GB minimum required**
+- explicit support/documentation for 64 GB DIMMs where available
+- QVL coverage for 4×64 GB or equivalent 256 GB configurations
 - DIMM topology
-- realistic supported data rates at 128 GB, 192 GB and 256 GB where evidence exists
-- QVL coverage for high-density DIMMs
-- BIOS history for 48 GB and 64 GB DIMMs
-- two-DIMM versus four-DIMM trade-offs
-- upgradeability
-- whether high-capacity configurations require materially reduced memory speed or unusually aggressive tuning
+- realistic stable data rate at 256 GB on current BIOS/AGESA
+- BIOS history for 64 GB DIMMs and four-DIMM operation
+- memory-training and boot-time behavior
+- whether 256 GB requires materially reduced memory speed or unusually aggressive manual tuning
+- whether the board offers any concrete stability advantage over cheaper alternatives at 256 GB
 
-The eventual installed capacity is still open. Motherboard selection should preserve the option to reach 256 GB without making 256 GB the initial target.
+128 GB and 192 GB are fallback capacities, not equal target candidates. They should be evaluated only to quantify the cost/performance/stability trade if 256 GB proves disproportionate.
 
 ### 4. ECC
 
@@ -98,7 +103,7 @@ Determine for each serious candidate:
 - BIOS controls/reporting
 - whether correctable/uncorrectable errors are exposed to the OS
 - Windows and Linux observability
-- memory availability/cost
+- memory availability/cost at high capacity
 - any performance or platform limitations
 
 ECC should influence selection only if implementation is real and operationally useful, not merely because ECC DIMMs boot.
@@ -192,7 +197,7 @@ Research:
 - memory-training history
 - high-density DIMM support history
 - known regressions
-- boot-time behavior with large memory configurations
+- boot-time behavior with 256 GB configurations
 - virtualization/IOMMU stability
 - long-term vendor support record
 
@@ -228,13 +233,13 @@ Assess:
 
 ## Candidate strategy
 
-Compare only boards that pass the official 256 GB support gate, then choose representatives for:
+Compare only boards that pass the official 256 GB support gate and have credible prospects for stable 4×64 GB operation, then choose representatives for:
 
 1. **Value board** — least expensive eligible board satisfying all material requirements.
 2. **Balanced board** — useful additional I/O/serviceability/expansion without luxury features.
 3. **Higher-end/workstation-oriented AM5 board** — only if it adds concrete benefits such as materially better PCIe topology, operationally useful ECC, onboard 10 GbE, better recovery features or substantially better expansion.
 
-The **MSI MAG X870 TOMAHAWK WIFI** should be included only if its current manufacturer specification confirms 256 GB support.
+The **MSI MAG X870 TOMAHAWK WIFI** should be included only if its current manufacturer specification confirms 256 GB support and its current firmware/memory support makes 256 GB a credible configuration.
 
 ## Required output of the review
 
@@ -244,13 +249,14 @@ The motherboard investigation should finish with:
 2. exact motherboard recommendation
 3. reasons tied directly to workload requirements
 4. confirmation of official 256 GB memory support for every finalist
-5. complete PCIe/M.2 topology table for finalists
-6. ECC verdict
-7. memory-capacity/topology implications to carry into the memory review
-8. storage/expansion constraints to carry forward
-9. current Romanian pricing/value
-10. BIOS/firmware requirements for eventual bring-up
+5. evidence relevant to stable 4×64 GB / 256 GB operation
+6. complete PCIe/M.2 topology table for finalists
+7. ECC verdict
+8. expected 256 GB memory topology/data-rate implications to carry into the memory review
+9. storage/expansion constraints to carry forward
+10. current Romanian pricing/value
+11. BIOS/firmware requirements for eventual bring-up
 
 ## Current position
 
-**Ryzen 9 9950X3D + AM5 is fixed. The exact motherboard remains open. Only boards with manufacturer-documented support for at least 256 GB system memory are eligible.**
+**Ryzen 9 9950X3D + AM5 is fixed. The build targets 256 GB of system memory initially. The exact motherboard remains open, and only boards with manufacturer-documented 256 GB support and credible high-density DIMM support are eligible.**
