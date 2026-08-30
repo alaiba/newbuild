@@ -1,231 +1,125 @@
 # Case and Airflow Deep Dive
 
-Status: **Under review / airflow-first chassis strategy selected**
+Status: **Selected — Fractal Design North XL Mesh**
 
-## Scope
+## Selected chassis
 
-The exact case and fan layout remain open.
+**Fractal Design North XL Mesh** is selected.
 
-The governing design principle is closed: prioritize **low-restriction airflow, thermal headroom, dust management, serviceability and future high-power GPU support** over compactness or showcase aesthetics.
+It fits the mature system envelope without paying the size/maintenance penalty of an oversized full tower:
 
-The chassis should be treated as a design envelope for the motherboard, cooling, PSU and future GPU path. The exact model remains provisional until those dependencies are sufficiently mature.
+- ATX/E-ATX support, including up to 330 mm board width;
+- **413 mm GPU length** with the standard front-fan arrangement;
+- **185 mm CPU-cooler height**, comfortably above the 168 mm NH-D15 G2 target;
+- dedicated **front and PSU dust filters**;
+- three included **140 mm PWM front intake fans**;
+- rear 140 mm fan support;
+- top 360 mm radiator support if liquid cooling is ever needed later;
+- 290 mm PSU clearance, far beyond the 160 mm provisional Seasonic PSU;
+- 20 Gbps front USB-C;
+- approximately **503 × 240 × 509 mm**, 57.62 L and 9.7 kg.
 
-The CPU-cooling architecture is now also closed at the architectural level: **high-end air cooling is preferred**, with the **Noctua NH-D15 G2 LBC** as the current provisional target. A top-mounted 360 mm AIO remains fallback headroom only; 420 mm radiator support is no longer a chassis-selection requirement.
+## Why North XL wins
 
-## Hard / strong requirements
+### Versus Fractal Meshify 3 XL
 
-- ATX support; **E-ATX support strongly preferred** so the motherboard shortlist is not artificially constrained.
-- Generous GPU clearance for a future 3.5–4-slot, 500–600 W-class GPU.
-- Sufficient GPU width/cable clearance for modern high-power connectors without sharp bending against the side panel.
-- High-airflow front intake and unrestricted exhaust path.
-- Large, slow fans preferred over many small/high-RPM fans.
-- 140 mm fan support preferred where practical.
-- Easy-to-remove dust filtration on major intake paths strongly preferred.
-- Easy access for cleaning, fan replacement and general service.
-- Standard, replaceable fans; avoid dependence on proprietary controllers or integrated electronics where they provide no durable benefit.
-- **At least 168 mm CPU-cooler clearance**, with additional margin preferred so the NH-D15 G2 front fan can be raised for taller memory if necessary.
-- Top-mounted **360 mm AIO support preferred as fallback headroom**, but not required if the chassis otherwise provides a better air-cooled design.
-- **420 mm radiator support is optional and must not drive chassis selection.**
-- Space for a long/high-quality ATX PSU with future GPU headroom.
-- Good cable-management space, especially around future high-power GPU power connectors.
-- Avoid layouts that starve a large GPU against glass, a PSU shroud or another card.
-- Good access to M.2 devices and motherboard headers after assembly where practical.
-- Front USB-C/high-speed I/O preferred if compatible with the motherboard.
-- Robust construction and conventional mechanical design suitable for a roughly 10-year ownership horizon.
+Meshify 3 XL provides substantially more GPU clearance — roughly 512 mm — and more total expansion volume. That headroom is not required for the selected single-GPU AM5 architecture.
 
-## Cooling decision implications
+Its main disadvantage here is maintenance: Fractal's official specification lists only a **PSU dust filter**, whereas North XL provides a dedicated front filter. Meshify 3 XL is also materially larger at roughly 71.29 L.
 
-The selected high-end air-cooling architecture materially simplifies the chassis envelope.
+For a long-lived workstation, North XL provides enough expansion while avoiding unnecessary size and dust-management burden.
 
-### NH-D15 G2 fit
+### Versus be quiet! Silent Base 802
 
-The NH-D15 G2 is 168 mm tall at its standard fan position. Current serious chassis candidates provide:
+Silent Base 802 remains a credible alternative with 432 mm GPU clearance, 185 mm CPU-cooler clearance, strong filtration and three included 140 mm fans.
 
-- **Fractal North XL Mesh:** 185 mm CPU-cooler clearance
-- **be quiet! Silent Base 802:** 185 mm
-- **Fractal Meshify 3 XL:** 182 mm
-- **Corsair 7000D Airflow:** about 190 mm
+However, it is an older, larger/wider design and no longer gains an important advantage from 420 mm front-radiator support because high-end air cooling is selected and 420 mm liquid support is explicitly unnecessary.
 
-All therefore clear the cooler nominally.
+### Versus Corsair 7000D Airflow
 
-The NH-D15 G2 supports only about 32 mm RAM height in its normal two-fan position. The front fan can be raised by the same amount as the additional RAM height required, which increases total cooler height correspondingly. The current 182–190 mm case envelopes therefore provide useful headroom for moderate fan raising, but the eventual 256 GB memory choice should still prefer low-profile DIMMs when technically equivalent.
+7000D provides roughly 450 mm GPU clearance and enormous expansion capacity, but is over 80 L and about 20.7 kg. That is excessive for the intended single-GPU AM5 workstation.
 
-### AIO fallback
+## Future GPU fit policy
 
-If real sustained workload testing later shows that the air cooler does not provide adequate thermal/acoustic margin, the preferred liquid fallback is **ARCTIC Liquid Freezer III Pro 360**, not the 420 mm model.
+The selected design envelope remains **one very large 500–600 W-class GPU**.
 
-The 360 mm ARCTIC uses a thick 38 mm radiator and requires roughly 63 mm total clearance with its fans. A top 360 mm mounting preserves direct front intake for the future GPU and fits the stated radiator envelope of all three serious current case candidates.
+North XL provides:
 
-The 420 mm ARCTIC is not a design requirement because independent testing showed only a small advantage around stock-class Ryzen power, while North XL and Silent Base 802 primarily place a 420 mm radiator at the front, where it would interfere more with the clean direct-air path and potentially GPU clearance.
+- 413 mm card-length clearance with the normal front fans;
+- on the Mesh version, up to roughly **192 mm total GPU width including connector/cabling** with the side fan bracket in the high position;
+- no planned front radiator, so GPU length is not reduced by radiator thickness.
 
-Practical consequence:
+The eventual GPU must still be checked explicitly for card length, width/thickness, 12V-2x6 connector position and side-panel cable-bend clearance.
 
-> **Do not choose a larger or less serviceable chassis merely to obtain 420 mm radiator support.**
+If a future card genuinely exceeds this envelope, reconsidering the chassis at that future GPU purchase is preferable to oversizing today's workstation around an unknown card.
 
-## Why airflow matters for reliability
+## Selected fan layout
 
-Airflow is not being pursued for benchmark temperature records. It is part of the stability and longevity strategy:
+### Initial layout
 
-- lower sustained motherboard/VRM temperatures;
-- lower SSD controller and NAND temperatures;
-- lower GPU component and memory temperatures;
-- reduced thermal throttling risk;
-- more acoustic headroom because fans can run slower for the same component temperature;
-- greater tolerance for normal dust accumulation between maintenance intervals; and
-- less avoidable thermal stress over many thousands of operating hours.
+- **Front:** 3× included Fractal Aspect 14 PWM — intake
+- **Rear:** add 1× 140 mm PWM — exhaust
+- **Top:** empty initially
+- **Side:** empty initially
 
-Raw airflow must be balanced against dust control. A very open case with no useful intake filtration may cool well when clean but impose a higher long-term maintenance burden.
+This creates a direct front-to-rear airflow path and mild positive pressure because the filtered intake capacity exceeds the single rear exhaust.
 
-## Initial August 2026 shortlist
+Do not fill every fan position by default. Additional fans add bearings, noise, dust paths and control complexity. Add top/side fans only if measured thermals justify them.
 
-This is a research shortlist only. No case is selected.
+### Preferred rear fan
 
-### 1. Fractal Design Meshify 3 XL
+**Noctua NF-A14x25 G2 PWM** is the provisional premium rear exhaust fan.
 
-**Role:** maximum-space / maximum-airflow reference candidate.
+Relevant manufacturer specifications:
 
-Strengths:
+- 140 × 140 × 25 mm;
+- 0–1500 rpm PWM;
+- maximum airflow about 91.6 CFM;
+- 6-year warranty;
+- MTTF >150,000 hours.
 
-- E-ATX, EE-ATX, SSI-EEB and SSI-CEB support;
-- GPU clearance up to 512 mm and width up to 189 mm;
-- CPU cooler clearance up to 182 mm, sufficient for the 168 mm NH-D15 G2 with some fan-raising margin;
-- up to 420 mm top radiator, 360 mm front and side radiators;
-- up to ten 140 mm fan positions;
-- three 140 mm Momentum fans included;
-- spacious cable-management area;
-- simple solid-panel version available without RGB or integrated lighting dependence;
-- current Romanian pricing appears competitive for the size/class.
+A lower-cost quality 140 mm PWM fan is acceptable if the Noctua premium is disproportionate at purchase time.
 
-Important concern:
+## Fan-control policy
 
-- Fractal's official specification lists **only a PSU/bottom dust filter**. The front intake is high-flow mesh rather than a separate removable dust filter. For this build's 10-year maintenance objective, this is a real disadvantage and must be weighed against its excellent airflow and enormous component clearance.
+- front intake fans: common motherboard-controlled curve where practical;
+- rear exhaust: motherboard-controlled curve;
+- prefer low, steady RPM over aggressive reaction to short Ryzen temperature spikes;
+- validate using sustained Java build/test workloads and combined CPU/GPU load;
+- retain slight positive pressure at normal loads.
 
-Cooling-decision effect:
+## Dust and maintenance
 
-- its 420 mm top-radiator advantage is now less important because 420 mm liquid cooling is no longer a requirement;
-- its enormous volume therefore needs to justify itself mainly through future-GPU clearance and serviceability, not CPU cooling.
+North XL's dedicated front and PSU filters are material reasons for selection.
 
-### 2. Fractal Design North XL Mesh
+Maintenance policy:
 
-**Role:** balanced airflow / filtration / size candidate.
+- inspect/clean front filter according to observed dust accumulation;
+- inspect PSU filter at the same interval;
+- clean heatsinks/fan blades when visible buildup appears;
+- do not use higher fan speed as a substitute for cleaning;
+- record a clean-system thermal baseline after assembly.
 
-Strengths:
+## Current Romanian price position — August 2026
 
-- E-ATX support;
-- front and PSU dust filters;
-- ventilated mesh side panel on the Mesh version;
-- GPU clearance up to 413 mm;
-- CPU cooler clearance up to 185 mm, giving 17 mm nominal margin above the NH-D15 G2's standard height;
-- front radiator support up to 420 mm and **top support up to 360 mm**, exactly matching the preferred AIO fallback strategy;
-- three 140 mm PWM front fans included;
-- substantially smaller internal volume than Meshify 3 XL while retaining generous expansion room;
-- strong Romanian availability/pricing.
+Recent Romanian listings put North XL Mesh around **925–1,060 lei** depending on retailer and stock.
 
-Potential limitation:
+For comparison:
 
-- 413 mm GPU length is generous but materially less than Meshify 3 XL / 7000D headroom. Future GPU width and power-connector clearance must also be checked against the exact card chosen later.
+- Silent Base 802: roughly **804–900 lei**;
+- Meshify 3 XL: roughly **1,100–1,350 lei** depending version/stock;
+- Corsair 7000D: materially more expensive and much larger.
 
-Cooling-decision effect:
+The North XL premium over Silent Base 802 is modest and buys a newer, smaller package with the filtration, cooler clearance and GPU envelope the build actually needs.
 
-- the air-cooling decision strengthens this candidate because it no longer loses points for lacking a top 420 mm mount;
-- its filtered front intake can remain dedicated to motherboard/GPU airflow rather than being occupied by a CPU radiator.
+## Reopen conditions
 
-### 3. be quiet! Silent Base 802
+Reopen the chassis decision only if:
 
-**Role:** maintenance / acoustics / configurable-airflow reference candidate.
+- the final motherboard exceeds North XL board-width support;
+- the final cooler/RAM combination cannot fit within the 185 mm cooler-height envelope;
+- a selected GPU requires more than the available length/width/cable clearance;
+- purchase-time pricing/availability changes radically; or
+- a material reliability/fit issue emerges.
 
-Strengths:
-
-- interchangeable airflow and sound-damped front/top panels;
-- removable front and bottom dust filters;
-- E-ATX support up to 305 x 275 mm;
-- GPU clearance up to 432 mm without the HDD cage;
-- CPU cooler clearance up to 185 mm, giving 17 mm nominal margin above the NH-D15 G2's standard height;
-- top radiator support up to **360 mm**, sufficient for the chosen liquid fallback envelope;
-- three 140 mm fans included;
-- strong serviceability and relatively low Romanian price.
-
-Potential limitations:
-
-- older platform/design than the newest Fractal candidates;
-- E-ATX width support must be checked against any unusually wide motherboard finalist.
-
-Cooling-decision effect:
-
-- the former limitation of top radiator support being only 360 mm is no longer meaningful for this build;
-- strong filtration/serviceability become relatively more important now that the CPU does not need a front-mounted 420 mm radiator.
-
-### 4. Corsair 7000D Airflow
-
-**Role:** oversized full-tower / maximum-expansion control candidate.
-
-Strengths:
-
-- E-ATX support;
-- GPU clearance around 450 mm;
-- CPU cooler clearance around 190 mm;
-- up to 420 mm top radiator and 480 mm front/side-class support;
-- extensive fan capacity;
-- front dust filtration is available and replaceable;
-- exceptionally large working volume for future high-power GPU and complex cooling.
-
-Potential limitations:
-
-- very large and heavy;
-- materially more expensive in Romania than the other current candidates;
-- likely more case than this system actually needs unless later motherboard/GPU choices justify the volume.
-
-Cooling-decision effect:
-
-- the selected air-cooling architecture removes one of the stronger reasons to pay for this chassis's enormous radiator capacity.
-
-## Initial direction after cooling review
-
-The cooling decision narrows what matters in the case comparison.
-
-All serious candidates can house the provisional Noctua tower, and all three main finalists preserve a 360 mm AIO fallback. Therefore CPU cooling no longer differentiates them strongly.
-
-The first-pass ranking remains open, but the cooling result **strengthens North XL Mesh and Silent Base 802 relative to Meshify 3 XL / 7000D**, because oversized 420 mm-class radiator capability is no longer valuable enough to compensate by itself for greater size, cost or weaker filtration.
-
-The most important unresolved trade-off remains:
-
-**future-GPU physical headroom and open airflow vs. filtered intake, maintenance burden, size and long-term serviceability.**
-
-Do not choose Meshify 3 XL merely because it has the largest clearances. Its lack of a dedicated front dust filter is a material negative under the current reliability/maintenance philosophy.
-
-## Review focus
-
-- motherboard form-factor support and exact board width
-- NH-D15 G2 motherboard/RAM/case clearance
-- existing RTX 3060 fit
-- future 3.5–4-slot / long GPU headroom
-- future GPU width and power-cable bend clearance
-- airflow path and restriction
-- intake filtration efficiency and pressure drop
-- dust accumulation and cleaning procedure
-- acoustic behavior at realistic workstation fan speeds
-- front I/O
-- storage mounting requirements if any
-- fan placement and header/control requirements
-- cable-management quality
-- build/serviceability
-- filter and fan accessibility
-- replacement-part availability
-- long-PSU clearance
-- Romanian/EU pricing/value
-- top 360 mm AIO clearance only as a fallback, including the ARCTIC's unusually thick radiator/fan stack
-
-## Required output
-
-Finish with:
-
-1. case requirements derived from selected/provisional motherboard, cooling, storage and PSU;
-2. serious candidate shortlist;
-3. provisional chassis target;
-4. final exact case recommendation only after dependent components are sufficiently mature;
-5. fan layout;
-6. clearance validation for current and future GPU scenarios;
-7. front-I/O/header dependencies;
-8. maintenance and dust-management plan;
-9. Romanian price/value;
-10. promotion gates for moving the chassis from provisional target to selected.
+Otherwise, **Fractal Design North XL Mesh is selected**.
