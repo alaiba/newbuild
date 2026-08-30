@@ -2,7 +2,7 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, the **CPU/platform, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture and existing GPU are selected**. Other rows remain intentionally open or may be tracked as provisional targets while dependent validation is still incomplete.
+At present, the **CPU/platform, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, staged storage architecture and existing GPU are selected**. Other rows remain intentionally open or may be tracked as provisional targets while dependent validation is still incomplete.
 
 ## Status vocabulary for this document
 
@@ -21,7 +21,7 @@ A motherboard should remain **Provisional target** until the exact 256 GB memory
 | Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Provisional target** | Leads on explicit 4×64 GB / 256 GB and ECC firmware evidence. **ASRock X870 Taichi Creator remains a live challenger** and may replace it if the exact 256 GB ECC memory review validates equally well; ASRock has cleaner PCIe/storage topology, stronger diagnostics and materially lower current cost. |
 | Memory | **32 GB minimum Phase 1 / 256 GB architectural target** | **Target selected** | Phase-1 RAM is temporary commissioning memory. Any stable 32 GB-or-larger configuration is acceptable; 2×16 GB is preferred when similarly priced, but 1×32 GB is acceptable. Preserve a validated 256 GB endpoint and assume the Phase-1 kit will be replaced rather than expanded into it. |
 | CPU cooler | **Noctua NH-D15 G2 LBC** | **Provisional target** | **High-end air cooling architecture selected.** LBC is the preferred AM5-specific target; standard NH-D15 G2 with AM5 offset mount is the fallback if materially cheaper/easier to source. ARCTIC Liquid Freezer III Pro 360 remains a liquid fallback only if real sustained workload validation exposes inadequate thermal/acoustic margin. |
-| Storage | — | Open | Capacity, drive count and layout undecided |
+| Storage | **2 TB system/tools NVMe now + 4 TB-or-larger work/VM NVMe later** | **Architecture selected** | Initial SSD should be a mature high-quality TLC + DRAM PCIe 4.0 drive. Exact 2 TB model remains price/firmware-dependent. Reserve the clean CPU-connected M.2_1 slot for the later work drive; Gen5 is deferred until that purchase and only if then justified. |
 | PSU | — | Open | Wattage/model undecided; preserve headroom for a future high-power/high-VRAM GPU |
 | Case | — | Open | Airflow-first strategy selected; must clear the 168 mm NH-D15 G2. Top-mounted 360 mm AIO support is useful fallback headroom; 420 mm radiator support is no longer a requirement. |
 | Case fans | — | Open | Depends on final case/thermal design; prefer large standard replaceable fans |
@@ -84,6 +84,54 @@ Before the NH-D15 G2 LBC is promoted from provisional to **Selected**, verify:
 - current Romanian/EU LBC availability and premium versus standard NH-D15 G2;
 - no new 9950X3D-specific evidence indicates unacceptable sustained behavior at stock/conservative power.
 
+## Storage strategy
+
+The selected long-term storage structure is deliberately staged:
+
+### Phase 1
+
+- buy **one permanent 2 TB system/tools SSD**;
+- prefer high-quality **TLC + DRAM, PCIe 4.0 x4**;
+- do not pay a large Gen5 premium merely for headline sequential speed.
+
+### Later work-drive expansion
+
+Add a **4 TB-or-larger work/VM/container/data SSD** when capacity pressure or price/value justifies it.
+
+The work drive should host the write-heavy/project-oriented workloads such as:
+
+- source trees and build outputs;
+- Maven/Gradle caches;
+- WSL2/Docker data;
+- Android SDK/emulators;
+- VMs;
+- local databases;
+- scratch/data-processing workloads.
+
+At that later purchase, reassess whether PCIe 5.0 has become worthwhile. The architecture preserves the option without paying for it now.
+
+### Preferred M.2 assignment
+
+For either current motherboard finalist:
+
+- **M.2_3 / M2_3 chipset Gen4 x4:** 2 TB system/tools drive;
+- **M.2_1 / M2_1 CPU-connected slot:** future 4 TB+ work drive.
+
+On the ProArt this avoids `M.2_2`, which would reduce the primary GPU lane allocation. On the Taichi Creator it leaves `M2_2` free and avoids its USB4-sharing trade-off.
+
+No RAID is required. This two-drive layout is for workload/recovery separation, **not backup**.
+
+### Initial SSD shortlist
+
+Exact SKU remains provisional and should be rechecked immediately before purchase. Current serious 2 TB Gen4 candidates are:
+
+- Samsung 990 PRO;
+- WD Black SN850X;
+- Seagate FireCuda 530R;
+- Crucial T500.
+
+Choose using current firmware/health history, full Romanian/EU warranty and price before chasing small benchmark differences.
+
 ## Final compatibility checks
 
 Before purchase/assembly, verify the checks appropriate to the selected architecture, including:
@@ -94,7 +142,9 @@ Before purchase/assembly, verify the checks appropriate to the selected architec
 - exact 4×64 GB or other eventual 256 GB memory configuration support at the intended data rate
 - QVL/vendor evidence and current BIOS maturity for high-density DIMMs
 - **NH-D15 G2 motherboard/RAM/case clearance, including raised-front-fan height if needed**
-- storage slot placement and lane-sharing behavior
+- selected 2 TB SSD firmware, warranty and fit under the motherboard M.2_3 heatsink
+- M.2_3/M2_3 system-drive assignment and preservation of M.2_1/M2_1 for the future work drive
+- storage lane-sharing behavior
 - GPU physical clearance and primary-slot bandwidth
 - PSU capacity and connector requirements for the selected system and plausible future GPU
 - case front-I/O headers versus motherboard headers
@@ -112,7 +162,9 @@ A detailed validation plan will be added before assembly. It should include, as 
 - verification of memory error reporting where supported
 - sustained CPU thermal/load testing at stock/conservative CPU settings
 - tune CPU-fan curves using sustained workloads rather than transient Ryzen temperature spikes
-- SSD firmware/health checks and sustained I/O testing
+- **SSD firmware update/verification before loading important data**
+- SMART/health baseline recording
+- sustained SSD I/O and temperature/throttling testing
 - GPU load testing
 - combined CPU/GPU thermal validation of the final case fan layout
 - sleep/resume and WSL2/virtualization validation
