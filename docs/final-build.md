@@ -2,7 +2,7 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, the **CPU/platform, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, staged storage architecture, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis and existing GPU are selected**. Other rows remain intentionally open or may be tracked as provisional targets while dependent validation is still incomplete.
+At present, the **CPU/platform, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, staged storage architecture, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis, Phase-1 UPS architecture and existing GPU are selected**. Other rows remain intentionally open or may be tracked as provisional targets while dependent validation is still incomplete.
 
 ## Status vocabulary for this document
 
@@ -26,7 +26,7 @@ A motherboard should remain **Provisional target** until the exact 256 GB memory
 | Case | **Fractal Design North XL Mesh** | **Selected** | 413 mm GPU clearance, 185 mm CPU-cooler clearance, front + PSU filtration, 3×140 mm PWM front fans included, 290 mm PSU clearance, top 360 mm AIO fallback support. |
 | Case fans | **3×140 mm front intake + 1×140 mm rear exhaust** | **Layout selected** | Use the three included front PWM fans; add one quality 140 mm PWM rear exhaust. No top/side fans initially. Noctua NF-A14x25 G2 PWM is provisional premium rear-fan target. |
 | GPU | NVIDIA GeForce RTX 3060 12 GB | **Existing / selected** | Reuse initially; preserve future upgrade path to one very high-end/high-VRAM GPU |
-| UPS | — | Open | |
+| UPS | **CyberPower CP1600EPFCLCD** | **Provisional target** | Phase-1 UPS architecture selected: line-interactive, pure sine, active-PFC compatible, roughly 1600 VA / 1000 W. Size for the current RTX 3060 workstation; reassess UPS capacity when a materially higher-power GPU is installed. |
 | OS | — | Open | |
 
 ## Current implementation strategy
@@ -73,6 +73,24 @@ The intent is a direct front-to-rear path with mild positive pressure, good filt
 
 North XL provides enough room for the current architecture without moving to an oversized full tower. Future GPU purchase must still validate card length, width, 12V-2x6 connector placement and side-panel cable-bend clearance.
 
+### UPS
+
+Phase-1 architecture:
+
+- line-interactive;
+- pure sine-wave output on battery;
+- active-PFC compatible;
+- approximately **1600 VA / 1000 W**;
+- AVR;
+- USB monitoring / graceful shutdown;
+- user-replaceable battery.
+
+Current provisional target: **CyberPower CP1600EPFCLCD**.
+
+The UPS is deliberately sized for the current RTX 3060 workstation rather than the hypothetical future 600 W GPU. The current machine is expected to remain comfortably below the UPS's 1000 W output rating, while a future high-power GPU may require a larger 2 kW-class UPS. Reassess at that GPU upgrade instead of buying a ~6k lei enterprise UPS prematurely.
+
+The target runtime is enough to bridge short outages or trigger a controlled shutdown, not extended full-load operation during a blackout.
+
 ## Motherboard promotion gate
 
 Before the motherboard is promoted to **Selected**, verify:
@@ -92,6 +110,16 @@ Before the NH-D15 G2 LBC is promoted to **Selected**, verify:
 - fit within North XL's 185 mm cooler-height envelope, including any front-fan raising;
 - current LBC availability and price premium versus standard NH-D15 G2.
 
+## UPS promotion gate
+
+Before the CyberPower CP1600EPFCLCD is promoted to **Selected**, verify:
+
+- current Romanian price and warranty;
+- EU/Schuko model and replacement-battery availability;
+- OS/PowerPanel graceful-shutdown integration;
+- measured post-build wall power under CPU-heavy and combined CPU/GPU load remains comfortably below 1000 W;
+- controlled power-loss shutdown test passes.
+
 ## Final compatibility checks
 
 Before purchase/assembly, verify:
@@ -107,7 +135,7 @@ Before purchase/assembly, verify:
 - future-GPU length/width/power-cable clearance against North XL;
 - North XL front-I/O headers versus selected motherboard;
 - fan-header/control plan;
-- UPS output wattage/waveform versus final system load.
+- UPS output wattage/waveform versus measured system load.
 
 ## Bring-up and validation
 
