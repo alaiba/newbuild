@@ -2,7 +2,7 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, the **CPU/platform, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, staged storage architecture, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis, Phase-1 UPS architecture and existing GPU are selected**. Other rows remain intentionally open or may be tracked as provisional targets while dependent validation is still incomplete.
+At present, the **CPU/platform, motherboard, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, staged storage architecture, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis, Phase-1 UPS architecture and existing GPU are selected**. Exact memory kits and several purchase-time SKUs remain open/provisional.
 
 ## Status vocabulary for this document
 
@@ -11,69 +11,105 @@ At present, the **CPU/platform, 256 GB architectural memory target, 32 GB Phase-
 - **Provisional target** — preferred current candidate, intentionally not final; may change if dependent validation fails.
 - **Open** — no preferred model/configuration has been nominated yet.
 
-A motherboard should remain **Provisional target** until the exact 256 GB memory path, ECC verdict, PCIe/storage topology, future high-end-GPU path and firmware maturity have been validated sufficiently to justify purchase.
-
 ## Selected components
 
 | Component | Selected model | Status | Notes |
 |---|---|---|---|
-| CPU | AMD Ryzen 9 9950X3D | **Selected** | AM5 platform; fixed input for subsequent component selection |
-| Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Provisional target** | Leads on explicit 4×64 GB / 256 GB and ECC firmware evidence. **ASRock X870 Taichi Creator remains a live challenger** and may replace it if the exact 256 GB ECC memory review validates equally well. |
-| Memory | **32 GB minimum Phase 1 / 256 GB architectural target** | **Target selected** | Phase-1 RAM is temporary commissioning memory. Preserve a validated 256 GB endpoint and assume the Phase-1 kit will be replaced rather than expanded into it. |
+| CPU | AMD Ryzen 9 9950X3D | **Selected** | AM5 platform; fixed input |
+| Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Selected** | Promotion gate completed 2026-08-30. Chosen for the strongest explicit 4×64 GB / 256 GB firmware evidence and ECC-specific firmware trail. ASRock X870 Taichi Creator remains the lower-cost alternative but did not match ASUS's exact validation evidence. |
+| Memory | **32 GB minimum Phase 1 / 256 GB architectural target** | **Target selected** | Phase-1 RAM is temporary commissioning memory. Eventual 256 GB remains a separate future purchase; prefer 4×64 GB ECC UDIMM if exact modules/QVL/observability are mature then, otherwise use a validated 4×64 GB non-ECC configuration. |
 | CPU cooler | **Noctua NH-D15 G2 LBC** | **Provisional target** | High-end air cooling architecture selected. Standard NH-D15 G2 is fallback if materially cheaper/easier to source. |
 | Storage | **2 TB system/tools NVMe now + 4 TB-or-larger work/VM NVMe later** | **Architecture selected** | Initial SSD should be mature TLC + DRAM PCIe 4.0. Reserve CPU-connected M.2_1 for the later work drive. |
 | PSU | **Seasonic VERTEX GX-1200 ATX 3.1** | **Provisional target** | 1200 W ATX 3.1 / PCIe 5.1 architecture selected. Require native 12V-2x6 and verify exact revision at purchase. |
 | Case | **Fractal Design North XL Mesh** | **Selected** | 413 mm GPU clearance, 185 mm CPU-cooler clearance, front + PSU filtration, 3×140 mm PWM front fans included, 290 mm PSU clearance, top 360 mm AIO fallback support. |
-| Case fans | **3×140 mm front intake + 1×140 mm rear exhaust** | **Layout selected** | Use the three included front PWM fans; add one quality 140 mm PWM rear exhaust. No top/side fans initially. Noctua NF-A14x25 G2 PWM is provisional premium rear-fan target. |
-| GPU | NVIDIA GeForce RTX 3060 12 GB | **Existing / selected** | Reuse initially; preserve future upgrade path to one very high-end/high-VRAM GPU |
-| UPS | **CyberPower CP1600EPFCLCD** | **Provisional target** | Phase-1 UPS architecture selected: line-interactive, pure sine, active-PFC compatible, roughly 1600 VA / 1000 W. Size for the current RTX 3060 workstation; reassess UPS capacity when a materially higher-power GPU is installed. |
+| Case fans | **3×140 mm front intake + 1×140 mm rear exhaust** | **Layout selected** | Use the three included front PWM fans; add one quality 140 mm PWM rear exhaust. No top/side fans initially. |
+| GPU | NVIDIA GeForce RTX 3060 12 GB | **Existing / selected** | Reuse initially; preserve future path to one very high-end/high-VRAM GPU |
+| UPS | **CyberPower CP1600EPFCLCD** | **Provisional target** | Phase-1 architecture selected: line-interactive, pure sine, ~1600 VA / 1000 W. Reassess UPS capacity when a materially higher-power GPU is installed. |
 | OS | — | Open | |
 
-## Current implementation strategy
+## Motherboard selection rationale
 
-### Memory
+The ProArt is now closed rather than provisional because the 256 GB promotion gate has been completed.
 
-- Phase 1 may start at **32 GB**.
-- 2×16 GB is preferred when similarly priced; 1×32 GB is acceptable if materially cheaper.
-- Treat temporary RAM as replaceable.
-- Long-term endpoint remains a separately validated **256 GB** configuration.
+Key evidence:
 
-### Cooling
+- official maximum memory: 256 GB;
+- ECC and non-ECC unbuffered DDR5 support;
+- BIOS 1003 explicitly added support for **four 64 GB modules / 256 GB at up to 5200 MT/s** when compatible modules are used;
+- BIOS 1303 improved high-capacity memory compatibility;
+- BIOS 1504 specifically targeted all-four-DIMM compatibility and system stability;
+- BIOS 2103 added DDR5-training stability margin and Ryzen 9000 boot/stability fixes;
+- BIOS 2306 explicitly optimized ECC-UDIMM performance;
+- current firmware continues memory/system-stability work;
+- ASUS states ECC UDIMM is limited to 5200 MT/s with Ryzen 9000 on newer AGESA.
 
-- Use high-end air cooling at stock/conservative CPU settings.
-- Current provisional cooler: **Noctua NH-D15 G2 LBC**.
-- Do not enable PBO/uncapped CPU power merely to exploit cooling headroom.
-- A top-mounted 360 mm AIO remains fallback only; 420 mm radiator support is not required.
+The ASRock X870 Taichi Creator remains attractive on price, diagnostics, networking and PCIe/storage topology, but equivalent explicit four-64-GB validation was not found. For this build, the ASUS premium is accepted as configuration-risk reduction.
 
-### Storage
+Detailed evidence: `docs/components/motherboard-memory-promotion-gate-2026-08-30.md`.
 
-- Buy one permanent **2 TB Gen4 TLC + DRAM** system/tools SSD initially.
-- Later add a **4 TB-or-larger** work/VM/container/data SSD.
-- Prefer M.2_3/M2_3 for the system drive and CPU-connected M.2_1/M2_1 for the future work drive.
-- No RAID; external/network backup remains required.
+## Memory implementation strategy
 
-### PSU
+### Phase 1
 
-- Permanent architecture: **1200 W ATX 3.1 / PCIe 5.1**, native **12V-2x6**.
-- Current provisional target: **Seasonic VERTEX GX-1200 ATX 3.1**.
-- Verify current ATX 3.1 revision, warranty and native cable at purchase.
+- minimum **32 GB**;
+- 2×16 GB preferred when similarly priced;
+- 1×32 GB acceptable if materially cheaper;
+- ECC not required;
+- temporary kit should not constrain the eventual 256 GB configuration.
 
-### Chassis and airflow
+### Eventual 256 GB
+
+The endpoint remains **4×64 GB or equivalent**, but the exact purchase is deferred.
+
+At upgrade time:
+
+1. install the then-current stable ProArt BIOS;
+2. re-check ASUS QVL for exact 64 GB modules and four-DIMM support;
+3. prefer **4×64 GB ECC UDIMM** only if exact parts are available, credible and stable;
+4. otherwise select a strongly validated **4×64 GB non-ECC UDIMM** configuration;
+5. start at JEDEC/Auto settings and accept 5200 MT/s or lower if required for stability;
+6. avoid EXPO/XMP merely to preserve headline frequency at 256 GB;
+7. perform extended memory stability testing;
+8. if ECC is used, verify Windows WHEA and/or Linux EDAC/RAS reporting before treating ECC as operationally useful.
+
+Important: **RDIMM is incompatible with this AM5 platform.** Many 64 GB server ECC modules are RDIMM; do not confuse them with ECC UDIMM.
+
+## Cooling strategy
+
+- high-end air cooling at stock/conservative CPU settings;
+- provisional cooler: **Noctua NH-D15 G2 LBC**;
+- standard NH-D15 G2 fallback;
+- top-mounted 360 mm AIO remains fallback only;
+- no PBO/uncapped power merely to exploit cooling headroom.
+
+## Storage strategy
+
+- buy one permanent **2 TB Gen4 TLC + DRAM** system/tools SSD initially;
+- later add a **4 TB-or-larger** work/VM/container/data SSD;
+- preferred ProArt assignment: `M.2_3` for system drive and CPU-connected `M.2_1` for the future work drive;
+- avoid `M.2_2` unless its graphics-lane trade-off is intentionally accepted;
+- no RAID; external/network backup remains required.
+
+## PSU strategy
+
+- permanent architecture: **1200 W ATX 3.1 / PCIe 5.1**, native **12V-2x6**;
+- provisional target: **Seasonic VERTEX GX-1200 ATX 3.1**;
+- verify current ATX 3.1 revision and native cable at purchase.
+
+## Chassis and airflow
 
 Selected chassis: **Fractal Design North XL Mesh**.
 
-Selected initial fan layout:
+Initial fan layout:
 
 - front: 3× included 140 mm PWM intake;
 - rear: 1× added 140 mm PWM exhaust;
 - top: empty;
 - side: empty.
 
-The intent is a direct front-to-rear path with mild positive pressure, good filtration and minimal fan count. Add top/side fans only if measured CPU/GPU/SSD/VRM thermals justify them.
+Add top/side fans only if measured CPU/GPU/SSD/VRM thermals justify them.
 
-North XL provides enough room for the current architecture without moving to an oversized full tower. Future GPU purchase must still validate card length, width, 12V-2x6 connector placement and side-panel cable-bend clearance.
-
-### UPS
+## UPS
 
 Phase-1 architecture:
 
@@ -87,67 +123,57 @@ Phase-1 architecture:
 
 Current provisional target: **CyberPower CP1600EPFCLCD**.
 
-The UPS is deliberately sized for the current RTX 3060 workstation rather than the hypothetical future 600 W GPU. The current machine is expected to remain comfortably below the UPS's 1000 W output rating, while a future high-power GPU may require a larger 2 kW-class UPS. Reassess at that GPU upgrade instead of buying a ~6k lei enterprise UPS prematurely.
+The UPS is deliberately sized for the current RTX 3060 workstation rather than the hypothetical future 600 W GPU. Reassess at the GPU upgrade.
 
-The target runtime is enough to bridge short outages or trigger a controlled shutdown, not extended full-load operation during a blackout.
+## Remaining promotion / purchase-time gates
 
-## Motherboard promotion gate
+### Cooler
 
-Before the motherboard is promoted to **Selected**, verify:
+Before the NH-D15 G2 LBC is purchased:
 
-- official and credible exact 256 GB path;
-- stable expected 4×64 GB or equivalent operation at conservative settings;
-- ECC implementation and OS-visible reporting if ECC is selected;
-- current BIOS/AGESA maturity;
-- purchase-time cost/value between ProArt and Taichi Creator.
+- verify exact Phase-1 and eventual RAM height/clearance;
+- verify fit within North XL's 185 mm envelope including any front-fan raising;
+- refresh LBC versus standard G2 pricing.
 
-## Cooler promotion gate
+### PSU
 
-Before the NH-D15 G2 LBC is promoted to **Selected**, verify:
+- verify current ATX 3.1 / 12V-2x6 revision;
+- verify warranty and case/cable routing.
 
-- motherboard compatibility;
-- Phase-1 and eventual RAM height/clearance;
-- fit within North XL's 185 mm cooler-height envelope, including any front-fan raising;
-- current LBC availability and price premium versus standard NH-D15 G2.
+### UPS
 
-## UPS promotion gate
+- verify Romanian warranty, replacement-battery availability and graceful-shutdown integration;
+- confirm measured post-build wall power remains comfortably below 1000 W.
 
-Before the CyberPower CP1600EPFCLCD is promoted to **Selected**, verify:
+### SSD
 
-- current Romanian price and warranty;
-- EU/Schuko model and replacement-battery availability;
-- OS/PowerPanel graceful-shutdown integration;
-- measured post-build wall power under CPU-heavy and combined CPU/GPU load remains comfortably below 1000 W;
-- controlled power-loss shutdown test passes.
+- refresh firmware history, warranty and pricing immediately before purchase.
 
 ## Final compatibility checks
 
 Before purchase/assembly, verify:
 
-- Ryzen 9 9950X3D / motherboard shipping BIOS compatibility;
+- 9950X3D support on shipping ProArt BIOS or have USB BIOS FlashBack ready;
 - selected Phase-1 RAM compatibility;
-- eventual 256 GB path and ECC behavior;
-- NH-D15 G2 motherboard/RAM/North XL clearance;
-- selected 2 TB SSD firmware/warranty;
-- M.2 topology and lane-sharing behavior;
+- NH-D15 G2 / RAM / North XL clearance;
+- selected SSD firmware/warranty and M.2 placement;
 - Seasonic exact ATX 3.1 revision and native 12V-2x6 cable;
-- current RTX 3060 fit;
-- future-GPU length/width/power-cable clearance against North XL;
-- North XL front-I/O headers versus selected motherboard;
+- RTX 3060 fit and future-GPU physical/cable clearance;
+- North XL front-I/O headers against ProArt;
 - fan-header/control plan;
 - UPS output wattage/waveform versus measured system load.
 
 ## Bring-up and validation
 
+- update BIOS before serious memory tuning/testing;
 - baseline boot at conservative/default memory settings;
-- BIOS/firmware updates before memory tuning;
 - extended memory stability testing;
+- if ECC memory is ever installed, validate actual ECC event reporting;
 - SSD firmware/SMART baseline and sustained-I/O temperature testing;
 - sustained CPU thermal/load testing;
 - combined CPU/GPU thermal validation with the selected four-fan case layout;
 - tune fan curves for sustained workloads rather than transient Ryzen spikes;
-- verify mild positive pressure and inspect dust accumulation after initial use;
 - inspect PSU/GPU power connectors for full insertion and strain-free routing;
 - sleep/resume, WSL2 and virtualization validation;
-- 10 GbE driver/firmware and sleep/resume validation if used;
+- 10 GbE driver/firmware and sleep/resume validation;
 - UPS communication and graceful-shutdown testing.
