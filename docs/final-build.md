@@ -2,7 +2,7 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, the **CPU/platform, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, staged storage architecture and existing GPU are selected**. Other rows remain intentionally open or may be tracked as provisional targets while dependent validation is still incomplete.
+At present, the **CPU/platform, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, staged storage architecture, 1200 W ATX 3.1 PSU architecture and existing GPU are selected**. Other rows remain intentionally open or may be tracked as provisional targets while dependent validation is still incomplete.
 
 ## Status vocabulary for this document
 
@@ -11,7 +11,7 @@ At present, the **CPU/platform, 256 GB architectural memory target, 32 GB Phase-
 - **Provisional target** — preferred current candidate, intentionally not final; may change if dependent validation fails.
 - **Open** — no preferred model/configuration has been nominated yet.
 
-A motherboard should remain **Provisional target** until the exact 256 GB memory path, ECC verdict, PCIe/storage topology and firmware maturity have been validated sufficiently to justify purchase.
+A motherboard should remain **Provisional target** until the exact 256 GB memory path, ECC verdict, PCIe/storage topology, future high-end-GPU path and firmware maturity have been validated sufficiently to justify purchase.
 
 ## Selected components
 
@@ -22,8 +22,8 @@ A motherboard should remain **Provisional target** until the exact 256 GB memory
 | Memory | **32 GB minimum Phase 1 / 256 GB architectural target** | **Target selected** | Phase-1 RAM is temporary commissioning memory. Any stable 32 GB-or-larger configuration is acceptable; 2×16 GB is preferred when similarly priced, but 1×32 GB is acceptable. Preserve a validated 256 GB endpoint and assume the Phase-1 kit will be replaced rather than expanded into it. |
 | CPU cooler | **Noctua NH-D15 G2 LBC** | **Provisional target** | **High-end air cooling architecture selected.** LBC is the preferred AM5-specific target; standard NH-D15 G2 with AM5 offset mount is the fallback if materially cheaper/easier to source. ARCTIC Liquid Freezer III Pro 360 remains a liquid fallback only if real sustained workload validation exposes inadequate thermal/acoustic margin. |
 | Storage | **2 TB system/tools NVMe now + 4 TB-or-larger work/VM NVMe later** | **Architecture selected** | Initial SSD should be a mature high-quality TLC + DRAM PCIe 4.0 drive. Exact 2 TB model remains price/firmware-dependent. Reserve the clean CPU-connected M.2_1 slot for the later work drive; Gen5 is deferred until that purchase and only if then justified. |
-| PSU | — | Open | Wattage/model undecided; preserve headroom for a future high-power/high-VRAM GPU |
-| Case | — | Open | Airflow-first strategy selected; must clear the 168 mm NH-D15 G2. Top-mounted 360 mm AIO support is useful fallback headroom; 420 mm radiator support is no longer a requirement. |
+| PSU | **Seasonic VERTEX GX-1200 ATX 3.1** | **Provisional target** | **1200 W ATX 3.1 / PCIe 5.1 architecture selected** for the future 600 W-class single-GPU design case. Require native 12V-2x6. Verify the exact current ATX 3.1 revision at purchase because older VERTEX stock used ATX 3.0 / 12VHPWR under very similar naming. VERTEX PX-1200 is the premium alternative if the price delta becomes small. |
+| Case | — | Open | Airflow-first strategy selected; must clear the 168 mm NH-D15 G2 and provide comfortable future GPU + 12V-2x6 cable clearance. Top-mounted 360 mm AIO support is useful fallback headroom; 420 mm radiator support is no longer a requirement. |
 | Case fans | — | Open | Depends on final case/thermal design; prefer large standard replaceable fans |
 | GPU | NVIDIA GeForce RTX 3060 12 GB | **Existing / selected** | Reuse initially; preserve future upgrade path to one very high-end/high-VRAM GPU |
 | UPS | — | Open | |
@@ -132,6 +132,39 @@ Exact SKU remains provisional and should be rechecked immediately before purchas
 
 Choose using current firmware/health history, full Romanian/EU warranty and price before chasing small benchmark differences.
 
+## PSU strategy
+
+The selected permanent PSU architecture is:
+
+- **1200 W**;
+- **ATX 3.1 / PCIe 5.1**;
+- native **12V-2x6** for a future 600 W-class GPU;
+- fully modular;
+- strong transient handling and complete electrical protections;
+- long warranty and credible independent electrical testing.
+
+Current provisional target:
+
+- **Seasonic VERTEX GX-1200 ATX 3.1**
+
+Why 1200 W:
+
+- 1000 W is sufficient for the present RTX 3060 and many future GPUs, but is intentionally too tight for the explicit design envelope of a 600 W future accelerator plus stock/conservative 9950X3D and full platform load;
+- 1200 W provides useful sustained thermal/acoustic/aging margin without moving into an excessive PSU class;
+- 1300–1600 W is unnecessary for the intended single-GPU AM5 architecture.
+
+The VERTEX GX currently leads on value because it combines the selected architecture with a 12-year current manufacturer warranty and competitive Romanian pricing. The **VERTEX PX-1200 ATX 3.1** is the premium efficiency/noise alternative; choose it instead only if its purchase-time premium is modest.
+
+### PSU promotion gate
+
+Before promoting the exact PSU to **Selected**:
+
+- verify the unit/box is the current **ATX 3.1 / 12V-2x6** revision rather than older ATX 3.0 inventory;
+- verify full Romanian/EU warranty path;
+- refresh VERTEX GX/PX and credible 1200 W competitor pricing;
+- verify case clearance and future GPU 12V-2x6 routing/bend space;
+- use only the PSU's compatible native modular cables.
+
 ## Final compatibility checks
 
 Before purchase/assembly, verify the checks appropriate to the selected architecture, including:
@@ -146,7 +179,8 @@ Before purchase/assembly, verify the checks appropriate to the selected architec
 - M.2_3/M2_3 system-drive assignment and preservation of M.2_1/M2_1 for the future work drive
 - storage lane-sharing behavior
 - GPU physical clearance and primary-slot bandwidth
-- PSU capacity and connector requirements for the selected system and plausible future GPU
+- **PSU exact ATX 3.1 revision, native 12V-2x6 support and manufacturer warranty**
+- **future GPU power-cable routing and connector bend clearance**
 - case front-I/O headers versus motherboard headers
 - fan/header count and control
 - UPS output wattage and waveform versus measured/estimated system load
@@ -167,6 +201,7 @@ A detailed validation plan will be added before assembly. It should include, as 
 - sustained SSD I/O and temperature/throttling testing
 - GPU load testing
 - combined CPU/GPU thermal validation of the final case fan layout
+- inspect PSU/GPU power connectors for full insertion and strain-free routing
 - sleep/resume and WSL2/virtualization validation
 - 10 GbE driver/firmware and sleep/resume validation if onboard 10 GbE is used
 - UPS communication and graceful shutdown testing
