@@ -1,107 +1,127 @@
 # Procurement Plan — 2026-08-31
 
-This plan optimizes the selected workstation for **total lifetime value and administrative simplicity**, not the absolute lowest item-by-item price.
+This plan is temporarily **paused for re-optimization** after the memory architecture was finalized at **128 GB / 2×64 GB / 1DPC from day one**.
 
-## Procurement objective
+The previous 64 GB Phase-1 RAM assumption and the purchase total derived from it are obsolete.
 
-1. Maximum **three providers**.
-2. Default target: **two hardware providers**.
-3. Add a third hardware provider only for roughly **≥300 lei net saving**, materially better stock/revision certainty, or materially better warranty/service.
-4. **Windows is an explicit exception**: because a Retail/FPP license has negligible long-term RMA burden, use a separate reputable software retailer when it gives a cleaner price/provenance result even for a smaller saving.
-5. Consider both cheaper substitutions and premium upgrades when they improve utility per leu for stability, endurance, serviceability or useful lifetime.
+## Locked procurement principles
 
-## Recommended provider structure
+1. **Maximum three providers overall.**
+2. **Default target: two hardware providers.**
+3. Add another hardware provider only for material net savings or materially better stock/SKU/revision/warranty certainty.
+4. Windows/software may use a separate provider at a lower savings threshold because it has negligible RMA lifecycle burden.
+5. Optimize **utility per leu**, including stability, endurance, serviceability, firmware quality, thermal/electrical margin and avoiding future replacement.
+6. Buy exact SKUs/revisions only; no silent substitution.
 
-### Provider 1 — EvoMAG: primary hardware order
+## Decisions that remain purchase-ready
 
-Use EvoMAG for the ordinary BOM while the live cart remains close to current controls.
+| Item | Target | Current status |
+|---|---|---|
+| CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | selected |
+| Cooler | Noctua NH-D15 G2 standard | selected |
+| PSU architecture | 1200 W ATX 3.1 / PCIe 5.1 / 12V-2x6 | selected |
+| PSU baseline | Seasonic VERTEX GX-1200 current ATX 3.1 | selected; PX preferred only at ≤~200 lei premium when available |
+| Case | Fractal North XL Mesh `FD-C-NOR1X-01` | selected |
+| Rear fan | Noctua NF-A14x25 G2 PWM standard | selected |
+| UPS | CyberPower PR1500ELCD | selected |
+| Windows | Windows 11 Pro Retail/FPP; current exact target `HAV-00163` from PROstore | selected |
+| GPU | existing RTX 3060 12 GB | reuse |
 
-| Item | Exact target | Working price control | Gate |
-|---|---|---:|---|
-| CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | ~3,349.99 lei | exact Box/WOF preferred |
-| Motherboard | ASUS ProArt X870E-Creator WiFi | ~2,685 lei | recompare if cart moves materially above ~2.85k |
-| RAM | Crucial `CT2K32G56C46U5`, 64 GB 2×32 | ~4,799.99 lei | exact `...U5`; reject laptop `...S5` |
-| Cooler | Noctua NH-D15 G2 standard | ~690.99 lei | standard, not LBC/HBC |
-| SSD | Samsung 990 PRO 2 TB `MZ-V9P2T0BW` | ~1,899.99 lei | exact bare 2 TB drive |
-| Case | Fractal North XL Mesh `FD-C-NOR1X-01` | ~882.99 lei | exact SKU; `-01` is Mesh |
-| Rear fan | Noctua NF-A14x25 G2 PWM standard single | ~200.99 lei | square-frame standard PWM |
-| UPS | CyberPower PR1500ELCD | ~2,948.99 lei | exact 1500 VA / 1350 W model |
-| GPU | existing RTX 3060 12 GB | 0 lei | reuse |
+## Decisions reopened before ordering
 
-### Provider 2 — Altex: PSU
+### Motherboard
 
-Baseline purchase:
+The ASUS ProArt X870E-Creator WiFi remains the incumbent reference but is **not currently purchase-final**.
 
-- **Seasonic VERTEX GX-1200 ATX 3.1**
-- current explicit reference: ~**1,289.99 lei**
-- hard receipt gate: PCIe 5.1 + supplied 12V-2x6.
+Its strongest previous justification was the difficult 4×64 GB / 256 GB memory target. With final memory now 2×64 GB / 128 GB, re-optimize the board against the remaining requirements.
 
-Premium rule: if a known-current **VERTEX PX-1200 ATX 3.1** is actually in stock at **≤~200 lei premium** over GX, prefer PX. Do not delay the build for it.
+### Memory
 
-### Provider 3 — PROstore: Windows
+Final architecture is locked:
 
-Selected Windows purchase:
+- **128 GB**;
+- **2×64 GB**;
+- **1DPC**;
+- buy the final matched kit at initial assembly;
+- no provisional 2×32 GB purchase.
 
-- **Microsoft Windows 11 Pro Retail/FPP USB English `HAV-00163`**
-- direct verified listing: **1,123.60 lei**
-- supplier stock
-- manufacturer code explicitly shown as `HAV-00163`
-- Retail/FPP explicitly stated
-- country shipping currently **27.23 lei**, for an effective delivered control of about **1,150.83 lei** outside Bucharest.
+Exact kit and ECC/non-ECC verdict remain open until the motherboard/RAM optimization pass.
 
-This is preferable to paying ~1,199.99 lei for `HAV-00197` at EvoMAG solely to keep Windows inside the hardware order. Windows has essentially no wear/RMA lifecycle, so the additional invoice/provider relationship carries little long-term cost.
+### Storage
 
-Purchase page: https://www.prostore.ro/sisteme_de_operare/microsoft/93926-windows-11-pro-64-bit-engleza-retail-fpp-usb-flash/
+The incumbent architecture remains:
 
-## Windows provider comparison
+- Samsung 990 PRO 2 TB system/tools drive;
+- future 4 TB+ work/VM/container/data drive;
+- no RAID.
 
-| Seller | Exact verified product | Working price | Delivery / stock | Verdict |
-|---|---|---:|---|---|
-| **PROstore** | `HAV-00163`, Retail/FPP, English USB | **1,123.60 lei** | supplier stock; ~27.23 lei delivery outside Bucharest | **Selected** |
-| ForIT | `HAV-00163`, Retail/FPP, English USB | 1,146.55 lei | supplier stock; ~21.99 lei delivery | Good fallback, ~18 lei more delivered |
-| CEL.ro | `HAV-00163`, English USB | ~1,141–1,144 lei | seller-direct but current stock shown as “ask” | Do not prefer over a verified supplier-stock route |
-| EvoMAG | `HAV-00163` English / `HAV-00197` Romanian Retail package | ~1,199.99 lei | consolidation benefit only | Not worth ~49 lei extra versus PROstore delivered once Windows is treated as low-RMA friction |
-| Very cheap 20–250 lei marketplace/ESD offers | unclear provenance/channel | much lower | key-only / provenance uncertain | Reject |
+However, the user requested a storage-architecture optimization discussion before motherboard/RAM optimization. Do not order the SSD until that discussion is closed.
 
-Price aggregators also show an apparent ~1,055.84 lei offer from Shoop, but it was not sufficiently verified in the direct-source pass to displace the clearly identified PROstore offer. Reopen if a direct page confirms exact `HAV-00163`, Retail/FPP, stock and normal invoice/provenance.
+## Current provider references
 
-## Current provider count
+The prior provider split is a useful market reference, not a committed order:
 
-The planned purchase therefore uses exactly **three providers**:
+- EvoMAG remains a strong candidate for much of the hardware;
+- Altex remains the clean explicit-current Seasonic PSU route;
+- PROstore remains the current verified Windows `HAV-00163` Retail/FPP target.
 
-1. **EvoMAG** — main hardware;
-2. **Altex** — explicit-current Seasonic PSU;
-3. **PROstore** — Windows Retail/FPP.
+Recalculate provider consolidation after motherboard, RAM and storage are closed.
 
-This satisfies the maximum-three-provider requirement. The third provider is software-only and therefore does not materially increase future warranty/RMA complexity.
+## Price envelope
 
-## Widened value decisions
+**Do not use the previous ~20k complete-order total.**
 
-- Keep **9950X3D** rather than save ~650 lei with 9950X.
-- Keep **ProArt X870E-Creator** rather than save ~900–1,000+ lei and weaken the strongest 256 GB/ECC evidence.
-- Keep **NH-D15 G2** rather than downgrade long-term support/endurance for ~400–490 lei.
-- Keep **990 PRO 2 TB**; KC3000 saves too little and 9100 PRO's Gen5 premium is wasted in the selected system slot.
-- Keep **Crucial 64 GB** while its price advantage over the explicitly compatible Kingston remains material.
-- **Upgrade UPS to PR1500ELCD** for 1350 W real output and future-GPU lifecycle value.
-- Prefer **VERTEX PX-1200** only if actually available within ~200 lei of GX; otherwise buy GX.
+It assumed:
 
-## Hard acceptance gates
+- 64 GB / 2×32 GB RAM;
+- the ProArt as final motherboard;
+- the current two-drive storage architecture without review.
 
-- CPU: Ryzen 9 9950X3D Box/WOF `100-100000719WOF` preferred.
-- Motherboard: exact ASUS ProArt X870E-Creator WiFi.
-- RAM: exact `CT2K32G56C46U5`, 64 GB 2×32 desktop UDIMM; reject `...S5`.
-- Cooler: NH-D15 G2 standard, no LBC/HBC substitution.
-- SSD: exact Samsung `MZ-V9P2T0BW`.
-- PSU: ATX 3.1, PCIe 5.1, supplied current 12V-2x6; reject explicit old ATX 3.0/12VHPWR stock.
-- Case: exact `FD-C-NOR1X-01` North XL Mesh.
-- Fan: standard square-frame NF-A14x25 G2 PWM single.
-- UPS: exact PR1500ELCD, 1500 VA / 1350 W, new/sealed.
-- Windows: exact **Windows 11 Pro Retail/FPP `HAV-00163`** from a normal retailer invoice; no OEM/DSP or undocumented key.
+A new total will be calculated only after the reopened decisions are closed.
 
-## Ordering strategy
+## Hard acceptance gates that remain valid
 
-1. Build and verify the EvoMAG hardware cart.
-2. Place the Altex PSU order in the same purchasing session unless EvoMAG can prove a current-revision VERTEX unit.
-3. Order Windows `HAV-00163` from PROstore independently.
-4. Do not dismantle the current PC until CPU, motherboard, RAM, cooler and case are physically received and inspected.
-5. Keep invoices, serial numbers, product-page evidence and packaging in one long-term warranty folder.
+### CPU
+- Ryzen 9 9950X3D;
+- Box/WOF `100-100000719WOF` preferred.
+
+### RAM
+- 128 GB total;
+- exactly 2×64 GB matched DDR5 UDIMM kit;
+- 1DPC;
+- no temporary 2×32 GB purchase.
+
+### Cooler
+- NH-D15 G2 standard;
+- no LBC/HBC substitution.
+
+### PSU
+- ATX 3.1;
+- PCIe 5.1;
+- current 12V-2x6 cable;
+- reject explicit old ATX 3.0 / 12VHPWR stock.
+
+### Case
+- exact `FD-C-NOR1X-01` North XL Charcoal Black Mesh.
+
+### Rear fan
+- standard square-frame NF-A14x25 G2 PWM single fan.
+
+### UPS
+- exact PR1500ELCD;
+- 1500 VA / 1350 W;
+- new/sealed.
+
+### Windows
+- Windows 11 Pro;
+- Retail/FPP;
+- current target `HAV-00163`;
+- not OEM/DSP or an undocumented standalone key.
+
+## Next sequence
+
+1. close the **storage architecture** discussion;
+2. re-optimize **motherboard + exact 2×64 GB RAM** together;
+3. refresh current Romanian prices and stock;
+4. produce a new ≤3-provider order plan and total;
+5. only then order the reopened items.
