@@ -18,10 +18,9 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 | CPU cooler | **Thermalright Phantom Spirit 120 standard** |
 | Case | **be quiet! Pure Base 501 Airflow Black `BG074`** |
 | Case airflow | **2× included 140 mm PWM**, front intake + rear exhaust; no extra fans initially |
-| System storage | **~1 TB NVMe preferred**, exact model open |
-| Active-work SSD | **1 TB sufficient; 2 TB if price/value is attractive**, Gen4 TLC preferred, CPU-direct x4 |
-| Bulk/cold storage | Add only when needed via spare M.2, SATA SSD/HDD or external/NAS |
-| Storage RAID | **None** |
+| Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` |
+| Storage expansion | `M.2_2` + `M.2_3` free; reuse healthy existing SATA drives for cold/bulk data |
+| Storage RAID/cache/tiering | **None** |
 | PSU | **Premium 750 W / 850 W ATX 3.1**, exact model open |
 | UPS | **None initially** |
 | Point-of-use power protection | Reputable surge-protected Schuko plug/power strip, exact model open |
@@ -36,8 +35,9 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 - Exact RAM uses **native JEDEC DDR5-5600 at 1.1 V**; no EXPO/XMP is required.
 - ECC is not used because practical 64 GB ECC UDIMM procurement is poor; CPU/board ECC capability remains unused rather than distorting capacity/topology.
 - **B650 is sufficient**: the selected B650E-E provides PCIe 5.0 x16 graphics, two CPU-connected M.2 paths, a third chipset Gen4 x4 M.2, BIOS FlashBack, Q-LED, SATA and adequate stock-load power delivery without B850/Creator premiums.
-- `M.2_1` is preferred for active work; `M.2_2` naturally serves the system SSD.
-- `M.2_3` is optional future storage. The board does **not** provide a meaningful secondary PCIe x4 expansion path; its second full-length slot is chipset-connected x1. No current requirement needs more.
+- `M.2_1` hosts the selected **2 TB Crucial T710 Gen5 primary SSD**. `M.2_2` and `M.2_3` remain free for later expansion.
+- Current storage use is about **600 GB**; 2 TB is ample foreseeable active-storage headroom. Existing SATA drives remain useful for archives/cold data.
+- No separate system/work SSD split, no SSD cache layer and no automatic tiering are required initially.
 - **Phantom Spirit 120 + Pure Base 501** replaces NH-D15 G2 + North XL.
 - 1 GbE is sufficient; the board's 2.5 GbE is already more than required.
 - No multi-GPU/x8+x8 requirement; retire the RTX 3060 if a future GPU replacement occurs.
@@ -46,10 +46,9 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 
 ## Current open work
 
-1. Select exact **system + active-work SSDs** using current Romanian pricing.
-2. Select exact premium **750/850 W PSU**.
-3. Select exact **plug-in surge protector**.
-4. Refresh prices/providers and produce the final order total.
+1. Select exact premium **750/850 W PSU**.
+2. Select exact **plug-in surge protector**.
+3. Refresh prices/providers and produce the final order total.
 
 ## Repository structure
 
@@ -62,4 +61,4 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 
 ## Current stage
 
-**CPU, motherboard, RAM, cooler and case are closed. Storage exact models are next, followed by PSU and point-of-use surge protection.**
+**CPU, motherboard, RAM, cooler, case and primary storage are closed. PSU and point-of-use surge protection are next.**
