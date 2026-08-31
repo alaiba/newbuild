@@ -33,7 +33,7 @@ This file records closed decisions plus any decision explicitly reopened because
 | Point-of-use surge protection | **No dedicated surge protector required** | **Selected** | Use a properly earthed wall outlet or ordinary reputable 16 A Schuko strip if needed. |
 | Motherboard VRM / OC | **Stock/conservative 9950X3D only** | **Selected** | No value in extreme OC capability. |
 | Host OS | **Windows 11 Pro x64** | **Selected** | Best fit for the workload. |
-| Windows license | **Retail/FPP `HAV-00163` English USB** | **Selected purchase target** | Clean DIY licensing path. |
+| Windows license | **Already available** | **Closed / no procurement action** | Windows remains the selected host OS, but license sourcing and cost are outside the remaining build procurement. |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** | First-class Linux userland without dual boot. |
 | Cost philosophy | **Optimize utility per leu; do not spend for prestige, unused capacity or speculative future-proofing** | **Selected** | Premiums must buy durable value. |
 | Provider consolidation | **Maximum 3 providers; default target 2 for hardware** | **Selected** | Extra fragmentation needs meaningful value. |
@@ -63,6 +63,9 @@ This file records closed decisions plus any decision explicitly reopened because
 - 1200 W Seasonic VERTEX targets;
 - CyberPower PR1500ELCD;
 - dedicated surge protector purchase.
+
+### Operating system procurement
+- Windows 11 Pro Retail/FPP `HAV-00163` English USB as a remaining purchase target; the license is already available.
 
 ## Open / deferred decisions
 
