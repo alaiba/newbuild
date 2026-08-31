@@ -1,153 +1,134 @@
 # Final Build
 
-This is the current source-of-truth architecture for the workstation. Memory is finalized at **128 GB / 2×64 GB / 1DPC from day one**. Storage is finalized at the role/topology level as **~1 TB system storage + 1–2 TB CPU-direct active-work NVMe from day one, with bulk/cold storage added only when needed**. Power, networking, cooling and expansion requirements have been simplified to avoid speculative future-proofing.
+This is the current source-of-truth architecture for the workstation.
 
 ## Current build state
 
 | Component | Configuration | Status |
 |---|---|---|
 | CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Selected** |
-| Motherboard | Broad AM5 search; prior Creator-class boards remain references only | **Reopened for optimization** |
-| RAM capacity | **128 GB from day one** | **Selected / final** |
-| RAM topology | **2×64 GB DDR5 UDIMM, 1DPC, A2/B2** | **Selected / final** |
-| Exact RAM kit | Exact 2×64 GB matched kit | **Open for optimization** |
-| ECC | Only if end-to-end support/reporting is compelling | **Open within RAM optimization** |
-| Cooling architecture | **High-quality air cooling; stock/conservative CPU operation** | **Selected** |
-| Exact CPU cooler | Compare compact/high-value air coolers against NH-U12A/NH-D15 G2-class premium options | **Reopened** |
-| System storage | **~1 TB**, value/reliability/headroom optimized; NVMe preferred, SATA acceptable if topology/value warrants it | **Role/capacity selected; exact model open** |
-| Active-work SSD | **1 TB sufficient; 2 TB if price/value is attractive**, Gen4 TLC preferred; **CPU-direct x4 required** | **Role selected; exact capacity/model open** |
-| Bulk/cold storage | Add later only when needed; spare NVMe/SATA SSD/HDD/external/NAS acceptable | **Expansion policy selected** |
+| Motherboard | Broad AM5 search; prior Creator-class boards are references only | **Reopened for optimization** |
+| RAM | **128 GB = 2×64 GB DDR5 UDIMM / 1DPC / A2+B2** | **Architecture selected; exact kit open** |
+| ECC | Only if exact end-to-end support/reporting is compelling | **Open within RAM optimization** |
+| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Selected** |
+| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Selected** |
+| Case airflow | **2× included 140 mm PWM: front intake + rear exhaust** | **Selected initial layout** |
+| System storage | **~1 TB**, reliability/headroom/value optimized; NVMe preferred, SATA acceptable | **Role/capacity selected; exact model open** |
+| Active-work SSD | **1 TB sufficient; 2 TB if price/value is attractive**, Gen4 TLC preferred; **CPU-direct x4 required** | **Role selected; exact model open** |
+| Bulk/cold storage | Add later only when needed via spare NVMe/SATA SSD/HDD/external/NAS | **Expansion policy selected** |
 | Storage RAID | **No RAID** | **Selected** |
 | PSU | **Premium 750 W or 850 W ATX 3.1** | **Reopened; exact model open** |
-| UPS | **None in initial BOM** | **Selected** |
+| UPS | **None initially** | **Selected** |
 | Point-of-use surge protection | Reputable plug-in surge protector / protected power strip | **Selected policy** |
-| Case | **Fractal North XL Mesh `FD-C-NOR1X-01`** | **Selected for now; one final value/size check warranted** |
-| Rear fan | **Noctua NF-A14x25 G2 PWM** | **Selected under current case only** |
 | GPU | Existing **RTX 3060 12 GB** | **Reuse for as long as useful/reliable** |
 | Host OS | **Windows 11 Pro x64** | **Selected** |
 | Windows license | **Retail/FPP USB English `HAV-00163` from PROstore** | **Selected purchase target** |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** |
 
-## Memory architecture — final
+## Memory architecture
 
 Initial assembly uses **128 GB = 2×64 GB DDR5 UDIMM, one DIMM per channel**. No temporary RAM and no planned four-DIMM/256 GB endpoint.
 
-The exact kit remains open for the motherboard/RAM optimization. Bring-up remains conservative: current stable BIOS, A2/B2, Auto/JEDEC first, no EXPO/XMP during baseline validation, extended memory testing.
+Select the exact kit together with the motherboard. Bring-up remains conservative: current stable BIOS, A2/B2, Auto/JEDEC first, no EXPO/XMP during baseline validation, extended memory testing.
 
-## Cooling architecture — exact model reopened
+## Cooling and chassis — final
 
-High-quality **air cooling remains selected** because the build prioritizes long service life, replaceable fans and low mechanical complexity.
+Selected combination:
 
-The previous exact **Noctua NH-D15 G2** selection is no longer locked. It is now a premium reference candidate, not a component that the RAM or case must accommodate at any cost.
+- **Thermalright Phantom Spirit 120**, standard model;
+- **be quiet! Pure Base 501 Airflow Black `BG074`**;
+- use the case's **two included 140 mm PWM fans only at first**: one front intake and one rear exhaust.
 
-The cooler optimization should compare at least:
+Why this combination is now preferred:
 
-- a strong **Thermalright Phantom Spirit 120-class** value option;
-- **Noctua NH-U12A** as a compact premium/serviceability option;
-- **Noctua NH-D15 G2** as the maximum-air-cooling reference.
+- sufficient high-end air-cooling capability for stock/conservative 9950X3D operation;
+- approximately **157 mm cooler height inside a 178 mm case limit**, leaving useful physical margin;
+- **368 mm GPU clearance** is already generous for the current single-GPU policy;
+- normal **ATX** motherboard support is all the build requires;
+- two 3.5-inch HDD positions preserve a cheap later cold-storage path;
+- substantially lower cost and physical volume than North XL + NH-D15 G2 without sacrificing a current workload requirement.
 
-Selection criteria, in order of importance:
+The Phantom Spirit purchase target is the **standard Phantom Spirit 120**. Do not silently substitute SE, EVO or another variant; review any substitution first.
 
-1. sustain stock/conservative 9950X3D workloads without material throttling;
-2. acceptable acoustics under long Java/test workloads;
-3. reliable simple air-cooling architecture and replaceable fans;
-4. clean compatibility with the final 2×64 GB RAM and selected case;
-5. mature mounting/support ecosystem and warranty;
-6. price/value;
-7. extra thermal headroom only where it produces a useful acoustic/reliability benefit.
+Do **not** pre-purchase additional case fans. Add another front intake only if closed-case validation shows a material thermal/acoustic benefit.
 
-Do not select a larger case, taller-clearance RAM constraint or materially more expensive cooler merely to preserve unnecessary maximum cooling capacity.
+The previous Fractal North XL, NH-D15 G2 and dedicated Noctua rear-fan selections are superseded.
 
-## Storage architecture — final
-
-### Active-work SSD
+## Storage architecture
 
 The only hard M.2 requirement is:
 
 > **one CPU-direct M.2 x4 path for the active-work SSD that does not reduce the primary GPU connection.**
 
-1 TB is sufficient; choose 2 TB only when the incremental cost is attractive. Prefer mature Gen4 TLC with good sustained/mixed behavior and sensible endurance. Gen5 is not required.
+Active work: 1 TB is sufficient; choose 2 TB only when incremental price/value is attractive. Prefer mature Gen4 TLC with good sustained/mixed behavior and sensible endurance.
 
-### System drive
+System drive: target ~1 TB. NVMe is preferred when naturally available, but SATA SSD is acceptable if it enables a better motherboard/value choice.
 
-Target about 1 TB. NVMe is preferred when the motherboard provides an inexpensive clean second M.2 path, but **a SATA SSD is acceptable** if that allows a materially better-value motherboard without affecting the main workload.
+Bulk/cold storage: add later through spare M.2, SATA SSD/HDD, external storage or NAS. Existing healthy HDDs may be reused for inactive data, never as the sole copy of important data.
 
-The OS drive is not a benchmark component; prioritize mature firmware, reliability, headroom, warranty and price.
+## Motherboard requirements — simplified and now physically bounded
 
-### Bulk/cold storage
-
-Add later only when capacity is actually needed. Another NVMe, SATA SSD, SATA HDD, external storage or NAS can fill this role. Existing old HDDs may be reused after health checks for infrequently accessed data, but never as the sole copy of important data.
-
-## Motherboard requirements — simplified
-
-The board no longer needs to justify premiums through speculative workstation features.
+The selected case means the motherboard must be **ATX or smaller**.
 
 Hard/strong requirements:
 
-1. stable 9950X3D support and mature BIOS/AGESA;
-2. stable **2×64 GB / 128 GB / 1DPC** operation;
+1. mature 9950X3D BIOS/AGESA support;
+2. strong evidence for stable **2×64 GB / 128 GB / 1DPC**;
 3. one **CPU-direct M.2 x4** path for active work without reducing the primary GPU link;
-4. competent VRM thermals for stock/conservative 9950X3D operation;
+4. competent VRM thermals for stock/conservative operation;
 5. BIOS Flashback/recovery strongly preferred;
 6. useful diagnostics/serviceability preferred;
-7. normal SATA expansion useful for later bulk storage;
-8. 1 GbE is sufficient; 2.5 GbE is a bonus; **5/10 GbE must not command a premium**.
+7. practical SATA/additive-storage support;
+8. reliable Ethernet; **1 GbE is sufficient, 2.5 GbE is a bonus**.
 
 Not requirements:
 
+- 256 GB/four-DIMM validation;
 - CPU x8/x8 multi-GPU support;
 - multiple Gen5 M.2 slots;
-- a clean second M.2 path at any cost;
 - 5/10 GbE;
 - extreme-overclocking VRM capability;
-- provisioning for a 500–600 W future GPU.
+- provisioning for a hypothetical 500–600 W future GPU.
 
 ## GPU policy
 
-Reuse the RTX 3060 for as long as it remains useful and reliable. Gaming is secondary, and cloud AI availability reduces the need to pre-buy local accelerator headroom.
+Reuse the RTX 3060 for as long as it remains useful and reliable. If a future replacement becomes worthwhile, retire the 3060 rather than designing around dual-GPU operation.
 
-If a future replacement becomes desirable, **retire the RTX 3060 rather than designing around dual-GPU operation**. Do not distort the motherboard, PSU or chassis around a hypothetical future flagship GPU.
+Do not distort motherboard, PSU or chassis choices around an unknown future flagship GPU. If a future GPU genuinely exceeds the selected case/power envelope, revisit the replaceable component at that time.
 
 ## PSU architecture — reopened
 
 The previous 1200 W requirement is superseded.
 
-Current optimization target:
+Current target:
 
-- **750 W premium ATX 3.1** is a fully legitimate long-term baseline;
-- **850 W** is preferred only when an equally good model costs modestly more or offers materially better acoustics/platform characteristics;
-- 1000–1200 W should not be purchased merely to reserve hypothetical GPU wattage.
+- premium **750 W ATX 3.1** as a legitimate long-term baseline;
+- **850 W** only when an equally good model costs modestly more or offers materially better acoustics/platform characteristics;
+- no default 1000–1200 W requirement.
 
-Quality priorities:
-
-- excellent electrical design and protections;
-- ATX 3.1/current GPU transient standard;
-- mature platform;
-- long warranty;
-- low noise and good fan implementation;
-- exact current cable/revision clarity.
+Prioritize electrical design/protections, mature platform, long warranty, low noise and exact current cabling/revision over nameplate wattage.
 
 ## UPS / mains protection
 
-No UPS is required in the initial BOM. Short outages are acceptable operationally and there is no need to keep the workstation running through them.
+No UPS is required initially. Short outages are operationally acceptable.
 
-For point-of-use protection, use a reputable surge-protected plug/power strip with protection-status indication. This is a practical compromise under the explicit constraint of **no electrical-installation changes**. It does not provide the same protection as coordinated building-level SPD protection and depends on a sound protective-earth connection.
+Use a reputable point-of-use surge protector / surge-protected power strip with a protection-status indicator. No electrical-installation changes are part of this build.
 
-## Case
-
-The North XL remains selected for now, but the earlier case justification included a hypothetical very large/high-power future GPU and the previously locked NH-D15 G2. Both assumptions have weakened.
-
-Perform one final size/value check before treating the chassis as closed. The new cooler should fit the case chosen on its own merits; the case should not be oversized merely to accommodate unnecessary cooler headroom.
-
-## Current price envelope
-
-Previous complete-order totals are obsolete. Recalculate only after cooler, motherboard, exact RAM, exact SSDs and the new 750/850 W PSU are selected and the case is either reconfirmed or changed.
-
-## Hard purchase gates that remain valid
+## Hard purchase gates
 
 ### CPU
 - Ryzen 9 9950X3D;
 - Box/WOF `100-100000719WOF` preferred.
+
+### Cooler
+- **Thermalright Phantom Spirit 120 standard**;
+- AM5 mounting hardware present;
+- no silent SE/EVO substitution.
+
+### Case
+- **be quiet! Pure Base 501 Airflow Black `BG074`**;
+- use the two included 140 mm PWM fans initially;
+- no extra fan purchase until measurements justify it.
 
 ### RAM
 - 128 GB total;
@@ -155,25 +136,16 @@ Previous complete-order totals are obsolete. Recalculate only after cooler, moth
 - 1DPC;
 - no temporary kit.
 
-### Cooling
-- high-quality air cooling;
-- stable stock/conservative 9950X3D under sustained load;
-- acceptable acoustics;
-- clean final RAM/case compatibility;
-- no exact-model lock yet.
-
 ### Storage
 - one 1–2 TB active-work NVMe with CPU-direct x4;
 - ~1 TB system storage, NVMe preferred but SATA acceptable;
 - no Gen5 requirement;
-- bulk storage added only when needed;
 - no RAID requirement.
 
 ### PSU
 - premium 750/850 W class;
 - ATX 3.1/current PCIe GPU-power standard;
-- strong protections, mature platform and long warranty;
-- exact current revision/cabling.
+- strong protections, mature platform and long warranty.
 
 ### UPS
 - **do not purchase one initially**.
@@ -184,11 +156,11 @@ Previous complete-order totals are obsolete. Recalculate only after cooler, moth
 
 ## Next decision sequence
 
-1. Optimize **case + exact CPU cooler** together so neither forces unnecessary size/cost on the other.
-2. Re-optimize the **motherboard** against the simplified requirements.
-3. Select exact **2×64 GB RAM**, including ECC/non-ECC verdict.
-4. Select exact system + active-work storage.
-5. Select exact premium **750 W / 850 W PSU**.
-6. Refresh prices/providers and produce a new order total.
+1. Re-optimize the **motherboard** against the simplified requirements and ATX-or-smaller envelope.
+2. Select exact **2×64 GB RAM**, including ECC/non-ECC verdict.
+3. Select exact system + active-work storage.
+4. Select exact premium **750 W / 850 W PSU**.
+5. Select the exact plug-in surge protector.
+6. Refresh Romanian prices/providers and produce a new order total.
 
 Detailed decisions: `docs/decisions.md`.
