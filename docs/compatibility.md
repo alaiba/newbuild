@@ -12,13 +12,13 @@ Selected:
 - Thermalright **Phantom Spirit 120 standard**;
 - be quiet! **Pure Base 501 Airflow Black `BG074`**;
 - Crucial **T710 2 TB `CT2000T710SSD8`** primary NVMe;
+- be quiet! **Pure Power 13 M 850W `BP027EU`** PSU;
 - existing RTX 3060 12 GB;
 - no multi-GPU requirement;
 - no UPS requirement.
 
 Open:
 
-- exact premium 750/850 W PSU;
 - exact plug-in surge protector.
 
 ## Motherboard ↔ memory
@@ -114,14 +114,20 @@ Add another front intake only if closed-case validation shows a useful thermal/a
 
 The 9950X3D runs stock/conservatively. The selected board uses 8+2+1 80 A stages and is specified for compatible AMD CPUs up to 200 W. This is sufficient engineering margin for the intended policy; do not value or enable extreme-overclocking behavior simply because electrical headroom exists.
 
-## PSU
+## PSU ↔ case ↔ GPU
 
-Current target:
+Selected PSU: **be quiet! Pure Power 13 M 850W `BP027EU`**.
 
-- premium **750 W** or **850 W** ATX 3.1;
-- 750 W baseline;
-- 850 W only when premium is modest or exact model materially better;
-- no speculative 1000–1200 W requirement.
+- ATX 3.1;
+- approximately 160 mm long, compatible with the Pure Base 501 PSU area;
+- fully modular;
+- native current-generation GPU-power cabling available for a later GPU;
+- 850 W provides ample margin for the current RTX 3060 and substantial future upgrades without assuming compatibility with every future flagship;
+- no 1000–1200 W requirement.
+
+Preferred fallback: **Corsair RM850x 2024 `CP-9020270-EU`** only after price/warranty review.
+
+Use only the modular cables supplied with the exact installed PSU.
 
 ## UPS / surge protection
 
@@ -138,11 +144,12 @@ Current target:
 - CPU stock/conservative;
 - RAM Auto/JEDEC;
 - update/record T710 firmware and validate SMART/temperature behavior;
+- verify normal PSU fan/noise behavior under representative load;
 - BitLocker after firmware/driver/storage stability is established.
 
 ## Provider dependencies
 
-Motherboard, RAM and primary SSD exact models are closed, but supplier selection remains subject to live price/stock. The RAM market is especially volatile.
+Motherboard, RAM, primary SSD and PSU exact models are closed, but supplier selection remains subject to live price/stock. The RAM market is especially volatile.
 
 Provider principles remain:
 
