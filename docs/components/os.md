@@ -23,23 +23,11 @@ Windows is the best host for this mixed workstation because it supports:
 
 Windows 11 Pro is selected over Home because the professional virtualization/management features are useful. Pro for Workstations remains unnecessary.
 
-## Exact license channel and SKU
+## License status
 
-A new Windows license is required.
+The Windows 11 Pro license is **already available**.
 
-Selected:
-
-> **Windows 11 Pro Retail/FPP English USB `HAV-00163`**
-
-Purchase requirements:
-
-- Windows 11 **Pro**;
-- **Retail/FPP**, not OEM/DSP/System Builder;
-- exact target **`HAV-00163`**;
-- normal packaged entitlement and retailer invoice;
-- no undocumented emailed/grey-market standalone key.
-
-Current procurement preference is PROstore if it remains the best trustworthy Retail/FPP offer, but supplier is a checkout-time variable.
+There is **no remaining Windows purchase target, retailer selection, SKU gate, or software cost to include in procurement**. The previous `HAV-00163` purchase target is obsolete for procurement purposes.
 
 ## Linux development environment
 
@@ -146,8 +134,7 @@ Record:
 ## Selected conclusion
 
 - **Host OS:** Windows 11 Pro x64
-- **License channel:** Retail/FPP
-- **Exact purchase target:** **`HAV-00163` English USB**
+- **License:** already available; no procurement action
 - **Linux environment:** WSL2 + Ubuntu 26.04.1 LTS
 - **Dual boot:** not required absent a demonstrated bare-metal Linux need
 - **Storage target:** Crucial T710 2 TB `CT2000T710SSD8`
