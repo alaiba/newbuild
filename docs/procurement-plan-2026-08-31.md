@@ -1,8 +1,11 @@
 # Procurement Plan — 2026-08-31
 
-This plan is temporarily **paused for re-optimization** after the memory architecture was finalized at **128 GB / 2×64 GB / 1DPC from day one**.
+This plan is temporarily **paused for re-optimization** after two architecture changes were finalized:
 
-The previous 64 GB Phase-1 RAM assumption and the purchase total derived from it are obsolete.
+- memory: **128 GB / 2×64 GB / 1DPC from day one**;
+- storage: **~1 TB system NVMe + 4 TB work NVMe from day one**.
+
+The previous 64 GB Phase-1 RAM assumption, Samsung 990 PRO 2 TB system-drive purchase and old purchase totals are obsolete.
 
 ## Locked procurement principles
 
@@ -11,7 +14,8 @@ The previous 64 GB Phase-1 RAM assumption and the purchase total derived from it
 3. Add another hardware provider only for material net savings or materially better stock/SKU/revision/warranty certainty.
 4. Windows/software may use a separate provider at a lower savings threshold because it has negligible RMA lifecycle burden.
 5. Optimize **utility per leu**, including stability, endurance, serviceability, firmware quality, thermal/electrical margin and avoiding future replacement.
-6. Buy exact SKUs/revisions only; no silent substitution.
+6. Do not pay merely for benchmark prestige or unused capability.
+7. Buy exact SKUs/revisions only; no silent substitution.
 
 ## Decisions that remain purchase-ready
 
@@ -27,13 +31,21 @@ The previous 64 GB Phase-1 RAM assumption and the purchase total derived from it
 | Windows | Windows 11 Pro Retail/FPP; current exact target `HAV-00163` from PROstore | selected |
 | GPU | existing RTX 3060 12 GB | reuse |
 
-## Decisions reopened before ordering
+## Architecture locked; exact products reopened
 
 ### Motherboard
 
 The ASUS ProArt X870E-Creator WiFi remains the incumbent reference but is **not currently purchase-final**.
 
-Its strongest previous justification was the difficult 4×64 GB / 256 GB memory target. With final memory now 2×64 GB / 128 GB, re-optimize the board against the remaining requirements.
+Its strongest previous justification was the difficult 4×64 GB / 256 GB memory target. Re-optimize the board against the final 128 GB 1DPC target and the simplified two-drive storage topology.
+
+Required storage topology:
+
+- at least two simultaneously usable M.2 x4 slots;
+- CPU-direct x4 preferred for the 4 TB work drive;
+- chipset x4 is sufficient for the system drive;
+- using those two slots must preserve GPU x16;
+- Gen5 storage capability is a bonus, not a requirement.
 
 ### Memory
 
@@ -47,25 +59,52 @@ Final architecture is locked:
 
 Exact kit and ECC/non-ECC verdict remain open until the motherboard/RAM optimization pass.
 
-### Storage
+### System SSD
 
-The incumbent architecture remains:
+Final role/capacity target:
 
-- Samsung 990 PRO 2 TB system/tools drive;
-- future 4 TB+ work/VM/container/data drive;
-- no RAID.
+- approximately **1 TB**;
+- internal NVMe;
+- reputable vendor and mature firmware;
+- normal warranty;
+- TLC preferred where price-effective;
+- DRAM and flagship throughput are **not requirements**;
+- Gen3/Gen4 performance is sufficient;
+- chipset-connected M.2 x4 is acceptable.
 
-However, the user requested a storage-architecture optimization discussion before motherboard/RAM optimization. Do not order the SSD until that discussion is closed.
+Do not automatically buy the Samsung 990 PRO. Select the cheapest credible drive that meets the reliability/headroom criteria. Move from 500 GB to 1 TB when the price increment is small.
+
+### Work SSD
+
+Final role/capacity target:
+
+- **4 TB from day one**;
+- high-quality internal NVMe;
+- TLC strongly preferred;
+- DRAM-equipped design preferred when reasonably priced;
+- mature firmware and good sustained/mixed behavior;
+- endurance appropriate for repositories/build caches/WSL2/containers/VMs/databases;
+- CPU-direct x4 preferred;
+- **Gen4 is sufficient**.
+
+Do not pay a material Gen5 premium without a demonstrated workload benefit.
+
+### Storage RAID / backup
+
+- no RAID requirement;
+- use version control plus external/network/cloud backup as appropriate;
+- internal drive redundancy is not a substitute for backup.
 
 ## Current provider references
 
-The prior provider split is a useful market reference, not a committed order:
+The prior provider split remains a useful market reference, not a committed order:
 
 - EvoMAG remains a strong candidate for much of the hardware;
 - Altex remains the clean explicit-current Seasonic PSU route;
-- PROstore remains the current verified Windows `HAV-00163` Retail/FPP target.
+- PROstore remains the current verified Windows `HAV-00163` Retail/FPP target;
+- eMAG is fully acceptable, and Genius/free-delivery value should be included when comparing eligible offers.
 
-Recalculate provider consolidation after motherboard, RAM and storage are closed.
+Recalculate provider consolidation after motherboard, RAM and both SSD models are closed.
 
 ## Price envelope
 
@@ -75,9 +114,10 @@ It assumed:
 
 - 64 GB / 2×32 GB RAM;
 - the ProArt as final motherboard;
-- the current two-drive storage architecture without review.
+- a Samsung 990 PRO 2 TB system SSD;
+- the 4 TB work SSD deferred outside the initial order.
 
-A new total will be calculated only after the reopened decisions are closed.
+A new total will be calculated only after the reopened exact-product decisions are closed.
 
 ## Hard acceptance gates that remain valid
 
@@ -90,6 +130,14 @@ A new total will be calculated only after the reopened decisions are closed.
 - exactly 2×64 GB matched DDR5 UDIMM kit;
 - 1DPC;
 - no temporary 2×32 GB purchase.
+
+### Storage
+- two drives purchased for initial assembly;
+- ~1 TB system NVMe + 4 TB work NVMe;
+- system drive selected for reliability/headroom/value, not flagship benchmarks;
+- work drive TLC strongly preferred;
+- no Gen5 requirement;
+- motherboard slot combination must preserve GPU x16.
 
 ### Cooler
 - NH-D15 G2 standard;
@@ -120,8 +168,9 @@ A new total will be calculated only after the reopened decisions are closed.
 
 ## Next sequence
 
-1. close the **storage architecture** discussion;
-2. re-optimize **motherboard + exact 2×64 GB RAM** together;
-3. refresh current Romanian prices and stock;
-4. produce a new ≤3-provider order plan and total;
-5. only then order the reopened items.
+1. re-optimize **motherboard** against final memory/storage topology;
+2. select exact **2×64 GB RAM** and ECC/non-ECC verdict;
+3. select exact **~1 TB system + 4 TB work SSDs** using current Romanian prices;
+4. refresh all current stock/prices, including eMAG Genius delivery where relevant;
+5. produce a new ≤3-provider order plan and total;
+6. only then order the reopened items.
