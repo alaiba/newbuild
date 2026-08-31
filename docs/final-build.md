@@ -29,7 +29,7 @@ This is the current source-of-truth architecture for the workstation.
 
 Selected board: **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`**.
 
-It wins because it satisfies the actual workstation requirements at roughly the ~0.84k-leu reference price without paying for unused B850/Creator capabilities:
+It wins because it satisfies the actual workstation requirements at roughly the sub-1k-leu class without paying for unused B850/Creator capabilities:
 
 - ATX, fitting the Pure Base 501;
 - Ryzen 9000 / 9950X3D support and an actively maintained BIOS branch;
@@ -147,6 +147,10 @@ The selected PSU provides its own normal input/protection circuitry. Revisit ext
 
 ## Hard purchase gates
 
+### CPU
+- exact **AMD Ryzen 9 9950X3D Box/WOF `100-100000719WOF`**;
+- no tray substitution without review.
+
 ### Motherboard
 - **ASUS TUF GAMING B650E-E WIFI**;
 - exact part `90MB1LT0-M0EAY0`;
@@ -190,10 +194,22 @@ The selected PSU provides its own normal input/protection circuitry. Revisit ext
 
 ### Windows
 - Windows 11 Pro Retail/FPP;
-- current target `HAV-00163` English USB from PROstore.
+- exact target `HAV-00163` English USB from PROstore.
 
-## Next decision sequence
+## Procurement position — 2026-08-31
 
-1. Refresh all prices/provider consolidation and produce the order total.
+The architecture and exact component choices are closed. Current consolidated order plan:
+
+- **EvoMAG:** CPU, RAM, cooler, case, SSD, PSU;
+- **ForIT:** motherboard;
+- **PROstore:** Windows 11 Pro Retail/FPP.
+
+Current reference total: **16,119.71 lei before shipping**, reusing the RTX 3060 and existing SATA drives.
+
+The exact 128 GB Crucial RAM kit is currently the sole abnormal market item at approximately **7,699.99 lei**, so it must receive a same-day price refresh before payment.
+
+Detailed priced basket and checkout gates: [`final-order-plan-2026-08-31.md`](final-order-plan-2026-08-31.md).
+
+**Status: purchase-ready. No further component-selection decision is pending.**
 
 Detailed decisions: `docs/decisions.md`.
