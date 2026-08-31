@@ -27,12 +27,14 @@ This matrix evaluates the workstation on **utility per leu**, not benchmark perf
 | **be quiet! Pure Base 501 Airflow `BG074`** | ATX, useful cooler/GPU clearance, included 140 mm fans, HDD path | Provides required physical envelope at much lower size/cost than North XL | **Selected** |
 | Fractal North XL Mesh | More E-ATX/GPU/cooler volume | Headroom was driven by hypothetical future hardware | **Superseded** |
 | Extra premium case fan | Additional airflow | Measure first; included front/rear 140 mm fans are adequate starting point | **Not initially required** |
-| **~1 TB system NVMe** | Adequate OS/tools headroom | Selected board provides clean second CPU M.2, so NVMe comes without motherboard premium | **Role selected; model open** |
-| **1 TB active-work NVMe** | Enough fast working-set capacity | Lowest-cost valid target | **Sufficient baseline** |
-| **2 TB active-work NVMe** | More working-set headroom | Prefer when incremental price/value is attractive | **Preferred when well priced** |
-| 4 TB active-work NVMe | More capacity | Most excess would hold inactive data | **Not required initially** |
-| Gen5 active-work SSD | Higher sequential bandwidth | No demonstrated workload value; selected M.2 can use Gen4 drive perfectly well | **Not required** |
-| Later bulk/cold storage | Cheap archive capacity | Add only when needed via M.2/SATA/HDD/external/NAS | **Selected expansion policy** |
+| **Crucial T710 2 TB `CT2000T710SSD8`** | One fast primary SSD for all active data; PCIe 5.0 x4, TLC, DRAM | Current ~600 GB use fits comfortably; 2 TB gives ample growth headroom and current Gen5 premium over premium Gen4 is small enough to justify it | **Selected** |
+| Separate ~1 TB system SSD | Physical OS/work separation | Adds device cost and management without solving a current performance/capacity problem | **Rejected** |
+| Separate active-work SSD | Workload isolation | Unnecessary while the whole active working set fits on one 2 TB flagship SSD | **Rejected** |
+| Dedicated SSD cache device | Potential hot-block acceleration | SSD-to-SSD caching adds complexity, duplicated writes and failure semantics while accelerating an already-fast NVMe | **Rejected initially** |
+| Automatic SSD tiering / Storage Spaces | Single namespace with hot/cold movement | Solves a capacity hierarchy problem that the current ~600 GB working set does not have | **Rejected initially** |
+| 4 TB T710 / flagship Gen5 | Double capacity | Roughly ~1.3k lei extra for capacity not expected to be used soon; expansion remains easy later | **Rejected initially on value** |
+| Existing SATA drives for cold storage | Cheap archive capacity already owned | Appropriate for old projects, media, installers and inactive data after health validation | **Selected / reuse** |
+| Later NVMe expansion | Additional fast capacity | `M.2_2` and `M.2_3` remain free; buy only when actual use justifies it | **Deferred / additive** |
 | **Premium 750 W ATX 3.1 PSU** | Plenty for current machine and substantial present-day GPU upgrades | Legitimate baseline; quality matters more than unused wattage | **Preferred baseline class** |
 | Premium 850 W ATX 3.1 PSU | More GPU headroom | Choose only for small premium or materially better exact product | **Value-dependent upgrade** |
 | 1000–1200 W PSU | Speculative GPU margin | No default justification | **Not required** |
@@ -62,13 +64,16 @@ ECC loses on practical module availability at 64 GB density, not because ECC its
 
 ## Storage interpretation
 
-With the selected motherboard, system and active-work drives can both be NVMe without consuming the primary GPU link:
+Storage is now deliberately simple:
 
-- `M.2_1`: active work;
-- `M.2_2`: system/tools;
-- `M.2_3`: later chipset-connected Gen4 x4 storage.
+- `M.2_1`: **Crucial T710 2 TB primary SSD**;
+- `M.2_2`: empty for later expansion;
+- `M.2_3`: empty for later expansion;
+- SATA: reuse healthy existing drives for cold/bulk data.
 
-This removes the main reason to consider SATA for C:, although SATA remains valid for later bulk storage.
+The current machine uses approximately **600 GB**, so 2 TB already provides substantial headroom. A separate system/work split and SSD caching were investigated but rejected because they add complexity without a demonstrated performance or capacity problem.
+
+Gen4 remains technically sufficient, but at current pricing the selected T710's Gen5 premium is small enough to be a reasonable durable upgrade. Conversely, moving immediately to 4 TB is not justified: capacity can be added later without replacing the selected drive.
 
 ## PSU interpretation
 
@@ -78,4 +83,4 @@ A premium **750 W ATX 3.1** supply is not an economy compromise. It is the basel
 
 When two candidates satisfy the requirements, choose the cheaper one unless the premium buys a **specific durable advantage**: better proven stability, materially better acoustics, better recovery/support, longer serviceability, necessary compatibility/topology or endurance the workload will actually use.
 
-Invalid premiums include unused benchmark capability, unused Gen5 lanes, unused high-bandwidth expansion/networking, extreme OC features, oversized cooling/case/wattage and speculative future-proofing.
+Invalid premiums include unused benchmark capability, unused storage capacity, unused high-bandwidth expansion/networking, extreme OC features, oversized cooling/case/wattage and speculative future-proofing.
