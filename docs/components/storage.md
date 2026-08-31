@@ -1,35 +1,38 @@
 # Storage Deep Dive
 
-Status: **Two-drive architecture selected / exact SSD models open**
+Status: **Two-drive active-storage architecture selected / exact SSD models open / cold storage additive later**
 
 ## Decision
 
-Buy the final two-drive storage architecture from day one:
+Buy two internal NVMe drives from day one:
 
 1. **System/tools SSD:** approximately **1 TB NVMe**, optimized for reliability, capacity headroom and price rather than flagship benchmark speed.
-2. **Work/data SSD:** **4 TB NVMe**, optimized for sustained development/VM/container/database workloads, endurance and value.
+2. **Active-work SSD:** **1 TB is sufficient; 2 TB is preferred when the absolute premium and price/TB are attractive**, optimized for sustained development/VM/container/database workloads, endurance and value.
 
-This supersedes the previous staged plan of buying a 2 TB Samsung 990 PRO first and adding a 4 TB work drive later.
+Do **not** buy 4 TB of high-performance NVMe merely to hold data that is not part of the active working set.
 
-The exact SSD models remain open for the next optimization pass.
+If total local storage later becomes tight, add a third device for bulk/cold data. That device may be another chipset-connected NVMe, a SATA SSD or a healthy HDD depending capacity, price and access pattern.
+
+The exact SSD models and whether the active-work SSD is 1 TB or 2 TB remain open for the next optimization pass.
 
 ## Why the architecture changed
 
-The previous 2 TB system drive was sized to carry the entire machine temporarily: Windows, tools, repositories, build caches, WSL2, containers, Android data, VMs and other working data until a second drive was purchased.
+The earlier 4 TB work-drive target conflated two different things:
 
-That temporary role no longer exists. The dedicated work drive will be present from initial assembly, so the system drive can be sized for its permanent role instead of for a transitional one-drive phase.
+- **active working data**, which benefits from low latency and strong random/sustained SSD behavior;
+- **accumulated local data**, much of which may be infrequently accessed and does not justify premium storage.
 
-The user's current machine provides useful empirical evidence. Its roughly decade-old 240 GB Intel SATA SSD is nearly full, but storage speed and boot time are not a significant pain point. The actual long-term problem is **capacity headroom**, not lack of sequential throughput.
+For the primary workload, the high-performance tier only needs to contain current repositories and the surrounding development ecosystem. Source code itself is usually modest in capacity; the larger consumers are caches, container/WSL images, Android images, active VMs and databases.
 
-The new system also has **128 GB RAM**, giving Windows and applications abundant memory for filesystem caching and working sets. Once applications and frequently accessed data are warm in memory, the system SSD is not continuously on the critical path.
+A disciplined **1 TB active-work SSD is sufficient**. A **2 TB active-work SSD is the comfort choice** when its incremental price is modest. There is no architectural reason to jump directly to 4 TB.
 
-Therefore the storage budget should not be spent on flagship OS-drive throughput merely because it is available.
+The user's current machine also provides useful evidence: its decade-old 240 GB Intel SATA OS SSD is almost full, but boot/storage performance is not a significant pain point. The dominant issue is capacity management, not flagship throughput.
+
+With **128 GB RAM**, Windows and development tools also have abundant memory for filesystem caching and working sets, further reducing the value of premium system-drive throughput.
 
 ## System/tools SSD role
 
 Target capacity: **approximately 1 TB**.
-
-The capacity is a value target rather than a prestige target. A 500 GB drive could be technically sufficient for a cleanly separated system volume, but 1 TB is preferred whenever the price premium is modest because it provides substantially more long-term servicing/update/application headroom.
 
 Expected contents:
 
@@ -57,30 +60,35 @@ In order of importance:
 7. DRAM cache is useful but **not mandatory** for this role;
 8. peak sequential throughput is low priority.
 
-A good Gen3 or mainstream Gen4 NVMe drive is already more than fast enough for the role. There is no requirement for a 7 GB/s flagship drive, and **no justification for paying a Gen5 premium for the OS drive**.
+A good Gen3 or mainstream Gen4 NVMe drive is already more than fast enough. There is no requirement for a flagship Gen4 drive and **no justification for paying a Gen5 premium for the OS drive**.
 
-The system SSD may use a **chipset-connected M.2 x4 slot** without concern.
+The system SSD may use a **chipset-connected M.2 x4 slot**.
 
-## Work/data SSD role
+## Active-work SSD role
 
-Target initial capacity: **4 TB**.
+Target capacity:
 
-Expected contents include:
+- **1 TB is technically sufficient and is the value baseline**;
+- **2 TB is preferred when the price premium is modest enough to buy useful operating headroom without distorting the budget**;
+- **4 TB is not an initial requirement**.
 
-- source repositories;
+Expected contents include latency-sensitive and actively used data such as:
+
+- current source repositories;
 - Gradle caches and build outputs;
 - Maven local repository;
 - WSL2 distributions/VHDX and Linux-native high-I/O working sets;
 - container images/layers/volumes;
-- Android SDK components and AVD/emulator images where relocation is supported;
-- virtual machines;
-- local databases;
-- large test datasets;
-- games;
-- local AI models/datasets when practical;
-- other project or scratch data with substantial capacity or I/O demand.
+- Android SDK components and active AVD/emulator images where relocation is supported;
+- active virtual machines;
+- active local databases;
+- current large test datasets;
+- currently used games or AI models when appropriate;
+- other project/scratch data that materially benefits from SSD latency and throughput.
 
-### Work-drive quality priorities
+Old projects, inactive VMs, ISO images, installers, archives and similar low-frequency data do not need to remain on this drive.
+
+### Active-work-drive quality priorities
 
 Prefer:
 
@@ -92,13 +100,39 @@ Prefer:
 - five-year-class warranty where available;
 - standard M.2 form factor compatible with motherboard heatsinks.
 
-TBW is a useful minimum-quality/endurance signal, not a prestige metric. Do not pay a large premium merely for the largest published TBW number if the practical workload is unlikely to consume it.
+TBW is a useful minimum-quality/endurance signal, not a prestige metric. Do not pay a large premium merely for the largest published TBW number.
+
+## Bulk/cold-storage role
+
+Bulk/cold storage is **not part of the initial performance requirement**.
+
+Add it only when the active/system drives actually need relief. Appropriate data includes:
+
+- archived repositories;
+- old build artifacts;
+- inactive VMs;
+- ISO images and installers;
+- historical datasets;
+- media;
+- old AI models/datasets not actively used;
+- other infrequently accessed local material.
+
+Suitable device classes include:
+
+- spare chipset-connected NVMe SSD;
+- SATA SSD;
+- SATA HDD;
+- external/NAS storage depending the use case.
+
+Existing spinning disks may be reused after SMART/health inspection if their interface and physical condition are suitable. They should be treated as **convenience/bulk storage**, not trusted as the sole copy of important data simply because SMART currently reports healthy.
+
+For old HDDs, important data must exist elsewhere as well.
 
 ## PCIe generation policy
 
-**PCIe 4.0 is sufficient for both drives.**
+**PCIe 4.0 is sufficient for both initial drives.**
 
-The work drive should receive the better storage connection because it is where the sustained and random development I/O is expected to occur. Prefer a **CPU-direct x4 M.2 slot** for it.
+The active-work SSD should receive the better storage connection because it is where sustained and random development I/O is expected. Prefer a **CPU-direct x4 M.2 slot** for it.
 
 Gen5 is a bonus, not a requirement. A Gen5 work SSD should be selected only if:
 
@@ -109,48 +143,51 @@ Do not select a motherboard or SSD merely to preserve a synthetic sequential-thr
 
 ## Motherboard topology requirement
 
-The motherboard optimization should now require:
+The motherboard optimization should require:
 
-1. at least **two simultaneously usable M.2 x4 slots** for the initial drives;
-2. one preferably **CPU-direct x4** slot for the 4 TB work SSD;
+1. at least **two simultaneously usable M.2 x4 slots** for the initial SSDs;
+2. one preferably **CPU-direct x4** slot for the active-work SSD;
 3. one chipset-connected x4 slot is fully acceptable for the ~1 TB system SSD;
 4. populating these two selected slots must **not reduce the primary GPU from x16**;
 5. integrated M.2 heatsinks are preferred;
-6. additional M.2 capacity for future additive expansion is desirable but should not command a large premium.
+6. at least one practical later expansion route for bulk storage is desirable, whether additional M.2, SATA or both;
+7. extra high-speed M.2 capacity should not command a large motherboard premium by itself.
 
-Exact M.2 slot numbers will be assigned only after the motherboard is selected. Do not carry ProArt-specific `M.2_1` / `M.2_3` assumptions into another board without checking its lane-sharing table.
+Exact M.2 slot numbers will be assigned only after the motherboard is selected. Do not carry ProArt-specific labels into another board without checking its lane-sharing table.
 
-## Why two physical drives from day one
+## Why two physical SSDs from day one
 
-The objective is not aggregate benchmark throughput. It is operational separation:
+The objective is operational separation rather than aggregate benchmark throughput:
 
-- **OS/recovery separation:** Windows can be repaired/reinstalled without making the work volume part of the operation.
+- **OS/recovery separation:** Windows can be repaired/reinstalled without making the active-work volume part of that operation.
 - **Workload isolation:** VMs, containers, databases, caches and build output do not share one NAND/controller with Windows housekeeping.
-- **Capacity management:** work data can grow independently of the system volume.
+- **Capacity management:** active work can be managed independently of the system volume.
 - **Thermal distribution:** sustained activity is spread across two devices and motherboard locations.
-- **Independent replacement:** either SSD can be replaced or expanded without forcing replacement of the other.
+- **Independent replacement:** either SSD can be replaced without forcing replacement of the other.
 
 This is a permanent role separation, not a temporary Phase-1 arrangement.
 
 ## Expansion policy
 
-The initial 1 TB + 4 TB layout is **not a lifetime storage-capacity ceiling**.
+Storage capacity is deliberately **additive**.
 
-Storage is naturally additive. If future AI models, VMs, games, project data or archives require another 4 TB/8 TB/greater SSD, add another drive if the selected motherboard provides a suitable slot. There is no reason to discard the initial system or work SSD merely to expand capacity.
+When the active-work SSD starts accumulating data that is no longer active, move that material to a bulk/cold tier instead of buying an oversized performance SSD in advance.
 
-This differs from the RAM decision: RAM topology is deliberately fixed at 2×64 GB / 128 GB, while storage can expand cleanly through additional independent devices.
+A later third drive can be sized for capacity/value rather than latency. This may be a large inexpensive SSD or even an existing healthy HDD, depending the data.
+
+This differs from the RAM decision: RAM topology is deliberately fixed at 2×64 GB / 128 GB, while storage can expand cleanly through independent devices.
 
 ## QLC and DRAM-less policy
 
 ### System drive
 
-QLC or DRAM-less designs are **not automatically rejected** for the system role. A mature implementation from a reputable vendor can be entirely adequate if the price saving is meaningful and endurance/reliability are appropriate.
+QLC or DRAM-less designs are **not automatically rejected** for the system role. A mature implementation from a reputable vendor can be adequate if the price saving is meaningful and endurance/reliability are appropriate.
 
 TLC remains preferred when the incremental cost is modest.
 
-### Work drive
+### Active-work drive
 
-For the primary 4 TB work drive, **TLC is strongly preferred** and a DRAM-equipped design is preferred when reasonably priced because sustained writes, VMs, containers, databases and build caches create a more demanding workload.
+For the primary active-work SSD, **TLC is strongly preferred** and a DRAM-equipped design is preferred when reasonably priced because sustained writes, VMs, containers, databases and build caches create a more demanding workload.
 
 QLC belongs mainly in later bulk/read-heavy storage unless its price advantage becomes compelling.
 
@@ -169,7 +206,7 @@ The reliability strategy is instead:
 - firmware maintenance;
 - application/filesystem consistency mechanisms.
 
-Do not treat either internal SSD as the sole copy of important data.
+Do not treat any internal SSD or reused HDD as the sole copy of important data.
 
 ## Thermal policy
 
@@ -180,7 +217,7 @@ During bring-up:
 - update and record SSD firmware;
 - monitor SMART/health data;
 - monitor sustained-write temperature;
-- verify no material thermal throttling under representative work-drive loads;
+- verify no material thermal throttling under representative active-work loads;
 - maintain normal motherboard airflow.
 
 ## Explicitly superseded storage decisions
@@ -189,29 +226,32 @@ The following are no longer purchase targets:
 
 - Samsung 990 PRO 2 TB `MZ-V9P2T0BW` as the selected system SSD;
 - a 2 TB system SSD justified by a temporary one-drive phase;
-- buying the work SSD later;
-- reserving a Gen5 drive as the preferred long-term work-drive class;
+- a fixed 4 TB high-performance work SSD;
+- buying the active-work SSD later;
+- reserving a Gen5 drive as the preferred work-drive class;
+- buying high-performance NVMe capacity for archival/cold data;
 - ProArt-specific storage slot assignments as architectural requirements.
 
-The 990 PRO remains a technically credible SSD and may still appear in price comparisons, but it must win on current role-specific value rather than incumbent status.
+The 990 PRO remains technically credible and may still appear in price comparisons, but it must win on role-specific value rather than incumbent status.
 
 ## Selected conclusions
 
-- **Architecture:** two physical internal NVMe drives from initial assembly.
+- **Architecture:** two physical internal NVMe SSDs from initial assembly.
 - **System/tools:** approximately **1 TB**, value/reliability/capacity optimized; exact model open.
-- **Work/data:** **4 TB**, high-quality Gen4 TLC preferred; exact model open.
-- **Work-drive topology:** CPU-direct x4 preferred.
+- **Active work:** **1 TB sufficient; 2 TB preferred when the incremental cost is attractive**; high-quality Gen4 TLC preferred; exact capacity/model open.
+- **Active-work topology:** CPU-direct x4 preferred.
 - **System-drive topology:** chipset-connected x4 fully acceptable.
 - **Gen5:** not required for either initial drive.
+- **Bulk/cold storage:** add later only when needed; may use NVMe, SATA SSD or healthy HDD.
 - **RAID:** no.
-- **Future capacity:** additive through additional drives; no planned replacement of the initial pair merely to expand capacity.
+- **Future capacity:** additive; no planned replacement of the initial pair merely to expand capacity.
 
 ## Next optimization questions
 
 For the exact SSD pass:
 
 1. identify the cheapest reputable ~1 TB system-drive candidates with mature firmware and normal warranty;
-2. move to 1 TB over 500 GB whenever the incremental price is small;
-3. compare serious 4 TB TLC work-drive candidates on price, sustained behavior, endurance, warranty and firmware maturity;
+2. compare **1 TB versus 2 TB active-work SSDs on absolute premium and price/TB**, not on an arbitrary fixed capacity target;
+3. prioritize TLC, sustained behavior, endurance, warranty and firmware maturity for the active-work drive;
 4. reject Gen5 premiums that do not buy a demonstrated workload benefit;
-5. evaluate the two-drive lane topology on each motherboard finalist before selecting exact slots.
+5. evaluate the two-drive lane topology and later bulk-storage expansion path on each motherboard finalist.
