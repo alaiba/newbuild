@@ -1,174 +1,137 @@
 # Final Build
 
-This is the current source-of-truth BOM for the initial workstation. Purchase-time execution lives in `docs/procurement-plan-2026-08-31.md`.
+This is the current source-of-truth architecture for the workstation. A requirement change on 2026-08-31 finalized memory at **128 GB / 2×64 GB / 1DPC from day one**, which reopens the exact motherboard and RAM-model optimization before purchase.
 
-## Selected initial build
+## Current build state
 
-| Component | Exact model / configuration | Status | Current purchase reference |
-|---|---|---|---:|
-| CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Selected** | ~3,349.99 lei EvoMAG |
-| Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Selected** | ~2.68k lei current EvoMAG-class control |
-| Phase-1 RAM | **Crucial `CT2K32G56C46U5`, 64 GB (2×32), DDR5-5600 CL46, 1.1 V** | **Selected** | ~4,799.99 lei fresh EvoMAG/comparison control; exact-SKU gate |
-| Long-term RAM | **256 GB target, expected 4×64 GB** | **Architecture selected / deferred** | exact modules/ECC verdict deferred |
-| CPU cooler | **Noctua NH-D15 G2 standard**, 7 mm AM5 offset | **Selected** | ~690–710 lei EvoMAG-class control |
-| System/tools SSD | **Samsung 990 PRO 2 TB `MZ-V9P2T0BW`** | **Selected** | ~1,899.99 lei EvoMAG |
-| Future work SSD | **4 TB-or-larger NVMe** | **Architecture selected / deferred** | reserve `M.2_1` |
-| PSU | **Seasonic VERTEX GX-1200 current ATX 3.1 / PCIe 5.1 / 12V-2x6** | **Selected baseline** | ~1,289.99 lei Altex |
-| PSU value upgrade | **VERTEX PX-1200 current ATX 3.1** | **Preferred if in stock at ≤~200 lei premium** | ~1,449.99 lei reference; currently explicit listing out of stock |
-| Case | **Fractal North XL Mesh `FD-C-NOR1X-01`** | **Selected** | ~882.99 lei EvoMAG exact-SKU control |
-| Rear fan | **Noctua NF-A14x25 G2 PWM**, standard square-frame single | **Selected** | ~200.99 lei EvoMAG |
-| Case airflow | **3× included 140 mm front intake + 1×140 mm rear exhaust** | **Selected** | no top/side fans initially |
-| GPU | Existing **RTX 3060 12 GB** | **Reuse / selected** | 0 lei |
-| UPS | **CyberPower PR1500ELCD, 1500 VA / 1350 W** | **Selected** | ~2,948.99 lei EvoMAG/current market |
-| Host OS | **Windows 11 Pro x64** | **Selected** | — |
-| Windows license | **Retail/FPP USB Romanian `HAV-00197`** | **Selected / required** | ~1,199.99 lei EvoMAG; switch display language to English |
-| Initial Windows release | **Windows 11 25H2 GA** | **Selected for installation** | included |
-| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** | free |
+| Component | Configuration | Status |
+|---|---|---|
+| CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Selected** |
+| Motherboard | ASUS **ProArt X870E-Creator WiFi** incumbent reference | **Reopened for optimization** because 4×64/256 GB is no longer required |
+| RAM capacity | **128 GB from day one** | **Selected / final** |
+| RAM topology | **2×64 GB DDR5 UDIMM, 1DPC, A2/B2** | **Selected / final** |
+| Exact RAM kit | Exact 2×64 GB matched kit | **Open for optimization** |
+| ECC | ECC UDIMM only if end-to-end support/reporting is compelling | **Open within RAM optimization** |
+| CPU cooler | **Noctua NH-D15 G2 standard**, 7 mm AM5 offset | **Selected** |
+| System/tools SSD | **Samsung 990 PRO 2 TB `MZ-V9P2T0BW`** in the incumbent storage architecture | **Selected incumbent; storage architecture now under requested review** |
+| Future work SSD | Current plan: 4 TB-or-larger NVMe later | **Selected incumbent; under requested storage review** |
+| PSU | **Seasonic VERTEX GX-1200 current ATX 3.1 / PCIe 5.1 / 12V-2x6** | **Selected baseline** |
+| PSU value upgrade | **VERTEX PX-1200 current ATX 3.1** | **Preferred if in stock at ≤~200 lei premium** |
+| Case | **Fractal North XL Mesh `FD-C-NOR1X-01`** | **Selected** |
+| Rear fan | **Noctua NF-A14x25 G2 PWM**, standard square-frame single | **Selected** |
+| Case airflow | 3× included 140 mm front intake + 1×140 mm rear exhaust | **Selected** |
+| GPU | Existing **RTX 3060 12 GB** | **Reuse / selected** |
+| UPS | **CyberPower PR1500ELCD, 1500 VA / 1350 W** | **Selected** |
+| Host OS | **Windows 11 Pro x64** | **Selected** |
+| Windows license | **Retail/FPP USB English `HAV-00163` from PROstore** | **Selected purchase target** |
+| Initial Windows release | **Windows 11 25H2 GA** | **Selected** |
+| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** |
 
-## Current optimized purchase envelope
+## Memory architecture — final
 
-Using current conservative controls and the purchase-ready **GX-1200**:
+The workstation will not use temporary RAM.
 
-**approximately 19,950 lei before shipping.**
+Initial assembly uses the final intended memory configuration:
 
-If a current-revision **PX-1200** is available at the current ~160 lei premium:
+**128 GB = 2×64 GB DDR5 UDIMM, one DIMM per channel.**
 
-**approximately 20,110 lei before shipping.**
+This permanently supersedes:
 
-This still leaves almost **10,000 lei** below the ~30k planning level while materially improving the UPS's lifetime usefulness.
+- 64 GB / 2×32 GB Phase-1 memory;
+- adding another 2×32 GB kit later;
+- a planned 256 GB / 4×64 GB endpoint;
+- any motherboard premium justified mainly by four-DIMM/256 GB behavior.
 
-The total is a checkout envelope, not a promise; RAM and stock can move quickly.
+The exact 2×64 GB SKU is intentionally not selected yet. It will be optimized together with the reopened motherboard after the requested storage discussion.
 
-## Why the final optimization spends more on the UPS
+Bring-up remains conservative: current stable BIOS, A2/B2, Auto/JEDEC first, no EXPO/XMP during baseline validation, extended memory testing.
 
-The previous CP1600EPFCLCD was 1000 W and excellent for the current RTX 3060 machine, but the build intentionally preserves a future whole-system envelope around **900–980 W**.
+## Motherboard consequence
 
-At that future load a 1000 W UPS would operate near its limit and would likely need replacement. The selected **PR1500ELCD** provides **1350 W**, placing the same load around 67–73% of rating, while adding longer runtime, stronger AVR behavior and a hot-swappable battery path.
+The ASUS ProArt X870E-Creator WiFi remains the incumbent technical reference, but it is no longer final.
 
-The ~1.4k lei premium therefore has a credible chance of eliminating an entire future UPS replacement and is justified by the stability/endurance/lifecycle objective.
+Its strongest differentiator in the previous analysis was explicit evidence for the difficult 4×64 GB / 256 GB / ECC-oriented use case. With the lifetime endpoint now 2×64 GB / 128 GB, the motherboard can be re-optimized for the remaining requirements: stability, firmware quality, networking, PCIe/storage topology, serviceability, future high-power GPU support and value.
 
-## Procurement consolidation
+No replacement board has been selected yet.
 
-Default provider plan: **two providers**.
+## Storage — incumbent architecture pending review
 
-### EvoMAG primary order
+The current storage plan remains:
 
-Target EvoMAG for:
+- Samsung 990 PRO 2 TB as permanent system/tools drive;
+- separate 4 TB-or-larger work/VM/container/data SSD later;
+- no RAID;
+- external/network backup required.
 
-- CPU;
-- motherboard;
-- exact Crucial RAM;
-- NH-D15 G2;
-- Samsung 990 PRO;
-- North XL Mesh;
-- Noctua rear fan;
-- CyberPower PR1500ELCD;
-- Windows 11 Pro Retail/FPP `HAV-00197`.
+The user has explicitly requested a storage-architecture optimization discussion **before** the next whole-build optimization pass. Therefore the current storage plan is an incumbent, not something to change silently.
 
-### Altex
+## Current price envelope
 
-Target Altex for the explicitly current **VERTEX GX-1200 ATX 3.1**.
+The previous complete-order totals are now **obsolete** because they assumed a 64 GB RAM kit and a final motherboard selection.
 
-If EvoMAG can confirm in writing that its VERTEX unit is current ATX 3.1 / PCIe 5.1 / 12V-2x6, a one-provider order is acceptable.
+Do not publish a new purchase total until:
 
-A third provider is justified only for roughly **≥300 lei net saving**, or materially better SKU/revision/stock/warranty certainty.
+1. the exact 2×64 GB kit is selected;
+2. the motherboard re-optimization is complete;
+3. the requested storage review determines whether the SSD architecture changes.
 
-## Component value review
-
-The widened price/performance review considered both cheaper parts and premium upgrades.
-
-### Kept as selected
-
-- **9950X3D:** the ~650 lei 9950X saving is not enough to give up the X3D's gaming advantage; compile performance is not worse in the relevant evidence.
-- **ProArt X870E-Creator:** the cheaper Taichi Creator gives up the strongest explicit evidence for our 4×64 GB / 256 GB and ECC-oriented stability target.
-- **NH-D15 G2:** cheaper Thermalright alternatives are excellent, but Noctua's mounting/support ecosystem, fan endurance and six-year warranty fit the 10-year objective.
-- **990 PRO 2 TB:** KC3000 saves too little; 9100 PRO costs more but PCIe 5 performance would be wasted in the selected PCIe 4 `M.2_3` system slot and would consume the future-work-drive slot if moved to `M.2_1`.
-- **Noctua rear fan:** now available inside the primary EvoMAG order, eliminating the logistics reason to downgrade.
-- **Crucial 64 GB:** current price and conservative 1.1 V profile remain better value than paying ~500–600+ lei for the Kingston explicit-compatibility kit; recompare Kingston if the gap shrinks to ~200–250 lei.
-
-### Premium changes
-
-- **UPS:** upgrade to PR1500ELCD — selected.
-- **PSU:** PX-1200 is preferred only when current stock exists at ≤~200 lei over GX; otherwise GX remains the purchase-ready choice.
-- **Windows:** use Romanian Retail/FPP `HAV-00197` at EvoMAG rather than creating another provider for the slightly cheaper English package; Windows 11 Pro can use English as its display language.
-
-## Hard purchase gates
+## Hard purchase gates that remain valid
 
 ### CPU
-
 - exact Ryzen 9 9950X3D;
-- Box/WOF `100-100000719WOF` preferred;
-- no silent Tray substitution.
+- Box/WOF `100-100000719WOF` preferred.
 
 ### RAM
-
-- exact **`CT2K32G56C46U5`**;
-- 64 GB / 2×32;
-- desktop 288-pin UDIMM;
-- reject **`CT2K32G56C46S5`** laptop SO-DIMM;
-- A2/B2, Auto/JEDEC baseline, extended memory test.
+- **128 GB total**;
+- **2×64 GB matched DDR5 UDIMM kit**;
+- 1DPC / A2+B2;
+- no temporary 2×32 GB purchase;
+- exact SKU selected only after motherboard/RAM optimization.
 
 ### Cooler
-
 - NH-D15 G2 **standard**;
 - included AM5 offset mount;
 - no LBC/HBC substitution.
 
-### SSD
-
-- exact Samsung **`MZ-V9P2T0BW`**;
-- install in ProArt **`M.2_3`**;
-- reserve `M.2_1` for future work SSD.
-
 ### PSU
-
 For GX or conditional PX:
-
-- ATX 3.1 on listing/box;
+- ATX 3.1;
 - PCIe 5.1;
-- supplied current **12V-2x6** cable;
-- reject explicit old ATX 3.0 / 12VHPWR inventory;
-- use only Seasonic-approved modular cables.
+- current 12V-2x6 cable;
+- reject explicit old ATX 3.0 / 12VHPWR stock.
 
 ### Case
-
-- exact **`FD-C-NOR1X-01`** North XL Charcoal Black Mesh;
-- reject `FD-C-NOR1X-02` TG Dark unless deliberately reopened.
+- exact `FD-C-NOR1X-01` North XL Charcoal Black Mesh.
 
 ### UPS
-
-- exact **CyberPower `PR1500ELCD`**;
+- exact **CyberPower PR1500ELCD**;
 - 1500 VA / 1350 W;
 - new/sealed;
-- note **IEC C13** outlet layout and use correctly rated IEC cables;
-- configure USB/PowerPanel graceful shutdown and perform a controlled mains-loss test.
+- correctly rated IEC cabling;
+- USB graceful-shutdown validation.
 
 ### Windows
-
-- Windows 11 **Pro**;
+- Windows 11 Pro;
 - **Retail/FPP**;
-- preferred consolidated SKU **`HAV-00197`**;
-- install/switch English display language as desired;
-- not OEM/DSP and not an undocumented standalone key.
+- current purchase target `HAV-00163` English USB from PROstore;
+- not OEM/DSP or an undocumented activation key.
 
 ## OS / firmware baseline
 
 - Windows 11 Pro 25H2 GA;
 - WSL2 + Ubuntu 26.04.1 LTS;
 - NVIDIA Studio Driver WHQL baseline;
-- current stable ProArt BIOS;
+- current stable motherboard BIOS;
 - UEFI, Secure Boot, TPM 2.0, SVM/IOMMU;
 - RAM Auto/JEDEC during commissioning;
 - CPU stock/conservative;
 - BitLocker only after firmware/driver stabilization.
 
-## Deferred items
+## Next decision sequence
 
-- exact eventual 256 GB matched memory configuration and ECC verdict;
-- future 4 TB+ work SSD;
-- future high-VRAM GPU;
-- exact container runtime if licensing/workflow makes it material.
+1. **Discuss/review storage architecture.**
+2. Re-optimize motherboard for the 128 GB 1DPC endpoint and finalized storage requirements.
+3. Select the exact 2×64 GB RAM kit, including the ECC/non-ECC verdict.
+4. Recalculate provider consolidation and the purchase total.
 
 Detailed decisions: `docs/decisions.md`.
-
-Purchase execution: `docs/procurement-plan-2026-08-31.md`.
