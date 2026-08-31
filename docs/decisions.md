@@ -30,7 +30,7 @@ This file records closed decisions plus any decision explicitly reopened because
 | Exact PSU | **be quiet! Pure Power 13 M 850W `BP027EU`** | **Selected** | ATX 3.1, native current-generation GPU power, 10-year warranty, excellent acoustics and measured electrical performance. The observed premium over the 750 W sibling is small enough that the extra 100 W is worthwhile without returning to speculative 1000–1200 W sizing. |
 | PSU fallback | **Corsair RM850x 2024 `CP-9020270-EU`** | **Fallback** | Reconsider only if delivered price is within roughly 30–40 lei or retailer/warranty conditions are materially better. |
 | UPS | **No UPS in the initial BOM** | **Selected** | Short outages are acceptable operationally; continuity is unnecessary. |
-| Point-of-use power protection | **Use a reputable plug-in surge protector / surge-protected power strip** | **Selected policy** | Objective is transient/surge risk reduction without electrical-installation modification. |
+| Point-of-use surge protection | **No dedicated surge protector required** | **Selected** | Given the user's risk tolerance and apartment environment, the incremental protection does not justify a dedicated purchase. The selected quality PSU already provides internal input/protection circuitry. Use a properly earthed wall outlet or a reputable ordinary 16 A Schuko strip only if additional outlets are needed. Reopen only if actual mains-quality problems appear. |
 | Motherboard VRM / OC | **Stock/conservative 9950X3D only; extreme VRM/OC capability has no value** | **Selected** | Require comfortable stock-load margin and stability, not phase-count marketing. |
 | Host OS | **Windows 11 Pro x64** | **Selected** | Best fit for development, virtualization, NVIDIA/gaming and professional host features. |
 | Windows license | **Retail/FPP `HAV-00163` English USB** | **Selected purchase target** | Clean DIY licensing path; PROstore remains current reference supplier. |
@@ -65,12 +65,13 @@ This file records closed decisions plus any decision explicitly reopened because
 - reserving the Gen5 M.2 slot instead of using it for the initial primary SSD;
 - premium 750 W as the selected PSU target;
 - 1200 W Seasonic VERTEX GX/PX targets;
-- CyberPower PR1500ELCD.
+- CyberPower PR1500ELCD;
+- dedicated plug-in surge protector as a required purchase.
 
 ## Open / deferred decisions
 
-- exact plug-in surge protector;
 - optional future storage expansion only if actual capacity needs grow;
-- future GPU replacement only when a concrete need/failure appears.
+- future GPU replacement only when a concrete need/failure appears;
+- mains protection only if actual power-quality problems appear.
 
 Detailed component dossiers are under `docs/components/`.
