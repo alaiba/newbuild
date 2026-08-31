@@ -6,18 +6,11 @@ Status: **Selected — Windows 11 Pro x64 host + WSL2 + Ubuntu 26.04.1 LTS**
 
 Use **Windows 11 Pro x64** as the host operating system.
 
-For the initial installation in August 2026, use **Windows 11 version 25H2, General Availability channel**, fully patched with normal production updates before workload validation.
-
-Do not deliberately install Windows 11 Home, Pro for Workstations, Enterprise/LTSC merely for longevity, Insider/preview builds, or Windows 11 24H2 on a new installation when 25H2 is available.
-
-The selected **edition** is durable even though the feature release will change over the machine's lifetime. Follow the normal supported Windows feature-update path after commissioning.
-
-Reference:
-- https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information
+Use the current supported General Availability Windows 11 release available at installation time and apply normal production updates before workload validation. Do not use Insider/preview builds for baseline commissioning.
 
 ## Why Windows 11 Pro
 
-Windows is the best host for this mixed workstation because it simultaneously supports:
+Windows is the best host for this mixed workstation because it supports:
 
 - native IntelliJ IDEA and Android Studio;
 - Android Emulator;
@@ -28,52 +21,25 @@ Windows is the best host for this mixed workstation because it simultaneously su
 - BitLocker and Secure Boot;
 - Remote Desktop hosting.
 
-Windows 11 **Pro** is selected over Home because the professional virtualization/management features are useful on this machine. Pro for Workstations remains unnecessary for one CPU socket and a 256 GB memory target.
+Windows 11 Pro is selected over Home because the professional virtualization/management features are useful. Pro for Workstations remains unnecessary.
 
-## Exact license channel and consolidated SKU
+## Exact license channel and SKU
 
-A new Windows license is required for this build.
+A new Windows license is required.
 
-Selected channel:
+Selected:
 
-**Microsoft Windows 11 Pro Retail/FPP.**
-
-For the consolidated Romanian purchase, the preferred exact packaged SKU is now:
-
-**`HAV-00197` — Windows 11 Pro Retail/FPP USB, Romanian package**.
-
-EvoMAG currently lists this exact Retail/FPP product around **1,199.99 lei** and it can therefore stay inside the primary order rather than creating a third retailer relationship for the English-package `HAV-00163` merely to save roughly 50–75 lei.
-
-The Romanian package does **not** require the workstation to remain Romanian-language in daily use. Windows 11 Pro supports installing additional display languages and changing the Windows display language; the Single Language restriction applies to the dedicated Home Single Language edition, not normal Pro. Install/add the English language pack and use English as the display language if desired.
-
-This is a good example of the build's procurement/value policy: a small price premium is justified when the software rights are equivalent and it eliminates a separate ordering/invoice/warranty relationship.
+> **Windows 11 Pro Retail/FPP English USB `HAV-00163`**
 
 Purchase requirements:
 
 - Windows 11 **Pro**;
 - **Retail/FPP**, not OEM/DSP/System Builder;
-- preferred consolidated SKU **`HAV-00197`** from EvoMAG;
+- exact target **`HAV-00163`**;
 - normal packaged entitlement and retailer invoice;
-- do not substitute an undocumented emailed/grey-market standalone key.
+- no undocumented emailed/grey-market standalone key.
 
-Fallback:
-
-- if `HAV-00197` becomes unavailable or is materially overpriced, buy the English Retail/FPP **`HAV-00163`** from another reputable retailer;
-- adding provider #3 purely for a ~50–100 lei saving is not worthwhile under the current consolidation policy.
-
-Retail/FPP preserves transfer rights to a future replacement PC subject to Microsoft's license terms, although portability remains secondary for this intentionally long-lived workstation.
-
-References:
-- Microsoft language management: https://support.microsoft.com/windows/manage-the-input-and-display-language-settings-in-windows-219f28b0-9881-cd4c-75ca-dba919c52321
-- Microsoft Windows 11 Pro: https://www.microsoft.com/ro-ro/d/windows-11-pro/dg7gmgf0d8h4
-
-## Why not Pro for Workstations
-
-Windows 11 Pro for Workstations adds workstation-scale capabilities that do not materially benefit this build. A future Windows Dev Drive also does not require Pro for Workstations.
-
-References:
-- https://www.microsoft.com/en/windows/business/windows-11-pro
-- https://learn.microsoft.com/en-us/windows/dev-drive/
+Current procurement preference is PROstore if it remains the best trustworthy Retail/FPP offer, but supplier is a checkout-time variable.
 
 ## Linux development environment
 
@@ -81,23 +47,20 @@ Use **WSL2** as the default Linux environment.
 
 Selected distribution: **Ubuntu 26.04.1 LTS**.
 
-References:
-- https://ubuntu.com/download/wsl
-- https://ubuntu.com/about/release-cycle?product=ubuntu&release=ubuntu&version=26.04+LTS
-- https://learn.microsoft.com/en-us/windows/wsl/install
-
 Do not use Insider/preview WSL builds for the baseline workstation.
 
 ## Windows/WSL filesystem policy
 
-- Windows-native IDE/toolchain repositories should live on Windows storage.
-- Linux-native build trees, package caches, container data and other high-I/O Linux workloads should live **inside the WSL filesystem**, not under `/mnt/c` merely for convenience.
-- When the future 4 TB+ work SSD is added, reassess WSL VHDX/container/cache placement.
-- Consider a Windows Dev Drive on the future work SSD for Windows-native source/caches only if measurements justify it.
+The selected primary drive is the **Crucial T710 2 TB `CT2000T710SSD8`**.
+
+- Windows-native IDE/toolchain repositories may live on the Windows filesystem.
+- Linux-native build trees, package caches, container data and other high-I/O Linux workloads should normally live **inside the WSL filesystem**, not under `/mnt/c` merely for convenience.
+- The whole active working set initially resides on the one T710; there is no separate system/work SSD architecture.
+- `M.2_2` and `M.2_3` remain free for later additive storage only if actual capacity needs grow.
 
 ## Firmware settings before OS installation
 
-Start from a current stable ProArt BIOS and conservative defaults:
+Start from a current stable BIOS on the selected **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** and conservative defaults:
 
 - UEFI-native boot;
 - CSM disabled;
@@ -109,38 +72,45 @@ Start from a current stable ProArt BIOS and conservative defaults:
 - CPU stock/conservative;
 - no manual PBO/overclocking during baseline validation.
 
-Perform the planned major BIOS update **before enabling BitLocker**.
+Perform the initial BIOS update **before enabling BitLocker**.
 
 ## Windows installation sequence
 
-1. update motherboard BIOS and establish firmware baseline;
-2. install Windows 11 Pro 25H2 x64 in UEFI/GPT mode onto the Samsung 990 PRO;
-3. complete normal Windows Update production updates;
-4. install current AMD chipset drivers;
-5. install motherboard/network/Wi-Fi/Bluetooth drivers where required;
-6. install the current **NVIDIA Studio Driver WHQL**;
-7. validate Device Manager, event logs, sleep/resume and network interfaces;
-8. install/add the desired **English Windows display language** if using the Romanian FPP media/package;
-9. after firmware/driver stability is established, enable BitLocker and retain the recovery key independently;
-10. install/update WSL2 and Ubuntu 26.04.1 LTS;
-11. install development tooling and run representative workload validation.
+1. Verify hardware SKUs and assemble the minimum bootable configuration.
+2. Update motherboard BIOS and establish a firmware baseline.
+3. Install the selected **48 GB Crucial Pro `CP2K24G56C46U5`** kit in A2/B2 and commission at Auto/JEDEC.
+4. Install Windows 11 Pro x64 in UEFI/GPT mode onto the **Crucial T710 2 TB `CT2000T710SSD8`** in `M.2_1`.
+5. Complete normal Windows Update production updates.
+6. Install current AMD chipset drivers.
+7. Install motherboard/network/Wi-Fi/Bluetooth drivers where required.
+8. Install the current NVIDIA driver appropriate for the RTX 3060; Studio Driver is a sensible development baseline unless a specific game requires Game Ready behavior.
+9. Validate Device Manager, event logs, sleep/resume and network interfaces.
+10. Validate T710 firmware, SMART data and temperatures.
+11. Run extended memory testing and representative sustained Java/Android workloads.
+12. After firmware/driver/storage stability is established, enable BitLocker and retain the recovery key independently.
+13. Install/update WSL2 and Ubuntu 26.04.1 LTS.
+14. Install development tooling and run representative workload validation.
 
-## NVIDIA driver policy
+## RAM / virtualization policy
 
-Use the current **NVIDIA Studio Driver WHQL** as the baseline. Switch to Game Ready only when a specific new game materially needs its day-zero fixes/optimizations.
+The final initial memory capacity is **48 GB / 2×24 GB**.
 
-## BitLocker policy
+This supports substantial normal development concurrency but is intentionally not sized for unconstrained large-VM use.
 
-Enable BitLocker after the initial firmware/driver baseline is stable. Store and verify the recovery key independently of the workstation; suspend BitLocker appropriately before future firmware/TPM changes.
+Monitor committed memory during real work. If persistent memory pressure appears, replace the pair with a larger matched two-DIMM kit; do not add another pair as the planned upgrade path.
 
-## Virtualization policy
+Use:
 
 - WSL2 for normal Linux development/container workflows;
 - Android Emulator with the supported Windows hypervisor path;
 - Hyper-V VMs when a genuinely separate machine boundary is useful;
 - third-party VM stacks only for a specific uncovered requirement.
 
-The 64 GB Phase-1 RAM supports moderate concurrency; the eventual 256 GB configuration expands it substantially.
+## BitLocker policy
+
+Enable BitLocker only after the initial firmware/driver/storage baseline is stable.
+
+Store and verify the recovery key independently of the workstation. Suspend BitLocker appropriately before future firmware/TPM changes when required.
 
 ## Initial software baseline
 
@@ -159,26 +129,28 @@ Avoid generic optimizer utilities and unnecessary motherboard vendor suites.
 
 Record:
 
-- BIOS version and Windows edition/version/build;
+- motherboard BIOS/AGESA version;
+- Windows edition/version/build;
 - Secure Boot/TPM/BitLocker state;
 - Device Manager state;
-- memory capacity/rate/timings;
-- Samsung firmware/SMART baseline;
-- extended memory stability test;
-- sustained Java build/test and thermal validation;
-- current NVIDIA Studio driver and representative 3D/game test;
-- WSL2/Ubuntu status, Android Emulator, sleep/resume;
-- network link/driver stability;
-- UPS USB/graceful-shutdown validation.
+- memory capacity/rate/timings/voltage;
+- T710 firmware/SMART/temperature baseline;
+- extended memory stability test results;
+- sustained Java build/test and thermal behavior;
+- NVIDIA driver version and representative GPU/game test;
+- WSL2/Ubuntu status;
+- Android Emulator status;
+- sleep/resume and network stability;
+- real committed-memory usage during representative development sessions.
 
 ## Selected conclusion
 
-- **Host OS:** Windows 11 Pro x64 — Selected
-- **License channel:** Retail/FPP — Selected
-- **Preferred consolidated packaged SKU:** **`HAV-00197` Romanian Retail/FPP USB from EvoMAG**
-- **Daily display language:** English can be installed/selected on Windows 11 Pro; package language does not force the UI permanently
-- **Initial feature release:** Windows 11 25H2 GA
+- **Host OS:** Windows 11 Pro x64
+- **License channel:** Retail/FPP
+- **Exact purchase target:** **`HAV-00163` English USB**
 - **Linux environment:** WSL2 + Ubuntu 26.04.1 LTS
 - **Dual boot:** not required absent a demonstrated bare-metal Linux need
-- **GPU driver baseline:** NVIDIA Studio Driver WHQL
+- **Storage target:** Crucial T710 2 TB `CT2000T710SSD8`
+- **Initial RAM:** Crucial Pro `CP2K24G56C46U5`, 48 GB / 2×24 GB
 - **Security baseline:** UEFI + Secure Boot + TPM 2.0 + BitLocker after firmware stabilization
+- **UPS:** none
