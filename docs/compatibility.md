@@ -1,6 +1,6 @@
 # Compatibility and Topology Tracker
 
-This document captures cross-component constraints for the workstation after the memory-architecture change on 2026-08-31.
+This document captures cross-component constraints for the workstation after the memory and storage architecture changes on 2026-08-31.
 
 ## Core platform
 
@@ -8,13 +8,15 @@ Selected:
 
 - AMD Ryzen 9 **9950X3D**;
 - final memory capacity **128 GB from day one**;
-- final memory topology **2×64 GB DDR5 UDIMM / 1DPC**.
+- final memory topology **2×64 GB DDR5 UDIMM / 1DPC**;
+- final storage role topology **~1 TB system NVMe + 4 TB work NVMe from day one**.
 
 Reopened:
 
 - exact motherboard;
 - exact 2×64 GB memory kit;
-- ECC/non-ECC verdict.
+- ECC/non-ECC verdict;
+- exact system and work SSD models.
 
 The ASUS ProArt X870E-Creator WiFi remains the incumbent reference until the next optimization pass, but its previous 4×64/256 GB-specific justification no longer controls the selection.
 
@@ -44,34 +46,86 @@ Selected:
 
 The exact 2×64 GB kit should prefer low-profile modules where practical. The North XL provides substantial cooler-height margin, so a small front-fan lift is acceptable but should not be required merely for decorative heat spreaders.
 
-## Storage topology — incumbent pending review
+## Storage topology — final requirements
 
-Current plan:
+Initial storage consists of two physical internal NVMe drives:
 
-- Samsung 990 PRO 2 TB `MZ-V9P2T0BW` as system/tools SSD;
-- separate 4 TB-or-larger work/VM/container/data SSD later;
-- no RAID;
-- external/network backup required.
+- **~1 TB system/tools SSD**;
+- **4 TB work/data SSD**.
 
-Under the incumbent ProArt topology:
+Motherboard requirements:
 
-- `M.2_3`: 990 PRO system/tools drive;
-- `M.2_1`: reserved for future work SSD;
-- avoid `M.2_2` unless its graphics/PCIe sharing trade-off is deliberately accepted.
+1. at least two M.2 x4 slots must be usable simultaneously;
+2. prefer one **CPU-direct x4** slot for the work SSD;
+3. a **chipset-connected x4** slot is fully acceptable for the system SSD;
+4. using the selected pair must **not reduce the primary GPU from x16**;
+5. integrated M.2 heatsinks are preferred;
+6. extra M.2 slots are useful for future additive capacity but are not worth a large motherboard premium by themselves.
 
-The user requested a storage-architecture review before the motherboard/RAM optimization. Therefore these slot assignments are **incumbent assumptions**, not constraints to carry blindly into a different motherboard choice.
+Do not assume slot labels across vendors. `M.2_1`, `M2_1`, etc. are board-specific names and their lane-sharing behavior must be checked in the selected board manual.
+
+### System SSD
+
+The system SSD does not require flagship bandwidth or a CPU-direct connection.
+
+Priorities:
+
+- reputable vendor;
+- mature firmware;
+- normal warranty;
+- enough capacity headroom;
+- good price;
+- TLC preferred where cost-effective;
+- Gen3/Gen4 performance is sufficient.
+
+A chipset M.2 x4 path is expected to be effectively transparent for its Windows/tools role.
+
+### Work SSD
+
+The work SSD receives storage-performance and endurance priority.
+
+Prefer:
+
+- 4 TB initial capacity;
+- TLC NAND;
+- DRAM-equipped design where reasonably priced;
+- strong sustained/mixed behavior;
+- mature firmware;
+- sensible endurance/warranty;
+- CPU-direct x4 connection where available without compromising GPU lanes.
+
+**Gen4 is sufficient. Gen5 is not a motherboard-selection requirement.**
+
+### Storage role separation
+
+Keep large/high-I/O working data on the work SSD where supported:
+
+- Git repositories;
+- Maven/Gradle caches and build outputs;
+- WSL2 VHDX and Linux-native working data;
+- containers;
+- Android SDK/AVDs;
+- VMs;
+- local databases;
+- games;
+- large datasets and AI models.
+
+Keep Windows, applications, page file/crash-dump infrastructure and ordinary user-profile data on the system SSD. Do not relocate the entire Windows user profile solely for artificial separation.
+
+No RAID is required. External/network/cloud backup remains mandatory for important data.
 
 ## Windows / WSL storage policy
 
-- Windows-native source/caches stay on Windows-native storage.
-- Linux-native high-I/O repos, package caches and container data stay inside WSL where performance matters.
-- Reassess WSL VHDX/container placement and a Windows Dev Drive when storage architecture is finalized.
-- BitLocker is enabled only after initial firmware/driver stabilization.
+- Linux-native high-I/O repos, package caches and container data should remain inside the WSL filesystem rather than `/mnt/c` where performance matters.
+- Place the WSL VHDX/container stores on the 4 TB work SSD using supported relocation mechanisms.
+- Windows-native project/cache locations may also use the work SSD when applications support explicit paths.
+- BitLocker is enabled only after initial firmware/driver/storage validation.
 
 ## GPU / expansion
 
 - Reuse RTX 3060 12 GB initially.
 - Preserve a future single high-power/high-VRAM GPU path.
+- The selected two-M.2 configuration must preserve the main GPU at x16.
 - Recheck future GPU dimensions and 12V-2x6 bend clearance when that GPU is selected.
 
 ## Case / airflow
@@ -145,7 +199,7 @@ Windows is allowed to use a separate software provider because its long-term war
 
 ## Provider dependencies
 
-The previous purchase total/provider grouping is **not final** until motherboard, exact 2×64 GB RAM and storage architecture are re-optimized.
+The previous purchase total/provider grouping is **not final** until motherboard, exact 2×64 GB RAM and exact two SSDs are optimized.
 
 Still-valid procurement principles:
 
