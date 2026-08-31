@@ -1,6 +1,6 @@
 # Final Build
 
-This is the current source-of-truth architecture for the workstation. Memory is finalized at **128 GB / 2×64 GB / 1DPC from day one**. Storage is finalized at the role/topology level as **~1 TB system storage + 1–2 TB CPU-direct active-work NVMe from day one, with bulk/cold storage added only when needed**. Power, networking and expansion requirements have now also been simplified to avoid speculative future-proofing.
+This is the current source-of-truth architecture for the workstation. Memory is finalized at **128 GB / 2×64 GB / 1DPC from day one**. Storage is finalized at the role/topology level as **~1 TB system storage + 1–2 TB CPU-direct active-work NVMe from day one, with bulk/cold storage added only when needed**. Power, networking, cooling and expansion requirements have been simplified to avoid speculative future-proofing.
 
 ## Current build state
 
@@ -12,7 +12,8 @@ This is the current source-of-truth architecture for the workstation. Memory is 
 | RAM topology | **2×64 GB DDR5 UDIMM, 1DPC, A2/B2** | **Selected / final** |
 | Exact RAM kit | Exact 2×64 GB matched kit | **Open for optimization** |
 | ECC | Only if end-to-end support/reporting is compelling | **Open within RAM optimization** |
-| CPU cooler | **Noctua NH-D15 G2 standard**, 7 mm AM5 offset | **Selected** |
+| Cooling architecture | **High-quality air cooling; stock/conservative CPU operation** | **Selected** |
+| Exact CPU cooler | Compare compact/high-value air coolers against NH-U12A/NH-D15 G2-class premium options | **Reopened** |
 | System storage | **~1 TB**, value/reliability/headroom optimized; NVMe preferred, SATA acceptable if topology/value warrants it | **Role/capacity selected; exact model open** |
 | Active-work SSD | **1 TB sufficient; 2 TB if price/value is attractive**, Gen4 TLC preferred; **CPU-direct x4 required** | **Role selected; exact capacity/model open** |
 | Bulk/cold storage | Add later only when needed; spare NVMe/SATA SSD/HDD/external/NAS acceptable | **Expansion policy selected** |
@@ -20,8 +21,8 @@ This is the current source-of-truth architecture for the workstation. Memory is 
 | PSU | **Premium 750 W or 850 W ATX 3.1** | **Reopened; exact model open** |
 | UPS | **None in initial BOM** | **Selected** |
 | Point-of-use surge protection | Reputable plug-in surge protector / protected power strip | **Selected policy** |
-| Case | **Fractal North XL Mesh `FD-C-NOR1X-01`** | **Selected for now; one final value check warranted** |
-| Rear fan | **Noctua NF-A14x25 G2 PWM** | **Selected under current case** |
+| Case | **Fractal North XL Mesh `FD-C-NOR1X-01`** | **Selected for now; one final value/size check warranted** |
+| Rear fan | **Noctua NF-A14x25 G2 PWM** | **Selected under current case only** |
 | GPU | Existing **RTX 3060 12 GB** | **Reuse for as long as useful/reliable** |
 | Host OS | **Windows 11 Pro x64** | **Selected** |
 | Windows license | **Retail/FPP USB English `HAV-00163` from PROstore** | **Selected purchase target** |
@@ -32,6 +33,30 @@ This is the current source-of-truth architecture for the workstation. Memory is 
 Initial assembly uses **128 GB = 2×64 GB DDR5 UDIMM, one DIMM per channel**. No temporary RAM and no planned four-DIMM/256 GB endpoint.
 
 The exact kit remains open for the motherboard/RAM optimization. Bring-up remains conservative: current stable BIOS, A2/B2, Auto/JEDEC first, no EXPO/XMP during baseline validation, extended memory testing.
+
+## Cooling architecture — exact model reopened
+
+High-quality **air cooling remains selected** because the build prioritizes long service life, replaceable fans and low mechanical complexity.
+
+The previous exact **Noctua NH-D15 G2** selection is no longer locked. It is now a premium reference candidate, not a component that the RAM or case must accommodate at any cost.
+
+The cooler optimization should compare at least:
+
+- a strong **Thermalright Phantom Spirit 120-class** value option;
+- **Noctua NH-U12A** as a compact premium/serviceability option;
+- **Noctua NH-D15 G2** as the maximum-air-cooling reference.
+
+Selection criteria, in order of importance:
+
+1. sustain stock/conservative 9950X3D workloads without material throttling;
+2. acceptable acoustics under long Java/test workloads;
+3. reliable simple air-cooling architecture and replaceable fans;
+4. clean compatibility with the final 2×64 GB RAM and selected case;
+5. mature mounting/support ecosystem and warranty;
+6. price/value;
+7. extra thermal headroom only where it produces a useful acoustic/reliability benefit.
+
+Do not select a larger case, taller-clearance RAM constraint or materially more expensive cooler merely to preserve unnecessary maximum cooling capacity.
 
 ## Storage architecture — final
 
@@ -110,11 +135,13 @@ For point-of-use protection, use a reputable surge-protected plug/power strip wi
 
 ## Case
 
-The North XL remains selected for now, but the earlier case justification included a hypothetical very large/high-power future GPU. Since that future requirement has been relaxed, perform one final size/value check before treating the chassis as permanently closed.
+The North XL remains selected for now, but the earlier case justification included a hypothetical very large/high-power future GPU and the previously locked NH-D15 G2. Both assumptions have weakened.
+
+Perform one final size/value check before treating the chassis as closed. The new cooler should fit the case chosen on its own merits; the case should not be oversized merely to accommodate unnecessary cooler headroom.
 
 ## Current price envelope
 
-Previous complete-order totals are obsolete. Recalculate only after motherboard, exact RAM, exact SSDs and the new 750/850 W PSU are selected and the case is either reconfirmed or changed.
+Previous complete-order totals are obsolete. Recalculate only after cooler, motherboard, exact RAM, exact SSDs and the new 750/850 W PSU are selected and the case is either reconfirmed or changed.
 
 ## Hard purchase gates that remain valid
 
@@ -127,6 +154,13 @@ Previous complete-order totals are obsolete. Recalculate only after motherboard,
 - exactly 2×64 GB matched DDR5 UDIMM kit;
 - 1DPC;
 - no temporary kit.
+
+### Cooling
+- high-quality air cooling;
+- stable stock/conservative 9950X3D under sustained load;
+- acceptable acoustics;
+- clean final RAM/case compatibility;
+- no exact-model lock yet.
 
 ### Storage
 - one 1–2 TB active-work NVMe with CPU-direct x4;
@@ -150,7 +184,7 @@ Previous complete-order totals are obsolete. Recalculate only after motherboard,
 
 ## Next decision sequence
 
-1. Perform the final **case value/size check** if desired.
+1. Optimize **case + exact CPU cooler** together so neither forces unnecessary size/cost on the other.
 2. Re-optimize the **motherboard** against the simplified requirements.
 3. Select exact **2×64 GB RAM**, including ECC/non-ECC verdict.
 4. Select exact system + active-work storage.
