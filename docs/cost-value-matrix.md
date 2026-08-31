@@ -34,11 +34,15 @@ A higher price is acceptable only when one or more of those benefits are concret
 | Lower-cost B850/X870 boards | Potentially substantial savings with same CPU performance | Now eligible if they meet 2×64 stability, two-drive M.2 topology, networking/serviceability and future-GPU requirements | **Reconsider during motherboard pass** |
 | **Noctua NH-D15 G2 standard** | Long-lived air-cooling platform, replaceable fans, support ecosystem | Cheaper coolers can cool the CPU, but Noctua's serviceability/endurance premium remains relevant over long ownership | **Selected** |
 | Cheaper high-end air cooler | Lower purchase price | Reopen only if saving becomes large enough to outweigh support/fan/endurance advantages | **Value reference** |
-| **Two internal NVMe drives from day one** | Immediate OS/recovery and workload separation | Permanent architecture; avoids oversizing C: for a temporary one-drive phase | **Selected / final architecture** |
+| **Two internal NVMe SSDs from day one** | Immediate OS/recovery and active-work separation | Permanent role architecture without buying one oversized drive to do everything | **Selected / final architecture** |
 | **~1 TB system/tools NVMe** | Adequate permanent C: headroom | Optimize reliability/capacity/price. Flagship throughput, DRAM and Gen5 are not requirements. | **Role/capacity selected; exact model open** |
-| **4 TB work/data NVMe** | Capacity plus isolated I/O for repos, caches, WSL2, containers, Android, VMs and DBs | Put storage-performance/endurance budget here; TLC and mature sustained behavior matter more than C: benchmark speed | **Role/capacity selected; exact model open** |
-| High-end Gen4 TLC work SSD | Strong real-world NVMe performance with mature thermals/firmware | Expected storage sweet spot | **Preferred class** |
-| Premium Gen5 work SSD | Much higher sequential benchmark bandwidth | Buy only if premium is negligible or a demonstrated workload benefits; otherwise money is better spent elsewhere | **Not required** |
+| **1 TB active-work NVMe** | Enough fast capacity for current repos, caches, WSL2, containers and active VM/database data | Lowest-cost valid active-work target; do not reject merely because larger capacities exist | **Sufficient baseline** |
+| **2 TB active-work NVMe** | More working-set headroom and less cleanup pressure | Prefer when the absolute premium and price/TB are attractive; comfort/value upgrade rather than requirement | **Preferred when well priced** |
+| 4 TB active-work NVMe | More capacity | No longer justified as a default; most excess capacity would hold inactive data that does not need premium SSD performance | **Not an initial requirement** |
+| High-end Gen4 TLC active-work SSD | Strong real-world NVMe performance with mature thermals/firmware | Expected storage sweet spot | **Preferred class** |
+| Premium Gen5 active-work SSD | Much higher sequential benchmark bandwidth | Buy only if premium is negligible or a demonstrated workload benefits; otherwise money is better spent elsewhere | **Not required** |
+| Later bulk/cold storage | Cheap capacity for archived repos, old VMs, ISOs, installers and datasets | Add only when needed; can use spare NVMe, SATA SSD, HDD or external/NAS storage based on capacity/value | **Selected expansion policy** |
+| Reuse healthy old HDD for cold data | Zero/low cost additional capacity | Good use of existing hardware for infrequent access after SMART/health checks; never the sole copy of important data | **Allowed** |
 | Samsung 990 PRO 2 TB as system drive | Excellent mature flagship Gen4 drive | Technically strong but no longer automatically worth buying for C:; must compete on price like any other candidate | **Prior selection superseded** |
 | RAID1 internal storage | One-drive hardware-failure tolerance | Does not protect against deletion, replicated corruption, malware, theft or machine loss; adds complexity | **Not required** |
 | **1200 W ATX 3.1 PSU architecture** | Future single ~600 W GPU margin and current transient standard | Useful durable headroom without unnecessary 1600 W oversizing | **Selected** |
@@ -72,35 +76,44 @@ The motherboard must now earn its price on the requirements that remain:
 - recovery/diagnostics;
 - good VRM and long-duration behavior;
 - two clean M.2 x4 paths while preserving GPU x16;
+- a practical later bulk-storage path through spare M.2 and/or SATA;
 - networking and useful I/O;
 - serviceability and firmware support;
 - future single high-power GPU compatibility.
 
 The previous requirement for especially strong **4×64 GB / 256 GB** evidence is gone. Therefore the ProArt premium is no longer protected by that argument, and lower-cost boards must be reconsidered seriously.
 
-Gen5 M.2 count should not drive the board choice. One CPU-direct x4 path for the work SSD plus a chipset x4 path for C: is sufficient.
+Gen5 M.2 count should not drive the board choice. One CPU-direct x4 path for the active-work SSD plus a chipset x4 path for C: is sufficient.
 
 ## Storage cost/value interpretation
 
-Storage spending is deliberately asymmetric.
+Storage spending is deliberately asymmetric and tiered by access pattern.
 
 ### System SSD
 
 The OS drive is primarily a **reliability/capacity component**, not a performance component.
 
-The user's existing decade-old 240 GB SATA SSD already provides acceptable boot responsiveness; its real problem is being nearly full. With 128 GB RAM and a dedicated work SSD, paying for flagship sequential C: performance would produce little practical value.
+The user's existing decade-old 240 GB SATA SSD already provides acceptable boot responsiveness; its real problem is being nearly full. With 128 GB RAM and a dedicated active-work SSD, paying for flagship sequential C: performance would produce little practical value.
 
 Target roughly 1 TB, but choose capacity by price curve: if 1 TB costs only slightly more than 500 GB, buy 1 TB. Do not automatically pay for a flagship controller, DRAM or Gen5.
 
-### Work SSD
+### Active-work SSD
 
-The 4 TB drive is where performance/endurance spending can matter because it carries repositories, build caches, WSL2/container storage, VMs, databases, Android data and other large/high-I/O working sets.
+The fast tier contains **current working data**, not the machine's entire accumulated history.
 
-Prefer mature Gen4 TLC. Pay more for materially better sustained behavior, endurance, firmware/warranty or a meaningfully lower price/TB—not for synthetic sequential numbers alone.
+A 1 TB drive is acceptable. A 2 TB drive is preferred only when its incremental cost buys enough convenience/headroom to be worthwhile. Compare both capacities live.
+
+Prefer mature Gen4 TLC. Pay more for materially better sustained behavior, endurance, firmware/warranty or a meaningfully better price/TB—not synthetic sequential numbers alone.
+
+### Bulk/cold storage
+
+When old projects, inactive VMs, ISOs, installers or datasets begin consuming too much active SSD capacity, add a separate low-cost capacity tier.
+
+That third device does not need CPU-direct PCIe or flagship SSD performance. It may be another NVMe drive, a SATA SSD, a SATA HDD, or external/NAS storage. Existing healthy HDDs are valid convenience storage after health checks, provided important data is backed up elsewhere.
 
 ### Expansion
 
-Unlike RAM, storage remains additive. Extra M.2 capacity can be added later without replacing the initial system/work drives. Therefore there is no need to oversize either initial drive solely to predict ten years of capacity growth.
+Unlike RAM, storage remains additive. Extra capacity can be added later without replacing the initial system/work drives. Therefore there is no reason to buy 4 TB of active-work SSD capacity today solely to predict ten years of accumulation.
 
 ## Premium rule
 
