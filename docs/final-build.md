@@ -1,275 +1,159 @@
 # Final Build
 
-This document is the current bill-of-materials and initial software-baseline view. Closed decisions are fixed inputs unless explicitly reopened; deferred items remain subject to their stated future purchase gates.
+This is the current source-of-truth BOM for the initial workstation. Closed decisions remain fixed unless explicitly reopened. Purchase-time price/stock details live in `docs/procurement-plan-2026-08-31.md`.
 
 ## Selected initial build
 
-| Component | Model / configuration | Status | Current price reference |
+| Component | Exact model / configuration | Status | Current purchase reference |
 |---|---|---|---:|
-| CPU | AMD Ryzen 9 9950X3D | **Selected** | ~3.35–3.52k lei |
-| Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Selected** | ~2.68–2.90k lei market range |
-| Phase-1 memory | **Crucial `CT2K32G56C46U5`, 64 GB (2×32 GB), DDR5-5600 CL46, 1.1 V** | **Selected target** | ~4.7–4.8k lei current low market |
-| Long-term memory | **256 GB target, expected 4×64 GB** | **Target selected / purchase deferred** | Deferred |
-| CPU cooler | **Noctua NH-D15 G2 standard base, 7 mm AM5 offset** | **Selected** | ~0.69–0.73k lei |
+| CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Selected** | ~3,349.99 lei direct EvoMAG indexed listing |
+| Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Selected** | ~2,542–2,654 lei current competitive listings |
+| Phase-1 RAM | **Crucial `CT2K32G56C46U5`, 64 GB (2×32), DDR5-5600 CL46, 1.1 V** | **Selected target** | ~5.0k-class market; exact-SKU checkout gate |
+| Long-term RAM | **256 GB target, expected 4×64 GB** | **Architecture selected / deferred** | Exact modules/ECC verdict deferred |
+| CPU cooler | **Noctua NH-D15 G2 standard `CPNTD15G2`**, 7 mm AM5 offset | **Selected** | ~0.70–0.73k lei |
 | System/tools SSD | **Samsung 990 PRO 2 TB `MZ-V9P2T0BW`** | **Selected** | ~1.90–1.95k lei |
-| Future work SSD | **4 TB-or-larger NVMe** | **Architecture selected / purchase deferred** | Deferred |
-| PSU | **Seasonic VERTEX GX-1200, current ATX 3.1 / PCIe 5.1 / 12V-2x6 revision** | **Selected** | ~1.29k lei explicit Altex ATX 3.1 listing |
-| Case | **Fractal Design North XL Mesh** | **Selected** | ~0.93–1.06k lei current market class |
-| Rear case fan | **Noctua NF-A14x25 G2 PWM** | **Selected** | ~0.19–0.21k lei |
-| Case-fan layout | **3× included 140 mm front intake + 1× Noctua rear exhaust** | **Selected** | Front fans included |
-| GPU | NVIDIA GeForce RTX 3060 12 GB | **Existing / selected** | 0 lei initial-build spend |
-| UPS | **CyberPower CP1600EPFCLCD** | **Selected** | ~1.53–1.59k lei |
-| Host OS license | **Windows 11 Pro x64 — new license required** | **Selected / required purchase** | **1,199 RON** official Microsoft Store reference |
-| Initial Windows release | **Windows 11 25H2, General Availability** | **Selected for installation** | Included in license |
+| Future work SSD | **4 TB-or-larger NVMe** | **Architecture selected / deferred** | Reserve `M.2_1` |
+| PSU | **Seasonic VERTEX GX-1200 current ATX 3.1 / PCIe 5.1 / 12V-2x6 revision** | **Selected** | ~1,289.99 lei explicit Altex ATX 3.1 listing |
+| Case | **Fractal Design North XL Mesh Charcoal Black `FD-C-NOR1X-01`** | **Selected** | ~1,018.51 lei exact ForIT listing |
+| Rear fan | **Noctua NF-A14x25 G2 PWM**, standard square-frame single fan, EAN `9010018100617` | **Selected** | ~193 lei |
+| Case airflow | **3× included 140 mm front intake + 1×140 mm rear exhaust** | **Selected** | No top/side fans initially |
+| GPU | Existing NVIDIA GeForce **RTX 3060 12 GB** | **Reuse / selected** | 0 lei new spend |
+| UPS | **CyberPower `CP1600EPFCLCD`** | **Selected** | ~1.65–1.75k lei current working checkout envelope |
+| Host OS | **Windows 11 Pro x64** | **Selected** | — |
+| Windows license | **Retail/FPP USB English `HAV-00163`** | **Selected / required purchase** | ~1,124–1,147 lei current retailer controls |
+| Initial Windows release | **Windows 11 25H2 General Availability** | **Selected for installation** | Included in license |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** | Free |
 
-## Initial-BOM cost position — 2026-08-31
+## Current initial-purchase envelope
 
-Current selected hardware with Crucial 64 GB remains approximately **17.3–18.1k lei**, excluding the reused RTX 3060, future 4 TB+ work SSD and future GPU.
+Representative current complete order, including Windows Retail/FPP and excluding the reused RTX 3060, is approximately **18.9–19.3k lei before shipping**.
 
-A new Windows 11 Pro license is **required** for this build. At the current official Microsoft Store Romania reference of **1,199 RON**, the initial complete hardware + OS purchase is approximately **18.5–19.3k lei**.
+Do not treat the low end as a guaranteed checkout total. RAM and UPS prices are currently the most volatile/inconsistent listings.
 
-The build therefore remains comfortably below the ~30k planning level, leaving roughly **10.7k+ lei** of planning headroom even after selecting 64 GB and including the required Windows license.
+The build remains comfortably below the ~30k planning level without downgrading any permanent component.
 
-## Memory
+## Purchase gates
 
-Selected Phase-1 configuration:
+### CPU
 
-- **Crucial `CT2K32G56C46U5`**;
+Buy the boxed/WOF processor **`100-100000719WOF`**. Do not silently substitute Tray `100-000000719` merely because a search result is cheaper.
+
+### RAM
+
+Target **`CT2K32G56C46U5`** exactly:
+
 - 64 GB, 2×32 GB;
+- desktop 288-pin UDIMM;
 - DDR5-5600 CL46;
-- 1.1 V;
-- low-profile unbuffered desktop DIMMs.
+- 1.1 V.
 
-Fallback if Crucial stock/warranty/pricing becomes poor:
+Romanian indexing sometimes mixes it with **`CT2K32G56C46S5`**, which is laptop/SO-DIMM memory. The product page/cart/invoice must expose the **`...U5`** SKU before ordering.
 
-- **Kingston FURY Beast `KF556C36BBEK2-64`**, 2×32 GB DDR5-5600 CL36 EXPO.
+If the Crucial kit rises close to the current price of **Kingston `KF556C36BBEK2-64`**, recompare the Kingston kit because Kingston explicitly lists it for the ProArt.
 
-Bring-up:
+Bring-up: A2/B2, current stable BIOS, Auto/JEDEC first, no EXPO/XMP during baseline validation, extended memory testing.
 
-1. install A2/B2;
-2. update BIOS first;
-3. boot at Auto/JEDEC;
-4. no EXPO/XMP during baseline validation;
-5. run extended memory testing;
-6. record SKU, BIOS version, trained rate and timings.
+### Cooler
 
-The eventual 256 GB configuration remains a separate matched-set purchase; prefer ECC UDIMM only if exact modules, four-DIMM stability and OS-visible ECC reporting are all credible.
-
-## Cooling
-
-Selected:
-
-- **Noctua NH-D15 G2 standard base**;
-- **7 mm AM5 offset**;
-- stock/conservative CPU settings;
-- no PBO/uncapped-power policy.
-
-The selected Crucial modules are low profile. Expect zero or only minimal front-fan lift, with ample margin inside the North XL's 185 mm CPU-cooler envelope.
-
-## Storage
-
-Initial:
-
-- **Samsung 990 PRO 2 TB `MZ-V9P2T0BW`** in **`M.2_3`** as the permanent system/tools drive.
-
-Later:
-
-- reserve CPU-connected **`M.2_1`** for a future **4 TB-or-larger work/VM/container/data SSD**;
-- avoid `M.2_2` unless its graphics-lane trade-off is intentionally accepted;
-- no RAID; external/network backup remains required.
-
-Do not split the initial 2 TB drive into a complicated permanent layout merely to create a Windows Dev Drive. Reconsider a ReFS Dev Drive on the future work SSD for Windows-native repos/caches if real workload measurements justify it.
-
-## PSU
-
-Selected exact PSU:
-
-**Seasonic VERTEX GX-1200, current ATX 3.1 / PCIe 5.1 / 12V-2x6 revision.**
-
-Current explicit Romanian purchase reference is Altex around **1,289.99 lei**.
-
-Receipt acceptance:
-
-1. box/listing says ATX 3.1;
-2. product is PCIe 5.1 compatible;
-3. supplied GPU cable is 12V-2x6;
-4. reject ATX 3.0 / 12VHPWR old inventory;
-5. retain model/serial/warranty evidence.
-
-## Chassis and airflow
-
-Selected:
-
-- **Fractal Design North XL Mesh**;
-- 3× included 140 mm front intake;
-- 1× **Noctua NF-A14x25 G2 PWM** rear exhaust;
-- top empty initially;
-- side empty initially.
-
-Add more fans only if measured thermals justify them.
-
-## UPS
-
-Selected:
-
-**CyberPower CP1600EPFCLCD**
-
-- 1600 VA / 1000 W;
-- line-interactive;
-- pure sine wave;
-- Active-PFC compatible;
-- USB HID / PowerPanel;
-- user-replaceable `RBP0142` battery.
-
-Reassess when a materially higher-power GPU is installed or measured wall load approaches roughly 700–800 W.
-
-## Operating system
-
-### Host
-
-**Windows 11 Pro x64** is selected and a **new legitimate license must be purchased** for this build.
-
-Initial installation release: **Windows 11 25H2 General Availability**.
-
-Why Pro:
-
-- Hyper-V host capability;
-- Remote Desktop hosting;
-- BitLocker/professional management features;
-- native Windows gaming/NVIDIA/Android Studio compatibility;
-- WSL2 for Linux development.
-
-Do not buy Pro for Workstations for this configuration. Its premium does not materially benefit a single-socket system with a 256 GB memory target, and Windows Dev Drive is available on normal Windows 11 editions.
-
-Do not intentionally install Windows 24H2 on this new machine; Home/Pro servicing ends 2026-10-13. Do not force-install 26H1: Microsoft describes it as a new-device release rather than the normal feature-update path from 24H2/25H2. Follow normal supported feature updates after commissioning.
-
-Buy a normal legitimate retail/digital Windows 11 Pro license; do not treat grey-market keys as a BOM-saving mechanism.
-
-### Linux environment
-
-Selected:
-
-**WSL2 + Ubuntu 26.04.1 LTS**.
-
-No native Linux dual boot initially.
-
-Filesystem policy:
-
-- Windows-native repositories/build caches stay on Windows storage;
-- Linux-native repos/caches/container data stay inside the WSL filesystem rather than `/mnt/c` when I/O matters;
-- reassess WSL VHDX/container placement when the future work SSD is added.
-
-Reopen dual boot only for a demonstrated bare-metal Linux kernel/KVM/device/driver requirement.
-
-### GPU driver
-
-Default to the current **NVIDIA Studio Driver WHQL**. Gaming is secondary and NVIDIA positions Studio for stability-oriented workflows; switch to Game Ready only when a specific game needs day-zero fixes/optimizations.
-
-Detailed OS/bring-up rationale: `docs/components/os.md`.
-
-## Firmware and security baseline
-
-Before Windows installation:
-
-- update to the chosen current stable ProArt BIOS;
-- UEFI-native boot, CSM disabled;
-- Secure Boot enabled;
-- TPM 2.0 / AMD fTPM enabled;
-- AMD SVM enabled;
-- IOMMU enabled unless an actual stability issue appears;
-- memory Auto/JEDEC;
-- CPU stock/conservative, no manual PBO.
-
-Enable **BitLocker only after the first BIOS/firmware/driver baseline is stable**, then retain the recovery key independently of the workstation.
-
-## Driver/software baseline
-
-Order:
-
-1. Windows Update production channel;
-2. current AMD chipset driver;
-3. current motherboard/network/Wi-Fi/Bluetooth drivers where required;
-4. current NVIDIA Studio Driver WHQL;
-5. Windows Terminal;
-6. PowerShell 7;
-7. Git for Windows;
-8. WSL2 + Ubuntu 26.04.1 LTS;
-9. IntelliJ IDEA / Android Studio / required JDKs and build tools;
-10. container runtime only after choosing the preferred workflow/licensing model.
-
-Avoid generic optimizer utilities and unnecessary motherboard vendor suites.
-
-## Procurement policy
-
-- **PC Garage and Altex are co-preferred retailers**;
-- **eMAG is also acceptable**;
-- exact SKU/revision, seller quality and normal Romanian/EU warranty take precedence over retailer order;
-- small price differences do not matter;
-- material differences can justify another reputable Romanian/EU seller.
-
-## Deferred items
-
-- exact 256 GB 4×64 GB memory implementation and ECC verdict;
-- future 4 TB+ work SSD;
-- future high-VRAM GPU;
-- exact container-runtime choice if licensing/workflow makes that material.
-
-## Bring-up and validation
-
-### Hardware/firmware
-
-- record BIOS version and firmware settings;
-- verify 64 GB memory at Auto/JEDEC;
-- extended memory stability test;
-- verify CPU remains on selected conservative power policy;
-- no unexplained WHEA errors.
-
-### Windows/security
-
-- record Windows edition/version/build;
-- confirm Secure Boot and TPM state;
-- Device Manager clean;
-- enable/test BitLocker recovery after firmware baseline is stable;
-- normal production Windows Update only, no Insider/preview baseline.
+Buy **NH-D15 G2 standard `CPNTD15G2`**, not LBC/HBC. Use the included 7 mm AM5 offset mount. CPU remains stock/conservative; no PBO/uncapped-power policy.
 
 ### Storage
 
-- update Samsung 990 PRO firmware;
-- record SMART/health baseline;
-- sustained-I/O temperature check.
+Install **Samsung 990 PRO 2 TB `MZ-V9P2T0BW`** under the ProArt heatsink in **`M.2_3`**.
 
-### Thermal/acoustic
+Reserve CPU-connected **`M.2_1`** for the future 4 TB+ work/VM/container/data drive. Avoid `M.2_2` unless its graphics-lane trade-off is deliberately accepted. No RAID; external/network backup remains required.
 
-- sustained Java compile/test-style CPU load;
-- separate synthetic thermal worst-case;
-- combined CPU/GPU case-closed test;
-- tune fan curves for sustained load, not short Ryzen spikes.
+### PSU
 
-### GPU
+The exact PSU is closed, but the received revision must pass all of these checks:
 
-- current WHQL Studio driver;
-- representative gaming/3D test;
-- later verify CUDA visibility if AI tooling is installed.
+1. ATX 3.1 on listing/box;
+2. PCIe 5.1 compatibility;
+3. supplied current **12V-2x6** GPU cable;
+4. reject explicit ATX 3.0 / PCIe 5.0 / 12VHPWR old stock;
+5. use only Seasonic-approved modular cables.
 
-### Development/virtualization
+### Case / airflow
 
-- `wsl --status` and `wsl --list --verbose` confirm WSL2;
-- Ubuntu update succeeds;
-- representative large Java build/test passes;
-- Android Emulator runs reliably;
-- container runtime validation when installed;
-- sleep/resume works with WSL2/virtualization enabled.
+Exact case: **`FD-C-NOR1X-01`**, Charcoal Black **Mesh**. Do not substitute TG Dark `FD-C-NOR1X-02` or an ambiguously labelled variant.
 
-### Networking
+Initial airflow remains:
 
-- verify 2.5/10 GbE enumeration and negotiated speed;
-- sustained transfer sanity test;
-- sleep/resume retains working networking;
-- no repeated driver resets/WHEA events.
+- 3× included 140 mm front intake;
+- 1× standard square-frame **NF-A14x25 G2 PWM** rear exhaust;
+- top/side empty.
+
+Add fans only if measurements justify them.
 
 ### UPS
 
-- CyberPower USB link visible;
-- configure graceful shutdown;
-- controlled mains-loss shutdown test succeeds.
+Exact model remains **`CP1600EPFCLCD`**. The seller is a purchase-time decision because current aggregators/direct pages disagree materially on price.
+
+Buy new/sealed and verify the delivered European/Schuko configuration. Reassess the UPS after a materially higher-power future GPU or if measured load approaches roughly 700–800 W.
+
+### Windows
+
+For this DIY self-build, the selected license channel is explicitly:
+
+**Microsoft Windows 11 Pro Retail/FPP USB English `HAV-00163`.**
+
+Do not substitute:
+
+- OEM/DSP/System Builder;
+- Pro for Workstations;
+- Home;
+- an undocumented emailed/grey-market standalone key.
+
+Install Windows 11 Pro 25H2 GA, then follow the normal supported feature-update path over the machine's lifetime.
+
+## OS / software baseline
+
+- Windows 11 Pro x64 host;
+- WSL2 + Ubuntu 26.04.1 LTS;
+- current NVIDIA Studio Driver WHQL baseline;
+- Windows-native repositories/caches on Windows storage;
+- Linux-native high-I/O repos/caches/container data inside the WSL filesystem rather than `/mnt/c`;
+- no native Linux dual boot unless a future workload demonstrates a bare-metal requirement.
+
+## Firmware / security baseline
+
+Before serious workload validation:
+
+- update ProArt to the chosen current stable BIOS;
+- UEFI native, CSM disabled;
+- Secure Boot enabled;
+- TPM 2.0 / AMD fTPM enabled;
+- SVM enabled;
+- IOMMU enabled unless a real stability issue appears;
+- RAM Auto/JEDEC;
+- CPU stock/conservative.
+
+Enable BitLocker **after** the first firmware/driver baseline is stable and retain the recovery key independently of the workstation.
+
+## Initial validation
+
+Record a baseline before tuning:
+
+- BIOS version and firmware settings;
+- exact RAM SKU, trained speed/timings and extended memory-test result;
+- Windows edition/version/build, Secure Boot/TPM/BitLocker state;
+- Samsung firmware + SMART baseline;
+- sustained Java compile/test-style load and separate synthetic thermal check;
+- no unexplained WHEA errors or thermal throttling;
+- RTX 3060 Studio Driver + representative 3D/game test;
+- WSL2, Ubuntu update, large Java build/test, Android Emulator and sleep/resume;
+- 2.5/10 GbE enumeration and negotiated speed;
+- CyberPower USB management + controlled mains-loss shutdown test.
+
+## Deferred purchases / decisions
+
+- exact eventual 256 GB 4×64 GB matched memory configuration and ECC/non-ECC verdict;
+- operational ECC reporting validation if ECC is used;
+- exact future 4 TB+ work SSD;
+- future high-VRAM GPU;
+- UPS enlargement when the future GPU/load requires it;
+- exact container runtime if licensing/workflow makes that material.
+
+Detailed decisions: `docs/decisions.md`.
+
+Purchase execution: `docs/procurement-plan-2026-08-31.md`.
