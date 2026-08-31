@@ -2,7 +2,7 @@
 
 This document captures cross-component constraints that should not be evaluated in isolation.
 
-The build is greenfield. The existing RTX 3060 12 GB is reused initially; the CPU, motherboard, chassis, cooling architecture, exact CPU cooler, storage architecture and exact initial system SSD are now selected.
+The build is greenfield. The existing RTX 3060 12 GB is reused initially; the CPU, motherboard, Phase-1 memory, chassis, cooling architecture, exact CPU cooler, storage architecture, exact initial system SSD, rear exhaust fan and Phase-1 UPS are now selected.
 
 ## CPU/platform ↔ motherboard
 
@@ -26,18 +26,25 @@ Selected architectural target:
 - exact long-term DIMMs remain deferred;
 - ECC UDIMM preferred only if exact modules and OS-visible ECC behavior are credible and stable.
 
-Current Phase-1 purchase target:
+Selected Phase-1 memory:
 
-- Kingston FURY Beast Black EXPO 32 GB (2×16 GB) DDR5-6000 CL30
-- exact SKU: **`KF560C30BBEK2-32`**
-- Kingston lists the exact kit for the ProArt X870E-Creator WiFi.
+- **GOODRAM 32 GB DDR5-5600 CL46**
+- exact SKU: **`GR5600D564L46/32G`**
+- topology: **1×32 GB**
+- standard 1.1 V desktop DDR5 UDIMM
+- approximately 31.25 mm tall.
+
+The one-DIMM topology deliberately gives up dual-channel bandwidth in exchange for roughly 800 lei lower sunk cost versus the prior Kingston 2×16 target and the simplest possible commissioning load on the memory controller.
 
 Bring-up policy:
 
-- use motherboard-recommended two-DIMM slots;
-- boot at Auto/JEDEC first;
-- treat EXPO as optional;
-- replace rather than expand the temporary kit when moving to the validated 256 GB endpoint.
+- use the motherboard-recommended one-DIMM slot, expected to be A2; confirm against the current manual;
+- boot at Auto/JEDEC only;
+- do not manually overclock the temporary DIMM;
+- accept a lower trained data rate if firmware chooses one for stability;
+- replace rather than expand the Phase-1 DIMM when moving to the validated 256 GB endpoint.
+
+The exact GOODRAM SKU was not found in the current ProArt QVL during the purchase pass. That is accepted for Phase 1 because it is a standard JEDEC-class single UDIMM rather than a tuned EXPO/XMP configuration; QVLs are not exhaustive. Unexpected training problems would reopen the exact temporary SKU, not the platform architecture.
 
 ## CPU ↔ cooling
 
@@ -62,16 +69,16 @@ Relevant dimensions:
 
 - NH-D15 G2 stock height: **168 mm**;
 - normal dual-fan RAM clearance: approximately **32 mm**;
-- Kingston `KF560C30BBEK2-32` module height: **34.9 mm**;
-- required front-fan lift: approximately **3 mm**;
-- resulting practical cooler height: approximately **171 mm**;
+- GOODRAM `GR5600D564L46/32G` module height: approximately **31.25 mm**;
+- required front-fan lift: **none**;
 - Fractal North XL Mesh CPU-cooler limit: **185 mm**.
 
 Result:
 
-- approximately **14 mm remaining height margin**;
+- cooler stays at its stock **168 mm** height;
+- approximately **17 mm remaining height margin**;
 - no case-side-panel clearance concern with the selected Phase-1 RAM;
-- front fan should be raised only as much as required.
+- no front-fan relocation is required.
 
 The eventual 256 GB memory purchase should still prefer reasonably low-profile modules when technically equivalent, because future 64 GB DIMM height is not yet fixed.
 
@@ -124,13 +131,13 @@ Selected chassis:
 Validated against selected cooler:
 
 - 185 mm CPU-cooler envelope;
-- ~171 mm practical NH-D15 G2 height with current Kingston RAM;
-- ample margin remains.
+- 168 mm practical NH-D15 G2 height with the selected low-profile Phase-1 GOODRAM;
+- approximately 17 mm height margin remains.
 
 Selected airflow:
 
 - 3×140 mm included front intake;
-- 1×140 mm rear exhaust;
+- 1× Noctua NF-A14x25 G2 PWM 140 mm rear exhaust;
 - no top/side fans initially.
 
 The front remains unobstructed by a radiator, which is desirable for a future high-power GPU.
@@ -145,27 +152,35 @@ Selected architecture:
 
 The PSU is intentionally sized around a plausible future very-high-power single GPU, not merely the current RTX 3060.
 
+The exact PSU remains open because Romanian listings still mix old VERTEX ATX 3.0/12VHPWR stock with the required current ATX 3.1/12V-2x6 revision.
+
 ## UPS ↔ PSU / full system
 
-Selected Phase-1 architecture:
+Selected Phase-1 UPS:
 
+- **CyberPower CP1600EPFCLCD**
+- 1600 VA / 1000 W;
 - line-interactive;
 - pure sine-wave output;
-- around 1600 VA / 1000 W;
+- Active-PFC compatible;
 - AVR;
-- USB monitoring/graceful shutdown;
-- user-replaceable battery.
+- USB HID / PowerPanel monitoring and graceful shutdown;
+- user-replaceable `RBP0142` battery.
 
-Current provisional target: CyberPower CP1600EPFCLCD.
-
-The UPS is sized for the current RTX 3060 system and must be reassessed when a materially higher-power GPU is installed.
+The UPS is sized for the current RTX 3060 system and must be reassessed when a materially higher-power GPU is installed or measured wall load approaches roughly 700–800 W.
 
 ## Procurement dependencies
 
-For currently selected purchase-ready parts:
+For selected purchase-ready parts:
 
 - prefer **PC Garage first**;
 - use **eMAG second**;
-- when the price difference is small, prefer PC Garage rather than optimizing for the last few lei.
+- when the price difference is small, prefer PC Garage rather than optimizing for the last few lei;
+- for explicitly temporary Phase-1 RAM, a **material** price saving can override brand/performance preference because sunk cost is intentionally minimized.
 
-This applies to the selected Samsung 990 PRO 2 TB and standard NH-D15 G2. Purchase-time verification must still confirm exact SKU, normal Romanian/EU warranty and no new firmware/compatibility issue.
+Current examples:
+
+- GOODRAM `GR5600D564L46/32G`: PC Garage around 2,199.99 lei and selected over the ~2,998.99 lei Kingston temporary kit;
+- Samsung 990 PRO 2 TB: PC Garage preferred over eMAG when price difference is small;
+- NH-D15 G2 standard: PC Garage first, eMAG second, but confirm standard rather than LBC/HBC;
+- CyberPower CP1600EPFCLCD: current PC Garage premium is small enough to prefer PC Garage.
