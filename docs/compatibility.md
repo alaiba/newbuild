@@ -2,7 +2,7 @@
 
 This document captures cross-component constraints that should not be evaluated in isolation.
 
-The build is greenfield. The existing RTX 3060 12 GB is reused initially; the CPU, motherboard, chassis, cooling architecture, exact CPU cooler, storage architecture, exact initial system SSD, rear exhaust fan and Phase-1 UPS are selected. The **final Phase-1 memory capacity remains open between a 32 GB baseline and optional 64 GB 2×32 configuration**.
+The build is greenfield. The existing RTX 3060 12 GB is reused initially; the CPU, motherboard, chassis, cooling architecture, exact CPU cooler, storage architecture, exact initial system SSD, **exact PSU**, rear exhaust fan and Phase-1 UPS are selected. The **final Phase-1 memory capacity remains open between a 32 GB baseline and optional 64 GB 2×32 configuration**.
 
 ## CPU/platform ↔ motherboard
 
@@ -126,7 +126,7 @@ The second drive is for workload/recovery/thermal separation rather than benchma
 ## Motherboard ↔ GPU / expansion
 
 - Existing RTX 3060 12 GB is reused initially.
-- North XL Mesh, the 1200 W PSU architecture and air cooling preserve a path to a substantially larger future high-VRAM GPU.
+- North XL Mesh, the selected 1200 W PSU and air cooling preserve a path to a substantially larger future high-VRAM GPU.
 - The storage topology avoids `M.2_2`, preserving the primary GPU path.
 - CPU-connected x8/x8 remains useful future headroom but is not a current requirement.
 
@@ -144,15 +144,34 @@ Selected airflow:
 
 The front remains unobstructed by a radiator, preserving clean future-GPU intake.
 
-## PSU ↔ CPU / GPU / expansion
+## PSU ↔ CPU / GPU / case
 
-Selected architecture:
+Selected exact PSU:
 
-- **1200 W ATX 3.1 / PCIe 5.1**
-- native **12V-2x6**
-- current provisional target: current-revision Seasonic VERTEX GX-1200.
+- **Seasonic VERTEX GX-1200, current ATX 3.1 / PCIe 5.1 / 12V-2x6 revision**.
 
-The exact PSU remains open because Romanian listings still mix old ATX 3.0/12VHPWR stock with the required current ATX 3.1/12V-2x6 revision.
+Compatibility points:
+
+- 1200 W provides the selected margin for a future ~600 W single GPU plus the 9950X3D platform;
+- the ProArt's motherboard and dual CPU EPS requirements are covered without adapters;
+- the PSU is about **160 mm** deep versus roughly **290 mm** available PSU clearance in North XL;
+- the current RTX 3060 can use its normal PCIe power path;
+- the future high-power GPU should use the Seasonic-supplied 12V-2x6 cable;
+- future GPU width and connector bend radius must be revalidated when that GPU is selected.
+
+Purchase/receipt acceptance:
+
+- box/listing must say **ATX 3.1**;
+- GPU cable must be **12V-2x6**;
+- reject old ATX 3.0 / 12VHPWR VERTEX inventory;
+- retain the exact serial/model/warranty evidence;
+- use only Seasonic-approved modular cables.
+
+Current retailer position:
+
+- PC Garage first and eMAG second when they explicitly identify the current revision;
+- current searches still do not expose a sufficiently unambiguous listing from either preferred retailer;
+- an explicit **Altex VERTEX GX-1200 ATX 3.1** listing is the current Romanian fallback at about **1,289.99 lei** and shown in stock at the latest check.
 
 ## UPS ↔ PSU / full system
 
@@ -166,7 +185,7 @@ Selected Phase-1 UPS:
 - USB HID / PowerPanel
 - user-replaceable `RBP0142` battery.
 
-Reassess when a materially higher-power GPU is installed or measured wall load approaches roughly 700–800 W.
+The UPS is intentionally sized for the current RTX 3060 system, not the PSU's 1200 W nameplate. Reassess when a materially higher-power GPU is installed or measured wall load approaches roughly 700–800 W.
 
 ## Procurement dependencies
 
@@ -175,6 +194,7 @@ For purchase-ready parts:
 - prefer **PC Garage first**;
 - use **eMAG second**;
 - prefer PC Garage when the difference is small;
+- an explicit current-revision listing beats preferred-retailer loyalty when a component has materially different old/new revisions under the same family name;
 - for temporary Phase-1 RAM, a material saving can override retailer/brand preference because sunk cost is intentionally minimized.
 
 For memory specifically, **do not order until the final BOM review chooses between 32 GB and 64 GB**.
