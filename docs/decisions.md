@@ -6,68 +6,76 @@ This file records closed decisions plus any decision explicitly reopened because
 
 | Area | Decision | Status | Rationale / reopen condition |
 |---|---|---|---|
-| CPU / platform | **AMD Ryzen 9 9950X3D on AM5** | **Selected** | A 9950X saves roughly 650 lei but does not improve the stability/endurance goal, is not better in the relevant compile evidence, and sacrifices substantial gaming performance. Keep the permanent CPU. |
-| Motherboard | **Exact motherboard reopened; ASUS ProArt X870E-Creator WiFi remains the incumbent reference** | **Reopened** | The ProArt was promoted largely because of the difficult 4×64 GB / 256 GB requirement. That requirement is now removed. Re-optimize the board against the final 128 GB 2×64 GB / 1DPC target and the finalized storage topology before purchase. No replacement is selected yet. |
-| Final memory capacity | **128 GB from day one** | **Selected / final** | There is no provisional RAM stage. Buy the intended lifetime capacity at initial assembly rather than buying 64 GB now and replacing or expanding it later. |
-| Final memory topology | **2×64 GB DDR5 UDIMM, one DIMM per channel (1DPC), installed A2/B2** | **Selected / final** | 128 GB is sufficient as the lifetime target and 2×64 preserves the electrically favorable 1DPC topology. This avoids the four-DIMM training/frequency compromises that drove much of the previous 256 GB motherboard analysis. |
-| Exact memory kit | **2×64 GB exact SKU to be selected in the next optimization pass** | **Open** | Optimize for stability first: conservative JEDEC behavior, board validation/QVL evidence, low voltage, module construction, warranty and, if worthwhile, end-to-end ECC support/reporting. Do not buy a temporary 2×32 GB kit. |
-| ECC policy | **ECC is optional, not a capacity requirement** | **Open within RAM optimization** | With 2×64 GB, ECC can be evaluated on its own merits. Prefer ECC UDIMM only if exact-module board support and usable OS-level error reporting are credible without materially worsening value or stability. |
-| CPU cooling | **Noctua NH-D15 G2 standard + 7 mm AM5 offset** | **Selected** | Cheaper Thermalright options are strong, but Noctua's support/mounting ecosystem, fan endurance and six-year warranty better match 10-year ownership. |
-| Storage architecture | **Two internal NVMe drives from day one: ~1 TB system/tools + 1–2 TB active-work SSD; add bulk/cold storage later only when needed** | **Selected / final architecture** | Separate OS/tools from latency-sensitive active development data immediately without buying high-performance capacity for infrequently accessed data. Storage growth is additive through another NVMe, SATA SSD or HDD rather than replacement of the initial pair. |
-| System SSD role | **~1 TB value/reliability-focused NVMe; exact model open** | **Selected role / model open** | With 128 GB RAM and a dedicated active-work SSD, the OS drive does not justify flagship sequential performance. Optimize for adequate headroom, mature firmware, reputable vendor, warranty and sensible price. A chipset-connected x4 M.2 slot is acceptable. |
-| Active-work SSD role | **1 TB is sufficient; prefer 2 TB when the absolute premium and price/TB are attractive; Gen4 TLC preferred; exact model/capacity open** | **Selected role / purchase-size open** | Current repos, Maven/Gradle caches, WSL2/container data, active Android images, active VMs/databases and other latency-sensitive working data belong here. Prefer CPU-direct x4, TLC, strong sustained behavior/endurance and mature firmware. Do not buy 4 TB merely to hold cold data. |
-| Bulk/cold storage | **Add only when needed; speed is secondary** | **Selected expansion policy** | Archived repos, old VMs, ISOs, installers, datasets and other infrequently accessed data may live on a later chipset NVMe, SATA SSD or healthy HDD. Existing old HDDs may be reused after SMART/health checks, but must not contain the only copy of important data. |
-| Storage RAID policy | **No RAID required** | **Selected** | Independent drives plus version control and real external/network backup are preferred. RAID1 does not replace backup and adds complexity without solving the main failure modes. |
-| PSU architecture | **1200 W ATX 3.1 / PCIe 5.1 / 12V-2x6** | **Selected** | Correct margin for a future single ~600 W GPU without unnecessary 1300–1600 W oversizing. |
-| PSU baseline | **Seasonic VERTEX GX-1200 current ATX 3.1 revision** | **Selected / purchase-ready** | 12-year warranty, compact 160 mm chassis and explicit Altex ATX 3.1 listing. |
-| PSU premium rule | **Prefer VERTEX PX-1200 when current stock is available at ≤~200 lei premium over GX** | **Selected purchase rule** | At the current ~160 lei reference premium, Platinum efficiency is worthwhile over long ownership. Do not delay the build while PX is out of stock. |
-| Chassis | **Fractal North XL Mesh `FD-C-NOR1X-01`** | **Selected** | Excellent airflow/serviceability/future-GPU envelope. |
-| Airflow | **3×140 mm included front intake + 1× Noctua NF-A14x25 G2 PWM rear exhaust** | **Selected** | Simple positive-pressure layout; add fans only if measurements justify them. |
-| UPS | **CyberPower PR1500ELCD, 1500 VA / 1350 W** | **Selected** | Future 900–980 W system load remains comfortably below its real-power ceiling; hot-swappable battery and stronger AVR improve lifetime value. |
+| CPU / platform | **AMD Ryzen 9 9950X3D on AM5** | **Selected** | Keep the permanent CPU/platform. It fits the very heavy Java/Android workload while retaining excellent occasional gaming performance without workstation-platform TCO/specialization. |
+| Motherboard | **Exact motherboard reopened; prior Creator-class shortlist is no longer privileged** | **Reopened** | The old ProArt/Creator rationale depended heavily on 256 GB/four-DIMM validation, 10 GbE, x8/x8 and expansive M.2/future-GPU requirements. Those requirements have been removed or downgraded. Re-optimize from a broader mainstream AM5 candidate set. |
+| Final memory capacity | **128 GB from day one** | **Selected / final** | Buy the intended lifetime capacity at initial assembly. |
+| Final memory topology | **2×64 GB DDR5 UDIMM, one DIMM per channel (1DPC), normally A2/B2** | **Selected / final** | Preserves the electrically favorable 1DPC topology and avoids four-DIMM training/frequency compromises. |
+| Exact memory kit | **2×64 GB exact SKU to be selected with the motherboard** | **Open** | Optimize for stability first: conservative JEDEC behavior, board validation/QVL evidence, sane voltage, module construction and warranty. |
+| ECC policy | **Optional** | **Open within RAM optimization** | Prefer ECC UDIMM only if exact-module board support and usable OS-level error reporting are credible without materially worsening value or stability. |
+| CPU cooling | **Noctua NH-D15 G2 standard + 7 mm AM5 offset** | **Selected** | Long-lived, serviceable air-cooling platform; replaceable fans and strong support ecosystem justify the premium. |
+| Storage architecture | **~1 TB system drive + 1–2 TB CPU-direct active-work NVMe; add bulk/cold storage only when needed** | **Selected / final architecture** | Separate OS/tools from latency-sensitive work without buying high-performance capacity for inactive data. Storage growth is additive. |
+| System drive role | **~1 TB value/reliability-focused storage; NVMe preferred but SATA is acceptable if motherboard trade-offs justify it** | **Selected role / model open** | The OS drive does not justify flagship throughput. A second M.2 slot is desirable, not mandatory. |
+| Active-work SSD role | **1 TB sufficient; 2 TB preferred only when price/value is attractive; CPU-direct x4 mandatory; Gen4 TLC preferred** | **Selected role / purchase-size open** | Current repos, caches, WSL2/container data, active VMs/databases and other latency-sensitive data belong here. |
+| Bulk/cold storage | **Add only when needed; speed secondary** | **Selected expansion policy** | Spare M.2, SATA SSD/HDD, external/NAS are acceptable. Healthy old HDDs may be reused for infrequent data but never as the only copy of important data. |
+| Storage RAID policy | **No RAID required** | **Selected** | Version control and real independent backup solve more relevant failure modes. |
+| Required M.2 topology | **One CPU-direct M.2 x4 slot that does not reduce the primary GPU link** | **Selected / mandatory** | This is the only hard M.2 requirement. A second M.2 slot is useful but optional because the system drive can fall back to SATA without harming the workstation's main workload. |
+| Wired networking | **1 GbE is sufficient; 2.5 GbE is a harmless bonus; do not pay for 5/10 GbE** | **Selected** | Internet is below 1 Gb/s and local-network throughput is irrelevant. Networking speed must not drive motherboard price. |
+| Multi-GPU | **Not a requirement; retire the RTX 3060 when a future GPU replacement happens** | **Selected** | No gaming SLI/NVLink value and no concrete heterogeneous-compute requirement. CPU x8/x8 support is a bonus only if effectively free. |
+| GPU | **Reuse RTX 3060 12 GB for as long as it remains useful/reliable** | **Selected** | Gaming is secondary and cloud AI increasingly reduces the need to pre-buy local accelerator capability. No current GPU purchase is planned. |
+| Future GPU policy | **Do not pre-provision the platform/power system for a hypothetical 500–600 W flagship GPU** | **Selected** | If a future replacement eventually requires unusually high power, reconsider the PSU at that time. Future GPU efficiency and requirements are uncertain. |
+| PSU architecture | **Reopened around premium 750 W and 850 W ATX 3.1 units** | **Reopened** | 750 W is a legitimate long-term target for the current machine and today's ~300 W GPU class; 850 W is a value-dependent headroom upgrade. Quality, warranty, acoustics and electrical design outrank wattage. |
+| PSU sizing rule | **Prefer 750 W unless an equally high-quality 850 W model costs only modestly more or has materially better characteristics** | **Selected optimization rule** | Do not pay meaningful money merely to reserve speculative GPU wattage. 1000–1200 W no longer has a default justification. |
+| PSU feature baseline | **ATX 3.1 / current PCIe GPU-power standard, strong protections, mature platform, long warranty** | **Selected** | Keep modern transient handling and quality requirements while reducing unnecessary capacity. |
+| UPS | **No UPS in the initial BOM** | **Selected** | Short outages are acceptable operationally; continuity is unnecessary because a laptop is available. A large battery-backed unit does not provide enough value. |
+| Point-of-use power protection | **Use a reputable plug-in surge protector / surge-protected power strip; no electrical-installation modification required by the build** | **Selected policy** | The objective is transient/surge risk reduction, not ride-through. Protection depends on a sound protective-earth connection and is weaker than layered building-level SPD protection, but is the chosen practical constraint. |
+| Motherboard VRM / OC | **Stock/conservative 9950X3D operation only; extreme VRM/overclocking capability has no value** | **Selected** | Require competent VRM thermals and reliability, not phase-count marketing or extreme-overclocking features. |
+| Chassis | **Fractal North XL Mesh `FD-C-NOR1X-01` remains selected for now** | **Selected, worth one final value check** | Earlier future-flagship-GPU assumptions have weakened, so case oversizing can be revisited before final procurement if useful. |
+| Airflow | **3×140 mm included front intake + 1× Noctua NF-A14x25 G2 PWM rear exhaust** | **Selected under current case** | Simple positive-pressure layout; add fans only if measurements justify them. |
 | Host OS | **Windows 11 Pro x64** | **Selected** | Best fit for development, virtualization, NVIDIA/gaming and professional host features. |
 | Windows license channel | **Retail/FPP** | **Selected / required purchase** | Clean DIY licensing path; no existing transferable license. |
-| Windows purchase target | **`HAV-00163` English Retail/FPP USB from PROstore** | **Selected purchase target** | Verified direct listing, clear Retail/FPP provenance and low delivered cost. Windows has negligible long-term RMA complexity, so a separate provider is acceptable. |
-| Initial Windows release | **Windows 11 25H2 GA** | **Selected** | Production baseline; follow normal supported feature updates afterward. |
+| Windows purchase target | **`HAV-00163` English Retail/FPP USB from PROstore** | **Selected purchase target** | Verified Retail/FPP provenance and low delivered cost. |
+| Initial Windows release | **Windows 11 25H2 GA** | **Selected** | Production baseline. |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** | First-class Linux userland without dual-boot friction. |
-| GPU driver | **NVIDIA Studio Driver WHQL baseline** | **Selected** | Stability-first; Game Ready only for a demonstrated game-specific need. |
+| GPU driver | **NVIDIA Studio Driver WHQL baseline** | **Selected** | Stability-first. |
 | Security/virtualization | **UEFI + Secure Boot + TPM 2.0 + SVM/IOMMU + BitLocker after firmware stabilization** | **Selected** | Conservative production baseline. |
-| GPU | **Reuse RTX 3060 12 GB initially** | **Selected** | Future high-VRAM GPU remains deferred. |
-| Future AI path | **One very high-performance/high-VRAM discrete GPU** | **Selected architecture** | Do not optimize current AM5 build for serious multi-GPU workloads. |
-| Cost philosophy | **Optimize utility per leu; do not spend for benchmark prestige or unused capacity** | **Selected** | Utility includes stability, endurance, serviceability, warranty, thermal/electrical margin and workload performance. Premiums must buy a material benefit for this workload or avoid a credible future replacement. |
-| Provider consolidation | **Maximum 3 providers; default target 2 for hardware** | **Selected** | Hardware provider #3 normally needs roughly ≥300 lei net saving or materially better stock/SKU/revision/warranty certainty. Software such as Windows is exempt when the extra provider has negligible RMA burden. |
+| Cost philosophy | **Optimize utility per leu; do not spend for prestige, unused capacity or speculative future-proofing** | **Selected** | Premiums must buy a material workload, stability, endurance, serviceability or lifecycle benefit. |
+| Provider consolidation | **Maximum 3 providers; default target 2 for hardware** | **Selected** | Extra supplier fragmentation needs meaningful value. |
 
 ## Explicitly superseded decisions
 
 ### Memory
-
-The following are no longer part of the build:
-
 - 64 GB / 2×32 GB Phase-1 memory;
 - Crucial `CT2K32G56C46U5` as a purchase target;
 - 256 GB / 4×64 GB as the planned endpoint;
-- the assumption that initial RAM is temporary or disposable;
 - motherboard premiums justified primarily by four-DIMM / 256 GB behavior.
 
 ### Storage
-
-The following are no longer part of the build:
-
 - Samsung 990 PRO 2 TB `MZ-V9P2T0BW` as a selected system-drive purchase;
-- a 2 TB system/tools drive bought first to carry the initial working set;
-- a fixed 4 TB high-performance work SSD as an initial requirement;
-- deferring the active-work drive to a later phase;
-- reserving Gen5 performance as a requirement for the work drive;
-- buying fast NVMe capacity merely to hold infrequently accessed/archive data.
+- a fixed 4 TB high-performance work SSD;
+- Gen5 as a storage requirement;
+- two clean M.2 slots as a hard motherboard requirement.
+
+### Expansion / networking
+- onboard 5/10 GbE as a meaningful motherboard-selection benefit;
+- CPU-connected x8/x8 as a design requirement;
+- keeping the RTX 3060 alongside a future flagship GPU.
+
+### Power
+- 1200 W as the selected PSU architecture;
+- Seasonic VERTEX GX/PX-1200 as purchase-ready targets;
+- pre-sizing for a future 500–600 W GPU;
+- CyberPower PR1500ELCD as a selected purchase.
 
 ## Open / deferred decisions
 
-- exact motherboard after re-optimization for the 128 GB 1DPC and finalized storage topology;
+- exact motherboard under the simplified requirements;
 - exact matched 2×64 GB RAM kit and ECC/non-ECC verdict;
-- exact ~1 TB system SSD;
-- exact 1 TB or 2 TB active-work SSD based on current price/value;
-- optional future bulk/cold-storage device when capacity actually requires it;
-- exact future high-VRAM GPU;
-- exact container runtime if licensing/workflow makes it material.
+- exact ~1 TB system drive and whether NVMe or SATA is the better value in the final topology;
+- exact 1 TB or 2 TB active-work NVMe;
+- exact premium 750 W or 850 W PSU;
+- whether the North XL still earns its size/cost after the future-GPU requirement was relaxed;
+- optional future bulk/cold storage when capacity actually requires it;
+- future GPU replacement only when a concrete need/failure appears.
 
 Detailed component dossiers are under `docs/components/`.
 
