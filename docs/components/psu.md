@@ -73,15 +73,11 @@ Some distributor listings identify the newer product as `GX 1200-ATX31`; that is
 
 ## 2026-08-31 Romanian purchase position
 
-Procurement preference remains:
+Procurement policy for this build now treats **PC Garage and Altex as co-preferred Romanian retailers**, with **eMAG also acceptable**. Do not optimize for retailer order when another accepted retailer has the exact correct SKU/revision, normal warranty and a sensible price.
 
-1. **PC Garage** first;
-2. **eMAG** second;
-3. another reputable Romanian retailer when the preferred sources cannot identify the current revision cleanly.
+Current searches still do not expose a sufficiently unambiguous PC Garage or eMAG listing for the exact current VERTEX revision.
 
-Current searches still do not expose a sufficiently unambiguous PC Garage or eMAG listing for the exact current revision.
-
-A current **Altex** listing does explicitly advertise:
+A current **Altex** listing explicitly advertises:
 
 - **Seasonic Vertex GX-1200 ATX 3.1**;
 - 1200 W;
@@ -93,11 +89,9 @@ A current **Altex** listing does explicitly advertise:
 Current source:
 - https://altex.ro/sursa-pc-seasonic-vertex-gx-1200-atx-3-1-1200w-135mm-80-plus-gold-full-modular/cpd/VERTEXGX1200/
 
-Therefore:
+Therefore the **Altex listing is directly purchase-eligible**, subject to the same receipt check applied to every retailer. There is no reason to prefer an ambiguous PC Garage/eMAG listing over an explicit current-revision Altex unit.
 
-> Prefer PC Garage or eMAG if they can explicitly confirm the same current ATX 3.1 / 12V-2x6 revision at a sensible price. Otherwise, the explicit Altex ATX 3.1 listing is the current Romanian fallback rather than buying ambiguous old stock from a preferred retailer.
-
-The revision is more important than a small retailer-price difference.
+The exact product/revision and warranty path are more important than a small retailer-price difference.
 
 ## Why not VERTEX PX-1200
 
@@ -171,7 +165,7 @@ Before installation:
 - **Exact PSU:** **Seasonic VERTEX GX-1200, current ATX 3.1 / PCIe 5.1 / 12V-2x6 revision — Selected**
 - **Wattage:** 1200 W — Selected
 - **Efficiency:** Gold is sufficient; Platinum is optional
-- **Preferred retailers:** PC Garage first, eMAG second when the exact current revision is explicit
-- **Current explicit Romanian fallback:** Altex ATX 3.1 listing, ~1,289.99 lei at latest check
+- **Accepted Romanian retailers:** **PC Garage, Altex and eMAG**; PC Garage and Altex are co-preferred when SKU/revision/warranty are equivalent
+- **Current explicit purchase-ready listing:** Altex ATX 3.1 listing, ~1,289.99 lei at latest check
 - **PX-1200:** optional only if known-current, in stock and within roughly 100–150 lei of GX
 - **Acceptance gate:** reject ambiguous ATX 3.0 / 12VHPWR old stock
