@@ -8,11 +8,11 @@ This is the current source-of-truth architecture for the workstation.
 |---|---|---|
 | CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Purchased 2026-09-01 — EvoMAG; arrival verification pending** |
 | Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Purchased 2026-09-01 — EvoMAG; exact box SKU verification pending** |
-| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2×24 GB) DDR5-5600 CL46-class, 1.1 V, non-ECC** | **Selected / not yet purchased** |
+| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB) DDR5-5600 CL46-class, 1.1 V, non-ECC** | **Selected / not yet purchased — only remaining buy** |
 | Memory topology | **1DPC / A2+B2; Auto/JEDEC first** | **Selected** |
-| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Selected / not yet purchased** |
-| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Selected / not yet purchased** |
-| Case airflow | **2× included 140 mm PWM: front intake + rear exhaust** | **Selected initial layout** |
+| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Purchased 2026-09-01 — Vexio; arrival verification pending** |
+| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Purchased 2026-09-01 — Vexio; arrival verification pending** |
+| Case airflow | **2x included 140 mm PWM: front intake + rear exhaust** | **Selected initial layout** |
 | Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Purchased 2026-09-01 — EvoMAG; arrival verification pending** |
 | Bulk/cold storage | Reuse healthy existing SATA drives; `M.2_2` + `M.2_3` remain free for future expansion | **Selected policy** |
 | Storage RAID/cache/tiering | **None** | **Selected** |
@@ -26,9 +26,9 @@ This is the current source-of-truth architecture for the workstation.
 
 Windows is no longer a procurement item. Do not include it in remaining shopping lists or build-cost estimates.
 
-## Purchase record — first executed order
+## Executed purchases — 2026-09-01
 
-On **2026-09-01**, the following EvoMAG order was placed:
+### EvoMAG
 
 | Item | Paid price incl. VAT |
 |---|---:|
@@ -40,7 +40,18 @@ On **2026-09-01**, the following EvoMAG order was placed:
 | Courier | **11.99 lei** |
 | **Order total** | **6,531.95 lei** |
 
-These four components are now **committed purchases**. Do not re-source or redesign around them unless the delivered item is incorrect, damaged, cancelled, or a material defect is discovered.
+### Vexio
+
+| Item | Paid price incl. VAT |
+|---|---:|
+| be quiet! Pure Base 501 Airflow Black `BG074` | **415.99 lei** |
+| Thermalright Phantom Spirit 120 standard | **246.99 lei** |
+| Shipping | **0.00 lei** |
+| **Order total** | **662.98 lei** |
+
+**Committed total so far: 7,194.93 lei including shipping.**
+
+These six new hardware components are now **committed purchases**. Do not re-source or redesign around them unless a delivered item is incorrect, damaged, cancelled, or a material defect is discovered.
 
 Detailed transaction record: `docs/purchases-2026-09-01.md`.
 
@@ -58,7 +69,7 @@ The second physical x16 slot is only chipset PCIe 4.0 x1. That trade-off is acce
 
 Selected kit:
 
-> **Crucial Pro `CP2K24G56C46U5` — 48 GB (2×24 GB), DDR5-5600 CL46-class, 1.1 V, non-ECC UDIMM.**
+> **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB), DDR5-5600 CL46-class, 1.1 V, non-ECC UDIMM.**
 
 Why 48 GB:
 
@@ -70,7 +81,7 @@ Why 48 GB:
 
 ### Upgrade policy
 
-Do **not** add another 2×24 GB pair later. AMD officially rates the 9950X3D at DDR5-3600 with four DIMMs versus DDR5-5600 with two DIMMs.
+Do **not** add another 2x24 GB pair later. AMD officially rates the 9950X3D at DDR5-3600 with four DIMMs versus DDR5-5600 with two DIMMs.
 
 If real monitoring later shows persistent memory pressure, replace the current pair with a larger matched two-DIMM kit available at that time.
 
@@ -87,11 +98,18 @@ If real monitoring later shows persistent memory pressure, replace the current p
 
 ## Cooling and chassis — final
 
-- Thermalright Phantom Spirit 120 standard;
-- be quiet! Pure Base 501 Airflow Black `BG074`;
-- one included 140 mm front intake + one included 140 mm rear exhaust initially.
+Purchased from Vexio:
 
-These two components remain to be purchased.
+- **Thermalright Phantom Spirit 120 standard** — 246.99 lei;
+- **be quiet! Pure Base 501 Airflow Black `BG074`** — 415.99 lei;
+- shipping — 0.00 lei.
+
+Initial airflow remains one included 140 mm front intake + one included 140 mm rear exhaust.
+
+Arrival gates:
+
+- cooler must be the standard Phantom Spirit 120, not SE/EVO, with both 120 mm fans and AM5 mounting hardware;
+- case must be `BG074`, non-window Airflow Black, with both included 140 mm PWM fans.
 
 ## Storage architecture — final
 
@@ -131,17 +149,22 @@ No UPS and no dedicated surge protector initially. Use a properly earthed wall o
 - do not accept B650-E `90MB1GT0-M0EAY0` or B650E-PLUS.
 
 ### RAM
-- exact **Crucial Pro `CP2K24G56C46U5`** matched **2×24 GB** kit;
+- exact **Crucial Pro `CP2K24G56C46U5`** matched **2x24 GB** kit;
+- **only remaining component to purchase**;
 - non-ECC UDIMM;
 - DDR5-5600, 1.1 V-class conservative operation;
 - install A2/B2;
 - no planned four-DIMM expansion.
 
 ### Cooler
-- Thermalright Phantom Spirit 120 standard; no SE/EVO substitution.
+- Thermalright Phantom Spirit 120 standard;
+- **already purchased from Vexio**;
+- verify standard model, not SE/EVO, on arrival.
 
 ### Case
-- be quiet! Pure Base 501 Airflow Black `BG074` with both included 140 mm fans.
+- be quiet! Pure Base 501 Airflow Black `BG074` with both included 140 mm fans;
+- **already purchased from Vexio**;
+- verify exact `BG074` on arrival.
 
 ### Storage
 - Crucial T710 2 TB `CT2000T710SSD8`, bare/non-heatsink, in `M.2_1`;
@@ -153,14 +176,18 @@ No UPS and no dedicated surge protector initially. Use a properly earthed wall o
 
 ## Procurement position — 2026-09-01
 
-Architecture and component selection are closed. Procurement is **partially complete**.
+Architecture and component selection are closed. Procurement is **nearly complete**.
 
-Purchased from EvoMAG: **CPU + motherboard + primary SSD + PSU**, order total **6,531.95 lei including 11.99 lei courier**.
+Purchased from EvoMAG: **CPU + motherboard + primary SSD + PSU**, total **6,531.95 lei**.
+
+Purchased from Vexio: **case + CPU cooler**, total **662.98 lei**.
+
+**Committed total: 7,194.93 lei including shipping.**
 
 Windows 11 Pro is already available and requires no procurement action.
 
-Remaining to source: **RAM + CPU cooler + case**.
+Remaining to source: **RAM only — Crucial Pro `CP2K24G56C46U5`, 48 GB / 2x24 GB**.
 
-For the four purchased components, stop price shopping and perform physical identity/condition verification when they arrive. For the three remaining items, continue exact-model sourcing without relaxing the anti-substitution rules.
+For purchased components, stop price shopping and perform physical identity/condition verification when they arrive.
 
 Detailed decisions: `docs/decisions.md`.
