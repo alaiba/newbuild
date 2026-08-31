@@ -27,8 +27,8 @@ This file records closed decisions plus any decision explicitly reopened because
 | Multi-GPU | **Not a requirement; retire RTX 3060 on future replacement** | **Selected** | CPU x8/x8 support is not needed. |
 | GPU | **Reuse RTX 3060 12 GB for as long as useful/reliable** | **Selected** | Gaming is secondary and cloud AI reduces the need to pre-buy local accelerator capability. |
 | Future GPU policy | **Do not pre-provision for a hypothetical 500–600 W flagship GPU** | **Selected** | Reconsider replaceable PSU/case only if a concrete future GPU requires it. |
-| PSU architecture | **Reopened around premium 750 W and 850 W ATX 3.1 units** | **Reopened** | 750 W is a legitimate long-term target; 850 W is a value-dependent upgrade. |
-| PSU sizing rule | **Prefer 750 W unless an equally high-quality 850 W model costs only modestly more or is materially better** | **Selected optimization rule** | Quality outranks speculative wattage. |
+| Exact PSU | **be quiet! Pure Power 13 M 850W `BP027EU`** | **Selected** | ATX 3.1, native current-generation GPU power, 10-year warranty, excellent acoustics and measured electrical performance. The observed premium over the 750 W sibling is small enough that the extra 100 W is worthwhile without returning to speculative 1000–1200 W sizing. |
+| PSU fallback | **Corsair RM850x 2024 `CP-9020270-EU`** | **Fallback** | Reconsider only if delivered price is within roughly 30–40 lei or retailer/warranty conditions are materially better. |
 | UPS | **No UPS in the initial BOM** | **Selected** | Short outages are acceptable operationally; continuity is unnecessary. |
 | Point-of-use power protection | **Use a reputable plug-in surge protector / surge-protected power strip** | **Selected policy** | Objective is transient/surge risk reduction without electrical-installation modification. |
 | Motherboard VRM / OC | **Stock/conservative 9950X3D only; extreme VRM/OC capability has no value** | **Selected** | Require comfortable stock-load margin and stability, not phase-count marketing. |
@@ -63,12 +63,12 @@ This file records closed decisions plus any decision explicitly reopened because
 - automatic SSD tiering / Storage Spaces as an initial architecture;
 - fixed 4 TB high-performance work SSD;
 - reserving the Gen5 M.2 slot instead of using it for the initial primary SSD;
+- premium 750 W as the selected PSU target;
 - 1200 W Seasonic VERTEX GX/PX targets;
 - CyberPower PR1500ELCD.
 
 ## Open / deferred decisions
 
-- exact premium 750 W or 850 W PSU;
 - exact plug-in surge protector;
 - optional future storage expansion only if actual capacity needs grow;
 - future GPU replacement only when a concrete need/failure appears.
