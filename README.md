@@ -16,10 +16,10 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 |---|---|---|
 | CPU | **AMD Ryzen 9 9950X3D**, Box/WOF `100-100000719WOF` | **Purchased 2026-09-01 — EvoMAG** |
 | Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Purchased 2026-09-01 — EvoMAG; physical SKU verification pending** |
-| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2×24), DDR5-5600, non-ECC, 1DPC** | **Not yet purchased** |
-| CPU cooler | **Thermalright Phantom Spirit 120 standard** | **Not yet purchased** |
-| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Not yet purchased** |
-| Case airflow | **2× included 140 mm PWM**, front intake + rear exhaust; no extra fans initially | Selected |
+| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24), DDR5-5600, non-ECC, 1DPC** | **Not yet purchased — only remaining buy** |
+| CPU cooler | **Thermalright Phantom Spirit 120 standard** | **Purchased 2026-09-01 — Vexio** |
+| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Purchased 2026-09-01 — Vexio** |
+| Case airflow | **2x included 140 mm PWM**, front intake + rear exhaust; no extra fans initially | Selected |
 | Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Purchased 2026-09-01 — EvoMAG** |
 | Storage expansion | `M.2_2` + `M.2_3` free; reuse healthy existing SATA drives for cold/bulk data | Selected |
 | Storage RAID/cache/tiering | **None** | Selected |
@@ -30,31 +30,39 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 | Host OS | **Windows 11 Pro x64** | Selected; license already available |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | Selected |
 
-## First executed order — 2026-09-01
+## Executed orders — 2026-09-01
 
-EvoMAG order:
+### EvoMAG
 
 - Ryzen 9 9950X3D Box — **3,349.99 lei**;
 - ASUS TUF GAMING B650E-E WIFI — **785.99 lei**;
 - Crucial T710 2 TB — **1,699.99 lei**;
 - be quiet! Pure Power 13 M 850W — **683.99 lei**;
-- hardware subtotal — **6,519.96 lei**;
 - courier — **11.99 lei**;
 - **total — 6,531.95 lei including VAT**.
 
-These four items are now committed purchases. Their next step is arrival verification, not further price shopping.
+### Vexio
+
+- be quiet! Pure Base 501 Airflow Black `BG074` — **415.99 lei**;
+- Thermalright Phantom Spirit 120 standard — **246.99 lei**;
+- shipping — **0.00 lei**;
+- **total — 662.98 lei including VAT**.
+
+**Committed total so far: 7,194.93 lei including shipping.**
+
+These six new hardware components are committed purchases. Their next step is arrival verification, not further price shopping.
 
 See [`docs/purchases-2026-09-01.md`](docs/purchases-2026-09-01.md).
 
 ## Key architecture choices
 
-- **48 GB / 2×24 GB / 1DPC** is the selected RAM purchase. It preserves the preferred two-DIMM DDR5-5600 path while avoiding the disproportionate current cost of larger kits.
+- **48 GB / 2x24 GB / 1DPC** is the selected RAM purchase. It preserves the preferred two-DIMM DDR5-5600 path while avoiding the disproportionate current cost of larger kits.
 - RAM capacity is treated as a concurrency limit, not an intrinsic CPU-performance lever: if the working set fits, larger two-DIMM capacities should not materially accelerate the CPU.
 - If 48 GB later proves insufficient, replace the pair with a larger matched two-DIMM kit; **do not add a second pair** as the planned upgrade path.
 - ECC is not used.
 - `M.2_1` hosts the purchased **2 TB Crucial T710 Gen5 primary SSD**. `M.2_2` and `M.2_3` remain free for later expansion.
 - No separate system/work SSD split, SSD cache layer or automatic tiering is required initially.
-- **Phantom Spirit 120 + Pure Base 501** remains the final cooling/chassis combination; both still need to be sourced.
+- **Phantom Spirit 120 + Pure Base 501** is the purchased final cooling/chassis combination.
 - 1 GbE is sufficient; the board's 2.5 GbE is already more than required.
 - No multi-GPU/x8+x8 requirement; retire the RTX 3060 if a future GPU replacement occurs.
 - **Pure Power 13 M 850W** is purchased; 1000–1200 W remains unnecessary.
@@ -63,26 +71,26 @@ See [`docs/purchases-2026-09-01.md`](docs/purchases-2026-09-01.md).
 
 ## Procurement position — 2026-09-01
 
-Architecture and exact component selection are closed. Procurement is **partially complete**.
+Architecture and exact component selection are closed. Procurement is **nearly complete**.
 
 Already purchased:
 
 - CPU;
 - motherboard;
 - primary SSD;
-- PSU.
+- PSU;
+- CPU cooler;
+- case.
 
-Already available outside this hardware order:
+Already available outside these hardware orders:
 
 - Windows 11 Pro license.
 
 Still to purchase:
 
-- exact Crucial Pro `CP2K24G56C46U5` RAM;
-- exact Thermalright Phantom Spirit 120 standard cooler;
-- exact be quiet! Pure Base 501 Airflow Black `BG074` case.
+- exact Crucial Pro `CP2K24G56C46U5` RAM.
 
-The exact selected motherboard remains **B650E-E `90MB1LT0-M0EAY0`**; verify that manufacturer code on the physical box before installation because the retailer order text records the model name but not a trustworthy full SKU.
+The exact selected motherboard remains **B650E-E `90MB1LT0-M0EAY0`**; verify that manufacturer code on the physical box before installation. The Vexio case must arrive as **`BG074`**, and the cooler must be the **standard Phantom Spirit 120**, not SE/EVO.
 
 ## Repository structure
 
@@ -92,7 +100,7 @@ The exact selected motherboard remains **B650E-E `90MB1LT0-M0EAY0`**; verify tha
 - [`docs/requirements.md`](docs/requirements.md) — workload and governing requirements
 - [`docs/procurement-plan-2026-08-31.md`](docs/procurement-plan-2026-08-31.md) — procurement policy/state
 - [`docs/final-order-plan-2026-08-31.md`](docs/final-order-plan-2026-08-31.md) — executed/remaining order framework
-- [`docs/purchases-2026-09-01.md`](docs/purchases-2026-09-01.md) — first executed purchase record
+- [`docs/purchases-2026-09-01.md`](docs/purchases-2026-09-01.md) — executed purchase ledger
 - [`docs/checkout-checklist.md`](docs/checkout-checklist.md) — exact-SKU purchase and arrival verification workflow
 - [`docs/ram-capacity-sensitivity-2026-08-31.md`](docs/ram-capacity-sensitivity-2026-08-31.md) — resolved RAM analysis; final decision is 48 GB
 - [`docs/compatibility.md`](docs/compatibility.md) — cross-component topology/constraints
@@ -102,4 +110,4 @@ Historical/date-stamped snapshots may contain superseded architectures. Follow t
 
 ## Current stage
 
-**Partial procurement.** Complete sourcing for **RAM, cooler and case**; verify purchased hardware on arrival; then move to assembly and commissioning.
+**Nearly complete procurement.** Source only the exact RAM kit, verify all purchased hardware on arrival, then move to assembly and commissioning.
