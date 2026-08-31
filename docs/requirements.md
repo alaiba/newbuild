@@ -8,13 +8,14 @@ Fixed architecture decisions:
 
 - **CPU/platform:** AMD Ryzen 9 9950X3D on AM5;
 - **memory:** 128 GB from day one as **2×64 GB DDR5 UDIMM / 1DPC**;
+- **cooling architecture:** high-quality air cooling, exact model open;
 - **active-work storage:** **1–2 TB NVMe on a CPU-direct M.2 x4 path**;
 - **system storage:** about **1 TB**, NVMe preferred but SATA acceptable when that produces a better motherboard/value trade-off;
 - **GPU:** reuse the existing RTX 3060 12 GB for as long as it remains useful/reliable;
 - **host OS:** Windows 11 Pro x64 with WSL2 + Ubuntu 26.04.1 LTS;
 - **UPS:** none in the initial BOM.
 
-Open items include the exact motherboard, RAM kit/ECC verdict, storage models, premium 750/850 W PSU and final case reconfirmation.
+Open items include the exact CPU cooler, motherboard, RAM kit/ECC verdict, storage models, premium 750/850 W PSU and final case reconfirmation.
 
 ## Workload priority
 
@@ -62,9 +63,26 @@ Exact kit priorities:
 - conservative JEDEC behavior;
 - sane voltage;
 - good board/QVL evidence where available;
-- reasonable physical height with NH-D15 G2;
+- normal physical dimensions that do not force an unnecessarily large cooler/case compromise;
 - normal warranty/availability;
 - ECC only if exact support and OS-visible reporting are credible without compromising stability/value.
+
+## Cooling requirements
+
+**Air cooling is selected; exact cooler model is open.**
+
+The cooler must:
+
+- sustain stock/conservative Ryzen 9 9950X3D operation under long development/test workloads without material thermal throttling;
+- provide acceptable acoustics under sustained real work;
+- fit cleanly with the final 2×64 GB memory kit, motherboard and chassis;
+- use replaceable fans and favor simple long-lived construction;
+- have a credible mounting/support/warranty path;
+- justify any premium through acoustics, compatibility, serviceability or real thermal margin rather than maximum benchmark cooling capacity.
+
+The previous NH-D15 G2 exact-model lock is removed. Compare at least a Phantom Spirit 120-class value option, Noctua NH-U12A and NH-D15 G2-class premium reference.
+
+Do not enlarge the case or restrict RAM selection merely to preserve an oversized cooler if a smaller/cheaper air cooler meets the real requirement.
 
 ## Motherboard requirements
 
@@ -181,13 +199,11 @@ Short outages are operationally acceptable and there is no need to keep working 
 
 Use a reputable **plug-in surge protector / surge-protected power strip** at the workstation as the practical point-of-use protection measure. No electrical-installation modifications are part of this build. Understand that point-of-use surge protection is not equivalent to coordinated building-level SPD protection and relies on a sound protective-earth connection.
 
-## Cooling
-
-High-end air cooling remains preferred. The Noctua NH-D15 G2 standard is selected. No pump/liquid dependency unless a real requirement appears.
-
 ## Chassis
 
-Airflow, serviceability, dust management and normal single-GPU compatibility remain important. The North XL is still selected but deserves one final value/size check because the old very-large-future-GPU requirement has weakened.
+Airflow, serviceability, dust management and normal single-GPU compatibility remain important. The North XL is still selected for now but deserves one final value/size check because both the old very-large-future-GPU requirement and the locked NH-D15 G2 requirement have weakened.
+
+The final case/cooler combination should be chosen together. Neither component should force unnecessary size or cost on the other.
 
 ## Budget and procurement
 
