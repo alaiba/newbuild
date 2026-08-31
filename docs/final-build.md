@@ -6,25 +6,22 @@ This is the current source-of-truth architecture for the workstation.
 
 | Component | Configuration | Status |
 |---|---|---|
-| CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Purchased 2026-09-01 — EvoMAG; arrival verification pending** |
-| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Purchased 2026-09-01 — EvoMAG; exact box SKU verification pending** |
-| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB) DDR5-5600 CL46-class, 1.1 V, non-ECC** | **Selected / not yet purchased — only remaining buy** |
-| Memory topology | **1DPC / A2+B2; Auto/JEDEC first** | **Selected** |
-| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Purchased 2026-09-01 — Vexio; arrival verification pending** |
-| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Purchased 2026-09-01 — Vexio; arrival verification pending** |
-| Case airflow | **2x included 140 mm PWM: front intake + rear exhaust** | **Selected initial layout** |
-| Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Purchased 2026-09-01 — EvoMAG; arrival verification pending** |
-| Bulk/cold storage | Reuse healthy existing SATA drives; `M.2_2` + `M.2_3` remain free for future expansion | **Selected policy** |
-| Storage RAID/cache/tiering | **None** | **Selected** |
-| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | **Purchased 2026-09-01 — EvoMAG; arrival verification pending** |
-| PSU fallback | Corsair RM850x 2024 850W `CP-9020270-EU` | **Obsolete fallback; primary PSU already purchased** |
-| UPS | **None initially** | **Selected** |
-| Dedicated surge protection | **None required** | **Selected** |
-| GPU | Existing **RTX 3060 12 GB** | **Reuse** |
-| Host OS | **Windows 11 Pro x64** | **Selected; license already available** |
-| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** |
-
-Windows is no longer a procurement item. Do not include it in remaining shopping lists or build-cost estimates.
+| CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Purchased — EvoMAG; arrival verification pending** |
+| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Purchased — EvoMAG; exact box SKU verification pending** |
+| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB) DDR5-5600 CL46-class, 1.1 V, non-ECC** | **Purchased — CEL.ro; arrival verification pending** |
+| Memory topology | **1DPC / A2+B2; Auto/JEDEC first** | Final |
+| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Purchased — Vexio; arrival verification pending** |
+| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Purchased — Vexio; arrival verification pending** |
+| Case airflow | **2x included 140 mm PWM: front intake + rear exhaust** | Final initial layout |
+| Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Purchased — EvoMAG; arrival verification pending** |
+| Bulk/cold storage | Reuse healthy existing SATA drives; `M.2_2` + `M.2_3` remain free | Final policy |
+| Storage RAID/cache/tiering | None | Final |
+| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | **Purchased — EvoMAG; arrival verification pending** |
+| GPU | Existing **RTX 3060 12 GB** | Reuse |
+| Host OS | **Windows 11 Pro x64** | Selected; license already available |
+| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | Selected |
+| UPS | None initially | Final |
+| Dedicated surge protection | None required | Final |
 
 ## Executed purchases — 2026-09-01
 
@@ -32,11 +29,11 @@ Windows is no longer a procurement item. Do not include it in remaining shopping
 
 | Item | Paid price incl. VAT |
 |---|---:|
-| AMD Ryzen 9 9950X3D Box | **3,349.99 lei** |
+| Ryzen 9 9950X3D Box | **3,349.99 lei** |
 | ASUS TUF GAMING B650E-E WIFI | **785.99 lei** |
 | Crucial T710 2 TB | **1,699.99 lei** |
 | be quiet! Pure Power 13 M 850W | **683.99 lei** |
-| **Hardware subtotal** | **6,519.96 lei** |
+| Hardware subtotal | **6,519.96 lei** |
 | Courier | **11.99 lei** |
 | **Order total** | **6,531.95 lei** |
 
@@ -49,81 +46,69 @@ Windows is no longer a procurement item. Do not include it in remaining shopping
 | Shipping | **0.00 lei** |
 | **Order total** | **662.98 lei** |
 
-**Committed total so far: 7,194.93 lei including shipping.**
+### CEL.ro
 
-These six new hardware components are now **committed purchases**. Do not re-source or redesign around them unless a delivered item is incorrect, damaged, cancelled, or a material defect is discovered.
+| Item | Paid price incl. VAT |
+|---|---:|
+| Crucial Pro `CP2K24G56C46U5`, 48 GB / 2x24 GB | **2,899.00 lei** |
+| **Order total** | **2,899.00 lei** |
 
-Detailed transaction record: `docs/purchases-2026-09-01.md`.
+No separate shipping charge was shown in the supplied CEL.ro checkout total.
+
+**Total committed for all newly purchased hardware: 10,093.93 lei.**
+
+Procurement is complete. Do not re-source or redesign around these components unless a delivered item is incorrect, damaged, cancelled, or a material defect is discovered.
+
+Detailed transaction ledger: `docs/purchases-2026-09-01.md`.
 
 ## Motherboard — final
 
-Selected and purchased board: **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`**.
+Selected and purchased: **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`**.
 
-It satisfies the actual workstation requirements without paying for unused B850/Creator capabilities: PCIe 5.0 x16 graphics, CPU-direct Gen5 + Gen4 M.2 paths, a third chipset Gen4 x4 M.2, four SATA ports, BIOS FlashBack/Q-LED, adequate stock-load VRM margin, 2.5 GbE and Wi-Fi 6E.
-
-The second physical x16 slot is only chipset PCIe 4.0 x1. That trade-off is accepted because no high-bandwidth add-in card is required.
-
-**Arrival gate:** the EvoMAG order text identifies the B650E-E model, but the exact manufacturer part number must still be verified on the physical box before assembly. Required: `90MB1LT0-M0EAY0`.
+Arrival gate: the physical box must identify `90MB1LT0-M0EAY0`. Reject B650-E `90MB1GT0-M0EAY0`, B650E-PLUS, or another similarly named board.
 
 ## Memory — final
 
-Selected kit:
+Purchased from CEL.ro for **2,899.00 lei**:
 
 > **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB), DDR5-5600 CL46-class, 1.1 V, non-ECC UDIMM.**
 
-Why 48 GB:
+Why 48 GB remains correct:
 
-- preserves **two DIMMs / 1DPC**, which is the preferred AM5 topology;
-- preserves the Ryzen 9 9950X3D's official DDR5-5600 two-DIMM support path;
-- current Romanian price is around **2,899 lei**, dramatically below the currently distorted 64/128 GB alternatives;
-- larger capacities do not materially improve CPU performance while the active working set already fits;
-- the trade-off is concurrency headroom, not raw CPU speed.
+- preserves two DIMMs / 1DPC;
+- preserves the Ryzen 9 9950X3D DDR5-5600 two-DIMM path;
+- capacity is a concurrency limit, not an intrinsic CPU-speed lever while the workload fits;
+- larger current kits did not justify their price premium.
 
-### Upgrade policy
+Upgrade policy: do **not** add another 2x24 GB pair later. If measured memory pressure eventually justifies more capacity, replace this pair with a larger matched two-DIMM kit.
 
-Do **not** add another 2x24 GB pair later. AMD officially rates the 9950X3D at DDR5-3600 with four DIMMs versus DDR5-5600 with two DIMMs.
+Bring-up:
 
-If real monitoring later shows persistent memory pressure, replace the current pair with a larger matched two-DIMM kit available at that time.
-
-### Bring-up policy
-
-1. Install the two modules in **A2/B2**.
-2. Update to a current stable production BIOS.
-3. Boot at **Auto/JEDEC**.
-4. Confirm normal DDR5-5600 operation at conservative voltage.
-5. Do not enable EXPO/XMP during initial commissioning unless later justified.
-6. Run extended memory testing plus representative Java/Android/WSL workloads.
-7. Record BIOS/AGESA, trained timings and voltages.
-8. Monitor committed memory during real work to establish whether a future capacity replacement is actually needed.
+1. install in **A2/B2**;
+2. update to a current stable production BIOS;
+3. boot at **Auto/JEDEC**;
+4. confirm DDR5-5600 operation at conservative voltage;
+5. do not enable EXPO/XMP during initial commissioning unless later justified;
+6. run extended memory testing and representative Java/Android/WSL workloads.
 
 ## Cooling and chassis — final
 
 Purchased from Vexio:
 
-- **Thermalright Phantom Spirit 120 standard** — 246.99 lei;
-- **be quiet! Pure Base 501 Airflow Black `BG074`** — 415.99 lei;
-- shipping — 0.00 lei.
+- Thermalright Phantom Spirit 120 standard — **246.99 lei**;
+- be quiet! Pure Base 501 Airflow Black `BG074` — **415.99 lei**.
 
-Initial airflow remains one included 140 mm front intake + one included 140 mm rear exhaust.
+Initial airflow: one included 140 mm front intake + one included 140 mm rear exhaust.
 
-Arrival gates:
-
-- cooler must be the standard Phantom Spirit 120, not SE/EVO, with both 120 mm fans and AM5 mounting hardware;
-- case must be `BG074`, non-window Airflow Black, with both included 140 mm PWM fans.
+Arrival gates: cooler must be standard Phantom Spirit 120, not SE/EVO; case must be exact `BG074` with both included 140 mm PWM fans.
 
 ## Storage architecture — final
 
 Purchased primary NVMe:
 
-> **Crucial T710 2 TB `CT2000T710SSD8`** in **`M.2_1` CPU PCIe 5.0 x4** under the motherboard heatsink.
+> **Crucial T710 2 TB `CT2000T710SSD8`** in `M.2_1` CPU PCIe 5.0 x4 under the motherboard heatsink.
 
-Current use is about 600 GB, so 2 TB provides ample active-storage headroom. `M.2_2` and `M.2_3` remain empty for later additive expansion; existing healthy SATA drives remain available for cold data.
-
-No separate system/work SSD split, SSD cache, automatic tiering or RAID is required.
-
-## GPU policy
-
-Reuse the RTX 3060 until a concrete upgrade need appears. No dual-GPU design.
+`M.2_2` and `M.2_3` remain free for later additive expansion. Existing healthy SATA drives may be reused for cold data. No separate system/work SSD split, SSD cache, automatic tiering or RAID is required.
 
 ## PSU — final
 
@@ -131,63 +116,27 @@ Purchased:
 
 > **be quiet! Pure Power 13 M 850W `BP027EU`**
 
-The 850 W model won because the premium over a comparable premium 750 W unit was small while retaining excellent acoustics, ATX 3.1 support and a long warranty. No 1000–1200 W provisioning is required.
+Use only the modular cables supplied with this exact PSU.
 
-## UPS / mains protection — final
+## GPU / OS / mains policy
 
-No UPS and no dedicated surge protector initially. Use a properly earthed wall outlet or an ordinary reputable 16 A Schuko strip if extra outlets are needed.
+- reuse RTX 3060 until a concrete upgrade need appears;
+- Windows 11 Pro x64 is the host OS; license already available;
+- WSL2 + Ubuntu 26.04.1 LTS is the Linux environment;
+- no UPS and no dedicated surge protector initially.
 
-## Hard purchase / arrival gates
+## Arrival gates
 
-### CPU
-- AMD Ryzen 9 9950X3D Box/WOF `100-100000719WOF`;
-- **already purchased**; reject tray/OEM substitution on arrival.
-
-### Motherboard
-- ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`;
-- **already purchased by model name**; verify exact physical box SKU before installation;
-- do not accept B650-E `90MB1GT0-M0EAY0` or B650E-PLUS.
-
-### RAM
-- exact **Crucial Pro `CP2K24G56C46U5`** matched **2x24 GB** kit;
-- **only remaining component to purchase**;
-- non-ECC UDIMM;
-- DDR5-5600, 1.1 V-class conservative operation;
-- install A2/B2;
-- no planned four-DIMM expansion.
-
-### Cooler
-- Thermalright Phantom Spirit 120 standard;
-- **already purchased from Vexio**;
-- verify standard model, not SE/EVO, on arrival.
-
-### Case
-- be quiet! Pure Base 501 Airflow Black `BG074` with both included 140 mm fans;
-- **already purchased from Vexio**;
-- verify exact `BG074` on arrival.
-
-### Storage
-- Crucial T710 2 TB `CT2000T710SSD8`, bare/non-heatsink, in `M.2_1`;
-- **already purchased**; verify exact variant on arrival.
-
-### PSU
-- be quiet! Pure Power 13 M 850W `BP027EU`;
-- **already purchased**; use only its supplied modular cables.
+- CPU: `100-100000719WOF`, Box/WOF;
+- motherboard: `90MB1LT0-M0EAY0`;
+- RAM: `CP2K24G56C46U5`, 48 GB = 2x24 GB;
+- cooler: Phantom Spirit 120 standard, not SE/EVO;
+- case: `BG074`, non-window Airflow Black;
+- SSD: `CT2000T710SSD8`, bare/non-heatsink;
+- PSU: `BP027EU`, complete original modular cable set.
 
 ## Procurement position — 2026-09-01
 
-Architecture and component selection are closed. Procurement is **nearly complete**.
+**Procurement complete. No required new hardware remains to source.**
 
-Purchased from EvoMAG: **CPU + motherboard + primary SSD + PSU**, total **6,531.95 lei**.
-
-Purchased from Vexio: **case + CPU cooler**, total **662.98 lei**.
-
-**Committed total: 7,194.93 lei including shipping.**
-
-Windows 11 Pro is already available and requires no procurement action.
-
-Remaining to source: **RAM only — Crucial Pro `CP2K24G56C46U5`, 48 GB / 2x24 GB**.
-
-For purchased components, stop price shopping and perform physical identity/condition verification when they arrive.
-
-Detailed decisions: `docs/decisions.md`.
+Current phase: physical identity/condition verification, then assembly and commissioning.

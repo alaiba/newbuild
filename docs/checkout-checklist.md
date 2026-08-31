@@ -1,188 +1,104 @@
-# Checkout / Arrival Verification Checklist
+# Arrival Verification Checklist
 
-Use this checklist for the final RAM purchase and again when physical packages arrive.
+Procurement is complete. Use this checklist when the physical packages arrive and before installation.
 
 ## Verification levels
 
-For every purchased component, verify at three levels:
+For every purchased component, verify:
 
-1. **Retailer product page** — exact manufacturer SKU/specification.
-2. **Cart / order confirmation / invoice** — the same exact SKU, no silent normalization or substitution.
-3. **Physical box label before assembly** — exact SKU and product identity match the order.
+1. retailer/order identity;
+2. physical box label and product identity;
+3. packaging/seals/condition and required accessories.
 
-If any level disagrees, stop and resolve the discrepancy before installation.
+If any level disagrees, do not install the part until the discrepancy is resolved.
 
 ## Purchase state — 2026-09-01
 
-Already purchased from EvoMAG:
+| Provider | Purchased items | Order total |
+|---|---|---:|
+| EvoMAG | CPU, motherboard, SSD, PSU | **6,531.95 lei** |
+| Vexio | case, CPU cooler | **662.98 lei** |
+| CEL.ro | RAM | **2,899.00 lei** |
+| **Total committed** | all required newly purchased hardware | **10,093.93 lei** |
 
-- CPU — Ryzen 9 9950X3D Box/WOF;
-- motherboard — ASUS TUF GAMING B650E-E WIFI;
-- SSD — Crucial T710 2 TB;
-- PSU — be quiet! Pure Power 13 M 850W.
+Windows 11 Pro is already available and is not a purchase item. RTX 3060 and suitable SATA drives are reused.
 
-EvoMAG total: **6,531.95 lei including 11.99 lei courier**.
+## Exact arrival gates
 
-Already purchased from Vexio:
+| Item | Required identity | Reject / warning |
+|---|---|---|
+| CPU | AMD Ryzen 9 9950X3D `100-100000719WOF` | Reject tray/OEM substitution |
+| Motherboard | ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0` | Reject B650-E `90MB1GT0-M0EAY0`, B650E-PLUS or other near-name variants |
+| RAM | Crucial Pro `CP2K24G56C46U5`, 48 GB = 2x24 GB | Reject single-DIMM `CP24G56C46U5`, different capacity/topology or RDIMM |
+| Cooler | Thermalright Phantom Spirit 120 standard | Reject SE/EVO substitution |
+| Case | be quiet! Pure Base 501 Airflow Black `BG074` | Confirm non-window model and both included 140 mm PWM fans |
+| SSD | Crucial T710 2 TB `CT2000T710SSD8` | Must be bare/non-heatsink variant |
+| PSU | be quiet! Pure Power 13 M 850W `BP027EU` | Reject other revision/wattage; never mix modular cables |
 
-- case — be quiet! Pure Base 501 Airflow Black `BG074`, **415.99 lei**;
-- cooler — Thermalright Phantom Spirit 120 standard, **246.99 lei**;
-- shipping — **0.00 lei**.
-
-Vexio total: **662.98 lei**.
-
-**Committed total: 7,194.93 lei including shipping.**
-
-Windows 11 Pro is already available and is **not a checkout item**.
-
-Still to purchase:
-
-- **RAM only**.
-
-## Exact purchase / arrival gates
-
-| Item | Required identity | Current state | Reject / special warning |
-|---|---|---|---|
-| CPU | AMD Ryzen 9 9950X3D **`100-100000719WOF`** | Purchased | Reject silent tray/OEM substitution |
-| Motherboard | ASUS TUF GAMING B650E-E WIFI **`90MB1LT0-M0EAY0`** | Purchased by model name; physical SKU pending | Do not confuse with B650-E **`90MB1GT0-M0EAY0`** or B650E-PLUS |
-| RAM | Crucial Pro **`CP2K24G56C46U5`**, 48 GB = **2x24 GB** | **Not yet purchased — only remaining buy** | Reject single-DIMM `CP24G56C46U5`, RDIMM or different topology |
-| Cooler | Thermalright **Phantom Spirit 120 standard** | Purchased from Vexio | Reject SE/EVO substitution; confirm both fans and AM5 mounting hardware |
-| Case | be quiet! Pure Base 501 Airflow Black **`BG074`** | Purchased from Vexio | Confirm non-window model and both included 140 mm PWM fans |
-| SSD | Crucial T710 2 TB **`CT2000T710SSD8`** | Purchased | Must be bare/non-heatsink variant |
-| PSU | be quiet! Pure Power 13 M 850W **`BP027EU`** | Purchased | Reject Pure Power 12 M, other wattage/revision; never mix modular cables |
-
-## Remaining retailer-page checks — RAM only
-
-For the RAM listing:
-
-- confirm exact manufacturer part number `CP2K24G56C46U5`;
-- confirm the product is new retail stock, not open-box/refurbished;
-- confirm 48 GB total as two 24 GB desktop UDIMMs;
-- confirm DDR5-5600 and non-ECC;
-- record price including VAT;
-- record stock state and realistic lead time;
-- record warranty duration/path;
-- record delivery/shipping cost when available.
-
-Do not infer equivalence from capacity/speed alone. The exact matched kit is the purchase control.
-
-## Arrival checks for the EvoMAG order
-
-Before opening or installing the purchased hardware:
+## EvoMAG arrival checks
 
 ### CPU
-
-Required:
-
-> `100-100000719WOF` — Ryzen 9 9950X3D Box/WOF
-
-Check the box label and package identity. Reject tray/OEM substitution.
+- box must identify `100-100000719WOF` / Ryzen 9 9950X3D Box/WOF;
+- inspect seal/packaging for damage or prior use.
 
 ### Motherboard
-
-Required:
-
-> `90MB1LT0-M0EAY0` — TUF GAMING B650E-E WIFI
-
-Known naming trap:
-
-> `90MB1GT0-M0EAY0` — TUF GAMING B650-E WIFI
-
-The EvoMAG order text matches **B650E-E WIFI**, but the physical manufacturer part number is the final control. Do not install until `90MB1LT0-M0EAY0` is confirmed.
+- box must identify `90MB1LT0-M0EAY0`;
+- model must be **TUF GAMING B650E-E WIFI**;
+- do not open/install a B650-E or B650E-PLUS substitute.
 
 ### SSD
-
-Required:
-
-> `CT2000T710SSD8`
-
-Confirm the SSD has **no factory heatsink**. It will be installed under the selected ASUS motherboard M.2 heatsink in `M.2_1`.
+- confirm `CT2000T710SSD8`;
+- confirm no factory heatsink;
+- retain label/serial information for firmware/SMART baseline records.
 
 ### PSU
+- confirm `BP027EU`, Pure Power 13 M 850W;
+- confirm complete original modular cable set;
+- use only cables supplied with this exact PSU.
 
-Required:
-
-> `BP027EU`
-
-Confirm:
-
-- Pure Power **13 M**;
-- **850 W**;
-- new retail unit;
-- original complete modular cable set;
-- no shipping damage or signs of prior use.
-
-Only cables supplied with this exact PSU may be used.
-
-## Arrival checks for the Vexio order
+## Vexio arrival checks
 
 ### Cooler
-
-Required:
-
-> Thermalright **Phantom Spirit 120 standard**
-
 Confirm:
-
-- standard model, not **SE** or **EVO**;
+- Phantom Spirit 120 **standard**;
 - seven heatpipes;
 - approximately 157 mm tower height;
-- two 120 mm fans corresponding to the standard model;
+- two standard-model 120 mm fans;
 - AM5 mounting hardware present;
-- no shipping damage or signs of prior use.
+- no damage/prior-use indicators.
 
 ### Case
+Confirm:
+- exact `BG074` identity;
+- Pure Base 501 Airflow Black, non-window;
+- both included 140 mm PWM fans present;
+- panels, mesh, connectors and accessory box complete/undamaged.
+
+## CEL.ro RAM arrival checks
 
 Required:
 
-> be quiet! Pure Base 501 Airflow Black **`BG074`**
+> **Crucial Pro `CP2K24G56C46U5`**
 
 Confirm:
-
-- exact `BG074` identity;
-- non-window Airflow Black variant;
-- both included 140 mm PWM fans present;
-- panels, mesh, connectors and accessory box undamaged/complete.
-
-## RAM purchase check
-
-Required:
-
-> `CP2K24G56C46U5`
-
-Confirm all of:
-
 - 48 GB total;
 - **2 modules**;
 - **24 GB per module**;
 - DDR5-5600;
 - desktop UDIMM;
-- non-ECC.
+- non-ECC;
+- sealed/new-retail condition.
 
-A listing for a single 48 GB module is not equivalent even if the frequency/timings look identical.
+Install the pair in **A2/B2** and commission at **Auto/JEDEC first**. Do not enable EXPO/XMP during the initial stability baseline unless later justified.
 
-## Provider/price consolidation
-
-Policy after the two executed orders:
-
-- EvoMAG and Vexio are already the two hardware providers used;
-- a third provider is acceptable for the exact RAM kit if necessary;
-- exact SKU, warranty and retailer quality outrank small savings;
-- do not disturb already placed orders for consolidation.
-
-Calculate final cost using **delivered totals**. Do not include Windows in remaining procurement cost.
-
-## Physical arrival checks — all hardware
+## Physical handling
 
 Before opening/installing components:
-
-- photograph the box label showing SKU/serial where practical;
-- compare the printed SKU to this checklist and the invoice/order confirmation;
-- inspect packaging/seals for signs of open-box substitution or shipping damage;
-- keep packaging, invoices and serial records through commissioning and return windows.
-
-Do not install a mismatched component merely to see whether it works; installation can complicate a return.
+- photograph box labels/SKUs/serials where practical;
+- compare them to the order ledger;
+- inspect packaging for shipping damage/open-box substitution;
+- preserve invoices, packaging and serial records through commissioning and return windows.
 
 ## After verification
 
-Once RAM is purchased and every item passes the exact-SKU checks, proceed to assembly/commissioning using `docs/final-build.md` and the component dossiers.
+Once every item passes identity and condition checks, proceed to assembly/commissioning using `docs/final-build.md` and the component dossiers.
