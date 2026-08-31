@@ -1,6 +1,6 @@
 # Case and Airflow Deep Dive
 
-Status: **Selected — Fractal Design North XL Mesh**
+Status: **Selected — Fractal Design North XL Mesh + 3 front intake / 1 rear exhaust**
 
 ## Selected chassis
 
@@ -10,7 +10,7 @@ It fits the mature system envelope without paying the size/maintenance penalty o
 
 - ATX/E-ATX support, including up to 330 mm board width;
 - **413 mm GPU length** with the standard front-fan arrangement;
-- **185 mm CPU-cooler height**, comfortably above the 168 mm NH-D15 G2 target;
+- **185 mm CPU-cooler height**, comfortably above the selected NH-D15 G2 configuration;
 - dedicated **front and PSU dust filters**;
 - three included **140 mm PWM front intake fans**;
 - rear 140 mm fan support;
@@ -58,7 +58,7 @@ If a future card genuinely exceeds this envelope, reconsidering the chassis at t
 ### Initial layout
 
 - **Front:** 3× included Fractal Aspect 14 PWM — intake
-- **Rear:** add 1× 140 mm PWM — exhaust
+- **Rear:** **1× Noctua NF-A14x25 G2 PWM — exhaust**
 - **Top:** empty initially
 - **Side:** empty initially
 
@@ -66,27 +66,62 @@ This creates a direct front-to-rear airflow path and mild positive pressure beca
 
 Do not fill every fan position by default. Additional fans add bearings, noise, dust paths and control complexity. Add top/side fans only if measured thermals justify them.
 
-### Preferred rear fan
+## Selected rear fan: Noctua NF-A14x25 G2 PWM
 
-**Noctua NF-A14x25 G2 PWM** is the provisional premium rear exhaust fan.
+Exact selected model:
 
-Relevant manufacturer specifications:
+- **Noctua NF-A14x25 G2 PWM**
+- square-frame 140 × 140 × 25 mm version;
+- EAN **9010018100617** for the standard brown/beige version;
+- 4-pin PWM;
+- 0–1500 RPM, with approximately 300 RPM at 20% PWM and stop at 0% PWM;
+- maximum airflow about **155.6 m³/h / 91.6 CFM**;
+- maximum static pressure about **2.56 mm H2O**;
+- SSO2 bearing;
+- MTTF **>150,000 hours**;
+- six-year manufacturer warranty.
 
-- 140 × 140 × 25 mm;
-- 0–1500 rpm PWM;
-- maximum airflow about 91.6 CFM;
-- 6-year warranty;
-- MTTF >150,000 hours.
+The **chromax.black** version is technically equivalent and may be substituted if it is similarly priced or aesthetically preferred, but there is no reliability or cooling reason to pay a significant premium for the colour variant.
 
-A lower-cost quality 140 mm PWM fan is acceptable if the Noctua premium is disproportionate at purchase time.
+### Why this fan
+
+The rear exhaust is a permanent, low-complexity component in a workstation intended for long ownership. The Noctua premium is acceptable here because it buys:
+
+- an unusually broad useful PWM range rather than a high minimum speed;
+- high airflow at modest maximum speed;
+- premium bearing/motor construction;
+- excellent acoustic efficiency;
+- zero-RPM capability if later fan-control policy benefits from it;
+- six-year warranty and >150,000-hour MTTF rating;
+- consistency with the selected Noctua CPU-cooling ecosystem and long-term serviceability philosophy.
+
+The goal is **not** to run the rear fan at 1500 RPM continuously. It should normally operate at low/moderate RPM and ramp only under sustained thermal load.
+
+### Alternatives considered
+
+**ARCTIC P14 PWM / P14 Max** remain excellent value alternatives. The P14 PWM is substantially cheaper while retaining PWM control and a six-year warranty. The P14 Max adds a 400–2800 RPM range and very high static pressure. Neither displaces the Noctua because maximum fan throughput is not the limiting requirement at the North XL's open rear exhaust; acoustic efficiency, low-speed control and long-term component quality are more valuable here.
+
+The included Fractal Aspect 14 PWM design is adequate for the three front intake positions, where buying three replacement fans would add unnecessary cost. There is no reason to replace them pre-emptively. The single new rear position is where buying the premium fan from the start is cheap and durable.
+
+## Procurement — 2026-08-31
+
+Procurement preference remains **PC Garage first, eMAG second**, but do not buy an unnecessary bundle merely to satisfy retailer preference.
+
+Current Romanian market evidence shows:
+
+- single NF-A14x25 G2 PWM fans roughly in the **180–210 lei** class at competitive sellers;
+- PC Garage currently surfaces the **Sx2-PP two-pack** at roughly **388 lei** rather than a clearly indexed single-fan listing.
+
+Because the selected build needs **one** rear fan, do not spend roughly twice the required amount on a two-pack unless the second fan has a concrete planned use. If PC Garage or eMAG has the single fan at purchase time at a normal price, prefer them. Otherwise buy one from a reputable Romanian/EU seller with normal warranty.
 
 ## Fan-control policy
 
 - front intake fans: common motherboard-controlled curve where practical;
-- rear exhaust: motherboard-controlled curve;
+- rear NF-A14x25 G2 PWM: motherboard-controlled curve;
 - prefer low, steady RPM over aggressive reaction to short Ryzen temperature spikes;
 - validate using sustained Java build/test workloads and combined CPU/GPU load;
-- retain slight positive pressure at normal loads.
+- retain slight positive pressure at normal loads;
+- do not use the Low-Noise Adaptor by default; achieve the desired curve through PWM control first.
 
 ## Dust and maintenance
 
@@ -114,12 +149,12 @@ The North XL premium over Silent Base 802 is modest and buys a newer, smaller pa
 
 ## Reopen conditions
 
-Reopen the chassis decision only if:
+Reopen the chassis/fan decision only if:
 
-- the final motherboard exceeds North XL board-width support;
-- the final cooler/RAM combination cannot fit within the 185 mm cooler-height envelope;
-- a selected GPU requires more than the available length/width/cable clearance;
-- purchase-time pricing/availability changes radically; or
+- a final component exceeds North XL clearance;
+- a selected future GPU requires more than the available length/width/cable clearance;
+- the NF-A14x25 G2 PWM becomes unusually expensive or unavailable relative to an equally reliable alternative;
+- measured thermals demonstrate that the selected four-fan layout is insufficient; or
 - a material reliability/fit issue emerges.
 
-Otherwise, **Fractal Design North XL Mesh is selected**.
+Otherwise, **Fractal Design North XL Mesh + 3× included front intake + 1× Noctua NF-A14x25 G2 PWM rear exhaust is selected**.
