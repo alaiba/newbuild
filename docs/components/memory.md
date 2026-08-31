@@ -1,133 +1,189 @@
 # Memory Deep Dive
 
-Status: **Phase-1 memory selected / 256 GB endpoint deferred**
+Status: **32 GB Phase-1 baseline selected / 64 GB Phase-1 option under review / 256 GB endpoint deferred**
 
 ## Fixed strategy
 
-The memory strategy has two deliberately independent levels:
+The memory strategy has three deliberately distinct levels:
 
-- **Architectural endpoint:** preserve a credible path to **256 GB** system memory.
-- **Phase-1 minimum:** **32 GB** in a simple, stable configuration that reliably boots and runs the workstation.
+1. **Phase-1 baseline:** 32 GB, sufficient to commission and use the workstation at minimum sunk cost.
+2. **Optional Phase-1 upgrade:** 64 GB, to be chosen only if the final purchase-time price delta over 32 GB is attractive enough.
+3. **Architectural endpoint:** preserve a credible path to **256 GB**, expected 4×64 GB, with the exact ECC/non-ECC implementation deferred.
 
-Phase-1 RAM is explicitly **temporary commissioning memory**. It does not need to resemble the eventual 256 GB configuration, use ECC, maximize frequency, or preserve an upgrade path through the same DIMMs.
+Phase-1 RAM remains explicitly **temporary commissioning memory**. Neither the 32 GB nor an optional 64 GB Phase-1 configuration should constrain the eventual 256 GB matched configuration.
 
-The Phase-1 memory should be treated as **replaceable**, not as a sunk-cost constraint on the eventual 256 GB configuration. Reuse or resale later is a bonus, not a design requirement.
+The final **32 GB versus 64 GB Phase-1 purchase choice is intentionally deferred until the end of the initial-build purchasing pass**, when the total budget and then-current RAM prices are known.
 
-## Selected Phase-1 memory — 2026-08-31
+## 32 GB baseline
+
+Current baseline:
 
 **GOODRAM 32 GB DDR5-5600 CL46 — `GR5600D564L46/32G` — 1×32 GB**
 
-This replaces the previously provisional Kingston FURY Beast `KF560C30BBEK2-32` 2×16 GB kit.
+Current purchase position on 2026-08-31:
 
-### Why this is the better Phase-1 purchase
+- PC Garage: approximately **2,199.99 lei**, in stock;
+- broader Romanian market: roughly **2.08–2.15k lei**.
 
-The current Romanian DDR5 market remains unusually expensive. At the 2026-08-31 purchase-readiness pass:
+Manufacturer characteristics:
 
-- PC Garage: GOODRAM `GR5600D564L46/32G` approximately **2,199.99 lei**, in stock;
-- PC Garage: Kingston FURY Beast `KF560C30BBEK2-32` approximately **2,998.99 lei**;
-- broader Romanian GOODRAM offers begin around **2.08–2.15k lei**.
-
-The GOODRAM therefore saves roughly **800 lei** versus the Kingston kit at the preferred retailer while still satisfying the only hard Phase-1 requirement: 32 GB of stable DDR5 memory.
-
-That saving is material because the Phase-1 RAM is intentionally disposable. Paying roughly 36% more for dual-channel bandwidth, tighter timings and an EXPO profile that are not part of the long-term configuration is poor use of the build budget.
-
-### Why one DIMM is acceptable
-
-A 1×32 GB configuration gives up dual-channel aggregate bandwidth relative to 2×16 GB. This can reduce performance in memory-bandwidth-sensitive workloads and is **not** the desired long-term configuration.
-
-It is nevertheless appropriate for Phase 1 because:
-
-- the goal is reliable commissioning and basic productive use, not peak benchmark performance;
-- one DIMM is the simplest memory-controller load and therefore an easy stability target;
-- capacity remains 32 GB, matching the commissioning floor;
-- the module operates at standard **DDR5-5600 CL46, 1.1 V** rather than depending on an overclocking profile;
-- AMD officially specifies DDR5-5600 support for the Ryzen 9 9950X3D with both 2×1R and 2×2R configurations, so 5600 MT/s is within the CPU's normal two-DIMM memory class rather than an EXPO target;
-- the module will be replaced rather than expanded when the final 256 GB configuration is purchased.
-
-If Phase 1 lasts unexpectedly long and single-channel bandwidth becomes a measurable productivity problem, do **not** automatically buy a second unmatched module. Reassess whether it is then better to accelerate the final 256 GB purchase.
-
-## Selected module characteristics
-
-Manufacturer data for `GR5600D564L46/32G`:
-
-- 32 GB;
-- 1×32 GB;
+- 32 GB, 1×32 GB;
 - DDR5 UDIMM, 288-pin desktop memory;
-- DDR5-5600;
-- CL46;
+- DDR5-5600 CL46;
 - 1.1 V;
-- 2048×8 organization;
 - no heatsink / no RGB;
-- approximately **133.35 × 31.25 × 3.6 mm**;
+- approximately **31.25 mm** high;
 - lifetime manufacturer warranty.
 
-The 31.25 mm module height is also useful mechanically: it fits under the NH-D15 G2's approximately 32 mm normal dual-fan RAM clearance, so the selected Phase-1 configuration requires **no front-fan lift**.
+This is the **minimum-sunk-cost reference**. It deliberately gives up dual-channel aggregate bandwidth, but is electrically simple, uses ordinary JEDEC-class settings, satisfies the 32 GB floor and fits under the NH-D15 G2 without raising the front fan.
 
-Manufacturer reference:
+Do not buy a second unmatched module later merely to convert this temporary configuration to dual-channel. If capacity/bandwidth becomes insufficient, reassess the planned 256 GB upgrade instead.
+
+References:
 - https://www.goodram.com/produkty/goodram-ddr5-dimm/
+- https://www.price.ro/preturi~goodram-32gb-ddr5-5600mhz-cl46-4737947.html
 
-CPU memory reference:
-- https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-9-9950x3d.html
+## Optional 64 GB Phase-1 tier
 
-## QVL / compatibility posture
+### Preferred topology: 2×32 GB
 
-The exact GOODRAM SKU was not found as an explicitly validated ProArt QVL entry during this purchase pass. That is acceptable for this deliberately simple commissioning configuration because:
+If we decide to spend more for 64 GB initially, **2×32 GB is preferred over 1×64 GB**.
 
-- motherboard QVLs are not exhaustive support lists;
-- this is an ordinary JEDEC-class 1.1 V DDR5 UDIMM rather than an aggressive EXPO/XMP configuration;
-- only one DIMM is populated initially, minimizing electrical/training complexity;
-- the module is temporary and can be exchanged if the individual board/module combination shows an unexpected training problem.
+Reasons:
 
-The more expensive Kingston `KF560C30BBEK2-32` remains a known-compatible fallback, but its roughly 800 lei premium is not justified merely to obtain a QVL/configurator match for throw-away Phase-1 RAM.
+- doubles capacity versus the 32 GB baseline;
+- restores dual-channel bandwidth;
+- two DIMMs are still a straightforward AM5 topology;
+- current 2×32 GB pricing is generally as good as or better than current 1×64 GB pricing;
+- the optional kit is still temporary, so there is no need to preserve an expansion path through these DIMMs.
 
-## Installation / operating policy
+A single 64 GB DIMM remains technically valid but is currently poor value: current Kingston ValueRAM `KVR56U46BD8-64` pricing is roughly **5.1k lei or higher**, while credible 2×32 GB kits begin around the high-4k range.
 
-For commissioning:
+### 64 GB candidate A — Crucial 2×32 GB DDR5-5600 CL46
 
-1. install the single 32 GB DIMM in the motherboard's recommended slot for a one-DIMM configuration (normally **A2**; confirm against the current ProArt manual before assembly);
-2. update the ProArt BIOS before serious testing;
-3. boot at **Auto/JEDEC** settings;
-4. do not manually overclock the Phase-1 DIMM;
-5. accept an automatically selected lower data rate if firmware chooses one for stability;
-6. run an extended memory test before treating the system as commissioned;
-7. record the installed DIMM part number and actual negotiated speed/timings.
+**Crucial `CT2K32G56C46U5` — 64 GB (2×32 GB), DDR5-5600 CL46**
 
-There is no reason to tune this temporary module for latency or bandwidth.
+Why it is attractive:
 
-## Retailer policy
+- ordinary desktop UDIMM;
+- 2×32 GB dual-channel topology;
+- DDR5-5600 CL46;
+- **1.1 V** operating class;
+- XMP/EXPO support exists, but the kit can be treated conservatively at Auto/JEDEC settings;
+- current broader Romanian pricing is roughly **4.7–4.8k lei** at the low end.
 
-Procurement preference remains:
+This is currently the **value/control leader** for the optional 64 GB tier if a reputable seller and warranty path are satisfactory.
 
-1. **PC Garage** first;
-2. **eMAG** second;
-3. another reputable Romanian/EU retailer only when the preferred sources are materially worse on price/availability.
+Reference:
+- https://www.compari.ro/memorii-c3577/crucial/64gb-2x32gb-ddr5-5600mhz-ct2k32g56c46u5-p993167062/
 
-At approximately 2,199.99 lei, PC Garage is close enough to the broader Romanian market for the preferred-retailer rule to win.
+### 64 GB candidate B — Kingston FURY Beast 2×32 GB DDR5-5600 CL36 EXPO
 
-Reopen the exact Phase-1 SKU only if:
+**Kingston FURY Beast `KF556C36BBEK2-64` — 64 GB (2×32 GB), DDR5-5600 CL36**
 
-- PC Garage stock disappears before ordering;
-- its price rises materially relative to another ordinary 32 GB DDR5 UDIMM;
-- an exact compatibility/training problem appears;
-- or a substantially better-value 32 GB+ commissioning option becomes available.
+Why it is attractive:
+
+- Kingston explicitly lists this exact kit for the **ASUS ProArt X870E-Creator WiFi**;
+- 2×32 GB dual-channel topology;
+- AMD EXPO support;
+- 5600 MT/s CL36 profile at 1.25 V;
+- current PC Garage indexing is around **5.56k lei**.
+
+This is the **compatibility-confidence candidate** if its premium over Crucial becomes small enough.
+
+Reference:
+- https://www.kingston.com/en/memory/search/model/110021/asus-proart-x870e-creator-wifi-motherboard
+
+### 64 GB candidate C — Kingston FURY Beast 2×32 GB DDR5-6000 CL36 EXPO
+
+**Kingston FURY Beast `KF560C36BBEK2-64` — 64 GB (2×32 GB), DDR5-6000 CL36**
+
+Why it remains on the list:
+
+- Kingston explicitly lists it for the selected ProArt motherboard;
+- current PC Garage price indexing has shown approximately **5.0k lei** during this pass, although other current snapshots are materially higher;
+- if a real checkout price around 5.0k lei is available, it can be cheaper than nominally slower 5600 kits because of promotions.
+
+Do **not** choose it because of the 6000 MT/s headline. Phase 1 should still boot and validate at Auto/JEDEC first; EXPO is optional. Its value is simply that market promotions can make it the cheapest strongly validated 2×32 GB kit on a given day.
+
+References:
+- https://www.kingston.com/en/memory/search/model/110021/asus-proart-x870e-creator-wifi-motherboard
+- https://www.pricy.ro/ProductUrlId/kit-memorie-ram-kingston-fury-beast-64gb-2x32gb-ddr5-6000mhz-dual-channel-kf560c36bbek2-64-7E9EED5D7E7B74946A9E5225D7780722
+
+### 64 GB control — 1×64 GB Kingston ValueRAM
+
+**Kingston `KVR56U46BD8-64` — 64 GB (1×64 GB), DDR5-5600 CL46, 1.1 V**
+
+Positives:
+
+- Kingston explicitly lists the module for the ProArt X870E-Creator WiFi;
+- conservative JEDEC-class 5600 MT/s, CL46, 1.1 V;
+- simplest possible one-DIMM topology.
+
+Why it is not currently preferred:
+
+- it remains single-channel;
+- current Romanian pricing is roughly **5.1k lei+**, so it costs more than the best 2×32 GB alternatives while delivering less bandwidth.
+
+Keep it only as a procurement/control option if 2×32 GB availability changes materially.
+
+References:
+- https://www.kingston.com/en/memory/search/model/110021/asus-proart-x870e-creator-wifi-motherboard
+- https://www.price.ro/preturi~kingston-valueram-64gb-ddr5-5600mhz-cl46-1.1v-4734105.html
+
+## Current 32 GB versus 64 GB economics
+
+Using the current 32 GB PC Garage baseline of **2,199.99 lei**:
+
+| Option | Current rough price | Increment vs 32 GB | Capacity/topology |
+|---|---:|---:|---|
+| GOODRAM `GR5600D564L46/32G` | **~2.20k lei** | baseline | 32 GB, 1×32, single-channel |
+| Crucial `CT2K32G56C46U5` | **~4.7–4.8k lei** broader market | **+~2.5–2.6k** | 64 GB, 2×32, dual-channel |
+| Kingston `KF560C36BBEK2-64` | **~5.0k lei in recent PC Garage indexing** | **+~2.8k** | 64 GB, 2×32, dual-channel |
+| Kingston `KF556C36BBEK2-64` | **~5.56k lei PC Garage** | **+~3.36k** | 64 GB, 2×32, dual-channel |
+| Kingston `KVR56U46BD8-64` | **~5.1k lei+ broader market** | **+~2.9k+** | 64 GB, 1×64, single-channel |
+
+These prices are unusually high and volatile. Refresh them immediately before the final order.
+
+### Decision rule for the end-of-build pass
+
+The optional 64 GB tier becomes attractive when the best credible **2×32 GB** kit is close enough to the 32 GB baseline that the extra 32 GB capacity **plus dual-channel bandwidth** justify the additional sunk cost.
+
+Current working threshold:
+
+- **strong buy at ≤ ~4.5k lei** for a credible 2×32 GB kit;
+- **serious consideration around ~4.5–4.8k lei**;
+- **32 GB baseline remains favored once the 64 GB price moves materially above ~5.0k lei**, unless the final overall build budget has substantial unused room.
+
+This threshold is deliberately not a hard rule. At the final purchase review, consider the whole initial-build total and whether 64 GB would materially delay the 256 GB endpoint.
+
+## Operating policy for either Phase-1 capacity
+
+Regardless of whether the final Phase-1 purchase is 32 GB or 64 GB:
+
+1. install in the motherboard-recommended slot(s);
+2. update the ProArt BIOS before serious validation;
+3. boot at **Auto/JEDEC** first;
+4. treat EXPO/XMP as optional;
+5. do not sacrifice stability for advertised frequency/timings;
+6. run extended memory testing before commissioning;
+7. record exact DIMM SKU and negotiated rate/timings.
+
+## Cooler clearance
+
+- 32 GB GOODRAM baseline: ~31.25 mm high; no NH-D15 G2 front-fan lift required.
+- Kingston FURY Beast candidates: ~34.9 mm high; expect only ~3 mm front-fan lift, resulting in ~171 mm cooler height versus the North XL's 185 mm limit.
+- GOODRAM IRDM-class 2×32 kits are also around 31.25 mm high, but no exact IRDM SKU is currently preferred over the candidates above.
+
+Therefore none of the serious 64 GB options creates a chassis-clearance problem.
 
 ## ECC posture
 
-**System-level ECC remains a strong preference for the eventual long-term memory configuration, but it is not a requirement for Phase 1.**
+**System-level ECC remains a strong preference for the eventual 256 GB configuration, but it is not a Phase-1 requirement.**
 
-The rationale is reliability rather than performance. A long-lived workstation with large JVM heaps, multiple VMs/containers, databases and long-running build/test/analysis workloads has meaningful memory-resident state worth protecting. ECC can reduce the risk that a memory fault becomes a silent data corruption, unexplained process/test failure, VM crash or corrupted in-memory/page-cache state.
+DDR5 on-die ECC is not equivalent to system-level ECC. For the final memory configuration, prefer ECC UDIMM only if exact 64 GB modules, four-DIMM operation, stability and OS-visible error reporting are all credible.
 
-DDR5 on-die ECC is not equivalent to system-level ECC: on-die ECC only corrects errors internal to individual DRAM devices and does not provide the same end-to-end protection across the module/bus/controller path.
-
-For the eventual high-capacity configuration, prefer ECC UDIMM if all of the following are true:
-
-- the selected motherboard officially supports ECC UDIMM with the 9950X3D;
-- the target capacity is credibly supported/validated;
-- correctable and uncorrectable ECC events are exposed to Windows/Linux in a way that can actually be monitored;
-- stable operation does not require marginal tuning;
-- the cost and data-rate trade-off are reasonable relative to the reliability benefit.
-
-Do not select ECC merely because a board can boot ECC DIMMs. If ECC reporting is hidden/non-functional, capacity support is weak, or the available configuration is materially less stable than a proven non-ECC configuration, prefer the more reliable overall system rather than the ECC label.
+Do not pay an ECC premium for temporary Phase-1 memory.
 
 ## Eventual 256 GB configuration
 
@@ -135,34 +191,21 @@ The endpoint remains **4×64 GB or equivalent**.
 
 At upgrade time:
 
-1. reassess the ProArt's current BIOS/AGESA and QVL;
+1. reassess the ProArt BIOS/AGESA and QVL;
 2. identify the best exact 4×64 GB configuration then available;
-3. prefer ECC UDIMM if exact 64 GB modules, four-DIMM support, stability and OS-visible reporting are all credible;
+3. prefer ECC UDIMM if exact modules, four-DIMM support, stability and OS-visible reporting are credible;
 4. otherwise choose a strongly validated 4×64 GB non-ECC configuration;
-5. start at JEDEC/Auto and accept 5200 MT/s or lower if required for stability;
+5. start at JEDEC/Auto and accept 5200 MT/s or lower if required;
 6. avoid EXPO/XMP merely to preserve headline frequency at 256 GB;
-7. perform extended memory stability testing;
-8. if ECC is used, verify Windows WHEA and/or Linux EDAC/RAS reporting before treating ECC as operationally useful.
+7. perform extended stability testing;
+8. verify real ECC event reporting if ECC is used.
 
-**RDIMM is incompatible with this AM5 platform.** Many 64 GB server ECC products are RDIMMs and must not be confused with ECC UDIMMs.
+**RDIMM is incompatible with this AM5 platform.**
 
-## Workload implications
+## Current conclusion
 
-The selected 1×32 GB Phase-1 configuration deliberately sacrifices some memory bandwidth. The main practical constraints are:
-
-- less bandwidth than a dual-DIMM configuration;
-- only the same capacity as the current commissioning floor;
-- limited concurrency headroom for combinations of IntelliJ, Android Studio, emulators, Docker/WSL2, local services and VMs.
-
-Those costs are accepted because this is a temporary configuration purchased specifically to release budget for permanent components.
-
-The 256 GB endpoint remains valuable for larger JVM heaps, more concurrent JVMs/IDEs/services/VMs, local databases/data processing and future AI support workflows.
-
-## Selected conclusion
-
-- **Phase-1 exact memory:** GOODRAM 32 GB DDR5-5600 CL46 `GR5600D564L46/32G`, **1×32 GB — Selected**.
-- **Phase-1 objective:** stable commissioning and usable 32 GB capacity at minimum sensible sunk cost.
-- **Dual-channel:** deliberately deferred; not worth ~800 lei extra for temporary RAM at current pricing.
-- **EXPO/XMP:** unnecessary for Phase 1.
+- **32 GB baseline:** GOODRAM `GR5600D564L46/32G`, 1×32 GB, ~2.20k lei at PC Garage.
+- **64 GB optional tier:** prefer **2×32 GB**, with Crucial `CT2K32G56C46U5` as the current value control and Kingston `KF556C36BBEK2-64` / `KF560C36BBEK2-64` as explicitly ProArt-listed alternatives.
+- **1×64 GB:** technically valid but currently poor value.
+- **Final 32 GB vs 64 GB choice:** **deferred until the end of the initial purchase review**.
 - **Long-term endpoint:** 256 GB, expected 4×64 GB; exact modules and ECC verdict deferred.
-- **Upgrade policy:** replace the Phase-1 DIMM rather than designing the final configuration around it.
