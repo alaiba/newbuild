@@ -12,13 +12,14 @@ Fixed architecture decisions:
 - **cooler:** Thermalright Phantom Spirit 120 standard;
 - **chassis:** be quiet! Pure Base 501 Airflow Black `BG074`;
 - **initial airflow:** two included 140 mm PWM fans, front intake + rear exhaust;
-- **active-work storage:** 1–2 TB NVMe on a CPU-direct M.2 x4 path;
-- **system storage:** about 1 TB, preferably NVMe on the second CPU-connected M.2 path;
+- **primary storage:** **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe, installed in CPU-direct `M.2_1` under the motherboard heatsink;
+- **storage architecture:** one primary NVMe initially; no separate cache/system/work SSD and no automatic SSD tiering;
+- **cold/bulk storage:** reuse existing SATA drives where appropriate after health validation;
 - **GPU:** reuse RTX 3060 12 GB for as long as useful/reliable;
 - **host OS:** Windows 11 Pro x64 with WSL2 + Ubuntu 26.04.1 LTS;
 - **UPS:** none initially.
 
-Open items: exact system/active-work SSDs, premium 750/850 W PSU, exact plug-in surge protector and final provider/price consolidation.
+Open items: premium 750/850 W PSU, exact plug-in surge protector and final provider/price consolidation.
 
 ## Workload priority
 
@@ -49,12 +50,12 @@ The board satisfies:
 - Ryzen 9 9950X3D / Ryzen 9000 support with an actively maintained BIOS branch;
 - 256 GB platform memory capacity and support categories covering 2×64 GB / DDR5-5600 configurations;
 - primary CPU-connected **PCIe 5.0 x16** graphics path;
-- CPU-connected `M.2_1` PCIe 5.0 x4 for active work;
-- CPU-connected `M.2_2` PCIe 4.0 x4 for the system SSD;
-- chipset-connected `M.2_3` PCIe 4.0 x4 for later storage;
+- CPU-connected `M.2_1` PCIe 5.0 x4 for the selected primary SSD;
+- CPU-connected `M.2_2` PCIe 4.0 x4 for later expansion;
+- chipset-connected `M.2_3` PCIe 4.0 x4 for later expansion;
 - sufficient stock/conservative 9950X3D power delivery;
 - BIOS FlashBack and Q-LED diagnostics;
-- four SATA ports;
+- four SATA ports for existing/later cold storage;
 - reliable 2.5 GbE, already beyond the actual network requirement.
 
 The following are explicitly **not requirements**: B850 itself, 5/10 GbE, CPU x8/x8, a secondary PCIe x4 expansion slot, multiple Gen5 M.2 slots, extreme-overclocking power delivery and provisioning for a hypothetical 500–600 W future GPU.
@@ -101,27 +102,36 @@ Policy:
 - use only the two included 140 mm case fans initially;
 - add another front intake only if closed-case measurements justify it.
 
-## Storage requirements
+## Storage requirements — satisfied
 
-### Active-work SSD
+Current storage use is approximately **600 GB**. Even allowing for more ambitious projects, the foreseeable active-storage requirement is not expected to exceed **2 TB** soon. Existing slower SATA drives will remain available for cold/bulk data.
 
-- CPU-direct M.2 x4; selected board `M.2_1` is the preferred slot;
-- **1 TB sufficient**;
-- **2 TB preferred when incremental price/value is attractive**;
-- TLC strongly preferred;
-- DRAM preferred where reasonably priced;
-- mature firmware, strong sustained/mixed behavior and sensible endurance;
-- Gen4 sufficient; Gen5 optional only when effectively free/useful.
+### Primary SSD
 
-### System drive
+Selected: **Crucial T710 2 TB `CT2000T710SSD8`**.
 
-Target about **1 TB**. The selected board provides a clean second CPU-connected M.2 path, so NVMe is the natural choice. SATA remains an allowed fallback, not a topology requirement.
+Requirements and role:
 
-Prioritize reliability, capacity headroom, firmware/warranty and price over flagship sequential performance.
+- install in CPU-direct `M.2_1` at PCIe 5.0 x4;
+- use the bare/non-heatsink SSD variant under the ASUS motherboard M.2 heatsink;
+- one filesystem may contain Windows, applications, repositories, Gradle/Maven caches, WSL2, containers, Android emulator data, active VMs/databases, games and other actively used data;
+- TLC NAND and DRAM-equipped flagship-class behavior are preferred for sustained development workloads;
+- 2 TB provides generous headroom over current usage without paying for unused 4 TB capacity;
+- Gen5 is justified here because the live premium over credible premium Gen4 alternatives is small enough to use the board's CPU-direct Gen5 capability without distorting the budget.
+
+### Deliberately rejected initial complexity
+
+Do **not** buy a second NVMe merely to separate Windows from work data. Do **not** buy a small SSD specifically as an L2 cache for the primary SSD. Do **not** create Storage Spaces/Fusion-style automatic SSD tiering.
+
+The active working set fits comfortably on one fast SSD, so direct placement is simpler, more predictable and avoids cache warm-up, duplicated NAND writes, write-back failure semantics and unnecessary device/partition management.
 
 ### Bulk/cold storage
 
-Add only when needed via `M.2_3`, SATA SSD/HDD, external storage or NAS. Existing healthy HDDs may be reused for infrequently accessed data, but never as the sole copy of important information.
+Reuse existing healthy SATA SSD/HDD devices for infrequently accessed data such as archives, old projects, installers/ISOs, media, old VM images and backup staging. Validate health/SMART data before relying on old devices.
+
+Important data must not exist only on an old SATA drive merely because it currently reports healthy.
+
+`M.2_2` and `M.2_3` remain free for additive future storage if a concrete need appears.
 
 No RAID requirement; maintain independent backup/version-control protection.
 
