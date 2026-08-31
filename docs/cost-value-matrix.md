@@ -40,7 +40,8 @@ This matrix evaluates the workstation on **utility per leu**, not benchmark perf
 | Corsair RM850x 2024 `CP-9020270-EU` | Excellent ATX 3.1 quality/protection/fan implementation | Worth switching only if delivered price is within ~30–40 lei or warranty/retailer is materially better | **Fallback** |
 | 1000–1200 W PSU | Speculative GPU margin | No default justification; replace PSU later only if a concrete future GPU requires it | **Not required** |
 | **No UPS** | Avoids cost/battery maintenance | Short outages are acceptable; continuity not needed | **Selected** |
-| Plug-in surge protector | Point-of-use transient protection | Proportional no-installation solution | **Selected policy** |
+| Dedicated plug-in surge protector | Adds another sacrificial transient-protection layer | Given the user's risk tolerance, apartment environment and selected PSU's internal protection, the incremental benefit does not justify a dedicated purchase. Reconsider only if actual mains-quality problems appear. | **Not required** |
+| Ordinary 16 A Schuko power strip | Additional outlets only | Fine when needed for convenience; not counted as a special protection component | **Utility item only** |
 | Existing RTX 3060 12 GB | Current graphics/CUDA capability with no spend | Keep until failure or concrete upgrade need | **Selected / reuse** |
 | Future flagship GPU pre-provisioning | Avoids possible future PSU/case change | Too speculative; efficiency/needs can change and cloud AI is acceptable | **Rejected as design driver** |
 | Windows 11 Pro Retail/FPP | Correct DIY licensing path and Pro features | Avoid gray-market/OEM ambiguity | **Selected** |
@@ -82,8 +83,14 @@ A premium **750 W ATX 3.1** unit would already be sufficient. The decision moved
 
 That is the correct use of the project's premium rule: a small premium buys a concrete durable margin. It does **not** justify returning to 1000–1200 W sizing for an unknown future GPU.
 
+## Mains-protection interpretation
+
+The build deliberately carries **no UPS and no dedicated surge protector**. That decision accepts the residual low-frequency mains risk rather than spending hundreds of lei on a protection layer the user does not value in this environment.
+
+A properly earthed wall outlet is the baseline. An ordinary reputable 16 A Schuko strip may be used for outlet count, but it is not a BOM-level protection purchase.
+
 ## Premium rule
 
 When two candidates satisfy the requirements, choose the cheaper one unless the premium buys a **specific durable advantage**: better proven stability, materially better acoustics, better recovery/support, longer serviceability, necessary compatibility/topology or endurance the workload will actually use.
 
-Invalid premiums include unused benchmark capability, unused storage capacity, unused high-bandwidth expansion/networking, extreme OC features, oversized cooling/case/wattage and speculative future-proofing.
+Invalid premiums include unused benchmark capability, unused storage capacity, unused high-bandwidth expansion/networking, extreme OC features, oversized cooling/case/wattage, unvalued mains-protection premiums and speculative future-proofing.
