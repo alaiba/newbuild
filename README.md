@@ -24,7 +24,7 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 | PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 |
 | PSU fallback | Corsair RM850x 2024 `CP-9020270-EU` only if checkout value/warranty is better |
 | UPS | **None initially** |
-| Point-of-use power protection | Reputable surge-protected Schuko plug/power strip, exact model open |
+| Dedicated surge protector | **None required**; use a properly earthed wall outlet or a reputable ordinary 16 A Schuko strip if additional outlets are needed |
 | GPU | Existing **RTX 3060 12 GB**, reused for as long as useful/reliable |
 | Host OS | **Windows 11 Pro x64**, initial 25H2 GA |
 | Windows license | **Retail/FPP USB English `HAV-00163`**, current target PROstore |
@@ -43,12 +43,11 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 - 1 GbE is sufficient; the board's 2.5 GbE is already more than required.
 - No multi-GPU/x8+x8 requirement; retire the RTX 3060 if a future GPU replacement occurs.
 - **Pure Power 13 M 850W** is selected because the current premium over the 750 W sibling is small while platform quality, acoustics and ATX 3.1 compliance are strong; 1000–1200 W remains unnecessary.
-- No UPS initially.
+- No UPS and no dedicated surge protector are purchased initially. Revisit mains protection only if actual power-quality problems appear.
 
 ## Current open work
 
-1. Select exact **plug-in surge protector**.
-2. Refresh prices/providers and produce the final order total.
+1. Refresh prices/providers and produce the final order total.
 
 ## Repository structure
 
@@ -61,4 +60,4 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 
 ## Current stage
 
-**CPU, motherboard, RAM, cooler, case, primary storage and PSU are closed. Point-of-use surge protection is the final component choice before a full price/provider refresh.**
+**CPU, motherboard, RAM, cooler, case, primary storage and PSU are closed. No UPS or dedicated surge-protection purchase is required. The remaining task is the full price/provider refresh and final order plan.**
