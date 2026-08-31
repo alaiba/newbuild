@@ -79,11 +79,11 @@ The 850 W selection provides useful headroom for a substantially faster future G
 
 If a later GPU has unusually high board power or a vendor explicitly recommends more than the selected PSU can support, replace the PSU then rather than treating today's 850 W decision as an immutable lifetime constraint.
 
-## UPS interaction
+## UPS / mains interaction
 
 There is no UPS requirement in the initial BOM. PSU sizing is independent of a hypothetical UPS wattage ceiling.
 
-Use point-of-use surge protection as the practical mains-protection measure under the project's no-electrical-installation-change constraint.
+There is also no dedicated plug-in surge-protector requirement. The workstation may be connected to a properly earthed wall outlet or to a reputable ordinary 16 A Schuko power strip when additional outlets are needed. Revisit external mains protection only if actual power-quality problems appear.
 
 ## Commissioning
 
@@ -102,3 +102,5 @@ During assembly:
 - **Fallback:** Corsair RM850x 2024 850W `CP-9020270-EU`, price/warranty dependent.
 - **750 W:** technically sufficient but no longer the purchase target.
 - **1000–1200 W:** not required.
+- **UPS:** not required initially.
+- **Dedicated surge protector:** not required initially.
