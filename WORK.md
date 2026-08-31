@@ -35,12 +35,13 @@ Hardware subtotal: **6,519.96 lei including VAT**. Courier: **11.99 lei**. Order
 
 Do **not** re-source or re-optimize these four purchased components unless the delivered item is wrong, damaged, cancelled, or a material compatibility defect is discovered.
 
-The remaining procurement work is:
+The Windows 11 Pro license is **already available** and is no longer part of procurement.
+
+The remaining procurement work is only:
 
 - RAM — Crucial Pro `CP2K24G56C46U5`, 48 GB = 2×24 GB;
 - CPU cooler — Thermalright Phantom Spirit 120 standard;
-- case — be quiet! Pure Base 501 Airflow Black `BG074`;
-- Windows 11 Pro Retail/FPP English USB `HAV-00163`.
+- case — be quiet! Pure Base 501 Airflow Black `BG074`.
 
 For purchased items, the next gate is **physical arrival verification**, not price shopping.
 
@@ -56,7 +57,7 @@ For purchased items, the next gate is **physical arrival verification**, not pri
 | Primary SSD | **Crucial T710 2 TB `CT2000T710SSD8`**, bare/non-heatsink | **Purchased 2026-09-01 — EvoMAG; arrival verification pending** |
 | PSU | **be quiet! Pure Power 13 M 850W `BP027EU`** | **Purchased 2026-09-01 — EvoMAG; arrival verification pending** |
 | GPU | **reuse existing RTX 3060 12 GB** | Already owned |
-| Windows | **Windows 11 Pro Retail/FPP English USB `HAV-00163`** | **Not yet purchased** |
+| Host OS | **Windows 11 Pro x64** | Selected; license already available |
 | UPS | **none** | No purchase planned |
 | Dedicated surge protector | **none** | No purchase planned |
 
@@ -116,14 +117,6 @@ Purchased target:
 
 Reject a tray/OEM substitution on arrival.
 
-### Windows
-
-Selected, not yet purchased:
-
-- `HAV-00163` — Windows 11 Pro **Retail/FPP English USB**.
-
-Do not substitute OEM/System Builder or suspicious low-cost digital keys without explicit licensing review.
-
 ## Provider policy
 
 EvoMAG is now the executed **first hardware provider**. Do not change already purchased items merely for consolidation.
@@ -131,9 +124,10 @@ EvoMAG is now the executed **first hardware provider**. Do not change already pu
 For the remaining items:
 
 - prefer at most one additional hardware provider for RAM + cooler + case if exact models and delivered pricing are acceptable;
-- a separate software provider for Windows remains acceptable;
 - exact SKU/warranty/product condition outrank a small nominal saving;
 - do not substitute the cooler or case merely to keep everything at EvoMAG.
+
+Windows is explicitly **outside the remaining procurement scope**.
 
 ## Current cost position
 
@@ -145,14 +139,14 @@ For the remaining items:
 
 This committed amount covers CPU, motherboard, SSD and PSU only.
 
-Remaining cost is still driven mainly by RAM, case, cooler and Windows. Do not compare future totals to the older ~11.0–11.3k lei estimate without separating **already committed spend** from **remaining spend**.
+Remaining spend is only for **RAM + cooler + case**. Windows must not be included in future procurement totals.
 
 ## What Work should do now
 
 1. Treat CPU, motherboard, SSD and PSU as **purchased**, not shopping candidates.
 2. When they arrive, verify physical box labels, seals, condition and exact identities before opening/installing.
 3. In particular, confirm motherboard **`90MB1LT0-M0EAY0`** before assembly.
-4. Continue procurement only for RAM, cooler, case and Windows.
+4. Continue procurement only for **RAM, cooler and case**.
 5. For remaining items, verify exact SKU/model, stock, warranty, condition and delivered price.
 6. Preserve invoices, order confirmations, serials and packaging through commissioning/return windows.
 7. Do **not** change the architecture unless a selected exact component is genuinely unavailable or a new material fact justifies reopening it.
