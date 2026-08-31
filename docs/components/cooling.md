@@ -92,40 +92,41 @@ No motherboard-heatsink or PCIe-slot conflict is expected for the selected orien
 Source:
 - https://www.noctua.at/en/compatibility/by-components/motherboards/asus-proart-x870e-creator-wifi
 
-## RAM clearance with Kingston `KF560C30BBEK2-32`
+## RAM clearance with selected Phase-1 GOODRAM
 
 The selected Phase-1 RAM is:
 
-- **Kingston FURY Beast Black EXPO 32 GB (2×16 GB) DDR5-6000 CL30**
-- exact SKU: **`KF560C30BBEK2-32`**
-- module height: **34.9 mm**
+- **GOODRAM 32 GB DDR5-5600 CL46**
+- exact SKU: **`GR5600D564L46/32G`**
+- topology: 1×32 GB
+- module height: approximately **31.25 mm**
 
 The NH-D15 G2 provides roughly **32 mm RAM clearance** in the normal dual-fan configuration.
 
 Therefore:
 
-- the front fan needs to be raised by only about **3 mm**;
-- practical cooler height becomes roughly **171 mm** rather than 168 mm;
-- this is a very small adjustment and does not meaningfully compromise airflow or acoustics.
+- the selected module fits below the front fan without lifting it;
+- practical cooler height remains the stock **168 mm**;
+- no airflow/acoustic compromise is introduced by the Phase-1 memory choice.
 
-The cooler can also be operated with the center fan only if a future high-density DIMM configuration ever creates an unusual clearance problem, but this is not required for the current Kingston kit.
+The eventual 256 GB memory remains unknown. If future 64 GB DIMMs are taller than the cooler's normal clearance, the front fan may need to be raised or the fan arrangement reconsidered then.
 
 Sources:
-- https://www.kingston.com/datasheets/KF560C30BBEK2-32.pdf
+- https://www.goodram.com/produkty/goodram-ddr5-dimm/
 - https://www.noctua.at/en/support/faqs/what-is-the-ram-clearance-of-my-noctua-cpu-cooler
 
 ## Case clearance: Fractal Design North XL Mesh
 
 The selected **Fractal Design North XL Mesh** supports CPU coolers up to **185 mm** high.
 
-With the Kingston kit:
+With the selected Phase-1 GOODRAM:
 
 - NH-D15 G2 stock height: **168 mm**;
-- required front-fan lift: approximately **3 mm**;
-- resulting practical height: approximately **171 mm**;
-- remaining case margin: approximately **14 mm**.
+- required front-fan lift: **none**;
+- resulting practical height: **168 mm**;
+- remaining case margin: approximately **17 mm**.
 
-This is comfortably inside the chassis envelope and leaves enough tolerance for ordinary assembly variation.
+This is comfortably inside the chassis envelope and leaves generous tolerance for ordinary assembly variation.
 
 Source:
 - https://www.fractal-design.com/products/cases/north/north-xl/mesh/
@@ -198,7 +199,7 @@ At assembly:
 2. use Noctua's **-7 mm AM5 offset mounting position**;
 3. apply NT-H2 using Noctua's current AM5 guidance;
 4. install the center fan normally;
-5. raise the front fan only enough to clear the 34.9 mm Kingston DIMMs;
+5. keep the front fan at the normal stock position with the selected 31.25 mm GOODRAM DIMM;
 6. confirm the fan remains comfortably inside the North XL side-panel envelope;
 7. inspect top-PCIe-slot/GPU and EPS-cable clearance before final cable management.
 
@@ -231,5 +232,7 @@ There is no requirement to replace the heatsink on a schedule.
 ## Selected conclusion
 
 > **Ryzen 9 9950X3D + Noctua NH-D15 G2 standard + 7 mm AM5 offset mount + Fractal North XL Mesh, operated at stock/conservative CPU settings.**
+
+With the selected Phase-1 GOODRAM DIMM, the cooler requires no fan lift and remains at its stock 168 mm height.
 
 This exact cooler decision is closed. Reopen it only if a material compatibility/availability problem appears or real workload validation demonstrates that the selected acoustic/thermal target cannot be met.
