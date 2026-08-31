@@ -1,39 +1,38 @@
 # Compatibility and Topology Tracker
 
-This document captures cross-component constraints for the selected workstation.
+This document captures cross-component constraints for the workstation after the memory-architecture change on 2026-08-31.
 
 ## Core platform
 
 Selected:
 
 - AMD Ryzen 9 **9950X3D**;
-- ASUS **ProArt X870E-Creator WiFi**;
-- Phase-1 **64 GB Crucial `CT2K32G56C46U5`**;
-- long-term **256 GB** target, expected 4×64 GB.
+- final memory capacity **128 GB from day one**;
+- final memory topology **2×64 GB DDR5 UDIMM / 1DPC**.
 
-Operating policy:
+Reopened:
 
-- current stable BIOS before serious validation;
-- CPU stock/conservative;
-- RAM Auto/JEDEC during commissioning;
-- preserve the board's validated 256 GB path;
-- ECC only if exact long-term modules, four-DIMM stability and OS-visible reporting are credible.
+- exact motherboard;
+- exact 2×64 GB memory kit;
+- ECC/non-ECC verdict.
+
+The ASUS ProArt X870E-Creator WiFi remains the incumbent reference until the next optimization pass, but its previous 4×64/256 GB-specific justification no longer controls the selection.
 
 ## Motherboard ↔ memory
 
-Selected Phase-1 RAM:
+Final constraints:
 
-- Crucial `CT2K32G56C46U5`;
-- 64 GB / 2×32;
-- DDR5-5600 CL46;
-- 1.1 V;
-- desktop UDIMM.
+- 128 GB total;
+- exactly two 64 GB UDIMMs as the intended configuration;
+- one DIMM per channel;
+- normally A2/B2, subject to the selected motherboard manual;
+- Auto/JEDEC first;
+- no EXPO/XMP requirement for baseline operation;
+- extended memory stability testing before commissioning.
 
-Strict purchase gate: reject `CT2K32G56C46S5` laptop/SO-DIMM.
+There is **no provisional 64 GB stage** and no planned 256 GB / four-DIMM upgrade.
 
-Kingston `KF556C36BBEK2-64` remains the explicit-ProArt fallback if its price premium shrinks materially or Crucial availability deteriorates.
-
-Install A2/B2, boot Auto/JEDEC first and run extended memory testing.
+ECC is optional. Select it only if exact-module board support and practical OS-visible reporting are credible.
 
 ## Cooling ↔ memory ↔ case
 
@@ -43,41 +42,37 @@ Selected:
 - included 7 mm AM5 offset;
 - Fractal North XL Mesh `FD-C-NOR1X-01`.
 
-Relevant envelope:
+The exact 2×64 GB kit should prefer low-profile modules where practical. The North XL provides substantial cooler-height margin, so a small front-fan lift is acceptable but should not be required merely for decorative heat spreaders.
 
-- NH-D15 G2 stock height ~168 mm;
-- North XL cooler limit ~185 mm;
-- selected Crucial DIMMs are low profile.
+## Storage topology — incumbent pending review
 
-Expect zero or only minimal front-fan lift with ample case margin.
+Current plan:
 
-## Storage topology
+- Samsung 990 PRO 2 TB `MZ-V9P2T0BW` as system/tools SSD;
+- separate 4 TB-or-larger work/VM/container/data SSD later;
+- no RAID;
+- external/network backup required.
 
-Selected system SSD:
+Under the incumbent ProArt topology:
 
-- Samsung 990 PRO 2 TB `MZ-V9P2T0BW`;
-- install under the motherboard heatsink in **`M.2_3`**.
-
-Reserve:
-
-- **`M.2_1`** for future 4 TB+ work/VM/container/data SSD;
+- `M.2_3`: 990 PRO system/tools drive;
+- `M.2_1`: reserved for future work SSD;
 - avoid `M.2_2` unless its graphics/PCIe sharing trade-off is deliberately accepted.
 
-This is why a PCIe 5 system-drive upgrade such as 9100 PRO is not attractive: the selected system slot is PCIe 4 and the useful CPU-connected Gen5 slot is intentionally reserved for the future work drive.
+The user requested a storage-architecture review before the motherboard/RAM optimization. Therefore these slot assignments are **incumbent assumptions**, not constraints to carry blindly into a different motherboard choice.
 
 ## Windows / WSL storage policy
 
 - Windows-native source/caches stay on Windows-native storage.
-- Linux-native high-I/O repos, package caches and container data stay inside WSL rather than `/mnt/c` where performance matters.
-- Reassess WSL VHDX/container placement and a Windows Dev Drive when the future work SSD is added.
+- Linux-native high-I/O repos, package caches and container data stay inside WSL where performance matters.
+- Reassess WSL VHDX/container placement and a Windows Dev Drive when storage architecture is finalized.
 - BitLocker is enabled only after initial firmware/driver stabilization.
 
 ## GPU / expansion
 
 - Reuse RTX 3060 12 GB initially.
 - Preserve a future single high-power/high-VRAM GPU path.
-- North XL airflow, 1200 W PSU architecture and storage topology all preserve that path.
-- Recheck future GPU dimensions and 12V-2x6 bend clearance when the GPU is selected.
+- Recheck future GPU dimensions and 12V-2x6 bend clearance when that GPU is selected.
 
 ## Case / airflow
 
@@ -100,18 +95,8 @@ Purchase baseline:
 
 Conditional value upgrade:
 
-- prefer **VERTEX PX-1200 current ATX 3.1** when it is in stock and costs **≤~200 lei more** than the equivalent current GX;
+- prefer **VERTEX PX-1200 current ATX 3.1** when in stock at ≤~200 lei premium over equivalent GX;
 - do not delay the build while PX is unavailable.
-
-For either model:
-
-- box/listing must say ATX 3.1;
-- PCIe 5.1;
-- supplied GPU cable must be current 12V-2x6;
-- reject explicit old ATX 3.0 / 12VHPWR stock;
-- use only Seasonic-approved modular cables.
-
-The 160 mm VERTEX chassis fits comfortably inside North XL.
 
 ## UPS ↔ full system
 
@@ -119,26 +104,14 @@ Selected exact UPS:
 
 **CyberPower PR1500ELCD**
 
-- 1500 VA / **1350 W**;
-- line-interactive;
-- pure sine wave;
+- 1500 VA / 1350 W;
+- line-interactive pure sine wave;
 - Active-PFC compatible;
-- Double Boost + Single Buck AVR;
-- ~4 ms transfer;
-- hot-swappable `RBP0023` battery;
-- USB/PowerPanel Business;
-- 8× IEC C13 outlets.
+- AVR;
+- hot-swappable battery;
+- USB/PowerPanel Business.
 
-This replaces the former 1000 W CP1600 selection.
-
-Compatibility rationale:
-
-- current RTX 3060 machine is expected around ~450–550 W worst-case artificial wall load;
-- future design case remains ~900–980 W;
-- PR1500 places that future load at ~67–73% of its 1350 W rating instead of ~90–98% on the old 1000 W UPS;
-- therefore it is likely to remain useful through the future GPU upgrade rather than becoming a Phase-1-only device.
-
-Use correctly rated IEC cabling and validate USB graceful shutdown with a controlled mains-loss test.
+The UPS is intended to remain useful through the future high-power GPU upgrade rather than being a temporary Phase-1 device.
 
 ## Windows ↔ firmware / security
 
@@ -160,30 +133,23 @@ Firmware baseline:
 
 Do the planned BIOS update before enabling BitLocker.
 
-## Windows license ↔ provider consolidation
+## Windows license
 
 Selected license channel: **Retail/FPP**.
 
-Preferred procurement SKU:
+Current purchase target:
 
-- **`HAV-00197`**, Windows 11 Pro Retail/FPP USB Romanian package from EvoMAG.
+- **`HAV-00163`**, Windows 11 Pro Retail/FPP USB English from PROstore.
 
-Windows 11 Pro can add/switch display languages, so use English as the Windows display language after installation if desired. The package language does not justify a third provider when the rights/edition are otherwise equivalent.
-
-Fallback: English Retail/FPP `HAV-00163` if the consolidated SKU is unavailable or materially overpriced.
+Windows is allowed to use a separate software provider because its long-term warranty/RMA burden is negligible relative to hardware.
 
 ## Provider dependencies
 
-Default target: **two providers**.
+The previous purchase total/provider grouping is **not final** until motherboard, exact 2×64 GB RAM and storage architecture are re-optimized.
 
-### EvoMAG
+Still-valid procurement principles:
 
-CPU, motherboard, RAM, cooler, SSD, case, rear fan, PR1500ELCD and Windows FPP.
-
-### Altex
-
-Explicit-current Seasonic VERTEX PSU.
-
-A third provider requires roughly **≥300 lei net saving** or materially better stock, exact-SKU/revision certainty or warranty.
-
-If EvoMAG can explicitly verify its Seasonic as current ATX 3.1 / PCIe 5.1 / 12V-2x6, a one-provider order is acceptable.
+- maximum three providers overall;
+- default target two hardware providers;
+- software can use a separate provider when price/provenance justify it;
+- exact SKU/revision and warranty clarity outrank small nominal savings.
