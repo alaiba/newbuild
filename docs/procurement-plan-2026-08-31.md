@@ -6,7 +6,7 @@ This plan is paused for re-optimization after the build requirements were simpli
 
 1. Maximum three providers overall; target two hardware providers.
 2. Optimize utility per leu, not benchmark prestige.
-3. Do not pay for unused networking, PCIe, storage capacity, wattage or extreme-overclocking capability.
+3. Do not pay for unused networking, PCIe, storage capacity, wattage, cooling capacity or extreme-overclocking capability.
 4. Exact SKU/revision, warranty clarity and product condition outrank small nominal savings.
 5. Software may use a separate provider when provenance/price justify it.
 
@@ -15,7 +15,7 @@ This plan is paused for re-optimization after the build requirements were simpli
 | Item | Target | Status |
 |---|---|---|
 | CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | selected |
-| Cooler | Noctua NH-D15 G2 standard | selected |
+| Cooling architecture | high-quality air cooling | selected; exact cooler reopened |
 | RAM architecture | 128 GB = 2×64 GB / 1DPC | selected; exact kit open |
 | GPU | existing RTX 3060 12 GB | reuse |
 | Windows | Windows 11 Pro Retail/FPP `HAV-00163` | selected target |
@@ -23,6 +23,18 @@ This plan is paused for re-optimization after the build requirements were simpli
 | Surge protection | reputable plug-in surge protector/power strip | selected policy |
 
 ## Items to re-optimize before ordering
+
+### Cooler + case
+
+The exact NH-D15 G2 purchase is superseded. Compare at least:
+
+- Thermalright Phantom Spirit 120-class value option;
+- Noctua NH-U12A premium compact option;
+- Noctua NH-D15 G2 maximum-air-cooling reference.
+
+Select on sustained stock/conservative 9950X3D thermals, acoustics, RAM/case compatibility, serviceability/warranty and price.
+
+Do not keep an oversized case merely to accommodate a cooler whose extra capacity is unnecessary. The North XL remains selected for now but must be reconfirmed together with the cooler.
 
 ### Motherboard
 
@@ -54,7 +66,8 @@ Do **not** pay materially for:
 - matched 2×64 GB DDR5 UDIMM;
 - 1DPC;
 - stability/JEDEC behavior first;
-- ECC only when exact support and OS-visible reporting are credible.
+- ECC only when exact support and OS-visible reporting are credible;
+- final DIMM dimensions must fit the selected cooler/case cleanly without forcing unnecessary hardware premiums.
 
 ### Storage
 
@@ -90,14 +103,11 @@ Compare premium **750 W and 850 W ATX 3.1** units.
 - do not buy 1000–1200 W for speculative GPU headroom;
 - prioritize electrical quality, protections, warranty, acoustics and current revision/cabling.
 
-### Case
-
-North XL remains selected for now, but perform one final value/size check because the old huge/high-power future-GPU premise has weakened.
-
 ## Explicitly removed from the order
 
 - CyberPower PR1500ELCD;
 - 1200 W Seasonic VERTEX GX/PX targets;
+- NH-D15 G2 as a locked exact cooler;
 - 4 TB initial work SSD requirement;
 - 5/10 GbE requirement;
 - multi-GPU/x8+x8 requirement;
@@ -109,7 +119,7 @@ All earlier complete-order totals are obsolete.
 
 Do not produce a new final total until:
 
-1. case is reconfirmed or changed;
+1. cooler + case are selected/reconfirmed;
 2. motherboard is selected;
 3. exact 2×64 GB kit is selected;
 4. exact system/active-work drives are selected;
@@ -118,7 +128,7 @@ Do not produce a new final total until:
 
 ## Next sequence
 
-1. optional final case review;
+1. cooler + case optimization;
 2. motherboard optimization;
 3. exact RAM;
 4. exact SSDs;
