@@ -1,108 +1,106 @@
 # Memory Deep Dive
 
-Status: **Final architecture selected — 128 GB from day one as 2×64 GB / 1DPC; exact kit under optimization**
+Status: **Selected — Crucial `CT2K64G56C46U5`, 128 GB as 2×64 GB / 1DPC / non-ECC**
 
 ## Final decision
 
-The workstation will **not** use a provisional RAM configuration.
+Use:
 
-Buy the intended lifetime memory capacity at initial assembly:
+> **Crucial `CT2K64G56C46U5` — 128 GB (2×64 GB) DDR5-5600 CL46, 1.1 V, non-ECC UDIMM**
 
-- **128 GB total**;
-- **2×64 GB DDR5 UDIMM**;
-- **one DIMM per memory channel (1DPC)**;
-- install in the motherboard-recommended two-DIMM slots, normally **A2/B2**;
-- exact kit/SKU still to be selected;
-- ECC versus non-ECC still to be decided on evidence, not assumed.
+Install the two DIMMs in **A2/B2** on the selected ASUS TUF GAMING B850-PLUS WIFI.
 
-This replaces the previous plan to start with 64 GB (2×32 GB) and eventually move to 256 GB (4×64 GB).
+There is no temporary RAM stage and no planned four-DIMM/256 GB expansion.
 
-## Why 128 GB / 2×64 GB is now the endpoint
+## Why this topology
 
-For this workstation, 128 GB is accepted as sufficient lifetime capacity for the expected Java/Android/IDE/WSL2/container/VM workload.
+128 GB is accepted as sufficient lifetime capacity for the expected Java/Android/IDE/WSL2/container/VM workload.
 
-The topology is important. On AM5, 2×64 GB keeps the platform at **1DPC** rather than moving to the electrically harder **2DPC** four-DIMM configuration. That gives the CPU memory controller and motherboard firmware a materially easier signal-integrity/training problem and preserves a better chance of conservative, stable operation at useful DDR5 rates.
+Using two 64 GB DIMMs keeps AM5 at **one DIMM per channel (1DPC)**, avoiding the harder signal-integrity/training conditions of four populated DIMM slots.
 
-The build therefore chooses:
+The chosen policy is therefore:
 
-> **enough capacity at the electrically cleaner topology**
+> enough capacity once, in the electrically cleaner topology.
 
-rather than buying 256 GB merely because the board can physically support it.
+## Why this exact kit
 
-## No provisional RAM
+The Crucial kit fits the stability-first objective particularly well:
 
-The following previous ideas are superseded:
+- matched **2×64 GB** retail kit;
+- native **DDR5-5600 JEDEC** behavior;
+- conservative **1.1 V** operating voltage;
+- CL46-class JEDEC timings rather than an aggressive OC profile;
+- low-profile unbuffered modules;
+- Micron high-density DDR5 construction;
+- independent Ryzen 9000/B850 testing of the exact kit found clean training/operation at its native JEDEC setting.
 
-- 32 GB commissioning/minimum-cost memory;
-- 64 GB Phase-1 memory;
-- Crucial `CT2K32G56C46U5` as the selected purchase target;
-- adding a second 2×32 GB kit later for 128 GB;
-- replacing Phase-1 RAM with a 4×64 GB matched set for 256 GB.
+There is no requirement to enable EXPO/XMP. Unlike many enthusiast 128 GB kits whose advertised 5600 rate relies on a 1.25 V profile, this kit reaches the intended rate through its normal JEDEC definition.
 
-The RAM purchased for initial assembly should be the final intended set.
+## ECC verdict
 
-## Exact-kit selection criteria
+The final configuration is **non-ECC**, but this is a procurement/topology decision rather than a platform limitation.
 
-The next optimization pass should choose the exact 2×64 GB kit using the following priority order:
+The Ryzen 9 9950X3D and ASUS TUF GAMING B850-PLUS WIFI support ECC UDIMM, and ASUS has continued ECC-specific firmware work. The problem is module availability at the required density:
 
-1. **stability and motherboard/CPU validation evidence**;
-2. conservative JEDEC behavior and sane operating voltage;
-3. exact 2×64 GB matched-kit availability;
-4. manufacturer/module consistency and firmware compatibility;
-5. low physical profile compatible with the NH-D15 G2;
-6. warranty and long-term vendor support;
-7. price/performance under the project's stability/endurance definition;
-8. ECC only if the entire path is credible and worthwhile.
+- mainstream current ECC UDIMM product families commonly stop below 64 GB per module;
+- readily available 64 GB server DDR5 modules are predominantly **RDIMM**;
+- **RDIMM is incompatible with AM5**.
 
-Headline memory frequency and latency are secondary. There is no requirement to force EXPO/XMP or a particular DDR5 number if Auto/JEDEC provides the more robust baseline.
+Obtaining ECC should therefore not force this workstation away from its selected 128 GB / 2×64 GB / 1DPC architecture.
 
-## ECC
+Do not substitute:
 
-ECC is no longer entangled with the old 256 GB / four-DIMM requirement.
+- 4×32 GB merely to obtain ECC;
+- 2×48 GB and reduce the intended capacity;
+- RDIMM/server memory;
+- an expensive enthusiast kit merely for tighter timings.
 
-For the final 2×64 GB purchase, evaluate ECC independently:
+ECC support on the selected board remains a useful platform capability, but it is not exercised by this build.
 
-- exact ECC UDIMM must be supported by the chosen motherboard/platform;
-- firmware must expose credible ECC operation;
-- Windows/Linux should provide usable evidence/reporting of corrected/uncorrected errors;
-- the ECC option must not introduce a large price or compatibility penalty without a corresponding reliability benefit.
+## Physical compatibility
 
-If that end-to-end case is weak, use a well-validated non-ECC 2×64 GB kit.
+Selected cooler/case:
 
-**RDIMM remains incompatible with AM5.**
+- Thermalright **Phantom Spirit 120 standard**;
+- be quiet! **Pure Base 501 Airflow `BG074`**.
+
+The Crucial modules are low-profile, making them a clean match for the dual-tower cooler. The case provides substantial additional cooler-height tolerance if minor front-fan adjustment is ever necessary.
 
 ## Bring-up policy
 
-For the final 128 GB configuration:
+1. Install DIMMs in **A2/B2**.
+2. Update the motherboard to a current stable production BIOS.
+3. First boot at **Auto/JEDEC**.
+4. Confirm native **DDR5-5600 at 1.1 V** behavior when trained normally.
+5. Do not enable EXPO/XMP during commissioning.
+6. Run extended memory testing before treating the workstation as stable.
+7. Record BIOS/AGESA version, trained timings, memory voltage and SoC voltage.
+8. Do not raise voltage or tighten timings merely for benchmark gains.
 
-1. install the two 64 GB DIMMs in A2/B2 or the exact slots specified by the selected motherboard manual;
-2. update to a current stable BIOS before serious validation;
-3. boot at **Auto/JEDEC** first;
-4. do not enable EXPO/XMP during baseline validation;
-5. accept conservative trained settings when necessary;
-6. run extended memory stability testing;
-7. record exact SKU, BIOS/AGESA, trained rate/timings and voltage behavior;
-8. only consider tuning after the baseline is demonstrably stable.
+Representative validation should include a boot/cold-boot cycle set plus long memory stress testing and real sustained development workloads.
 
-## Cooler clearance
+## Procurement note
 
-The selected Noctua NH-D15 G2 and Fractal North XL provide substantial clearance margin. The exact 2×64 GB kit should nevertheless prefer low-profile modules where practical so that RAM choice does not force unnecessary front-fan lift or complicate serviceability.
+128 GB 2×64 GB DDR5 pricing is currently unusually high and volatile. The exact SKU is selected, but **supplier/price is not locked** until the final procurement refresh.
 
-## Motherboard consequence
+A recent direct Romanian reference for this exact kit was around **7.7k lei at EvoMAG**, materially higher than older cached Romanian offers around the mid-6k range. Treat older indexed prices as stale and recheck live stock before ordering.
 
-The previous ASUS ProArt X870E-Creator WiFi selection was influenced heavily by evidence around 4×64 GB / 256 GB and ECC-oriented four-DIMM firmware behavior.
+Do not replace the selected kit with a more expensive RGB/EXPO product solely because memory-market pricing is temporarily distorted.
 
-That justification is now materially weakened because the final topology is 2×64 GB / 1DPC.
+## Superseded memory plans
 
-Therefore the **exact motherboard is reopened for optimization**. The ProArt remains an incumbent reference, not an automatic final purchase.
+- 32 GB commissioning configuration;
+- 64 GB / 2×32 GB Phase 1;
+- Crucial `CT2K32G56C46U5`;
+- 128 GB via four 32 GB DIMMs;
+- 256 GB / 4×64 GB endpoint;
+- ECC as a hard requirement.
 
 ## Selected conclusion
 
-- **Final capacity:** **128 GB**.
-- **Final topology:** **2×64 GB / 1DPC**.
-- **Timing:** **buy the final RAM configuration from day one**.
-- **Temporary/Phase-1 RAM:** **none**.
-- **Exact kit:** open for the next optimization pass.
-- **ECC:** evaluate on end-to-end evidence; not mandatory.
-- **Operating policy:** Auto/JEDEC first; stability over headline speed.
-- **256 GB / 4×64 GB:** no longer a design target.
+- **Capacity:** 128 GB.
+- **Topology:** 2×64 GB / 1DPC / A2+B2.
+- **Exact kit:** Crucial `CT2K64G56C46U5`.
+- **Operating point:** native JEDEC DDR5-5600, 1.1 V, Auto/JEDEC first.
+- **ECC:** non-ECC final configuration.
+- **Temporary RAM:** none.
