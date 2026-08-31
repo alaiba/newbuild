@@ -17,10 +17,10 @@ This file records closed decisions plus any decision explicitly reopened because
 | Exact CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Selected** | Strong sustained air-cooling capability at much lower cost/size than NH-D15 G2-class alternatives. |
 | Chassis | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Selected** | Normal ATX mid-tower with useful cooler/GPU/storage clearance without North XL overprovisioning. |
 | Initial case airflow | **Two included 140 mm PWM fans: one front intake + one rear exhaust** | **Selected** | Add another front intake only if measurements justify it. |
-| Storage architecture | **~1 TB system drive + 1–2 TB CPU-direct active-work NVMe; add bulk/cold storage only when needed** | **Selected / final architecture** | Separate OS/tools from latency-sensitive work without buying high-performance capacity for inactive data. |
-| System drive role | **~1 TB value/reliability-focused NVMe preferred; SATA acceptable fallback** | **Selected role / model open** | The selected board provides a clean second CPU-direct M.2 path. |
-| Active-work SSD role | **1 TB sufficient; 2 TB if price/value is attractive; CPU-direct x4 mandatory; Gen4 TLC preferred** | **Selected role / model open** | Current repos, caches, WSL2/container data, active VMs/databases and other latency-sensitive data belong here. |
-| Bulk/cold storage | **Add only when needed; speed secondary** | **Selected expansion policy** | Spare M.2, SATA SSD/HDD, external/NAS are acceptable. |
+| Storage architecture | **One primary 2 TB NVMe from day one; no separate system/work SSD, no SSD cache layer, no automatic tiering** | **Selected / final** | Current usage is ~600 GB and foreseeable active-storage demand remains below 2 TB; one fast SSD keeps all latency-sensitive data local while avoiding needless storage complexity. |
+| Exact primary SSD | **Crucial T710 2 TB `CT2000T710SSD8` in CPU-direct `M.2_1`** | **Selected** | PCIe 5.0 x4, TLC, DRAM, strong sustained behavior and a small enough premium over premium Gen4 to justify using the board's Gen5 path. Use the non-heatsink version under the motherboard heatsink. |
+| Bulk/cold storage | **Reuse existing healthy SATA drives where appropriate; add NVMe only when concretely needed** | **Selected expansion policy** | Existing slower storage is adequate for archives, old projects, media, installers, inactive VMs and other cold data. `M.2_2` and `M.2_3` remain free. |
+| 4 TB primary SSD | **Not required initially** | **Rejected on value/capacity** | Roughly doubling current selected-drive cost for capacity that is not expected to be used soon is inferior to additive expansion later. |
 | Storage RAID policy | **No RAID required** | **Selected** | Version control and real independent backup solve more relevant failure modes. |
 | Wired networking | **1 GbE sufficient; 2.5 GbE a bonus; do not pay for 5/10 GbE** | **Selected** | Internet is below 1 Gb/s and LAN throughput is irrelevant. |
 | Secondary PCIe expansion | **No x4 secondary slot requirement** | **Selected** | The selected board's second full-length slot is x1. No concrete NIC/HBA/capture/second-GPU requirement justifies paying extra to preserve x4 expansion. |
@@ -58,18 +58,19 @@ This file records closed decisions plus any decision explicitly reopened because
 
 ### Storage / power
 - Samsung 990 PRO 2 TB as selected system drive;
-- fixed 4 TB work SSD;
-- two clean M.2 slots as a hard requirement;
+- separate ~1 TB system SSD + 1–2 TB active-work SSD architecture;
+- a dedicated small SSD cache in front of another SSD;
+- automatic SSD tiering / Storage Spaces as an initial architecture;
+- fixed 4 TB high-performance work SSD;
+- reserving the Gen5 M.2 slot instead of using it for the initial primary SSD;
 - 1200 W Seasonic VERTEX GX/PX targets;
 - CyberPower PR1500ELCD.
 
 ## Open / deferred decisions
 
-- exact ~1 TB system drive;
-- exact 1 TB or 2 TB active-work NVMe;
 - exact premium 750 W or 850 W PSU;
 - exact plug-in surge protector;
-- optional future bulk/cold storage when needed;
+- optional future storage expansion only if actual capacity needs grow;
 - future GPU replacement only when a concrete need/failure appears.
 
 Detailed component dossiers are under `docs/components/`.
