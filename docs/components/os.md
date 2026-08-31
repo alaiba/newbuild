@@ -60,7 +60,31 @@ At the 2026-08-31 Microsoft Store Romania price, a new Windows 11 Pro download l
 Official store reference:
 - https://www.microsoft.com/ro-ro/d/windows-11-pro/dg7gmgf0d8h4
 
-The user does **not** have an existing Windows license for this build, so a **new legitimate Windows 11 Pro license is a required BOM purchase**. Prefer a normal retail/digital license with a clear Microsoft/authorized-retail path rather than a grey-market key.
+The user does **not** have an existing Windows license for this build, so a new Windows 11 Pro license is a required BOM purchase.
+
+### Exact license channel and SKU
+
+Selected license:
+
+**Microsoft Windows 11 Pro Retail/FPP USB English — `HAV-00163`.**
+
+This is deliberate. For a strict Microsoft-compliant licensing path on a PC assembled by the end user for their own use, use the normal **Retail/FPP** channel rather than personally purchasing an OEM/DSP/System Builder license intended for OEM/system-builder distribution.
+
+Current Romanian retailer controls on 2026-08-31 place the exact `HAV-00163` Retail/FPP package around **1,124–1,147 lei**, below Microsoft's 1,199 RON direct-store reference.
+
+Purchase requirements:
+
+- exact Microsoft SKU **`HAV-00163`** where exposed by the retailer;
+- Windows 11 **Pro**;
+- **Retail/FPP**, not OEM/DSP/System Builder;
+- normal packaged/digital entitlement with an identifiable retailer invoice and licensing provenance;
+- do not substitute a cheap emailed standalone key whose license provenance cannot be established.
+
+Retail/FPP also preserves transfer rights to a future replacement PC subject to Microsoft's license terms, although portability is a secondary benefit for this intentionally long-lived workstation.
+
+Current retailer controls:
+- https://www.forit.ro/sistem-de-operare-microsoft-windows-11-pro-64-bit-engleza-retail-fpp-usb-flash-bp414367
+- https://www.prostore.ro/sisteme_de_operare/microsoft/93926-windows-11-pro-64-bit-engleza-retail-fpp-usb-flash/
 
 ## Why not Pro for Workstations
 
@@ -276,7 +300,7 @@ After OS installation, record a baseline before tuning:
 ## Selected conclusion
 
 - **Host OS:** Windows 11 Pro x64 — **Selected**.
-- **Windows license:** **new legitimate Windows 11 Pro license required for this build**; current official Microsoft Store Romania reference is **1,199 RON**.
+- **Windows license:** **Microsoft Windows 11 Pro Retail/FPP USB English `HAV-00163` — Selected / required purchase**.
 - **Initial feature release:** Windows 11 25H2 General Availability — **Selected for installation in August 2026**.
 - **Linux environment:** WSL2 + Ubuntu 26.04.1 LTS — **Selected**.
 - **Dual boot:** not required; reopen only for a demonstrated bare-metal Linux need.
