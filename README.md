@@ -21,7 +21,8 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 | Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` |
 | Storage expansion | `M.2_2` + `M.2_3` free; reuse healthy existing SATA drives for cold/bulk data |
 | Storage RAID/cache/tiering | **None** |
-| PSU | **Premium 750 W / 850 W ATX 3.1**, exact model open |
+| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 |
+| PSU fallback | Corsair RM850x 2024 `CP-9020270-EU` only if checkout value/warranty is better |
 | UPS | **None initially** |
 | Point-of-use power protection | Reputable surge-protected Schuko plug/power strip, exact model open |
 | GPU | Existing **RTX 3060 12 GB**, reused for as long as useful/reliable |
@@ -41,14 +42,13 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 - **Phantom Spirit 120 + Pure Base 501** replaces NH-D15 G2 + North XL.
 - 1 GbE is sufficient; the board's 2.5 GbE is already more than required.
 - No multi-GPU/x8+x8 requirement; retire the RTX 3060 if a future GPU replacement occurs.
-- Do not pre-size the platform for a hypothetical 500–600 W future GPU.
-- 1200 W PSU and large UPS are superseded; optimize **750 W vs 850 W**, with no UPS initially.
+- **Pure Power 13 M 850W** is selected because the current premium over the 750 W sibling is small while platform quality, acoustics and ATX 3.1 compliance are strong; 1000–1200 W remains unnecessary.
+- No UPS initially.
 
 ## Current open work
 
-1. Select exact premium **750/850 W PSU**.
-2. Select exact **plug-in surge protector**.
-3. Refresh prices/providers and produce the final order total.
+1. Select exact **plug-in surge protector**.
+2. Refresh prices/providers and produce the final order total.
 
 ## Repository structure
 
@@ -61,4 +61,4 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 
 ## Current stage
 
-**CPU, motherboard, RAM, cooler, case and primary storage are closed. PSU and point-of-use surge protection are next.**
+**CPU, motherboard, RAM, cooler, case, primary storage and PSU are closed. Point-of-use surge protection is the final component choice before a full price/provider refresh.**
