@@ -1,6 +1,6 @@
 # Compatibility and Topology Tracker
 
-This document captures cross-component constraints after the memory, storage, networking and power simplifications finalized on 2026-08-31.
+This document captures cross-component constraints after the memory, storage, networking, power and cooling simplifications finalized on 2026-08-31.
 
 ## Core platform
 
@@ -9,12 +9,14 @@ Selected:
 - AMD Ryzen 9 **9950X3D**;
 - **128 GB from day one**;
 - **2×64 GB DDR5 UDIMM / 1DPC**;
+- high-quality air-cooling architecture;
 - existing RTX 3060 reused for as long as practical;
 - no multi-GPU requirement;
 - no UPS requirement.
 
 Open:
 
+- exact CPU cooler;
 - exact motherboard;
 - exact 2×64 GB memory kit and ECC verdict;
 - exact system and active-work storage devices;
@@ -35,6 +37,25 @@ Requirements:
 No 256 GB/four-DIMM requirement.
 
 ECC is optional and matters only if exact-module support plus OS-visible error reporting are credible.
+
+## Cooling ↔ memory ↔ case
+
+Air cooling remains selected, but **the exact cooler is reopened**.
+
+The previous NH-D15 G2 lock must not constrain the final RAM or case unnecessarily.
+
+Evaluate the final cooler/RAM/case combination for:
+
+- total cooler height including any front-fan lift;
+- DIMM height and fan interference;
+- motherboard VRM/I/O-heatsink clearance;
+- first PCIe/GPU-slot clearance;
+- case side-panel clearance;
+- sustained 9950X3D thermals and acoustics at stock/conservative settings.
+
+Reference candidates include Phantom Spirit 120-class, Noctua NH-U12A and NH-D15 G2. Prefer the least bulky/least expensive option that meets the real thermal/acoustic/serviceability requirement.
+
+The Fractal North XL remains selected for now but gets one final size/value review. A smaller case is allowed if the final cooler/RAM/GPU combination fits comfortably.
 
 ## Storage topology
 
@@ -112,16 +133,6 @@ Current target:
 - no electrical-installation changes required by the project;
 - point-of-use protection relies on proper protective earth and does not equal coordinated building-level SPD protection.
 
-## Cooling ↔ memory ↔ case
-
-Selected:
-
-- Noctua NH-D15 G2 standard;
-- included 7 mm AM5 offset;
-- Fractal North XL Mesh remains selected for now.
-
-The case gets one final size/value review because the former hypothetical huge/future GPU requirement has weakened.
-
 ## Windows / firmware
 
 Selected:
@@ -139,7 +150,7 @@ Selected:
 
 ## Provider dependencies
 
-Provider grouping is not final until motherboard, RAM, SSDs and PSU are selected and the case is reconfirmed.
+Provider grouping is not final until cooler/case, motherboard, RAM, SSDs and PSU are selected.
 
 Still-valid procurement principles:
 
