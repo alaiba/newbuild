@@ -24,7 +24,8 @@ This file records **closed decisions only**, together with their rationale and a
 | CPU cooler | **Noctua NH-D15 G2 standard base, using the included 7 mm AM5 offset mount** | **Selected** | Noctua recommends the standard G2 as the best all-rounder and reports excellent/best AM5 behavior with offset mounting. ProArt compatibility is explicit. Current 32 GB baseline needs no fan lift; the serious Kingston 64 GB alternatives need only ~3 mm and remain safely inside the North XL 185 mm envelope. |
 | Storage architecture | **Staged two-drive NVMe layout: permanent 2 TB system/tools SSD initially, add 4 TB-or-larger work/VM/container SSD later** | **Selected** | Avoids unnecessary day-one capacity spend while preserving operational separation and future Gen5 choice. No RAID required; external/network backup remains required. |
 | Initial system/tools SSD | **Samsung 990 PRO 2 TB (`MZ-V9P2T0BW`)** | **Selected** | Mature TLC + DRAM Gen4 platform, strong mixed/random performance, Samsung tooling and adequate endurance. Install under ProArt `M.2_3` heatsink. PC Garage preferred over eMAG when price difference is small. |
-| PSU architecture | **1200 W ATX 3.1 / PCIe 5.1 with native 12V-2x6** | **Selected** | Sized for a plausible future 600 W single accelerator. 1200 W provides sustained, thermal, acoustic and aging margin without moving to unnecessary 1300–1600 W territory. Exact PSU remains provisional pending revision verification. |
+| PSU architecture | **1200 W ATX 3.1 / PCIe 5.1 with 600 W-capable 12V-2x6** | **Selected** | Sized for a plausible future 600 W single accelerator. 1200 W provides sustained, thermal, acoustic and aging margin without moving to unnecessary 1300–1600 W territory. |
+| Exact PSU | **Seasonic VERTEX GX-1200, current ATX 3.1 / PCIe 5.1 / 12V-2x6 revision** | **Selected** | Seasonic's current GX-1200 satisfies the selected architecture, is compact, fully modular and carries a 12-year warranty. A current Romanian Altex listing explicitly identifies the GX-1200 as ATX 3.1 and in stock around 1,289.99 lei; direct current PX-1200 evidence is more expensive and/or out of stock. Prefer PC Garage first and eMAG second only when they explicitly identify the current revision; otherwise use a reputable retailer with unambiguous ATX 3.1 stock. Receipt acceptance must reject old ATX 3.0 / 12VHPWR inventory. Reopen only for a material availability/reliability issue or if a known-current PX-1200 is available within roughly 100–150 lei at checkout. |
 | Chassis | **Fractal Design North XL Mesh** | **Selected** | Provides the required motherboard, GPU, cooler, PSU, filtration and airflow headroom without oversized-full-tower penalties. |
 | Chassis fan layout | **3×140 mm front intake + 1×140 mm rear exhaust; no top/side fans initially** | **Selected** | Simple front-to-rear airflow with mild positive pressure supports dust control, acoustics and reliability. Add fans only if measurements justify them. |
 | Rear case fan | **Noctua NF-A14x25 G2 PWM, square-frame 140 mm** | **Selected** | Premium permanent rear exhaust with broad low-speed PWM range, SSO2 bearing, >150,000 h MTTF and six-year warranty. Do not buy an unnecessary two-pack solely to satisfy retailer preference. |
@@ -43,9 +44,10 @@ The following remain open:
 - eventual 256 GB DIMM implementation: exact 4×64 GB modules, operating rate and ECC/non-ECC verdict
 - whether the eventual 256 GB configuration provides operationally complete system-level ECC with usable OS reporting
 - exact 4 TB-or-larger work-drive model
-- exact 1200 W PSU model; current provisional target is the current-revision Seasonic VERTEX GX-1200 ATX 3.1
 - operating system details
 
 Detailed motherboard evidence: `docs/components/motherboard-memory-promotion-gate-2026-08-30.md`.
 
 Detailed Phase-1 memory alternatives and current pricing: `docs/components/memory.md`.
+
+Detailed PSU evidence and acceptance rules: `docs/components/psu.md`.
