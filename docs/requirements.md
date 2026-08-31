@@ -18,9 +18,10 @@ Fixed architecture decisions:
 - **PSU:** **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1;
 - **GPU:** reuse RTX 3060 12 GB for as long as useful/reliable;
 - **host OS:** Windows 11 Pro x64 with WSL2 + Ubuntu 26.04.1 LTS;
-- **UPS:** none initially.
+- **UPS:** none initially;
+- **dedicated surge protection:** none required initially.
 
-Open items: exact plug-in surge protector and final provider/price consolidation.
+Open item: final provider/price consolidation.
 
 ## Workload priority
 
@@ -173,11 +174,13 @@ Preferred fallback: **Corsair RM850x 2024 `CP-9020270-EU`** only if delivered pr
 
 Do not reuse modular cables from another PSU.
 
-## UPS / power protection
+## UPS / power protection — satisfied
 
 No UPS initially. Short outages are operationally acceptable.
 
-Use a reputable **plug-in Schuko surge protector / surge-protected power strip** with proper earth, 230 V / 16 A suitability and protection-status indication. No electrical-installation modifications are part of this build.
+No dedicated surge protector is required initially. Use a properly earthed wall outlet; if multiple outlets are needed, use a reputable ordinary **16 A Schuko power strip**. The power strip is a utility item, not a dedicated protection requirement.
+
+Revisit external mains protection only if actual evidence of poor power quality appears, such as repeated unexplained failures or abnormal voltage behavior.
 
 ## Budget and procurement
 
