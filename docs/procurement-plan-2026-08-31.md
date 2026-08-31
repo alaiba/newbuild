@@ -1,6 +1,6 @@
 # Procurement Plan — 2026-08-31
 
-Motherboard, RAM, primary storage and PSU are now closed. Procurement remains paused only for the exact surge protector and final provider/price consolidation.
+Motherboard, RAM, primary storage and PSU are closed. No UPS or dedicated surge protector is required. Procurement is now waiting only for final live price/provider consolidation.
 
 ## Locked principles
 
@@ -25,7 +25,7 @@ Motherboard, RAM, primary storage and PSU are now closed. Procurement remains pa
 | GPU | existing RTX 3060 12 GB | reuse |
 | Windows | Windows 11 Pro Retail/FPP `HAV-00163` | selected target |
 | UPS | none | selected |
-| Surge protection | reputable plug-in Schuko surge protector/power strip | exact product open |
+| Dedicated surge protector | none | selected |
 
 ## Motherboard acceptance gate
 
@@ -101,21 +101,18 @@ Recommended slot use:
 
 The absence of a secondary x4 expansion path is accepted because no current requirement needs one.
 
-## Item still to optimize
+## Mains-protection policy
 
-### Point-of-use surge protection
-
-Select a reputable Schuko device with:
-
-- 230 V / 16 A suitability;
-- protective-earth continuity;
-- protection-status indication;
-- clear replacement/end-of-protection guidance;
-- reputable manufacturer and normal Romanian/EU warranty path.
+- no UPS in the initial order;
+- no dedicated surge protector in the initial order;
+- use a properly earthed wall outlet;
+- if multiple outlets are needed, use a reputable ordinary **16 A Schuko power strip** as a utility item;
+- revisit external protection only if actual power-quality problems appear.
 
 ## Explicitly removed from the order
 
 - CyberPower PR1500ELCD;
+- dedicated plug-in surge protector;
 - 1200 W Seasonic VERTEX GX/PX targets;
 - buying 750 W instead of the selected 850 W solely to minimize nominal wattage/cost;
 - Noctua NH-D15 G2;
@@ -134,10 +131,9 @@ Select a reputable Schuko device with:
 
 ## Price envelope
 
-All earlier full-order totals are obsolete. Do not publish the final order total until the surge protector is selected and live Romanian pricing is refreshed for the **entire** selected BOM, especially the volatile RAM and SSD supplier availability.
+All earlier full-order totals are obsolete. Refresh live Romanian pricing for the **entire selected BOM**, especially the volatile RAM and SSD supplier availability, before publishing the final order total.
 
 ## Next sequence
 
-1. exact surge protector;
-2. full live price/provider refresh;
-3. ≤3-provider order plan and final total.
+1. full live price/provider refresh;
+2. ≤3-provider order plan and final total.
