@@ -32,6 +32,12 @@ This file records **closed decisions only**, together with their rationale and a
 | Rear case fan | **Noctua NF-A14x25 G2 PWM, square-frame 140 mm** | **Selected** | Premium permanent rear exhaust with broad low-speed PWM range, SSO2 bearing, >150,000 h MTTF and six-year warranty. |
 | UPS architecture | **Phase-1 line-interactive pure-sine UPS around 1600 VA / 1000 W; reassess with future high-power GPU** | **Selected** | A current-system protection component rather than a permanent future-GPU constraint. Reopen when measured load approaches ~700–800 W, GPU power changes materially, runtime becomes inadequate or site power quality requires online/double-conversion. |
 | Phase-1 UPS | **CyberPower CP1600EPFCLCD** | **Selected** | 1600 VA / 1000 W, pure-sine line-interactive, Active-PFC compatible, AVR, USB/PowerPanel and user-replaceable `RBP0142` battery. |
+| Host operating system | **Windows 11 Pro x64** | **Selected** | Best fit for native IntelliJ/Android Studio, NVIDIA/gaming compatibility, BitLocker, Remote Desktop hosting and Hyper-V/WSL2. Home saves only about 509 RON at current Microsoft Store pricing while dropping professional host features. Pro for Workstations costs about 800 RON more than Pro and its 4-CPU/6-TB/SMB-Direct-class advantages are irrelevant to this one-socket/256-GB-target build. |
+| Initial Windows feature release | **Windows 11 25H2, General Availability channel** | **Selected for initial installation** | Current normal GA release for standard existing x64 PCs; 24H2 Home/Pro reaches end of servicing 2026-10-13. Microsoft describes 26H1 as scoped to new devices and not the normal in-place feature-update path from 24H2/25H2. Follow normal supported feature updates after commissioning; do not pin permanently to 25H2. |
+| Linux development environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** | Provides a first-class Linux userland without dual-boot maintenance/reboot friction. Canonical identifies 26.04.1 as the latest LTS for Ubuntu on WSL; 26.04 LTS receives standard maintenance through 2031. Reopen native Linux only for a demonstrated bare-metal kernel/KVM/device/driver requirement that WSL2 cannot satisfy. |
+| Windows/Linux filesystem policy | **Keep heavy native workloads on their native filesystem** | **Selected** | Windows-native source/caches belong on Windows storage; Linux-native source/caches/container data belong inside the WSL filesystem rather than `/mnt/c`. Reassess a Windows Dev Drive on the future 4 TB+ work SSD; do not complicate the initial 2 TB system SSD merely to create one. |
+| GPU driver branch | **Current NVIDIA Studio Driver, WHQL** | **Selected baseline** | Gaming is secondary, while stability is the workstation priority. NVIDIA states both Studio and Game Ready support games/apps; Studio emphasizes tested production stability. Switch to Game Ready only if a specific new game needs day-zero optimizations/fixes. |
+| OS security/virtualization baseline | **UEFI + Secure Boot + TPM 2.0 + BitLocker after firmware stabilization + SVM for WSL2/Hyper-V** | **Selected** | Establish the firmware baseline and perform the planned BIOS update before enabling BitLocker; retain the recovery key independently. Keep memory/CPU conservative during commissioning and avoid Insider/preview OS builds. |
 | Future local AI expansion | Preserve a credible path to a **very high-performance, high-VRAM single discrete GPU** | **Selected** | AI is secondary and must not distort the primary development workstation. Reopen the platform if future AI genuinely requires several accelerator GPUs. |
 | GPU | Reuse existing NVIDIA GeForce RTX 3060 12 GB initially | **Selected** | Fixed input to the initial build; replacement remains a later decision. |
 | Cost / longevity philosophy | Prefer to remain meaningfully below 30,000 lei, but allow higher spend only for credible long-term reliability, stability, endurance, serviceability or productivity benefit | **Selected** | Stability and conservative operation take precedence over short-lived benchmark gains or prestige spending. |
@@ -45,10 +51,12 @@ The following remain open or intentionally deferred:
 - eventual 256 GB DIMM implementation: exact 4×64 GB modules, operating rate and ECC/non-ECC verdict;
 - whether the eventual 256 GB configuration provides operationally complete system-level ECC with usable OS reporting;
 - exact 4 TB-or-larger work-drive model;
-- operating system details.
+- exact container-runtime/tooling choice if licensing or workflow requirements make that material.
 
 Detailed motherboard evidence: `docs/components/motherboard-memory-promotion-gate-2026-08-30.md`.
 
 Detailed Phase-1 memory decision: `docs/components/memory.md`.
 
 Detailed PSU evidence and acceptance rules: `docs/components/psu.md`.
+
+Detailed OS/bring-up decision: `docs/components/os.md`.
