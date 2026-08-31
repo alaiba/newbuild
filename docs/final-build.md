@@ -2,7 +2,7 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, the **CPU/platform, motherboard, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, staged storage architecture, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis, Phase-1 UPS architecture and existing GPU are selected**. Several purchase-time SKUs remain provisional.
+At present, the **CPU/platform, motherboard, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, exact CPU cooler, staged storage architecture, exact initial system SSD, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis, Phase-1 UPS architecture and existing GPU are selected**. Several purchase-time SKUs remain provisional.
 
 ## Status vocabulary for this document
 
@@ -17,10 +17,11 @@ At present, the **CPU/platform, motherboard, 256 GB architectural memory target,
 |---|---|---|---|
 | CPU | AMD Ryzen 9 9950X3D | **Selected** | AM5 platform; fixed input |
 | Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Selected** | Chosen for the strongest explicit 4×64 GB / 256 GB firmware evidence and ECC-specific firmware trail. |
-| Memory | **Kingston FURY Beast Black EXPO 32 GB (2×16) DDR5-6000 CL30 `KF560C30BBEK2-32`** | **Provisional Phase-1 purchase target** | PC Garage-first replacement for the earlier KLEVV target. Kingston explicitly lists this exact kit for the ProArt X870E-Creator WiFi. Current PC Garage price observed around 2,999 lei. Boot at Auto/JEDEC first; EXPO is optional. Replace rather than expand when moving to the 256 GB endpoint. |
+| Memory | **Kingston FURY Beast Black EXPO 32 GB (2×16) DDR5-6000 CL30 `KF560C30BBEK2-32`** | **Provisional Phase-1 purchase target** | PC Garage-first target. Kingston explicitly lists this exact kit for the ProArt X870E-Creator WiFi. Boot at Auto/JEDEC first; EXPO is optional. Replace rather than expand when moving to the 256 GB endpoint. |
 | Long-term memory | **256 GB architectural target, expected 4×64 GB** | **Target selected / purchase deferred** | Prefer ECC UDIMM only if exact 64 GB modules, four-DIMM support, stability and OS-visible ECC reporting are credible at upgrade time; otherwise use validated non-ECC. |
-| CPU cooler | **Noctua NH-D15 G2 LBC** | **Provisional target** | High-end air cooling architecture selected. Standard NH-D15 G2 is fallback if materially cheaper/easier to source. |
-| Storage | **2 TB system/tools NVMe now + 4 TB-or-larger work/VM NVMe later** | **Architecture selected** | Initial SSD should be mature TLC + DRAM PCIe 4.0. Reserve CPU-connected M.2_1 for the later work drive. |
+| CPU cooler | **Noctua NH-D15 G2 — standard base, 7 mm AM5 offset mount** | **Selected** | Noctua's default recommendation and its best AM5 result with offset mounting. Explicitly compatible with ProArt X870E-Creator WiFi. Kingston RAM requires only ~3 mm front-fan lift, yielding ~171 mm total height versus North XL's 185 mm clearance. Prefer PC Garage first, eMAG second. |
+| System/tools SSD | **Samsung 990 PRO 2 TB `MZ-V9P2T0BW`** | **Selected** | Permanent Gen4 TLC + DRAM system/tools drive. Install bare drive under the ProArt `M.2_3` heatsink. PC Garage preferred over eMAG when price difference is small. |
+| Future work SSD | **4 TB-or-larger NVMe** | **Architecture selected / purchase deferred** | Dedicated source/VM/container/database/work drive. Reserve CPU-connected `M.2_1`; reassess Gen4 vs Gen5 and 4 TB vs 8 TB when capacity is actually needed. |
 | PSU | **Seasonic VERTEX GX-1200 ATX 3.1** | **Provisional target** | 1200 W ATX 3.1 / PCIe 5.1 architecture selected. Require native 12V-2x6 and verify exact revision at purchase. |
 | Case | **Fractal Design North XL Mesh** | **Selected** | 413 mm GPU clearance, 185 mm CPU-cooler clearance, front + PSU filtration, 3×140 mm PWM front fans included, 290 mm PSU clearance, top 360 mm AIO fallback support. |
 | Case fans | **3×140 mm front intake + 1×140 mm rear exhaust** | **Layout selected** | Use the three included front PWM fans; add one quality 140 mm PWM rear exhaust. No top/side fans initially. |
@@ -41,7 +42,6 @@ Detailed evidence: `docs/components/motherboard-memory-promotion-gate-2026-08-30
 Current purchase target:
 
 - **Kingston FURY Beast Black EXPO 32 GB (2×16 GB) DDR5-6000 CL30 — `KF560C30BBEK2-32`**;
-- current PC Garage price observed around **2,999 lei** on 2026-08-31;
 - Kingston explicitly lists this exact kit as compatible with the **ASUS ProArt X870E-Creator WiFi**;
 - use the motherboard-recommended two-DIMM slots;
 - update BIOS before serious testing;
@@ -49,7 +49,7 @@ Current purchase target:
 - do not enable EXPO until baseline stability is established;
 - leaving the kit at conservative Auto/JEDEC settings is acceptable because the kit is temporary.
 
-This replaces the earlier KLEVV FIT V target because procurement now strongly prefers PC Garage first and eMAG second. The exact SKU remains provisional only in the purchase-time sense: if PC Garage stock disappears or a materially cheaper compatible kit appears at PC Garage/eMAG, substitute it rather than overpaying for temporary RAM.
+Procurement preference is **PC Garage first, eMAG second**. The exact Phase-1 memory SKU remains provisional in the purchase-time sense: if stock disappears or a materially cheaper compatible kit appears at PC Garage/eMAG, substitute it rather than overpaying for temporary RAM.
 
 ### Eventual 256 GB
 
@@ -70,19 +70,52 @@ At upgrade time:
 
 ## Cooling strategy
 
-- high-end air cooling at stock/conservative CPU settings;
-- provisional cooler: **Noctua NH-D15 G2 LBC**;
-- standard NH-D15 G2 fallback;
-- top-mounted 360 mm AIO remains fallback only;
-- no PBO/uncapped power merely to exploit cooling headroom.
+Selected configuration:
+
+- **Noctua NH-D15 G2, standard medium-convexity base**;
+- use the included **7 mm AM5 offset mounting position**;
+- Ryzen 9 9950X3D remains at stock/conservative power settings;
+- no PBO/uncapped power merely to exploit thermal headroom.
+
+Why standard G2 rather than G2 LBC:
+
+- Noctua explicitly describes the standard G2 as its default/best-all-rounder recommendation;
+- on AM5 with the included offset mount, Noctua reports the standard version as performing on par with or slightly better than LBC;
+- LBC is mainly advantageous on AM5 **without** offset mounting or for specialized flat-IHS/direct-die cases;
+- the standard base preserves broader future-socket versatility, which fits the approximately 10-year ownership/serviceability goal.
+
+Clearance with the selected parts:
+
+- cooler stock height: **168 mm**;
+- Kingston `KF560C30BBEK2-32` module height: **34.9 mm**;
+- normal dual-fan RAM clearance is roughly **32 mm**, so the front fan needs only about **3 mm** of lift;
+- resulting practical cooler height is about **171 mm**;
+- Fractal North XL Mesh CPU-cooler limit is **185 mm**;
+- remaining margin is therefore about **14 mm**.
+
+The ProArt X870E-Creator WiFi is explicitly listed as compatible by Noctua.
+
+A top-mounted 360 mm AIO remains an emergency fallback only if real sustained workloads demonstrate an unacceptable thermal/acoustic result after fan-curve tuning; it is not part of the selected build.
 
 ## Storage strategy
 
-- buy one permanent **2 TB Gen4 TLC + DRAM** system/tools SSD initially;
+Selected initial SSD:
+
+- **Samsung 990 PRO 2 TB — `MZ-V9P2T0BW`**;
+- permanent system/tools role;
+- PCIe 4.0 x4, TLC + DRAM;
+- bare drive under the motherboard heatsink;
+- preferred ProArt slot: **`M.2_3`**.
+
+Long-term storage remains staged:
+
 - later add a **4 TB-or-larger** work/VM/container/data SSD;
-- preferred ProArt assignment: `M.2_3` for system drive and CPU-connected `M.2_1` for the future work drive;
+- reserve CPU-connected **`M.2_1`** for that future drive;
 - avoid `M.2_2` unless its graphics-lane trade-off is intentionally accepted;
+- reassess 4 TB vs 8 TB and Gen4 vs Gen5 only when the second drive is actually needed;
 - no RAID; external/network backup remains required.
+
+Retailer preference for the selected 990 PRO is **PC Garage first, eMAG second when the price difference is small**.
 
 ## PSU strategy
 
@@ -121,11 +154,21 @@ The UPS is deliberately sized for the current RTX 3060 workstation rather than t
 
 ## Remaining promotion / purchase-time gates
 
-### Cooler
+### Memory
 
-- verify exact Phase-1 RAM height/clearance;
-- verify fit within North XL's 185 mm envelope including any front-fan raising;
-- refresh LBC versus standard G2 pricing.
+- re-check PC Garage first and eMAG second immediately before purchase;
+- verify exact SKU and seller/warranty;
+- boot at JEDEC/Auto before considering EXPO.
+
+### CPU cooler
+
+The exact model is selected. Purchase-time work is limited to procurement sanity checks:
+
+- prefer PC Garage first, eMAG second;
+- confirm the listing is **standard NH-D15 G2**, not LBC or HBC;
+- do not pay a material premium for LBC;
+- install using the **-7 mm AM5 offset** position;
+- raise the front fan only as much as required to clear the 34.9 mm Kingston DIMMs.
 
 ### PSU
 
@@ -139,7 +182,12 @@ The UPS is deliberately sized for the current RTX 3060 workstation rather than t
 
 ### SSD
 
-- refresh firmware history, warranty and pricing immediately before purchase.
+The exact system SSD is selected. Immediately before purchase/install:
+
+- confirm no new unresolved 990 PRO firmware/health issue;
+- prefer PC Garage over eMAG when the price difference is small;
+- confirm normal warranty and bare `MZ-V9P2T0BW` SKU;
+- update/record firmware at bring-up.
 
 ## Final compatibility checks
 
@@ -147,8 +195,8 @@ Before purchase/assembly, verify:
 
 - 9950X3D support on shipping ProArt BIOS or have USB BIOS FlashBack ready;
 - selected Phase-1 RAM compatibility and stable Auto/JEDEC operation;
-- NH-D15 G2 / RAM / North XL clearance;
-- selected SSD firmware/warranty and M.2 placement;
+- standard NH-D15 G2 installed with 7 mm AM5 offset and minimal front-fan lift;
+- selected 990 PRO firmware/warranty and `M.2_3` placement;
 - Seasonic exact ATX 3.1 revision and native 12V-2x6 cable;
 - RTX 3060 fit and future-GPU physical/cable clearance;
 - North XL front-I/O headers against ProArt;
@@ -161,8 +209,8 @@ Before purchase/assembly, verify:
 - baseline boot at conservative/default memory settings;
 - extended memory stability testing;
 - if ECC memory is ever installed, validate actual ECC event reporting;
-- SSD firmware/SMART baseline and sustained-I/O temperature testing;
-- sustained CPU thermal/load testing;
+- update Samsung 990 PRO firmware, record SMART baseline and perform sustained-I/O temperature testing;
+- sustained CPU thermal/load testing with NH-D15 G2;
 - combined CPU/GPU thermal validation with the selected four-fan case layout;
 - tune fan curves for sustained workloads rather than transient Ryzen spikes;
 - inspect PSU/GPU power connectors for full insertion and strain-free routing;
