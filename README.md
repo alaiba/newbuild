@@ -1,74 +1,87 @@
 # New PC Build
 
-Research and decision record for a new long-lived workstation PC.
+Research, decisions and procurement record for a new long-lived professional workstation PC.
 
-## Fixed inputs and selected direction
+## Purpose
 
-This is a greenfield build assembled from scratch.
+Greenfield self-built workstation optimized primarily for:
 
-- **CPU/platform:** AMD Ryzen 9 9950X3D on AM5
-- **Memory target:** 256 GB initial build target
-- **Existing GPU:** NVIDIA GeForce RTX 3060 12 GB, reused initially
-- **Primary workload:** very heavy Java development, IntelliJ IDEA, Android Studio, Maven/Gradle builds, large test suites, Docker, WSL2, local services/databases and occasional VMs
-- **Secondary workload:** occasional gaming
-- **Secondary future objective:** preserve a credible path to a very powerful single high-VRAM GPU for local AI workloads without compromising the primary workstation
-- **Longevity objective:** approximately 10 years of useful life, especially if the final cost approaches or exceeds the 30,000 lei planning level
-- **Planning budget level:** 30,000 lei; not a hard cap and not a spending target
-- **Location:** Iași, Romania
-- **Assembly:** self-built
+- very heavy Java development across very large codebases;
+- IntelliJ IDEA and Android Studio;
+- Maven/Gradle builds and large test suites;
+- Docker/WSL2, local services/databases and occasional VMs;
+- occasional gaming as a secondary workload;
+- a future single very high-performance/high-VRAM GPU for local AI.
 
-The design philosophy is **stability first**. Prefer mature firmware, conservative memory settings, thermal/electrical headroom, reliable components, serviceability and long-term usefulness over short-lived benchmark gains or extreme tuning.
+The design philosophy is **stability first**: conservative operation, mature firmware, thermal/electrical margin, reliability, serviceability and long ownership are preferred over short-lived benchmark gains or aggressive tuning.
 
-## Component status
+Planning level is approximately **30,000 lei**, not a target and not a hard cap. The current initial build remains materially below it.
 
-| Component | Status | Notes |
-|---|---|---|
-| CPU/platform | **Selected** | AMD Ryzen 9 9950X3D on AM5 |
-| Motherboard | Open / next decision | Must officially support 256 GB and provide credible high-density-memory stability; ECC and future AI/GPU topology are important evaluation factors |
-| Memory | **256 GB target selected** | Exact 4×64 GB or equivalent configuration, data rate and ECC/non-ECC mode remain open |
-| CPU cooler | Open | Must support sustained 9950X3D workloads with thermal/acoustic headroom and strong long-term reliability |
-| Storage | Open | Capacity, number of drives, interface and exact models remain open; endurance/data integrity matter |
-| PSU | Open | Must preserve appropriate headroom for a future very high-power GPU |
-| Case | Open | Must support long-term serviceability, airflow and a future large GPU |
-| Case fans | Open | Depends on case and thermal design |
-| GPU | **Selected / existing** | Reuse RTX 3060 12 GB initially; preserve future single high-VRAM GPU path |
-| UPS | Open | Topology, capacity and exact model are undecided |
-| OS | Open | To be evaluated as part of the workstation design |
+## Selected initial build
 
-## Key closed decisions
+| Component | Selected configuration |
+|---|---|
+| CPU | **AMD Ryzen 9 9950X3D**, Box/WOF `100-100000719WOF` |
+| Motherboard | **ASUS ProArt X870E-Creator WiFi** |
+| Phase-1 RAM | **64 GB (2×32) Crucial `CT2K32G56C46U5`, DDR5-5600 CL46, 1.1 V** |
+| Long-term RAM | **256 GB target**, expected 4×64 GB; exact modules/ECC verdict deferred |
+| CPU cooler | **Noctua NH-D15 G2 standard `CPNTD15G2`**, 7 mm AM5 offset |
+| System SSD | **Samsung 990 PRO 2 TB `MZ-V9P2T0BW`**, installed in ProArt `M.2_3` |
+| Future work SSD | 4 TB-or-larger NVMe later; reserve `M.2_1` |
+| PSU | **Seasonic VERTEX GX-1200 current ATX 3.1 / PCIe 5.1 / 12V-2x6 revision** |
+| Case | **Fractal Design North XL Mesh Charcoal Black `FD-C-NOR1X-01`** |
+| Airflow | 3× included 140 mm front intake + 1× **Noctua NF-A14x25 G2 PWM** rear exhaust |
+| GPU | Existing **RTX 3060 12 GB**, reused initially |
+| UPS | **CyberPower CP1600EPFCLCD** |
+| Host OS | **Windows 11 Pro x64**, initial install 25H2 GA |
+| Windows license | **Retail/FPP USB English `HAV-00163`** — required purchase |
+| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** |
 
-The main closed decisions are recorded in [`docs/decisions.md`](docs/decisions.md).
+Representative current complete initial order is approximately **18.9–19.3k lei before shipping**, including Windows Retail/FPP and excluding the reused RTX 3060.
 
-Current important decisions include:
+## Important operating policies
 
-- Ryzen 9 9950X3D + AM5 selected over Threadripper/workstation alternatives for the best overall balance of professional development performance, interactive use, gaming and total platform cost.
-- 256 GB is the initial memory-capacity target; scale back only if current cost or stable AM5 operation makes it disproportionate.
-- Only motherboards with manufacturer-documented 256 GB support are eligible.
-- ECC UDIMM is a strong reliability preference if a stable 256 GB implementation with meaningful OS-visible error reporting can be established.
-- Future local AI is a secondary objective: preserve compatibility with one extremely powerful/high-VRAM GPU; do not overbuild today for serious multi-GPU training.
-- 30,000 lei is a planning level, not a hard cap. A build near or above that level must earn the spend through a credible long-term performance/reliability/endurance/serviceability story.
+- Ryzen CPU remains stock/conservative; no uncapped-PBO policy.
+- RAM starts at Auto/JEDEC and receives extended stability testing before any optional profile tuning.
+- Eventual 256 GB memory is a new matched-set purchase; prefer ECC UDIMM only if exact modules, four-DIMM stability and OS-visible ECC reporting are credible.
+- Samsung 990 PRO is the permanent system/tools drive; no RAID.
+- Preserve `M.2_1` for the future work/VM/container SSD and avoid `M.2_2` unless its GPU-lane trade-off is deliberately accepted.
+- Keep the initial case airflow simple: front intake + rear exhaust; add top/side fans only if measurements justify them.
+- UPS is sized for the initial RTX 3060 system and must be reassessed with a materially higher-power future GPU.
+- Windows baseline is production/GA only; no Insider baseline.
+- Linux-native high-I/O work belongs inside the WSL filesystem rather than `/mnt/c`.
+- BitLocker is enabled only after the initial BIOS/firmware/driver baseline is stable.
+
+## Procurement policy
+
+- **PC Garage and Altex are co-preferred Romanian retailers**.
+- **eMAG is also acceptable**.
+- Other established Romanian/EU sellers are acceptable when preferred sellers are unavailable, materially more expensive or ambiguous about the exact SKU/revision.
+- Exact SKU/revision, invoice/warranty path and product condition outrank retailer loyalty.
+- Do not substitute similar-looking SKUs without reopening the relevant purchase gate.
+
+The current exact order split, price controls and rejection gates are in [`docs/procurement-plan-2026-08-31.md`](docs/procurement-plan-2026-08-31.md).
+
+## Still intentionally deferred
+
+- exact eventual 256 GB 4×64 GB memory set and ECC/non-ECC decision;
+- validation of operational system-level ECC reporting if ECC is used;
+- exact future 4 TB+ work SSD;
+- future high-VRAM GPU;
+- UPS enlargement if the future GPU/load requires it;
+- exact container runtime if licensing/workflow makes the choice material.
 
 ## Repository structure
 
-- [`docs/requirements.md`](docs/requirements.md) — workload, constraints, reliability philosophy and evaluation criteria
-- [`docs/decisions.md`](docs/decisions.md) — closed decisions only
-- [`docs/cost-value-matrix.md`](docs/cost-value-matrix.md) — living build-level matrix for cost, performance, reliability, endurance, expansion and 10-year value
-- [`docs/compatibility.md`](docs/compatibility.md) — cross-component compatibility and topology constraints as they emerge
-- [`docs/final-build.md`](docs/final-build.md) — final bill of materials as component decisions close
-- [`docs/components/`](docs/components/) — one technical dossier per component
+- [`docs/requirements.md`](docs/requirements.md) — workload, constraints and evaluation criteria
+- [`docs/decisions.md`](docs/decisions.md) — closed decisions and reopen conditions
+- [`docs/final-build.md`](docs/final-build.md) — current source-of-truth BOM and bring-up baseline
+- [`docs/procurement-plan-2026-08-31.md`](docs/procurement-plan-2026-08-31.md) — purchase-ready order plan, exact SKUs, seller controls and acceptance gates
+- [`docs/purchase-review-2026-08-31.md`](docs/purchase-review-2026-08-31.md) — dated cost snapshot
+- [`docs/compatibility.md`](docs/compatibility.md) — cross-component topology/compatibility constraints
+- [`docs/cost-value-matrix.md`](docs/cost-value-matrix.md) — build-level cost/value reasoning
+- [`docs/components/`](docs/components/) — component deep dives and evidence
 
-## Research approach
+## Current stage
 
-Each component is evaluated against the real workload and the intended long ownership horizon. The goal is not the cheapest acceptable build and not the fastest benchmark build.
-
-For every material price premium, determine what it actually buys in:
-
-- relevant workload performance;
-- stability and data integrity;
-- reliability and endurance;
-- acoustics and thermal headroom;
-- serviceability;
-- expansion capability; and
-- expected usefulness over approximately 10 years.
-
-Current next step: **select the motherboard**, with particular emphasis on stable 256 GB operation, ECC implementation, firmware maturity, PCIe/M.2 topology, future high-end GPU support and long-term serviceability.
+**Component selection is complete for the initial build. Current work is procurement execution, followed by assembly, firmware setup and burn-in/validation.**
