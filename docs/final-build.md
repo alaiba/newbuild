@@ -16,7 +16,8 @@ This is the current source-of-truth architecture for the workstation.
 | Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Selected** |
 | Bulk/cold storage | Reuse healthy existing SATA drives; `M.2_2` + `M.2_3` remain free for future expansion | **Selected policy** |
 | Storage RAID/cache/tiering | **None** | **Selected** |
-| PSU | **Premium 750 W or 850 W ATX 3.1** | **Reopened; exact model open** |
+| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | **Selected** |
+| PSU fallback | Corsair RM850x 2024 850W `CP-9020270-EU` | **Fallback only** |
 | UPS | **None initially** | **Selected** |
 | Point-of-use surge protection | Reputable plug-in surge protector / protected power strip | **Selected policy; exact model open** |
 | GPU | Existing **RTX 3060 12 GB** | **Reuse for as long as useful/reliable** |
@@ -122,17 +123,19 @@ Use the **non-heatsink** T710 variant under the ASUS motherboard M.2 heatsink. D
 
 ## GPU policy
 
-Reuse the RTX 3060 for as long as useful/reliable. A future replacement retires it rather than creating a dual-GPU design. Do not distort motherboard, PSU or chassis choices around an unknown future flagship GPU.
+Reuse the RTX 3060 for as long as useful/reliable. A future replacement retires it rather than creating a dual-GPU design. Do not distort motherboard or chassis choices around an unknown future flagship GPU.
 
-## PSU architecture — open
+## PSU — final
 
-Current target:
+Selected:
 
-- premium **750 W ATX 3.1** as legitimate baseline;
-- **850 W** only when an equally good model costs modestly more or is materially better;
-- no default 1000–1200 W requirement.
+> **be quiet! Pure Power 13 M 850W `BP027EU`**
 
-Prioritize electrical design/protections, long warranty, acoustics and exact current revision/cabling over wattage.
+The 750 W class remains technically sufficient for the current 9950X3D + RTX 3060 system. The 850 W unit wins because the observed premium over the corresponding 750 W model is only roughly 40–100 lei while retaining premium ATX 3.1 platform quality, native current-generation GPU power, excellent measured acoustics/electrical behavior and a 10-year warranty.
+
+This does **not** restore the former 1000–1200 W future-GPU strategy. If a concrete future accelerator genuinely requires more than this PSU can support, replace the PSU then.
+
+Preferred checkout fallback: **Corsair RM850x 2024 `CP-9020270-EU`** only if delivered price is within roughly 30–40 lei or retailer/warranty conditions are materially better.
 
 ## UPS / mains protection
 
@@ -171,9 +174,11 @@ No UPS initially. Use a reputable point-of-use surge protector / surge-protected
 - no RAID requirement.
 
 ### PSU
-- premium 750/850 W class;
-- ATX 3.1/current PCIe GPU-power standard;
-- strong protections, mature platform and long warranty.
+- exact **be quiet! Pure Power 13 M 850W `BP027EU`**;
+- ATX 3.1/current native GPU-power cabling;
+- new retail unit with normal 10-year manufacturer warranty path;
+- use only the modular cables supplied with the exact PSU;
+- Corsair RM850x 2024 `CP-9020270-EU` is fallback only after price/warranty review.
 
 ### UPS
 - **do not purchase one initially**.
@@ -184,8 +189,7 @@ No UPS initially. Use a reputable point-of-use surge protector / surge-protected
 
 ## Next decision sequence
 
-1. Select exact premium **750 W / 850 W PSU**.
-2. Select exact plug-in surge protector.
-3. Refresh all prices/provider consolidation and produce the order total.
+1. Select exact plug-in surge protector.
+2. Refresh all prices/provider consolidation and produce the order total.
 
 Detailed decisions: `docs/decisions.md`.
