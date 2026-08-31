@@ -8,14 +8,16 @@ Fixed architecture decisions:
 
 - **CPU/platform:** AMD Ryzen 9 9950X3D on AM5;
 - **memory:** 128 GB from day one as **2×64 GB DDR5 UDIMM / 1DPC**;
-- **cooling architecture:** high-quality air cooling, exact model open;
+- **cooler:** **Thermalright Phantom Spirit 120 standard**;
+- **chassis:** **be quiet! Pure Base 501 Airflow Black `BG074`**;
+- **initial case airflow:** two included 140 mm PWM fans, front intake + rear exhaust;
 - **active-work storage:** **1–2 TB NVMe on a CPU-direct M.2 x4 path**;
 - **system storage:** about **1 TB**, NVMe preferred but SATA acceptable when that produces a better motherboard/value trade-off;
-- **GPU:** reuse the existing RTX 3060 12 GB for as long as it remains useful/reliable;
+- **GPU:** reuse the existing RTX 3060 12 GB for as long as useful/reliable;
 - **host OS:** Windows 11 Pro x64 with WSL2 + Ubuntu 26.04.1 LTS;
 - **UPS:** none in the initial BOM.
 
-Open items include the exact CPU cooler, motherboard, RAM kit/ECC verdict, storage models, premium 750/850 W PSU and final case reconfirmation.
+Open items include the exact motherboard, RAM kit/ECC verdict, storage models, premium 750/850 W PSU and exact plug-in surge protector.
 
 ## Workload priority
 
@@ -31,23 +33,13 @@ Open items include the exact CPU cooler, motherboard, RAM kit/ECC verdict, stora
 
 ### Secondary
 - occasional gaming;
-- local AI only when it becomes concretely useful; cloud AI/training is an acceptable alternative.
+- local AI only when concretely useful; cloud AI/training is an acceptable alternative.
 
 ## Design philosophy
 
 Target a long useful life, approximately ten years where economically sensible, but **do not pre-buy speculative capability**.
 
-Prioritize:
-
-- stability and mature firmware;
-- conservative stock operation;
-- serviceability and replaceable wear items;
-- thermal/electrical margin appropriate to real loads;
-- memory stability over headline frequency;
-- storage reliability/endurance appropriate to role;
-- sensible I/O without paying for unused bandwidth;
-- real backup and recovery;
-- utility per leu rather than prestige.
+Prioritize stability, mature firmware, conservative operation, serviceability, replaceable wear items, appropriate thermal/electrical margin, memory stability, storage reliability/endurance and utility per leu.
 
 ## Memory requirements
 
@@ -55,34 +47,43 @@ Final configuration:
 
 **128 GB = 2×64 GB DDR5 UDIMM / 1DPC.**
 
-No temporary stage, no planned four-DIMM expansion, no 256 GB requirement.
+No temporary stage, planned four-DIMM expansion or 256 GB requirement.
 
 Exact kit priorities:
 
 - stable 2×64 operation with 9950X3D and selected board;
-- conservative JEDEC behavior;
-- sane voltage;
+- conservative JEDEC behavior and sane voltage;
 - good board/QVL evidence where available;
-- normal physical dimensions that do not force an unnecessarily large cooler/case compromise;
+- clean physical compatibility with the Phantom Spirit 120;
 - normal warranty/availability;
 - ECC only if exact support and OS-visible reporting are credible without compromising stability/value.
 
 ## Cooling requirements
 
-**Air cooling is selected; exact cooler model is open.**
+Exact cooler is selected: **Thermalright Phantom Spirit 120, standard model**.
 
-The cooler must:
+Requirements/policy:
 
-- sustain stock/conservative Ryzen 9 9950X3D operation under long development/test workloads without material thermal throttling;
-- provide acceptable acoustics under sustained real work;
-- fit cleanly with the final 2×64 GB memory kit, motherboard and chassis;
-- use replaceable fans and favor simple long-lived construction;
-- have a credible mounting/support/warranty path;
-- justify any premium through acoustics, compatibility, serviceability or real thermal margin rather than maximum benchmark cooling capacity.
+- sustain stock/conservative 9950X3D operation under long development/test workloads without material thermal throttling;
+- acceptable acoustics under sustained work;
+- clean compatibility with final RAM/motherboard;
+- use replaceable fans and simple long-lived construction;
+- no silent substitution with Phantom Spirit 120 SE/EVO or another variant without review;
+- no liquid/pump dependency unless measured operation later establishes a real need.
 
-The previous NH-D15 G2 exact-model lock is removed. Compare at least a Phantom Spirit 120-class value option, Noctua NH-U12A and NH-D15 G2-class premium reference.
+## Chassis and airflow requirements
 
-Do not enlarge the case or restrict RAM selection merely to preserve an oversized cooler if a smaller/cheaper air cooler meets the real requirement.
+Exact chassis is selected: **be quiet! Pure Base 501 Airflow Black `BG074`**.
+
+Relevant envelope:
+
+- ATX or smaller motherboard;
+- approximately **178 mm CPU-cooler clearance**;
+- approximately **368 mm GPU clearance**;
+- two included 140 mm PWM fans;
+- practical 3.5-inch HDD support for later cold storage.
+
+Initial airflow is **one included 140 mm front intake + one included 140 mm rear exhaust**. Do not pre-buy more fans. Add another front intake only if closed-case measurement shows a material benefit.
 
 ## Motherboard requirements
 
@@ -90,6 +91,7 @@ The prior Creator-class/256 GB/multi-GPU feature set is **not** a baseline.
 
 ### Required / strongly preferred
 
+- **ATX or smaller** for the selected case;
 - AM5 + Ryzen 9 9950X3D support;
 - mature BIOS/AGESA;
 - strong evidence for stable **2×64 GB / 128 GB / 1DPC**;
@@ -111,18 +113,15 @@ The prior Creator-class/256 GB/multi-GPU feature set is **not** a baseline.
 
 ### Networking
 
-The actual internet connection is below 1 Gb/s and local network throughput is irrelevant.
-
-Therefore:
+Internet is below 1 Gb/s and LAN throughput is irrelevant.
 
 - **1 GbE is sufficient**;
 - 2.5 GbE is a harmless/common bonus;
-- do not pay a meaningful premium for 5/10 GbE;
-- networking speed should not eliminate an otherwise better-value board.
+- do not pay a meaningful premium for 5/10 GbE.
 
 ### VRM / overclocking
 
-The workstation will run the 9950X3D stock/conservatively. Require a competent, cool-running VRM, but **do not reward phase-count marketing, extreme current capability, LN2/OC controls or other enthusiast overclocking features**.
+The 9950X3D will run stock/conservatively. Require competent, cool-running power delivery; do not reward phase-count marketing, extreme current capability or enthusiast OC features.
 
 ## Storage requirements
 
@@ -131,7 +130,7 @@ The workstation will run the 9950X3D stock/conservatively. Require a competent, 
 Hard topology requirement:
 
 - one **CPU-direct M.2 x4** path;
-- it must coexist with the primary GPU without reducing the GPU's intended link.
+- it must coexist with the primary GPU without reducing the intended GPU link.
 
 Capacity:
 
@@ -139,22 +138,11 @@ Capacity:
 - **2 TB preferred when incremental price/value is attractive**;
 - 4 TB not required initially.
 
-Quality:
-
-- TLC strongly preferred;
-- DRAM desirable when reasonably priced;
-- mature firmware;
-- strong sustained/mixed behavior;
-- sensible endurance/warranty;
-- Gen4 sufficient; Gen5 optional only when effectively free/useful.
+Prefer TLC, mature firmware, good sustained/mixed behavior, sensible endurance/warranty and Gen4 unless Gen5 is effectively free/useful.
 
 ### System drive
 
-Target around **1 TB**.
-
-NVMe is preferred when naturally available, but **SATA SSD is acceptable** if a second clean M.2 path would otherwise force a worse/more expensive motherboard.
-
-Optimize for reliability, headroom, mature firmware, warranty and price—not peak sequential bandwidth.
+Target around **1 TB**. NVMe is preferred, but **SATA SSD is acceptable** if a second clean M.2 path would otherwise force a worse/more expensive motherboard.
 
 ### Bulk/cold storage
 
@@ -164,14 +152,12 @@ No RAID requirement; maintain independent backup/version-control protection.
 
 ## GPU / expansion requirements
 
-Reuse the RTX 3060 for as long as it remains useful/reliable.
-
-There is **no current plan to buy a higher-end GPU** merely because the platform can support one. Gaming is secondary and cloud AI availability reduces the need to provision aggressively for local training.
+Reuse the RTX 3060 for as long as useful/reliable.
 
 When/if a future GPU replacement occurs:
 
 - retire the RTX 3060 rather than designing around dual-GPU operation;
-- reevaluate PSU requirements at that time if necessary;
+- reevaluate PSU/case only if the chosen future GPU actually requires it;
 - CPU x8/x8 is not a motherboard requirement;
 - do not pre-size today's platform for a hypothetical 500–600 W flagship.
 
@@ -180,30 +166,16 @@ When/if a future GPU replacement occurs:
 Reopen selection around **premium 750 W and 850 W ATX 3.1 units**.
 
 - 750 W is a legitimate long-term baseline;
-- 850 W is preferred only when the premium is modest or the exact model is materially better acoustically/electrically;
+- 850 W wins only when the premium is modest or the exact model is materially better;
 - 1000–1200 W is not justified merely for speculative GPU headroom.
 
-Prioritize:
-
-- excellent electrical platform/protections;
-- ATX 3.1/current transient handling;
-- mature design and long warranty;
-- quiet operation;
-- current cabling/revision clarity.
+Prioritize electrical platform/protections, current transient handling, mature design, long warranty, quiet operation and revision/cabling clarity.
 
 ## UPS / power protection
 
-**No UPS in the initial BOM.**
+**No UPS in the initial BOM.** Short outages are operationally acceptable.
 
-Short outages are operationally acceptable and there is no need to keep working through them.
-
-Use a reputable **plug-in surge protector / surge-protected power strip** at the workstation as the practical point-of-use protection measure. No electrical-installation modifications are part of this build. Understand that point-of-use surge protection is not equivalent to coordinated building-level SPD protection and relies on a sound protective-earth connection.
-
-## Chassis
-
-Airflow, serviceability, dust management and normal single-GPU compatibility remain important. The North XL is still selected for now but deserves one final value/size check because both the old very-large-future-GPU requirement and the locked NH-D15 G2 requirement have weakened.
-
-The final case/cooler combination should be chosen together. Neither component should force unnecessary size or cost on the other.
+Use a reputable **plug-in surge protector / surge-protected power strip** as the practical point-of-use protection measure. No electrical-installation modifications are part of this build.
 
 ## Budget and procurement
 
@@ -216,7 +188,7 @@ For every premium ask:
 1. Does the real workload need it?
 2. Does it materially improve stability, serviceability, endurance or performance?
 3. Is the benefit durable over ownership?
-4. Can the capability be added/replaced later more cheaply if it ever becomes necessary?
-5. Are we paying for a concrete requirement or for a hypothetical future scenario?
+4. Can it be added/replaced later more cheaply if it becomes necessary?
+5. Are we paying for a concrete requirement or a hypothetical scenario?
 
 When performance and stability conflict, prefer stability unless the performance loss materially affects the workstation's core purpose.
