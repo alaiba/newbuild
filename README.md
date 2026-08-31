@@ -45,9 +45,23 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 - **Pure Power 13 M 850W** is selected because the current premium over the 750 W sibling is small while platform quality, acoustics and ATX 3.1 compliance are strong; 1000–1200 W remains unnecessary.
 - No UPS and no dedicated surge protector are purchased initially. Revisit mains protection only if actual power-quality problems appear.
 
+## Final order position — 2026-08-31
+
+Recommended provider split:
+
+- **EvoMAG:** CPU, RAM, cooler, case, SSD, PSU;
+- **ForIT:** exact motherboard;
+- **PROstore:** Windows 11 Pro Retail/FPP.
+
+Reference total before shipping: **16,119.71 lei**, reusing the RTX 3060 and existing SATA storage.
+
+The exact 128 GB Crucial kit is currently the abnormal market item at approximately **7,699.99 lei**, nearly half of the selected-build total. Refresh it immediately before checkout; do not silently change memory topology merely to escape current pricing.
+
+See [`docs/final-order-plan-2026-08-31.md`](docs/final-order-plan-2026-08-31.md) for the live-priced basket, provider rationale and checkout gates.
+
 ## Current open work
 
-1. Refresh prices/providers and produce the final order total.
+No component-selection work remains. Before payment, perform a same-day stock/price check, with special attention to the RAM kit.
 
 ## Repository structure
 
@@ -55,9 +69,10 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 - [`docs/decisions.md`](docs/decisions.md) — closed/reopened decisions
 - [`docs/final-build.md`](docs/final-build.md) — current source-of-truth architecture
 - [`docs/procurement-plan-2026-08-31.md`](docs/procurement-plan-2026-08-31.md) — procurement state
+- [`docs/final-order-plan-2026-08-31.md`](docs/final-order-plan-2026-08-31.md) — current live-priced order plan
 - [`docs/compatibility.md`](docs/compatibility.md) — cross-component constraints
 - [`docs/components/`](docs/components/) — component deep dives
 
 ## Current stage
 
-**CPU, motherboard, RAM, cooler, case, primary storage and PSU are closed. No UPS or dedicated surge-protection purchase is required. The remaining task is the full price/provider refresh and final order plan.**
+**Purchase-ready.** Architecture and exact components are closed. Current reference order is ~**16.12k lei before shipping** across EvoMAG + ForIT + PROstore; verify same-day stock and especially RAM pricing before checkout.
