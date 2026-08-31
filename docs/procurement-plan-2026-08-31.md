@@ -1,6 +1,6 @@
 # Procurement Plan — 2026-08-31
 
-This plan is paused for re-optimization after the build requirements were simplified to remove speculative future-proofing.
+This plan remains paused for the still-open motherboard/RAM/storage/PSU optimization.
 
 ## Locked principles
 
@@ -15,30 +15,35 @@ This plan is paused for re-optimization after the build requirements were simpli
 | Item | Target | Status |
 |---|---|---|
 | CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | selected |
-| Cooling architecture | high-quality air cooling | selected; exact cooler reopened |
+| CPU cooler | **Thermalright Phantom Spirit 120 standard** | selected |
+| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | selected |
+| Case fans | use the **two included 140 mm PWM fans** only initially | selected |
 | RAM architecture | 128 GB = 2×64 GB / 1DPC | selected; exact kit open |
 | GPU | existing RTX 3060 12 GB | reuse |
 | Windows | Windows 11 Pro Retail/FPP `HAV-00163` | selected target |
 | UPS | none | selected |
-| Surge protection | reputable plug-in surge protector/power strip | selected policy |
+| Surge protection | reputable plug-in surge protector/power strip | selected policy; exact product open |
 
-## Items to re-optimize before ordering
+### Cooler acceptance gate
 
-### Cooler + case
+- exact product: **Thermalright Phantom Spirit 120 standard**;
+- AM5 mounting hardware included;
+- do not silently substitute PS120 SE, EVO or another variant;
+- verify box/product identity before purchase.
 
-The exact NH-D15 G2 purchase is superseded. Compare at least:
+### Case acceptance gate
 
-- Thermalright Phantom Spirit 120-class value option;
-- Noctua NH-U12A premium compact option;
-- Noctua NH-D15 G2 maximum-air-cooling reference.
+- exact model: **be quiet! Pure Base 501 Airflow Black `BG074`**;
+- new/sealed;
+- both included 140 mm PWM fans present;
+- no dedicated Noctua rear-fan purchase;
+- no additional case fan initially.
 
-Select on sustained stock/conservative 9950X3D thermals, acoustics, RAM/case compatibility, serviceability/warranty and price.
-
-Do not keep an oversized case merely to accommodate a cooler whose extra capacity is unnecessary. The North XL remains selected for now but must be reconfirmed together with the cooler.
+## Items to optimize before ordering
 
 ### Motherboard
 
-Start from a broad AM5 candidate set.
+Start from a broad AM5 candidate set constrained to **ATX or smaller**.
 
 Hard/strong requirements:
 
@@ -67,7 +72,7 @@ Do **not** pay materially for:
 - 1DPC;
 - stability/JEDEC behavior first;
 - ECC only when exact support and OS-visible reporting are credible;
-- final DIMM dimensions must fit the selected cooler/case cleanly without forcing unnecessary hardware premiums.
+- verify clean physical fit with Phantom Spirit 120, including any front-fan lift.
 
 ### Storage
 
@@ -94,20 +99,30 @@ Bulk/cold:
 
 ### PSU
 
-Previous 1200 W targets are superseded.
-
 Compare premium **750 W and 850 W ATX 3.1** units.
 
 - 750 W is the legitimate baseline;
-- choose 850 W when the premium is modest or the exact model is materially better;
+- choose 850 W when the premium is modest or exact model is materially better;
 - do not buy 1000–1200 W for speculative GPU headroom;
 - prioritize electrical quality, protections, warranty, acoustics and current revision/cabling.
+
+### Point-of-use surge protection
+
+Select a reputable Schuko plug-in surge protector / protected power strip with:
+
+- 230 V / 16 A suitability;
+- protective-earth continuity;
+- protection-status indication;
+- clear replacement/end-of-protection guidance;
+- reputable manufacturer and normal Romanian/EU warranty path.
 
 ## Explicitly removed from the order
 
 - CyberPower PR1500ELCD;
 - 1200 W Seasonic VERTEX GX/PX targets;
-- NH-D15 G2 as a locked exact cooler;
+- Noctua NH-D15 G2;
+- Fractal North XL Mesh `FD-C-NOR1X-01`;
+- Noctua NF-A14x25 G2 rear fan;
 - 4 TB initial work SSD requirement;
 - 5/10 GbE requirement;
 - multi-GPU/x8+x8 requirement;
@@ -119,18 +134,18 @@ All earlier complete-order totals are obsolete.
 
 Do not produce a new final total until:
 
-1. cooler + case are selected/reconfirmed;
-2. motherboard is selected;
-3. exact 2×64 GB kit is selected;
-4. exact system/active-work drives are selected;
-5. exact 750/850 W PSU is selected;
+1. motherboard is selected;
+2. exact 2×64 GB kit is selected;
+3. exact system/active-work drives are selected;
+4. exact 750/850 W PSU is selected;
+5. exact surge protector is selected or separately budgeted;
 6. live Romanian stock/prices are refreshed.
 
 ## Next sequence
 
-1. cooler + case optimization;
-2. motherboard optimization;
-3. exact RAM;
-4. exact SSDs;
-5. exact PSU;
+1. motherboard optimization;
+2. exact RAM;
+3. exact SSDs;
+4. exact PSU;
+5. surge protector;
 6. provider consolidation and final total.
