@@ -1,11 +1,11 @@
 # Procurement Plan — 2026-08-31
 
-This plan is temporarily **paused for re-optimization** after two architecture changes were finalized:
+This plan is temporarily **paused for re-optimization** after architecture changes were finalized:
 
 - memory: **128 GB / 2×64 GB / 1DPC from day one**;
-- storage: **~1 TB system NVMe + 4 TB work NVMe from day one**.
+- storage: **~1 TB system NVMe + 1–2 TB active-work NVMe from day one**, with bulk/cold storage added only when needed.
 
-The previous 64 GB Phase-1 RAM assumption, Samsung 990 PRO 2 TB system-drive purchase and old purchase totals are obsolete.
+The previous 64 GB Phase-1 RAM assumption, Samsung 990 PRO 2 TB system-drive purchase, fixed 4 TB work-drive target and old purchase totals are obsolete.
 
 ## Locked procurement principles
 
@@ -14,7 +14,7 @@ The previous 64 GB Phase-1 RAM assumption, Samsung 990 PRO 2 TB system-drive pur
 3. Add another hardware provider only for material net savings or materially better stock/SKU/revision/warranty certainty.
 4. Windows/software may use a separate provider at a lower savings threshold because it has negligible RMA lifecycle burden.
 5. Optimize **utility per leu**, including stability, endurance, serviceability, firmware quality, thermal/electrical margin and avoiding future replacement.
-6. Do not pay merely for benchmark prestige or unused capability.
+6. Do not pay for benchmark prestige, unused capability or speculative storage capacity.
 7. Buy exact SKUs/revisions only; no silent substitution.
 
 ## Decisions that remain purchase-ready
@@ -37,14 +37,15 @@ The previous 64 GB Phase-1 RAM assumption, Samsung 990 PRO 2 TB system-drive pur
 
 The ASUS ProArt X870E-Creator WiFi remains the incumbent reference but is **not currently purchase-final**.
 
-Its strongest previous justification was the difficult 4×64 GB / 256 GB memory target. Re-optimize the board against the final 128 GB 1DPC target and the simplified two-drive storage topology.
+Re-optimize the board against the final 128 GB 1DPC target and simplified storage topology.
 
 Required storage topology:
 
 - at least two simultaneously usable M.2 x4 slots;
-- CPU-direct x4 preferred for the 4 TB work drive;
-- chipset x4 is sufficient for the system drive;
+- CPU-direct x4 preferred for the active-work drive;
+- chipset x4 sufficient for the system drive;
 - using those two slots must preserve GPU x16;
+- a practical later bulk-storage path through extra M.2 and/or SATA is desirable;
 - Gen5 storage capability is a bonus, not a requirement.
 
 ### Memory
@@ -74,20 +75,38 @@ Final role/capacity target:
 
 Do not automatically buy the Samsung 990 PRO. Select the cheapest credible drive that meets the reliability/headroom criteria. Move from 500 GB to 1 TB when the price increment is small.
 
-### Work SSD
+### Active-work SSD
 
-Final role/capacity target:
+Capacity policy:
 
-- **4 TB from day one**;
+- **1 TB is sufficient and is the value baseline**;
+- **2 TB is preferred when the incremental price and price/TB are attractive**;
+- **4 TB is not an initial requirement**.
+
+Quality target:
+
 - high-quality internal NVMe;
 - TLC strongly preferred;
 - DRAM-equipped design preferred when reasonably priced;
 - mature firmware and good sustained/mixed behavior;
-- endurance appropriate for repositories/build caches/WSL2/containers/VMs/databases;
+- endurance appropriate for repositories/build caches/WSL2/containers/active VMs/databases;
 - CPU-direct x4 preferred;
 - **Gen4 is sufficient**.
 
 Do not pay a material Gen5 premium without a demonstrated workload benefit.
+
+### Bulk/cold storage
+
+Do not pre-purchase high-performance capacity for inactive data.
+
+If capacity becomes tight later, add a third storage tier using whichever class provides the best capacity/value for the data:
+
+- additional chipset-connected NVMe;
+- SATA SSD;
+- SATA HDD;
+- external/NAS storage.
+
+Existing old HDDs may be reused after SMART/health checks for infrequently accessed data. They must not be the sole copy of important material.
 
 ### Storage RAID / backup
 
@@ -104,18 +123,13 @@ The prior provider split remains a useful market reference, not a committed orde
 - PROstore remains the current verified Windows `HAV-00163` Retail/FPP target;
 - eMAG is fully acceptable, and Genius/free-delivery value should be included when comparing eligible offers.
 
-Recalculate provider consolidation after motherboard, RAM and both SSD models are closed.
+Recalculate provider consolidation after motherboard, RAM and both initial SSD models are closed.
 
 ## Price envelope
 
 **Do not use the previous ~20k complete-order total.**
 
-It assumed:
-
-- 64 GB / 2×32 GB RAM;
-- the ProArt as final motherboard;
-- a Samsung 990 PRO 2 TB system SSD;
-- the 4 TB work SSD deferred outside the initial order.
+It assumed obsolete RAM/motherboard/storage selections.
 
 A new total will be calculated only after the reopened exact-product decisions are closed.
 
@@ -132,12 +146,14 @@ A new total will be calculated only after the reopened exact-product decisions a
 - no temporary 2×32 GB purchase.
 
 ### Storage
-- two drives purchased for initial assembly;
-- ~1 TB system NVMe + 4 TB work NVMe;
+- two NVMe SSDs purchased for initial assembly;
+- ~1 TB system NVMe;
+- active-work NVMe **1 TB or 2 TB according to current value**;
 - system drive selected for reliability/headroom/value, not flagship benchmarks;
-- work drive TLC strongly preferred;
+- active-work drive TLC strongly preferred;
 - no Gen5 requirement;
-- motherboard slot combination must preserve GPU x16.
+- motherboard slot combination must preserve GPU x16;
+- future bulk/cold storage added only when needed.
 
 ### Cooler
 - NH-D15 G2 standard;
@@ -170,7 +186,7 @@ A new total will be calculated only after the reopened exact-product decisions a
 
 1. re-optimize **motherboard** against final memory/storage topology;
 2. select exact **2×64 GB RAM** and ECC/non-ECC verdict;
-3. select exact **~1 TB system + 4 TB work SSDs** using current Romanian prices;
+3. select exact **~1 TB system + 1 TB/2 TB active-work SSDs** using current Romanian prices;
 4. refresh all current stock/prices, including eMAG Genius delivery where relevant;
 5. produce a new ≤3-provider order plan and total;
 6. only then order the reopened items.
