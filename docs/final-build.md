@@ -2,7 +2,7 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, the **CPU/platform, motherboard, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, exact CPU cooler, staged storage architecture, exact initial system SSD, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis, Phase-1 UPS architecture and existing GPU are selected**. Several purchase-time SKUs remain provisional.
+At present, the **CPU/platform, motherboard, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, exact CPU cooler, staged storage architecture, exact initial system SSD, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis, exact rear exhaust fan, Phase-1 UPS architecture and existing GPU are selected**. Several purchase-time SKUs remain provisional.
 
 ## Status vocabulary for this document
 
@@ -24,7 +24,8 @@ At present, the **CPU/platform, motherboard, 256 GB architectural memory target,
 | Future work SSD | **4 TB-or-larger NVMe** | **Architecture selected / purchase deferred** | Dedicated source/VM/container/database/work drive. Reserve CPU-connected `M.2_1`; reassess Gen4 vs Gen5 and 4 TB vs 8 TB when capacity is actually needed. |
 | PSU | **Seasonic VERTEX GX-1200 ATX 3.1** | **Provisional target** | 1200 W ATX 3.1 / PCIe 5.1 architecture selected. Require native 12V-2x6 and verify exact revision at purchase. |
 | Case | **Fractal Design North XL Mesh** | **Selected** | 413 mm GPU clearance, 185 mm CPU-cooler clearance, front + PSU filtration, 3×140 mm PWM front fans included, 290 mm PSU clearance, top 360 mm AIO fallback support. |
-| Case fans | **3×140 mm front intake + 1×140 mm rear exhaust** | **Layout selected** | Use the three included front PWM fans; add one quality 140 mm PWM rear exhaust. No top/side fans initially. |
+| Rear case fan | **Noctua NF-A14x25 G2 PWM, square-frame 140 mm** | **Selected** | Permanent rear exhaust. 0–1500 RPM PWM, SSO2 bearing, >150,000 h MTTF and six-year warranty. Standard brown/beige is baseline; chromax.black is technically equivalent if similarly priced. |
+| Case-fan layout | **3× included 140 mm front intake + 1× Noctua 140 mm rear exhaust** | **Selected** | No top/side fans initially. Add only if measured thermals justify them. |
 | GPU | NVIDIA GeForce RTX 3060 12 GB | **Existing / selected** | Reuse initially; preserve future path to one very high-end/high-VRAM GPU |
 | UPS | **CyberPower CP1600EPFCLCD** | **Provisional target** | Phase-1 architecture selected: line-interactive, pure sine, ~1600 VA / 1000 W. Reassess UPS capacity when a materially higher-power GPU is installed. |
 | OS | — | Open | |
@@ -129,10 +130,18 @@ Selected chassis: **Fractal Design North XL Mesh**.
 
 Initial fan layout:
 
-- front: 3× included 140 mm PWM intake;
-- rear: 1× added 140 mm PWM exhaust;
+- front: **3× included Fractal Aspect 14 PWM intake**;
+- rear: **1× Noctua NF-A14x25 G2 PWM exhaust**;
 - top: empty;
 - side: empty.
+
+Rear-fan procurement:
+
+- exact baseline: square-frame **NF-A14x25 G2 PWM**, standard 1500-RPM version, EAN `9010018100617` for brown/beige;
+- current Romanian single-fan market is roughly **180–210 lei**;
+- chromax.black is an equivalent substitute if the price difference is small;
+- PC Garage first, eMAG second when they stock the single fan at a sensible price;
+- do **not** buy an unnecessary two-pack merely because that is the only preferred-retailer listing indexed at the moment.
 
 Add top/side fans only if measured CPU/GPU/SSD/VRM thermals justify them.
 
@@ -170,6 +179,15 @@ The exact model is selected. Purchase-time work is limited to procurement sanity
 - install using the **-7 mm AM5 offset** position;
 - raise the front fan only as much as required to clear the 34.9 mm Kingston DIMMs.
 
+### Rear case fan
+
+The exact model is selected:
+
+- buy one **Noctua NF-A14x25 G2 PWM** square-frame fan;
+- prefer a single unit around the normal market price rather than an unnecessary two-pack;
+- chromax.black is acceptable if similarly priced;
+- control by motherboard PWM and tune for low steady RPM under normal development loads.
+
 ### PSU
 
 - verify current ATX 3.1 / 12V-2x6 revision;
@@ -200,7 +218,7 @@ Before purchase/assembly, verify:
 - Seasonic exact ATX 3.1 revision and native 12V-2x6 cable;
 - RTX 3060 fit and future-GPU physical/cable clearance;
 - North XL front-I/O headers against ProArt;
-- fan-header/control plan;
+- rear NF-A14x25 G2 PWM on a controllable 4-pin fan header;
 - UPS output wattage/waveform versus measured system load.
 
 ## Bring-up and validation
@@ -212,7 +230,7 @@ Before purchase/assembly, verify:
 - update Samsung 990 PRO firmware, record SMART baseline and perform sustained-I/O temperature testing;
 - sustained CPU thermal/load testing with NH-D15 G2;
 - combined CPU/GPU thermal validation with the selected four-fan case layout;
-- tune fan curves for sustained workloads rather than transient Ryzen spikes;
+- tune front/rear fan curves for sustained workloads rather than transient Ryzen spikes;
 - inspect PSU/GPU power connectors for full insertion and strain-free routing;
 - sleep/resume, WSL2 and virtualization validation;
 - 10 GbE driver/firmware and sleep/resume validation;
