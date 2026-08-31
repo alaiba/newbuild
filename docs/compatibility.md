@@ -2,7 +2,7 @@
 
 This document captures cross-component constraints that should not be evaluated in isolation.
 
-The build is greenfield. The existing RTX 3060 12 GB is reused initially; the CPU, motherboard, **64 GB Phase-1 memory capacity**, chassis, cooling architecture, exact CPU cooler, storage architecture, exact initial system SSD, exact PSU, rear exhaust fan and Phase-1 UPS are selected.
+The build is greenfield. The existing RTX 3060 12 GB is reused initially; the CPU, motherboard, **64 GB Phase-1 memory capacity**, chassis, cooling architecture, exact CPU cooler, storage architecture, exact initial system SSD, exact PSU, rear exhaust fan, Phase-1 UPS, **Windows 11 Pro host OS and WSL2 Linux environment** are selected.
 
 ## CPU/platform ↔ motherboard
 
@@ -38,20 +38,13 @@ Preferred exact target:
 - ordinary unbuffered desktop UDIMMs;
 - low-profile bare modules.
 
-Why this topology is appropriate:
-
-- 2×32 GB restores dual-channel bandwidth;
-- two DIMMs remain a straightforward AM5 topology;
-- 5600 MT/s and 1.1 V are conservative compared with aggressive high-voltage EXPO tuning;
-- the final BOM remains far below the planning level, so the capacity upgrade does not displace permanent hardware.
-
 Compatibility fallback:
 
 - **Kingston `KF556C36BBEK2-64`**, explicitly listed by Kingston for the ProArt X870E-Creator WiFi.
 
 Bring-up policy:
 
-- install in motherboard-recommended A2/B2 slots;
+- install A2/B2;
 - boot at Auto/JEDEC first;
 - do not enable EXPO/XMP during baseline validation;
 - prioritize stability over headline timings;
@@ -78,9 +71,8 @@ Relevant envelope:
 Selected Crucial 64 GB kit:
 
 - low-profile bare modules around the low-30-mm height class;
-- expect **zero or only minimal front-fan lift**;
-- even a ~2 mm lift would put practical cooler height around 170 mm;
-- at least ~15 mm case-side margin would remain.
+- expect zero or only minimal front-fan lift;
+- even a small lift leaves ample side-panel margin.
 
 Kingston fallback:
 
@@ -88,8 +80,6 @@ Kingston fallback:
 - ~3 mm front-fan lift;
 - ~171 mm practical cooler height;
 - ~14 mm case margin.
-
-Therefore both selected/preferred 64 GB paths fit comfortably.
 
 ## Motherboard ↔ storage
 
@@ -106,14 +96,23 @@ Preferred ProArt topology:
 - keep **`M.2_2`** unused unless its graphics-lane trade-off is intentionally accepted
 - **`M.2_4`** remains available for later lower-priority storage.
 
-## Storage ↔ workload
+## Storage ↔ Windows / WSL
 
-Selected architecture:
+Initial system disk:
 
-- permanent 2 TB system/tools SSD now;
-- add a separate 4 TB-or-larger work drive later.
+- Windows 11 Pro uses the 990 PRO as the UEFI/GPT system disk;
+- do not carve the initial 2 TB SSD into a complicated permanent partition scheme merely to create a Dev Drive;
+- BitLocker is enabled only after the first firmware/driver baseline is stable.
 
-The second drive is for workload/recovery/thermal separation rather than benchmark aggregation. This is not a backup strategy.
+Filesystem policy:
+
+- Windows-native repositories/build caches stay on Windows-native storage;
+- Linux-native repositories, package caches and container data stay inside the WSL2 filesystem when I/O is significant;
+- avoid using `/mnt/c` as the default location for Linux-native high-I/O builds merely for convenience;
+- when the future 4 TB+ work SSD is added, reassess moving WSL VHDX/container/cache data there;
+- also evaluate a Windows ReFS Dev Drive on the future work SSD for Windows-native source/caches if measured workload performance justifies it.
+
+Microsoft documents Dev Drive as available across Windows 11 editions, so this storage strategy does **not** require Windows 11 Pro for Workstations.
 
 ## Motherboard ↔ GPU / expansion
 
@@ -145,18 +144,77 @@ Selected exact PSU:
 Compatibility points:
 
 - 1200 W provides the selected margin for a future ~600 W single GPU plus the 9950X3D platform;
-- the ProArt's motherboard and dual CPU EPS requirements are covered without adapters;
-- the PSU is about **160 mm** deep versus roughly **290 mm** available PSU clearance in North XL;
-- the future high-power GPU should use the Seasonic-supplied 12V-2x6 cable;
+- ProArt motherboard/dual CPU EPS requirements are covered without adapters;
+- 160 mm PSU body fits easily inside the North XL;
+- future high-power GPU uses the Seasonic-supplied 12V-2x6 cable;
 - future GPU width and connector bend radius must be revalidated when that GPU is selected.
 
 Purchase/receipt acceptance:
 
-- box/listing must say **ATX 3.1**;
-- GPU cable must be **12V-2x6**;
-- reject old ATX 3.0 / 12VHPWR VERTEX inventory;
-- retain exact serial/model/warranty evidence;
+- box/listing says ATX 3.1;
+- GPU cable is 12V-2x6;
+- reject old ATX 3.0 / 12VHPWR inventory;
+- retain serial/model/warranty evidence;
 - use only Seasonic-approved modular cables.
+
+## Windows ↔ firmware / security
+
+Selected host:
+
+- **Windows 11 Pro x64**;
+- initial installation: **Windows 11 25H2 General Availability**.
+
+Required firmware baseline:
+
+- UEFI-native boot;
+- CSM disabled;
+- Secure Boot enabled;
+- TPM 2.0 / AMD fTPM enabled;
+- AMD SVM enabled;
+- IOMMU enabled unless a demonstrated stability issue appears;
+- CPU/memory conservative during commissioning.
+
+Do the first planned BIOS update before enabling BitLocker. After the firmware baseline is stable, enable BitLocker and retain its recovery key somewhere independent of this workstation.
+
+Do not use Insider or preview Windows builds for the workstation baseline.
+
+## Windows ↔ virtualization / Android / Linux
+
+Selected Linux environment:
+
+- **WSL2 + Ubuntu 26.04.1 LTS**.
+
+Windows 11 Pro is selected rather than Home because it preserves full Hyper-V host capability and Remote Desktop hosting in addition to WSL2.
+
+Virtualization policy:
+
+- WSL2 for normal Linux CLI/dev/container workflows;
+- Android Emulator uses the supported Windows hypervisor path;
+- Hyper-V VMs only when a genuinely separate VM boundary is useful;
+- no native Linux dual boot unless a later workload demonstrates a bare-metal Linux requirement.
+
+The selected 64 GB Phase-1 memory provides useful concurrency headroom for IDE + WSL2 + emulator + moderate VM/container workloads. The eventual 256 GB configuration substantially expands that envelope.
+
+## Windows ↔ NVIDIA GPU
+
+Default Windows GPU driver branch:
+
+- **current NVIDIA Studio Driver WHQL**.
+
+This matches the stability-first workstation policy while retaining gaming support. Switch to Game Ready only for a specific game that materially needs day-zero optimizations/fixes.
+
+If future local-AI tooling is installed, validate CUDA visibility and driver/toolkit compatibility as a separate acceptance test.
+
+## Windows edition ↔ hardware scale
+
+Standard **Windows 11 Pro** is sufficient.
+
+Do not buy Pro for Workstations merely because this is a powerful PC:
+
+- one CPU socket is far below its 4-CPU scale feature;
+- 256 GB target RAM is far below its 6 TB memory scale;
+- no current SMB Direct/RDMA requirement;
+- Windows Dev Drive does not require Pro for Workstations.
 
 ## UPS ↔ PSU / full system
 
@@ -172,6 +230,8 @@ Selected Phase-1 UPS:
 
 The UPS is intentionally sized for the current RTX 3060 system, not the PSU's 1200 W nameplate. Reassess when a materially higher-power GPU is installed or measured wall load approaches roughly 700–800 W.
 
+Under Windows, connect the UPS by USB and validate actual automatic graceful shutdown with a controlled mains-loss test.
+
 ## Procurement dependencies
 
 For purchase-ready parts:
@@ -180,10 +240,15 @@ For purchase-ready parts:
 - **eMAG is also acceptable**;
 - exact SKU/revision, seller quality and normal Romanian/EU warranty take precedence over retailer order;
 - small price differences do not matter;
-- material price differences may justify another reputable seller, especially for temporary memory.
+- material price differences may justify another reputable seller.
 
 For Phase-1 memory:
 
 - target Crucial `CT2K32G56C46U5` around the current ~4.7–4.8k lei market class;
-- compare Kingston `KF556C36BBEK2-64` if Crucial availability/warranty/pricing degrades materially;
-- do not pay extra for 6000 MT/s merely for the headline frequency.
+- compare Kingston `KF556C36BBEK2-64` if Crucial availability/warranty/pricing degrades materially.
+
+For Windows:
+
+- official Microsoft Store Romania price control is **1,199 RON** for Windows 11 Pro if a new license is required;
+- reuse an existing legitimate transferable Pro license if available;
+- avoid grey-market activation keys as part of the baseline build.
