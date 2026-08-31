@@ -14,7 +14,7 @@ This document is the current bill-of-materials view. Closed decisions are fixed 
 | CPU cooler | **Noctua NH-D15 G2 standard base, 7 mm AM5 offset** | **Selected** | High-end air; no PBO/uncapped power policy |
 | System/tools SSD | **Samsung 990 PRO 2 TB `MZ-V9P2T0BW`** | **Selected** | Bare drive in ProArt `M.2_3`; permanent system/tools role |
 | Future work SSD | **4 TB-or-larger NVMe** | **Architecture selected / purchase deferred** | Reserve CPU-connected `M.2_1`; reassess Gen4/Gen5 and 4/8 TB later |
-| PSU | **Seasonic VERTEX GX-1200, current ATX 3.1 revision** | **Provisional target** | Require ATX 3.1 / PCIe 5.1 and 600 W-capable 12V-2x6; exact revision must be verified |
+| PSU | **Seasonic VERTEX GX-1200, current ATX 3.1 / PCIe 5.1 / 12V-2x6 revision** | **Selected** | 1200 W, fully modular, 12-year warranty. Reject ambiguous ATX 3.0 / 12VHPWR old stock. |
 | Case | **Fractal Design North XL Mesh** | **Selected** | 185 mm cooler clearance, strong filtration/airflow, future large-GPU headroom |
 | Rear case fan | **Noctua NF-A14x25 G2 PWM** | **Selected** | One 140 mm rear exhaust |
 | Case-fan layout | **3× included 140 mm front intake + 1× Noctua rear exhaust** | **Selected** | No top/side fans initially |
@@ -104,15 +104,38 @@ Procurement preference for the selected 990 PRO remains **PC Garage first, eMAG 
 
 ## PSU strategy
 
-Permanent requirement:
+Selected exact PSU:
 
-- **1200 W**;
-- **ATX 3.1 / PCIe 5.1**;
-- native/600 W-capable **12V-2x6**;
-- fully modular;
-- long warranty and complete protections.
+**Seasonic VERTEX GX-1200, current ATX 3.1 / PCIe 5.1 / 12V-2x6 revision.**
 
-Current target remains **Seasonic VERTEX GX-1200 current revision**. Do not accept ambiguous old ATX 3.0 / 12VHPWR stock under the same family name.
+Permanent requirements satisfied:
+
+- 1200 W;
+- ATX 3.1 / PCIe 5.1;
+- 600 W-capable 12V-2x6 GPU cable;
+- full modularity;
+- complete protection set;
+- long warranty;
+- compact 160 mm body that easily fits North XL.
+
+Current purchase position on 2026-08-31:
+
+- PC Garage/eMAG remain preferred when they explicitly identify the current revision;
+- current searches do not expose a sufficiently unambiguous preferred-retailer listing;
+- **Altex currently has an explicit VERTEX GX-1200 ATX 3.1 listing around 1,289.99 lei and shown in stock**;
+- Media Galaxy's explicit VERTEX PX-1200 ATX 3.1 listing is around 1,449.99 lei but currently shown out of stock.
+
+Therefore do not delay or accept old stock merely to stay with a preferred retailer. If PC Garage/eMAG cannot explicitly confirm ATX 3.1 + 12V-2x6, use a reputable explicit-current listing such as Altex.
+
+Receipt acceptance:
+
+1. box/listing says **ATX 3.1**;
+2. product is PCIe 5.1 compatible;
+3. supplied GPU cable is **12V-2x6**;
+4. reject ATX 3.0 / 12VHPWR old inventory;
+5. retain exact model/serial/warranty evidence.
+
+Detailed PSU evidence: `docs/components/psu.md`.
 
 ## Chassis and airflow
 
@@ -150,8 +173,11 @@ Selected Phase-1 UPS: **CyberPower CP1600EPFCLCD**.
 
 ### PSU
 
-- identify an unambiguous current-revision VERTEX GX-1200 ATX 3.1 / PCIe 5.1 / 12V-2x6 unit;
-- verify warranty and future GPU cable routing.
+The exact model is selected. Purchase-time work is limited to revision acceptance:
+
+- prefer PC Garage first and eMAG second only if the listing/unit is explicitly current;
+- otherwise use an explicit ATX 3.1 Romanian listing;
+- verify the received unit includes the 12V-2x6 cable and is not old ATX 3.0 stock.
 
 ### Future work SSD
 
