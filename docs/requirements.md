@@ -4,286 +4,203 @@
 
 This is a **new build from scratch** for a long-lived professional workstation.
 
-The following architecture decisions are fixed:
+Fixed architecture decisions:
 
 - **CPU/platform:** AMD Ryzen 9 9950X3D on AM5;
-- **memory:** **128 GB from day one as 2×64 GB DDR5 UDIMM / 1DPC**;
-- **storage roles:** **~1 TB system/tools NVMe + 1–2 TB active-work NVMe from day one**, with bulk/cold storage added later only when needed;
-- **GPU:** reuse the existing NVIDIA GeForce RTX 3060 12 GB initially;
-- **future GPU path:** one very high-performance/high-VRAM NVIDIA-class discrete GPU, not a multi-GPU workstation;
-- **host OS:** Windows 11 Pro x64 with WSL2 + Ubuntu 26.04.1 LTS.
+- **memory:** 128 GB from day one as **2×64 GB DDR5 UDIMM / 1DPC**;
+- **active-work storage:** **1–2 TB NVMe on a CPU-direct M.2 x4 path**;
+- **system storage:** about **1 TB**, NVMe preferred but SATA acceptable when that produces a better motherboard/value trade-off;
+- **GPU:** reuse the existing RTX 3060 12 GB for as long as it remains useful/reliable;
+- **host OS:** Windows 11 Pro x64 with WSL2 + Ubuntu 26.04.1 LTS;
+- **UPS:** none in the initial BOM.
 
-The exact motherboard, exact 2×64 GB memory kit, ECC/non-ECC verdict and exact initial SSD models remain open until the current optimization pass closes them.
-
-Previously discussed parts and configurations are candidates only unless explicitly recorded as selected in `docs/decisions.md`.
+Open items include the exact motherboard, RAM kit/ECC verdict, storage models, premium 750/850 W PSU and final case reconfirmation.
 
 ## Workload priority
 
 ### Primary
-
-- very heavy Java software development, including codebases with millions of lines;
+- very heavy Java development across codebases with millions of lines;
 - IntelliJ IDEA and Android Studio;
-- Maven and Gradle builds;
-- large automated test suites;
-- static analysis and annotation processing;
-- multiple concurrent JVM processes and local services;
-- Docker/container workloads;
-- WSL2;
+- Maven/Gradle builds and large test suites;
+- multiple JVMs/local services;
+- WSL2 and container workloads;
 - Android Emulator;
 - local databases;
-- occasional virtual machines.
+- occasional VMs.
 
 ### Secondary
+- occasional gaming;
+- local AI only when it becomes concretely useful; cloud AI/training is an acceptable alternative.
 
-- occasional PC gaming;
-- future local AI experimentation, inference and model work using a substantially more capable discrete GPU.
+## Design philosophy
 
-Gaming and AI are secondary to development stability and workstation longevity.
-
-## Longevity and design philosophy
-
-Target approximately **10 years of useful life** for the core workstation where economically sensible.
-
-This does not mean every component must remain untouched for ten years. It means expensive choices should earn their cost through durable performance, stability, serviceability, reliability, expansion or avoided replacement—not prestige or short-lived benchmark leadership.
+Target a long useful life, approximately ten years where economically sensible, but **do not pre-buy speculative capability**.
 
 Prioritize:
 
-- conservative operation;
-- firmware/driver maturity;
-- stability under long sustained workloads;
-- serviceability and replacement availability;
-- thermal and electrical margin;
-- standard, replaceable wear items where practical;
-- memory stability rather than headline DDR5 frequency;
-- storage reliability and sensible endurance;
-- useful I/O and expansion without paying for unused topology;
-- mature OS/tool compatibility;
-- real backup and recovery rather than pseudo-redundancy.
-
-Do **not** spend merely because the planning budget has headroom.
-
-## Budget and procurement
-
-- Planning level: approximately **30,000 lei**.
-- Location: Iași, Romania.
-- Self-assembled.
-- Existing RTX 3060 reused initially.
-- Maximum **three providers overall**; target **two hardware providers** where practical.
-- PC Garage, eMAG, Altex, EvoMAG and other reputable Romanian/EU retailers may be used according to exact SKU, stock, delivered price and warranty clarity.
-- For eMAG, include **Genius/free-delivery value** when comparing eligible offers.
-- A third hardware provider should normally require material net savings or materially better exact-SKU/revision/warranty certainty.
-- Software such as Windows may use a separate provider at a lower savings threshold because it has negligible RMA lifecycle burden.
-
-The 30,000 lei figure is neither a hard cap nor a spending target. Higher prices are acceptable only where the extra cost buys a concrete durable benefit.
-
-## Reliability principles
-
-- **Stability outranks short-term peak performance.**
-- Prefer mature components/firmware over newly introduced features when the practical benefit is small.
-- Keep the CPU stock/conservative; no manual overclocking objective.
-- Avoid marginal memory-controller settings or unnecessarily high SoC/memory voltages.
-- Boot RAM at Auto/JEDEC during commissioning and validate extensively before any optional profile tuning.
-- System-level ECC is desirable only if implemented end-to-end, stable with the exact 2×64 GB kit and operationally observable in the OS. DDR5 on-die ECC is not equivalent.
-- Prefer cooling with sustained thermal/acoustic headroom and replaceable fans.
-- Prefer storage with mature firmware, appropriate endurance and sensible thermal behavior.
-- Do not buy high-performance storage capacity merely for cold/infrequently accessed data.
-- Maintain external/network/cloud backups as appropriate. **RAID is not backup.**
-- Treat BIOS recovery/Flashback, diagnostics and long-term firmware support as material motherboard criteria.
+- stability and mature firmware;
+- conservative stock operation;
+- serviceability and replaceable wear items;
+- thermal/electrical margin appropriate to real loads;
+- memory stability over headline frequency;
+- storage reliability/endurance appropriate to role;
+- sensible I/O without paying for unused bandwidth;
+- real backup and recovery;
+- utility per leu rather than prestige.
 
 ## Memory requirements
 
-The final memory configuration is fixed:
+Final configuration:
 
-**128 GB = 2×64 GB DDR5 UDIMM, one DIMM per channel (1DPC).**
+**128 GB = 2×64 GB DDR5 UDIMM / 1DPC.**
 
-There is:
+No temporary stage, no planned four-DIMM expansion, no 256 GB requirement.
 
-- no Phase-1 temporary RAM;
-- no planned 64 GB stage;
-- no planned 4-DIMM expansion;
-- no 256 GB architectural requirement.
+Exact kit priorities:
 
-The exact kit should be selected for:
-
-- stable 2×64 GB operation with the selected motherboard/9950X3D;
+- stable 2×64 operation with 9950X3D and selected board;
 - conservative JEDEC behavior;
-- low/normal operating voltage;
-- motherboard QVL/vendor evidence where available;
-- sensible physical height with the NH-D15 G2;
-- manufacturer warranty and availability;
-- ECC only if exact-module support and OS-visible reporting are credible and the value/stability trade-off is favorable.
-
-Do not pay materially for EXPO/XMP headline speed unless there is a demonstrated workload benefit and stability remains excellent.
+- sane voltage;
+- good board/QVL evidence where available;
+- reasonable physical height with NH-D15 G2;
+- normal warranty/availability;
+- ECC only if exact support and OS-visible reporting are credible without compromising stability/value.
 
 ## Motherboard requirements
 
-Only AM5 boards compatible with the 9950X3D and final 2×64 GB topology are eligible.
+The prior Creator-class/256 GB/multi-GPU feature set is **not** a baseline.
 
-Evaluate:
+### Required / strongly preferred
 
-- BIOS/AGESA maturity with Ryzen 9 9950X3D;
-- strong evidence for stable **2×64 GB / 128 GB** operation;
-- ECC implementation/reporting if ECC remains a candidate;
-- conservative long-duration VRM behavior;
-- BIOS Flashback/recovery and useful POST diagnostics;
-- networking controller quality and driver maturity;
-- USB4/high-speed external I/O where useful;
-- virtualization/IOMMU behavior;
-- long-term firmware support;
-- PCIe/M.2 topology with the final storage arrangement;
-- preservation of a full-performance primary GPU path;
-- physical spacing for a future very large/high-power GPU;
-- useful extra M.2/SATA capacity for later additive expansion;
-- value relative to cheaper boards with equivalent relevant capabilities.
+- AM5 + Ryzen 9 9950X3D support;
+- mature BIOS/AGESA;
+- strong evidence for stable **2×64 GB / 128 GB / 1DPC**;
+- one **CPU-direct M.2 x4** path for the active-work SSD that does not reduce the main GPU link;
+- competent VRM thermals for stock/conservative operation;
+- BIOS Flashback/recovery strongly preferred;
+- useful diagnostics/serviceability preferred;
+- sufficient SATA and/or additional storage connectivity for later bulk storage;
+- normal wired Ethernet reliability.
 
-### Required storage topology
+### Explicit non-requirements
 
-The selected motherboard must support at least two M.2 x4 devices simultaneously such that:
+- 256 GB/four-DIMM validation;
+- 5 GbE or 10 GbE;
+- CPU x8/x8 bifurcation;
+- multiple clean Gen5 M.2 slots;
+- extreme-overclocking power delivery;
+- motherboard features selected mainly for a hypothetical 500–600 W future GPU.
 
-- the **active-work SSD** can preferably use a CPU-direct x4 connection;
-- the **~1 TB system SSD** can use a chipset-connected x4 connection;
-- populating the selected two M.2 slots does **not reduce the primary GPU from x16**.
+### Networking
 
-A practical later bulk-storage route through spare M.2 and/or SATA is desirable.
+The actual internet connection is below 1 Gb/s and local network throughput is irrelevant.
 
-Gen5 storage capability is optional. Do not pay a motherboard premium merely to obtain more Gen5 M.2 bandwidth than the workload needs.
+Therefore:
 
-CPU-connected x8/x8 bifurcation is useful future-facing functionality when inexpensive, but it is not a hard requirement because serious multi-GPU work would trigger a platform reassessment rather than forcing AM5 into an unsuitable role.
+- **1 GbE is sufficient**;
+- 2.5 GbE is a harmless/common bonus;
+- do not pay a meaningful premium for 5/10 GbE;
+- networking speed should not eliminate an otherwise better-value board.
+
+### VRM / overclocking
+
+The workstation will run the 9950X3D stock/conservatively. Require a competent, cool-running VRM, but **do not reward phase-count marketing, extreme current capability, LN2/OC controls or other enthusiast overclocking features**.
 
 ## Storage requirements
 
-The initial role architecture is fixed at two NVMe SSDs.
+### Active-work SSD
 
-### System/tools drive
+Hard topology requirement:
 
-Target approximately **1 TB NVMe**.
+- one **CPU-direct M.2 x4** path;
+- it must coexist with the primary GPU without reducing the GPU's intended link.
 
-Optimize for:
+Capacity:
 
-- reputable manufacturer;
-- mature firmware;
-- normal warranty path;
-- capacity headroom;
-- sensible price;
-- TLC preferred where cost-effective;
-- normal NVMe responsiveness.
+- **1 TB sufficient**;
+- **2 TB preferred when incremental price/value is attractive**;
+- 4 TB not required initially.
 
-DRAM and flagship sequential throughput are **not requirements**. Good Gen3/Gen4 NVMe performance is sufficient. A chipset-connected x4 M.2 slot is acceptable.
-
-The system volume contains Windows, applications/tools, page file/crash-dump infrastructure, servicing space and ordinary profile data.
-
-### Active-work drive
-
-Capacity rule:
-
-- **1 TB is sufficient** for the active working set;
-- **2 TB is preferred when the incremental price and price/TB are attractive**;
-- **4 TB is not an initial requirement**.
-
-Optimize for:
+Quality:
 
 - TLC strongly preferred;
-- DRAM-equipped design preferred where the price difference is reasonable;
-- mature firmware/tooling;
+- DRAM desirable when reasonably priced;
+- mature firmware;
 - strong sustained/mixed behavior;
-- endurance appropriate for development caches, WSL2, containers, active VMs and databases;
-- reasonable thermals;
-- five-year-class warranty where available;
-- CPU-direct x4 connection preferred.
+- sensible endurance/warranty;
+- Gen4 sufficient; Gen5 optional only when effectively free/useful.
 
-Gen4 is sufficient. Gen5 should be purchased only when its premium is negligible or a demonstrated workload materially benefits.
+### System drive
 
-Expected active-work data includes current repositories, Maven/Gradle caches/build output, WSL2 VHDX and Linux-native working sets, container stores, Android SDK/active AVDs, active VMs, local databases and current datasets/models/games where appropriate.
+Target around **1 TB**.
+
+NVMe is preferred when naturally available, but **SATA SSD is acceptable** if a second clean M.2 path would otherwise force a worse/more expensive motherboard.
+
+Optimize for reliability, headroom, mature firmware, warranty and price—not peak sequential bandwidth.
 
 ### Bulk/cold storage
 
-Infrequently accessed data should not drive active-work SSD sizing.
+Add only when needed via spare M.2, SATA SSD/HDD, external storage or NAS. Existing old HDDs may be reused after health checks for infrequently accessed data, but never as the sole copy of important information.
 
-When more local capacity is actually needed, add an independent bulk/cold device optimized for capacity/value rather than latency. Eligible classes include:
+No RAID requirement; maintain independent backup/version-control protection.
 
-- additional chipset-connected NVMe SSD;
-- SATA SSD;
-- SATA HDD;
-- external/NAS storage.
+## GPU / expansion requirements
 
-Existing old HDDs may be reused for archived/infrequently accessed data after SMART/health checks. They must not be the only copy of important data.
+Reuse the RTX 3060 for as long as it remains useful/reliable.
 
-### Expansion and backup
+There is **no current plan to buy a higher-end GPU** merely because the platform can support one. Gaming is secondary and cloud AI availability reduces the need to provision aggressively for local training.
 
-Storage expands additively through extra devices when needed rather than replacing the initial pair merely to add capacity.
+When/if a future GPU replacement occurs:
 
-No RAID is required. Important data must have independent backup/version-control protection.
+- retire the RTX 3060 rather than designing around dual-GPU operation;
+- reevaluate PSU requirements at that time if necessary;
+- CPU x8/x8 is not a motherboard requirement;
+- do not pre-size today's platform for a hypothetical 500–600 W flagship.
 
-## Future local AI upgrade objective
+## PSU requirements
 
-Preserve a credible path from the RTX 3060 to one very high-performance/high-VRAM GPU without replacing otherwise suitable core components unnecessarily.
+Reopen selection around **premium 750 W and 850 W ATX 3.1 units**.
 
-Implications:
+- 750 W is a legitimate long-term baseline;
+- 850 W is preferred only when the premium is modest or the exact model is materially better acoustically/electrically;
+- 1000–1200 W is not justified merely for speculative GPU headroom.
 
-- primary GPU should retain full expected CPU-connected bandwidth with the selected storage configuration;
-- case/airflow must accommodate a very large high-power GPU;
-- PSU architecture should handle a plausible future 500–600 W-class accelerator;
-- onboard networking can be valuable if it avoids consuming scarce expansion slots;
-- GPU VRAM remains the primary AI capacity constraint; 128 GB system RAM is useful for development/data preparation/offload workflows but does not substitute for VRAM;
-- retain NVIDIA/CUDA compatibility as an important consideration for the future GPU.
+Prioritize:
 
-If future requirements become serious multi-GPU training, reopen the **platform** and consider Threadripper/workstation/server options rather than compromising the AM5 build.
+- excellent electrical platform/protections;
+- ATX 3.1/current transient handling;
+- mature design and long warranty;
+- quiet operation;
+- current cabling/revision clarity.
 
-## Cooling, power and chassis requirements
+## UPS / power protection
 
-### Cooling
+**No UPS in the initial BOM.**
 
-- high-end air cooling is preferred for simplicity and serviceability;
-- CPU cooling must sustain stock/conservative 9950X3D operation without unacceptable throttling/noise;
-- avoid pump/liquid dependencies unless a real thermal requirement justifies them.
+Short outages are operationally acceptable and there is no need to keep working through them.
 
-### PSU
+Use a reputable **plug-in surge protector / surge-protected power strip** at the workstation as the practical point-of-use protection measure. No electrical-installation modifications are part of this build. Understand that point-of-use surge protection is not equivalent to coordinated building-level SPD protection and relies on a sound protective-earth connection.
 
-- size for the selected system plus the future single high-power GPU;
-- ATX 3.1 / PCIe 5.1 / current 12V-2x6;
-- strong warranty and mature platform;
-- avoid unnecessary wattage inflation beyond useful transient/aging margin.
+## Cooling
 
-### Chassis
+High-end air cooling remains preferred. The Noctua NH-D15 G2 standard is selected. No pump/liquid dependency unless a real requirement appears.
 
-- airflow-first;
-- large future-GPU clearance;
-- standard replaceable fans;
-- good dust management and service access;
-- enough motherboard/M.2 airflow for long sustained workloads;
-- practical support for later SATA storage is useful but should not override core airflow/serviceability requirements.
+## Chassis
 
-### UPS
+Airflow, serviceability, dust management and normal single-GPU compatibility remain important. The North XL is still selected but deserves one final value/size check because the old very-large-future-GPU requirement has weakened.
 
-UPS capacity should remain useful through the future GPU upgrade and support graceful OS shutdown.
+## Budget and procurement
 
-## Networking and I/O
-
-Evaluate:
-
-- wired Ethernet speed and controller quality;
-- long-term driver support;
-- high-speed external I/O such as USB4 where useful;
-- adequate rear/front I/O;
-- usable PCIe expansion after the two initial NVMe drives are installed;
-- lane sharing rather than connector count alone;
-- onboard networking value where it avoids an add-in NIC.
-
-10 GbE is useful if obtained at sensible incremental cost but should not by itself justify a large motherboard premium without a concrete use case.
+Planning level remains approximately 30,000 lei, neither a cap nor a spending target. Maximum three providers overall; default target two hardware providers. Exact SKU/revision and warranty clarity outrank small nominal savings.
 
 ## Decision philosophy
 
-Each component review should answer:
+For every premium ask:
 
-1. What does the workload actually require?
-2. Which component classes satisfy it reliably?
-3. Which features materially improve stability, performance, serviceability, endurance or longevity?
-4. Which features are merely premium positioning or benchmark optimization?
-5. What topology/compatibility constraints does the choice impose?
-6. What does each additional price increment materially buy?
-7. Is that benefit likely to remain useful over the ownership horizon?
-8. Does the configuration operate conservatively with adequate thermal/electrical/memory margin?
-9. Does it preserve the secondary future-AI path without compromising the primary workstation?
-10. What must be validated after purchase?
+1. Does the real workload need it?
+2. Does it materially improve stability, serviceability, endurance or performance?
+3. Is the benefit durable over ownership?
+4. Can the capability be added/replaced later more cheaply if it ever becomes necessary?
+5. Are we paying for a concrete requirement or for a hypothetical future scenario?
 
-When performance and stability conflict, **prefer stability unless the performance loss materially affects the workstation's core purpose**.
+When performance and stability conflict, prefer stability unless the performance loss materially affects the workstation's core purpose.
