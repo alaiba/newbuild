@@ -1,211 +1,164 @@
 # UPS Deep Dive
 
-Status: **Selected — CyberPower CP1600EPFCLCD for Phase 1**
+Status: **Selected — CyberPower PR1500ELCD, 1500 VA / 1350 W**
 
-## Selected strategy
+## Decision
 
-The UPS is sized for the **current workstation configuration**, not for the hypothetical future 600 W GPU envelope.
+Use the **CyberPower PR1500ELCD** as the workstation UPS.
 
-This is intentionally different from PSU sizing. The PSU is a long-lived permanent component and is therefore sized now for the future high-power GPU. UPS batteries are consumable and the UPS itself should be reassessed when the GPU is replaced. Buying a 2.0-2.2 kW enterprise UPS now would add several thousand lei, size and weight without materially improving protection of the current RTX 3060 workstation.
+This replaces the previously selected `CP1600EPFCLCD` after the final procurement/value pass widened the comparison to include **higher-priced components when the additional spend materially improves lifetime value**.
 
-### Selected Phase-1 UPS
+The change is deliberate: the UPS now becomes a likely long-lived workstation component rather than a Phase-1-only device that would probably need replacement when the future high-power GPU is installed.
 
-**CyberPower CP1600EPFCLCD**
+## Why the PR1500ELCD wins
 
-Architecture and key specifications:
+The original `CP1600EPFCLCD` remains an excellent current-system UPS:
 
-- **1600 VA / 1000 W**
-- **line-interactive** topology
-- **pure sine-wave** output on battery
-- explicitly **Active-PFC compatible**
-- AVR
-- six Schuko battery-backed/surge-protected outlets on the current EU/Romanian specification
-- USB HID connectivity and included USB cable
-- PowerPanel Business support for monitoring and automatic shutdown
-- user-replaceable sealed lead-acid battery pack
-- official replacement pack: **CyberPower RBP0142**, 24 V / 2×12 V 9 Ah
-- approximately **9.7 minutes at 500 W** and **2.6 minutes at 1000 W** with a new battery under manufacturer test conditions
-- approximately 11 kg, 100 × 280 × 355 mm
-- official Romanian warranty: **2 years for the UPS and 2 years for the battery**
+- 1600 VA / 1000 W;
+- line-interactive;
+- pure sine wave;
+- Active-PFC compatible;
+- AVR;
+- USB/PowerPanel;
+- user-replaceable battery.
 
-This exact model is **Selected as of 2026-08-31**.
+However, the permanent PSU/platform architecture intentionally preserves a future system envelope around **900–980 W** with one roughly 600 W-class GPU.
 
-## 2026-08-31 purchase-readiness check
+At that load:
 
-Current Romanian pricing is competitive enough to close the SKU:
+- a 1000 W UPS would be operating near **90–98%** of its real-power rating;
+- the `PR1500ELCD`'s **1350 W** real-power rating puts the same load around **67–73%**.
 
-- general market: roughly **1.47–1.55k lei** among the cheapest current offers;
-- **PC Garage: approximately 1,589.80 lei, in stock** in current comparison listings.
+That is a materially better long-term operating point for thermal margin, runtime and overload headroom.
 
-The PC Garage premium is only around 40–120 lei versus the cheapest credible offers, which is small enough to follow the project's procurement preference and buy from PC Garage rather than optimize for the last few percent.
+The approximately **1.4k lei** premium over the CP1600 therefore buys more than extra VA on paper: it has a credible chance of avoiding a complete UPS replacement when the GPU is upgraded.
 
-Some retailer/aggregator descriptions incorrectly mention four Schuko outlets. The current official CyberPower Romanian specification for `CP1600EPFCLCD` states **six Schuko outlets**. Verify the exact packaging/EAN and physical outlet count on receipt, but use the manufacturer specification as authoritative rather than stale reseller copy.
+## Selected model specifications
 
-### Replacement-battery path
+CyberPower **PR1500ELCD**:
 
-The serviceability gate is also satisfied.
+- **1500 VA / 1350 W**;
+- line-interactive topology;
+- **pure sine-wave** battery output;
+- explicitly **Active-PFC compatible**;
+- **Double Boost + Single Buck AVR**;
+- approximately **4 ms transfer time**;
+- manufacturer runtime approximately **17 minutes at half load** and **4 minutes at full load**;
+- user-replaceable, **hot-swappable** battery pack;
+- official replacement battery: **`RBP0023`**;
+- USB/serial management and PowerPanel Business support;
+- EPO support;
+- optional SNMP/network-management path;
+- metal chassis;
+- approximately **25.1 kg**;
+- **8× IEC C13** battery-backed outlets, split into critical/non-critical banks;
+- official connected-equipment guarantee class materially above the CP1600 reference;
+- official UPS/battery warranty remains 2 years in the current regional specification.
 
-CyberPower explicitly specifies **RBP0142** as the replacement battery pack. It contains two 12 V / 9 Ah sealed lead-acid batteries in a 24 V pack.
+Official source:
+- https://www.cyberpower.com/eu/en/product/sku/pr1500elcd
 
-In addition to the OEM pack, Romanian/EU retailers currently list compatible 2×12 V / 9 Ah replacement kits for the `RBP0142` class around a few hundred lei. OEM replacement is preferred when sensibly priced, but the existence of a standard-size compatible battery path materially reduces the risk of the UPS becoming disposable when the original battery ages.
+## Outlet/cabling consequence
 
-## Present-system load model
+Unlike the Schuko-oriented CP1600, the PR1500ELCD uses **IEC C13 outlets**.
 
-The current GPU is an RTX 3060 12 GB; NVIDIA specifies approximately **170 W graphics-card power** for the reference RTX 3060.
+That is acceptable for this workstation and should not block the upgrade:
 
-For UPS sizing, a deliberately conservative current workstation envelope is:
+- the PC PSU uses a standard IEC appliance inlet;
+- most monitors use IEC power inlets or can be supported with appropriate certified cabling;
+- use normal rated IEC cables or a suitable high-quality PDU for any peripherals that genuinely need Schuko;
+- do not improvise ungrounded adapters.
 
-- CPU under heavy sustained development/stress: roughly 180-220 W package/platform contribution depending workload;
-- RTX 3060: roughly 170 W reference board power, with exact AIB model potentially differing;
-- motherboard, RAM, NVMe, fans, USB and conversion margin: roughly 80-130 W;
-- combined artificial current-system upper envelope: approximately **450-550 W at the wall**, with ordinary development use typically much lower.
+The cleaner enterprise-style IEC layout is a small logistics cost, not a technical disadvantage.
 
-This means a 1000 W UPS should normally operate around or below half load for the present machine and retains substantial margin for simultaneous CPU/GPU bursts.
+## Current-system behavior
 
-The objective is not long runtime under maximum stress. It is to survive short outages and voltage events cleanly, then allow controlled shutdown if the outage persists.
+The existing RTX 3060 configuration is expected to be far below the UPS's 1350 W ceiling.
 
-## Why pure sine wave
+A conservative current-system artificial upper envelope remains around **450–550 W at the wall**. At that load the PR1500 has abundant headroom and substantially more graceful-shutdown runtime than required.
 
-The selected Seasonic-class PSU uses active power-factor correction. A pure sine-wave UPS is the conservative compatibility choice and avoids unnecessary waveform-related behavior during battery operation. Modified/stepped-wave units are excluded even if their VA rating appears attractive.
+The purpose remains:
 
-## Why line-interactive rather than online/double-conversion
+1. ride through short power disturbances cleanly;
+2. use AVR instead of battery for ordinary voltage variation;
+3. initiate controlled shutdown when an outage persists;
+4. protect the workstation without running the UPS near its real-power limit.
 
-A high-quality line-interactive UPS is appropriate for the current desktop workstation because it provides:
+## Why line-interactive remains correct
 
-- AVR without consuming battery for ordinary under/over-voltage events;
-- pure sine-wave battery output;
-- short transfer time compatible with modern active-PFC PSUs;
-- lower continuous power loss, heat, noise and cost than online double-conversion units.
+The premium upgrade does **not** change the topology decision.
 
-The selected CyberPower specifies an **8 ms typical transfer time** at normal sensitivity.
+A good line-interactive pure-sine UPS remains preferable to online/double-conversion for this interactive workstation because it avoids unnecessary continuous conversion loss, heat, fan noise and cost while retaining fast transfer, AVR and clean battery output.
 
-Online/double-conversion UPS should be reconsidered only if actual site power quality proves unusually poor or the workstation later becomes an availability-critical service host rather than primarily an interactive development machine.
+Reconsider online/double-conversion only if actual site power measurements show unusually poor mains quality or the workstation becomes an availability-critical service host.
 
-## Why not size the UPS for the future 600 W GPU now
+## Rejected alternatives
 
-The future permanent PSU architecture deliberately supports a 600 W accelerator and a possible 900-980 W artificial whole-system load.
+### CyberPower CP1600EPFCLCD
 
-A 1000 W UPS would be too close to its rating for that future worst case. A genuine ~2 kW UPS class is technically appropriate if we later want full battery support at those loads.
+**Rejected after final value optimization, not because it is poor.**
 
-That spend is not justified today because:
+It remains the better low-upfront-cost choice for the current RTX 3060 machine, but its 1000 W ceiling makes a future 900–980 W system too close to full load. Buying it now would create a credible second UPS purchase later.
 
-- the RTX 3060 system is nowhere near that load;
-- the future GPU is not selected or purchased;
-- UPS batteries age and will likely be replaced on a much shorter cycle than the chassis/PSU;
-- the future GPU generation may have a materially different power envelope;
-- a UPS upgrade can be performed independently when the GPU upgrade happens.
+### CyberPower PR1500ERT2U
 
-Therefore:
+This raises output to roughly **1500 W** and adds rack/tower-oriented features, but current Romanian pricing is roughly another **~900 lei** above the PR1500ELCD.
 
-> **The UPS is a current-system protection component with a mandatory reassessment at the future high-power GPU upgrade.**
+The extra 150 W and rack features do not materially improve our single-desktop use case. The PR1500ELCD already provides comfortable margin for the future design envelope.
 
-## Candidate comparison
+### APC/Eaton premium alternatives
 
-### CyberPower CP1600EPFCLCD — Selected
+Credible enterprise alternatives exist, but current pricing does not beat the PR1500ELCD on the combination of:
 
-- 1600 VA / 1000 W
-- pure sine wave
-- line-interactive + AVR
-- Active-PFC compatible
-- six Schuko outlets per current official EU/Romanian specification
-- USB HID + PowerPanel Business
-- user-replaceable `RBP0142` battery
-- current PC Garage price around **1.59k lei**
-- official Romanian warranty: 2 years UPS / 2 years battery
+- 1350 W real output;
+- pure sine wave;
+- AVR;
+- runtime;
+- hot-swappable batteries;
+- serviceability;
+- Romanian availability.
 
-This is the best current balance of electrical suitability, runtime, serviceability and Romanian purchase cost.
+### Simulated-sine high-VA units
 
-### APC Back-UPS Pro BR1600SI — rejected as current purchase
+Rejected. High headline VA/real-power ratings do not compensate for giving up the pure-sine/Active-PFC compatibility policy.
 
-The APC is a credible technical alternative:
+## Current Romanian procurement position — 2026-08-31
 
-- 1600 VA / 960 W
-- sine-wave output
-- line-interactive + AVR
-- user-replaceable battery
-- USB management
+Fresh comparison listings place the **PR1500ELCD around 2.95k lei**, including an EvoMAG offer around **2,948.99 lei**.
 
-However, current Romanian pricing is roughly **3.2–3.6k lei**, approximately twice the cost of the CyberPower, while providing slightly *less* real output power. APC's service ecosystem is attractive, but the price delta does not buy a corresponding improvement in protection or runtime for this desktop workload.
+This is particularly attractive for the consolidated procurement strategy because EvoMAG is already the primary provider for most of the BOM.
 
-It remains a fallback if CyberPower service/availability deteriorates materially before purchase.
+Purchase rule:
 
-### Eaton 5SC1500I — premium industrial/control reference
+- prefer EvoMAG if the live cart remains near **~2.95k lei**;
+- do not add a third provider merely to save tens of lei;
+- a third provider becomes rational only under the build-level procurement rule: roughly **300 lei+ net saving** or materially better stock/warranty certainty.
 
-- 1500 VA / 1050 W
-- sine-wave output
-- line-interactive
-- AVR
-- USB + RS232
-- user-replaceable battery
+## Bring-up and validation
 
-Its enterprise-oriented ecosystem is useful, but its several-thousand-lei price class is not justified for the current workstation.
-
-### ~2 kW enterprise UPS class — future high-power reference
-
-Revisit Eaton 5PX-class or equivalent 2 kW+ equipment if/when a future GPU materially raises measured workstation load beyond the selected UPS's comfortable range.
-
-## Runtime policy
-
-The target is **graceful-shutdown runtime**, not extended operation through a blackout.
-
-Manufacturer figures for the selected CyberPower:
-
-- ~9.7 minutes at 500 W half-load;
-- ~2.6 minutes at 1000 W full load.
-
-The current development workstation should commonly sit well below 500 W outside synthetic combined CPU/GPU stress, so practical runtime should be adequate to bridge short disturbances or initiate a clean shutdown.
-
-Actual runtime must still be measured after assembly because workload, battery condition and connected peripherals materially affect it.
-
-## Peripheral policy
-
-Battery-backed outlets should prioritize:
-
-- workstation tower;
-- primary monitor if desired for controlled shutdown;
-- essential networking equipment only when doing so does not consume excessive runtime.
-
-Do not automatically place printers, speakers, chargers or other nonessential loads on the battery-backed outlets.
-
-## Software / graceful shutdown
-
-The UPS exposes a USB HID interface and CyberPower recommends **PowerPanel Business** for local monitoring and automatic shutdown.
-
-Operating-system details remain open elsewhere in the build, so the selected UPS must not force a particular OS. During bring-up, validate either PowerPanel or the chosen OS's native UPS integration and perform a controlled mains-loss shutdown test.
-
-The exact hardware decision does **not** remain provisional merely because shutdown software still needs configuration; that is a bring-up task rather than a hardware-selection dependency.
-
-## Battery maintenance
-
-The UPS battery is explicitly a consumable.
-
-- record battery installation/manufacture date if visible;
-- run periodic self-tests;
-- monitor reported runtime/capacity;
-- keep the UPS in a cool, ventilated location;
-- replace the battery pack when capacity materially deteriorates rather than replacing the whole UPS;
-- perform a real controlled power-loss test after initial setup and after battery replacement.
-
-## Purchase and bring-up checks
-
-The model is selected; remaining work is acceptance/configuration rather than selection:
-
-1. prefer **PC Garage** while its premium remains small;
-2. confirm exact SKU **`CP1600EPFCLCD`** and current EU/Schuko packaging;
-3. verify the delivered unit has the expected **six Schuko outlets**;
-4. retain invoice/warranty information;
-5. connect USB and configure PowerPanel/native graceful shutdown;
-6. measure real wall/UPS load under CPU-heavy and combined CPU/GPU workloads;
-7. perform a controlled mains-loss test;
-8. record initial estimated runtime/load as a battery-health baseline.
+1. record exact model/serial and battery manufacture/install date where visible;
+2. use correctly rated IEC cabling;
+3. connect USB and configure PowerPanel Business / graceful shutdown;
+4. measure idle, development, CPU-heavy and combined CPU/GPU UPS load;
+5. perform a controlled mains-loss test;
+6. record baseline runtime/load/battery-health values;
+7. periodically run self-tests and replace the battery pack when capacity materially deteriorates.
 
 ## Reopen conditions
 
-Reassess the UPS selection when:
+Reassess only if:
 
-- the RTX 3060 is replaced by a materially higher-power GPU;
-- measured full-system load approaches roughly **700-800 W** or otherwise leaves inadequate UPS margin;
-- runtime becomes insufficient;
-- site power quality justifies online/double-conversion topology;
-- CyberPower warranty/service availability materially deteriorates before purchase; or
-- the workstation begins hosting availability-critical services.
+- the eventual measured system load approaches roughly **1.1 kW or more** for sustained periods;
+- the future GPU/platform changes beyond the planned single-GPU envelope;
+- runtime proves inadequate for the desired shutdown policy;
+- site power quality justifies online/double-conversion;
+- the exact PR1500ELCD becomes unavailable or materially overpriced before purchase.
+
+## Selected conclusion
+
+- **Exact UPS:** CyberPower **PR1500ELCD** — **Selected**
+- **Capacity:** 1500 VA / **1350 W**
+- **Topology:** line-interactive, pure sine, Active-PFC compatible
+- **Serviceability:** hot-swappable `RBP0023` battery path
+- **Procurement:** target EvoMAG around the current ~2,949 lei class
+- **Reason for premium:** avoids running the future high-power workstation near UPS full load and is likely to eliminate a later UPS replacement
