@@ -1,121 +1,84 @@
 # PSU Deep Dive
 
-Status: **Selected architecture — Seasonic VERTEX 1200 W ATX 3.1; GX-1200 baseline with PX-1200 preferred when the premium is small**
+Status: **Reopened — optimize premium 750 W vs 850 W ATX 3.1; 1200 W target superseded**
 
-## Architecture decision
+## Current architecture
 
-Use a **1200 W Seasonic VERTEX current ATX 3.1 / PCIe 5.1 unit with 12V-2x6**.
+The workstation no longer pre-provisions for a hypothetical future 500–600 W flagship GPU.
 
-The build is sized for a future single high-power/high-VRAM GPU rather than only the current RTX 3060. A conservative future simultaneous-load envelope remains roughly:
+Current GPU:
 
-- GPU: up to ~600 W;
-- CPU/platform: ~200–230 W;
-- motherboard/RAM/storage/fans/USB: ~100–150 W;
-- sustained system envelope: roughly **900–980 W** before short transients.
+- RTX 3060 12 GB;
+- expected to remain installed for as long as it remains useful/reliable;
+- future replacement is deferred until a concrete need or failure appears.
 
-A quality 1000 W PSU would be unnecessarily tight at that design point; 1300–1600 W does not buy enough useful margin to justify its extra cost/size for this single-GPU AM5 machine.
+If a future GPU replacement eventually needs unusually high power, the PSU may be reconsidered at that time rather than paying now for speculative capacity.
 
-**1200 W remains the correct architecture.**
+## Sizing target
 
-## Baseline exact model — VERTEX GX-1200
+### 750 W
 
-The current **Seasonic VERTEX GX-1200** provides:
+**Fully valid baseline.**
 
-- ATX 3.1 / PCIe 5.1;
-- current 12V-2x6 GPU cabling;
-- 1200 W continuous rating;
-- 80 PLUS Gold efficiency;
-- full modularity;
-- 135 mm FDB fan / Hybrid Silent Fan Control;
-- OPP / OVP / UVP / SCP / OCP / OTP protections;
-- compact **160 × 150 × 86 mm** dimensions;
-- **12-year warranty**.
+A premium 750 W ATX 3.1 unit provides substantial headroom for the current 9950X3D + RTX 3060 system and remains compatible with today's roughly 300 W-class GPU tier. This is not an economy compromise; it is a rational size when the build is not designed around a future flagship accelerator.
 
-Current explicit Romanian purchase path:
+### 850 W
 
-- **Altex VERTEX GX-1200 ATX 3.1**;
-- about **1,289.99 lei** at the current reference;
-- listing explicitly identifies ATX 3.1.
+Keep in the finalist set when:
 
-Official source:
-- https://seasonic.com/vertex-gx/
+- the exact 850 W model costs only modestly more than the comparable 750 W unit;
+- its acoustics/fan curve are materially better;
+- the platform/warranty/components are better;
+- the extra 100 W comes essentially free in the final procurement bundle.
 
-## Premium opportunity — VERTEX PX-1200
+Do not pay a meaningful premium solely for the extra 100 W.
 
-The final value pass widened optimization to include **modest premium upgrades** when they improve useful lifetime value.
+### 1000–1200 W
 
-The current **VERTEX PX-1200** has the same core architecture and 12-year warranty but moves to **80 PLUS Platinum** efficiency. The improvement is not needed for compatibility or reliability, but it reduces conversion losses/heat throughout the life of a machine expected to spend many hours under sustained development load.
+No longer a default target. Buy only if an unusually attractive exact model/price makes it rational or a new concrete GPU requirement appears before purchase.
 
-At the current Romanian reference:
+The former Seasonic VERTEX GX/PX-1200 selection is superseded.
 
-- GX-1200: ~**1,289.99 lei**;
-- PX-1200: ~**1,449.99 lei**;
-- premium: roughly **160 lei**.
+## Quality requirements
 
-At only ~160 lei extra, PX has a favorable lifetime price/value ratio.
+Wattage is secondary to quality.
 
-However, the explicit Altex/Media Galaxy ATX 3.1 PX listing is currently **out of stock**. Do not delay the workstation or add a new provider merely to chase Platinum efficiency.
+Prioritize:
 
-### Purchase-time rule
+- ATX 3.1/current transient-handling standard;
+- excellent protections: OCP/OVP/UVP/OPP/SCP/OTP as appropriate;
+- mature electrical platform;
+- reputable OEM/vendor;
+- long warranty;
+- quiet fan implementation and good efficiency at realistic loads;
+- full or sensible modular cabling;
+- current GPU-power cable/revision clarity;
+- normal Romanian/EU warranty path.
 
-Prefer a **known-current VERTEX PX-1200 ATX 3.1 / PCIe 5.1 / 12V-2x6** over GX when all of these are true:
+A premium 750 W unit is preferable to a mediocre 1000–1200 W unit.
 
-1. it is actually in stock at one of the selected providers;
-2. its exact current revision is unambiguous;
-3. its premium over the equivalent known-current GX is **≤ ~200 lei**.
+## Future-GPU interpretation
 
-Otherwise buy the GX-1200.
+Performance-per-watt has historically improved substantially across GPU generations, although maximum flagship board power does not necessarily decline. Therefore do not assume that a useful GPU 3–5 years from now will require today's flagship wattage.
 
-This converts PX from a rejected luxury into a **conditional value upgrade**, without making procurement dependent on its availability.
-
-Official source:
-- https://seasonic.com/vertex-px/
-
-## Why not larger or alternative PSUs
-
-### 1300–1600 W class
-
-Rejected for the current architecture. The machine is designed around one accelerator; if future needs truly require multiple 500–600 W GPUs, the AM5 platform itself should be reconsidered rather than pre-buying an oversized PSU now.
-
-### be quiet! Straight Power 12 1200 W
-
-Technically excellent: ATX 3.1, Platinum-class efficiency, high-quality components and long warranty. It remains a credible fallback, but current price differences are too small to justify giving up the longer Seasonic 12-year warranty and the already-clean revision/purchase path.
-
-### Corsair HX1200i ATX 3.1
-
-Also credible, but typically more expensive without a material reliability advantage for this build.
-
-## Revision transition and hard acceptance gate
-
-Seasonic explicitly states that early VERTEX units shipped with **12VHPWR** and later transitioned to **12V-2x6** after the ATX standard update. Therefore model family name alone is not sufficient.
-
-For **either GX or PX**, the ordered/received unit must pass:
-
-1. listing/box says **ATX 3.1**;
-2. **PCIe 5.1** compatibility;
-3. supplied GPU cable is current **12V-2x6**;
-4. reject explicit old ATX 3.0 / PCIe 5.0 / 12VHPWR stock;
-5. use only Seasonic-approved modular cables;
-6. retain exact model/serial/warranty evidence.
-
-## Case / motherboard fit
-
-Both current 1200 W VERTEX models use the compact 160 mm depth class and fit comfortably inside the selected Fractal North XL Mesh. The ProArt's ATX and CPU EPS requirements are covered without adapters.
-
-Future GPU connector bend/side-panel clearance must be rechecked when that GPU is selected.
+The system should support one normal discrete GPU well. It does not need to guarantee compatibility with every future 500–600 W accelerator without a PSU replacement.
 
 ## UPS interaction
 
-The PSU can deliver 1200 W but only draws what the system consumes plus conversion losses.
+There is no UPS requirement in the initial BOM. PSU sizing is therefore independent of a hypothetical UPS wattage ceiling.
 
-The selected **CyberPower PR1500ELCD 1350 W UPS** now provides comfortable real-power margin for the current machine and a credible future 900–980 W workstation load, removing the mismatch that existed when the 1000 W CP1600 UPS was selected.
+Use point-of-use surge protection as the practical mains-protection measure under the project's no-electrical-installation-change constraint.
 
-## Selected conclusion
+## Next optimization pass
 
-- **Architecture:** 1200 W ATX 3.1 / PCIe 5.1 / 12V-2x6 — Selected
-- **Baseline:** Seasonic **VERTEX GX-1200** — purchase-ready
-- **Preferred conditional upgrade:** Seasonic **VERTEX PX-1200** when known-current stock is available at **≤~200 lei premium**
-- **Do not delay the build for PX**
-- **Current practical route:** Altex GX-1200 ~1,289.99 lei while PX is out of stock
-- **Warranty:** 12 years for both current VERTEX models
-- **Receipt gate:** reject ambiguous/old ATX 3.0 / 12VHPWR inventory
+Compare premium Romanian/EU 750 W and 850 W ATX 3.1 models on:
+
+1. electrical quality/protections;
+2. warranty and platform maturity;
+3. acoustics and fan quality;
+4. efficiency at typical workstation loads;
+5. exact current GPU-power cabling/revision;
+6. delivered price;
+7. retailer consolidation.
+
+Do not rank by wattage alone.
