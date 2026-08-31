@@ -1,103 +1,77 @@
 # Initial BOM Purchase Review — 2026-08-31
 
-This is a **price snapshot**, not a permanent price promise. Refresh all prices immediately before ordering.
+This is a dated price snapshot. The exact order execution and acceptance gates are in `docs/procurement-plan-2026-08-31.md`.
 
-## Procurement policy
+## Current complete-order position
 
-- **PC Garage and Altex are co-preferred Romanian retailers**.
-- **eMAG is also acceptable**.
-- Exact SKU/revision, seller quality and normal Romanian/EU warranty take precedence over retailer order.
-- Small price differences do not matter.
-- Material differences can justify another reputable Romanian/EU seller.
+Representative current complete initial purchase, including the required Windows 11 Pro Retail/FPP license and excluding the reused RTX 3060, is approximately **18.9–19.3k lei before shipping**.
 
-## Current initial-build price envelope
+The range is intentional: RAM and UPS listings currently show the largest price/stock inconsistencies, so quoting a single exact total would be false precision.
 
-| Component | Selected target | Current price reference |
+## Current controls
+
+| Component | Selected target | Current working reference |
 |---|---|---:|
-| CPU | AMD Ryzen 9 9950X3D | ~3.35–3.52k lei |
-| Motherboard | ASUS ProArt X870E-Creator WiFi | ~2.68–2.90k lei |
-| Phase-1 RAM | Crucial `CT2K32G56C46U5`, 64 GB (2×32) | ~4.7–4.8k lei |
-| CPU cooler | Noctua NH-D15 G2 standard | ~0.69–0.73k lei |
-| System SSD | Samsung 990 PRO 2 TB `MZ-V9P2T0BW` | ~1.90–1.95k lei |
-| PSU | Seasonic VERTEX GX-1200 current ATX 3.1 revision | ~1.29k lei at explicit Altex ATX 3.1 listing |
-| Case | Fractal Design North XL Mesh | ~0.93–1.06k lei market class |
-| Rear fan | Noctua NF-A14x25 G2 PWM | ~0.19–0.21k lei |
-| UPS | CyberPower CP1600EPFCLCD | ~1.53–1.59k lei |
-| Existing GPU | RTX 3060 12 GB | 0 lei new spend |
-| Host OS license | **Windows 11 Pro x64 — new license required** | **1,199 RON** official Microsoft Store reference |
-| WSL Linux | Ubuntu 26.04.1 LTS | 0 lei |
+| CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | **3,349.99 lei** direct EvoMAG indexed page |
+| Motherboard | ASUS ProArt X870E-Creator WiFi | ~**2,542–2,654 lei** competitive in-stock controls |
+| RAM | Crucial `CT2K32G56C46U5`, 64 GB 2×32 | ~**5.0k-class** current market; strict exact-SKU gate |
+| Cooler | Noctua NH-D15 G2 standard `CPNTD15G2` | ~**701–730 lei** |
+| SSD | Samsung 990 PRO 2 TB `MZ-V9P2T0BW` | ~**1,900–1,953 lei** |
+| PSU | Seasonic VERTEX GX-1200 current ATX 3.1 | **1,289.99 lei** explicit Altex listing |
+| Case | Fractal North XL Mesh `FD-C-NOR1X-01` | **1,018.51 lei** exact ForIT listing |
+| Rear fan | Noctua NF-A14x25 G2 PWM standard single | ~**193 lei** |
+| UPS | CyberPower `CP1600EPFCLCD` | use ~**1.65–1.75k lei** checkout envelope |
+| GPU | Existing RTX 3060 12 GB | 0 lei new spend |
+| Windows | Windows 11 Pro Retail/FPP USB English `HAV-00163` | **1,123.60–1,146.55 lei** current direct retailer controls |
 
-Selected hardware subtotal with 64 GB: approximately **17.3–18.1k lei**.
+## RAM conclusion
 
-The user does **not** have an existing Windows license for this build, so a new legitimate Windows 11 Pro license is a required purchase. At the current official Microsoft Store Romania reference of **1,199 RON**, selected hardware + required OS is approximately **18.5–19.3k lei**.
+**64 GB remains selected.**
 
-This complete initial purchase remains roughly **10.7k+ lei below the ~30k planning level**.
+The current target is still Crucial `CT2K32G56C46U5`, 2×32 GB DDR5-5600 CL46 1.1 V. Current pricing is higher/less consistent than the earlier ~4.7–4.8k snapshot, but the complete build still remains far below the planning level.
 
-## RAM decision
+Purchase gate:
 
-**Start with 64 GB.**
+- exact desktop **`CT2K32G56C46U5`** only;
+- reject laptop/SO-DIMM **`CT2K32G56C46S5`**;
+- if the Crucial checkout price approaches the price of Kingston `KF556C36BBEK2-64`, recompare Kingston because it is explicitly listed by Kingston for the ProArt.
 
-Selected target:
+## Windows conclusion
 
-- Crucial `CT2K32G56C46U5`;
-- 2×32 GB DDR5-5600 CL46 1.1 V;
-- current low Romanian market: ~**4.7–4.8k lei**.
+The license decision is now exact:
 
-The 32 GB GOODRAM `GR5600D564L46/32G` remains only an emergency/minimum-cost fallback.
+**Microsoft Windows 11 Pro Retail/FPP USB English `HAV-00163`.**
 
-The 64 GB choice buys double capacity plus dual-channel bandwidth and leaves the initial build comfortably below the planning level, including the required Windows license.
+This is a required purchase because no transferable Windows license is already available. Retail/FPP was selected instead of OEM/DSP for the strict licensing path on a DIY self-build.
 
-Compatibility fallback:
+Current direct retailer controls:
 
-- Kingston `KF556C36BBEK2-64`;
-- 2×32 GB DDR5-5600 CL36 EXPO;
-- explicitly listed by Kingston for the ProArt;
-- use only if Crucial stock/warranty/pricing becomes materially worse.
+- Prostore: approximately **1,123.60 lei**, exact `HAV-00163`, Retail/FPP, supplier stock;
+- ForIT: approximately **1,146.55 lei**, exact `HAV-00163`, Retail/FPP, supplier stock;
+- Microsoft direct remains the **1,199 RON** reference.
 
-## Windows decision
-
-Selected and required for the initial purchase:
-
-- **new Windows 11 Pro x64 license**;
-- install **Windows 11 25H2 General Availability** for the August 2026 build;
-- WSL2 + Ubuntu 26.04.1 LTS for Linux development;
-- no Pro for Workstations and no native Linux dual boot initially.
-
-Current official Microsoft Store Romania controls:
-
-- Windows 11 Home: **690 RON**;
-- Windows 11 Pro: **1,199 RON**;
-- Windows 11 Pro for Workstations: **1,999 RON**.
-
-The Pro premium over Home is justified by the development/virtualization/management use case. The additional Pro-for-Workstations premium is not justified for one CPU socket and a 256 GB memory target.
-
-Do not substitute a grey-market key merely to reduce the BOM. Treat the normal legitimate Windows 11 Pro license as part of the workstation cost.
-
-## Current source controls
-
-- Ryzen 9 9950X3D: https://www.price.ro/preturi-amd-ryzen-9-9950x3d-box-4718281
-- ASUS ProArt X870E-Creator WiFi: https://www.price.ro/preturi-asus-proart-x870e-creator-wifi-4691168
-- Noctua NH-D15 G2: https://www.price.ro/preturi-noctua-nh-d15-g2-4652246
-- Samsung 990 PRO 2 TB: https://www.price.ro/preturi-samsung-ssd-990-pro-2tb-pci-express-4.0-x4-m.2-2280-mz-v9p2t0bw-3974614
-- North XL price control: https://www.price.ro/preturi-fractal-design-north-xl-charcoal-black-4533131
-- Noctua NF-A14x25 G2 PWM: https://www.price.ro/preturi-noctua-nf-a14x25-g2-pwm-140mm-4713497
-- CyberPower CP1600EPFCLCD: https://www.compari.ro/ups-uri-surse-neintreruptibile-c3133/cyberpower/cp1600epfclcd-1600va-p1051248901/
-- Crucial 64 GB target: https://www.compari.ro/memorii-c3577/crucial/64gb-2x32gb-ddr5-5600mhz-ct2k32g56c46u5-p993167062/
-- Kingston 64 GB fallback: https://www.price.ro/preturi-kingston-memorie-fury-beast-64gb-2x32gb-ddr5-5600mhz-cl36-kf556c36bbek2-64-4046486
-- Kingston ProArt compatibility: https://www.kingston.com/en/memory/search/model/110021/asus-proart-x870e-creator-wifi-motherboard
-- Crucial ProArt compatibility selector: https://www.crucial.com/compatible-upgrade-for/asus/proart-x870e-creator-wifi
-- Windows 11 Pro official Romanian store: https://www.microsoft.com/ro-ro/d/windows-11-pro/dg7gmgf0d8h4
-- Windows 11 Pro for Workstations official Romanian store: https://www.microsoft.com/ro-ro/d/windows-11-pro-pentru-statii-de-lucru/dg7gmgf0kr4m
-- Windows release information: https://learn.microsoft.com/en-us/windows/release-health/windows11-release-information
-- Ubuntu on WSL: https://ubuntu.com/download/wsl
+Do not substitute OEM/DSP or a cheap standalone emailed key.
 
 ## Deferred cost
 
-The following are intentionally excluded from the initial total:
+Excluded from the initial total:
 
 - future 4 TB-or-larger work/VM/container SSD;
-- future replacement high-VRAM GPU;
-- eventual 256 GB memory configuration;
-- any future UPS enlargement associated with a high-power GPU.
+- future high-VRAM GPU;
+- eventual 256 GB matched memory configuration;
+- any future UPS enlargement required by that GPU/load.
 
-Those are separate future purchase events and should be priced against then-current requirements and market conditions.
+## Source controls
+
+- CPU direct: https://www.evomag.ro/componente-pc-gaming-procesoare/amd-procesor-amd-ryzen-9-9950x3d-4.3ghz-144mb-170w-am5-box-4206997.html
+- ProArt market: https://www.pricy.ro/ProductUrlId/placa-de-baza-asus-proart-x870e-creator-wifi--socket-am5-7E95DB2CF7553837275C1FDE2803A4E0
+- RAM market: https://www.compari.ro/memorii-c3577/crucial/64gb-2x32gb-ddr5-5600mhz-ct2k32g56c46u5-p993167062/
+- Kingston fallback: https://www.price.ro/preturi-kingston-memorie-fury-beast-64gb-2x32gb-ddr5-5600mhz-cl36-kf556c36bbek2-64-4046486
+- cooler: https://www.price.ro/preturi-noctua-nh-d15-g2-4652246
+- SSD: https://solid-state-drive-ssd-intern.compari.ro/samsung/990-pro-2tb-m-2-mz-v9p2t0bw-p885630345/
+- PSU: https://altex.ro/sursa-pc-seasonic-vertex-gx-1200-atx-3-1-1200w-135mm-80-plus-gold-full-modular/cpd/VERTEXGX1200/
+- case: https://www.forit.ro/fractal-design-north-xl-charcoal-black-tower-case-black-mesh-version-bp939671
+- fan: https://www.vexio.ro/noctua/pagina10/
+- UPS: https://www.compari.ro/ups-uri-surse-neintreruptibile-c3133/cyberpower/cp1600epfclcd-1600va-p1051248901/
+- Windows ForIT: https://www.forit.ro/sistem-de-operare-microsoft-windows-11-pro-64-bit-engleza-retail-fpp-usb-flash-bp414367
+- Windows Prostore: https://www.prostore.ro/sisteme_de_operare/microsoft/93926-windows-11-pro-64-bit-engleza-retail-fpp-usb-flash/
