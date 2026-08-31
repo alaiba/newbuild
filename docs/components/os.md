@@ -60,7 +60,7 @@ At the 2026-08-31 Microsoft Store Romania price, a new Windows 11 Pro download l
 Official store reference:
 - https://www.microsoft.com/ro-ro/d/windows-11-pro/dg7gmgf0d8h4
 
-If an already-owned legitimately transferable Pro license is available, reuse it instead of buying another license; otherwise prefer a normal legitimate retail/digital license rather than a grey-market key.
+The user does **not** have an existing Windows license for this build, so a **new legitimate Windows 11 Pro license is a required BOM purchase**. Prefer a normal retail/digital license with a clear Microsoft/authorized-retail path rather than a grey-market key.
 
 ## Why not Pro for Workstations
 
@@ -276,10 +276,10 @@ After OS installation, record a baseline before tuning:
 ## Selected conclusion
 
 - **Host OS:** Windows 11 Pro x64 — **Selected**.
+- **Windows license:** **new legitimate Windows 11 Pro license required for this build**; current official Microsoft Store Romania reference is **1,199 RON**.
 - **Initial feature release:** Windows 11 25H2 General Availability — **Selected for installation in August 2026**.
 - **Linux environment:** WSL2 + Ubuntu 26.04.1 LTS — **Selected**.
 - **Dual boot:** not required; reopen only for a demonstrated bare-metal Linux need.
 - **Windows Pro for Workstations:** rejected; no material benefit for this one-socket / 256 GB target build.
-- **Windows license cost control:** official Microsoft Store Romania Pro reference is 1,199 RON if a new license is required.
 - **GPU driver baseline:** current NVIDIA Studio Driver WHQL.
 - **Security baseline:** UEFI + Secure Boot + TPM 2.0 + BitLocker after firmware stabilization.
