@@ -15,11 +15,12 @@ Fixed architecture decisions:
 - **primary storage:** **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe, installed in CPU-direct `M.2_1` under the motherboard heatsink;
 - **storage architecture:** one primary NVMe initially; no separate cache/system/work SSD and no automatic SSD tiering;
 - **cold/bulk storage:** reuse existing SATA drives where appropriate after health validation;
+- **PSU:** **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1;
 - **GPU:** reuse RTX 3060 12 GB for as long as useful/reliable;
 - **host OS:** Windows 11 Pro x64 with WSL2 + Ubuntu 26.04.1 LTS;
 - **UPS:** none initially.
 
-Open items: premium 750/850 W PSU, exact plug-in surge protector and final provider/price consolidation.
+Open items: exact plug-in surge protector and final provider/price consolidation.
 
 ## Workload priority
 
@@ -151,15 +152,26 @@ Internet is below 1 Gb/s and LAN throughput is irrelevant.
 - the board's 2.5 GbE is more than adequate;
 - 5/10 GbE carries no purchase premium value.
 
-## PSU requirements
+## PSU requirements — satisfied
 
-Compare premium **750 W and 850 W ATX 3.1** units.
+Selected: **be quiet! Pure Power 13 M 850W `BP027EU`**.
 
-- 750 W is the baseline;
-- 850 W wins only when its premium is modest or the exact product is materially better;
-- do not buy 1000–1200 W for speculative GPU headroom.
+Requirements and rationale:
 
-Prioritize electrical quality/protections, transient handling, long warranty, quiet operation and current revision/cabling clarity.
+- ATX 3.1;
+- 850 W;
+- native current-generation GPU-power cabling;
+- fully modular;
+- strong protection/transient/ripple behavior;
+- quiet fan implementation;
+- long manufacturer warranty;
+- normal Romanian/EU warranty path.
+
+A premium 750 W unit remains technically sufficient, but the selected 850 W model wins because the observed premium over its 750 W sibling is only roughly **40–100 lei**. This is useful low-cost margin, not a return to speculative 1000–1200 W provisioning.
+
+Preferred fallback: **Corsair RM850x 2024 `CP-9020270-EU`** only if delivered price is within roughly 30–40 lei or retailer/warranty conditions are materially better.
+
+Do not reuse modular cables from another PSU.
 
 ## UPS / power protection
 
