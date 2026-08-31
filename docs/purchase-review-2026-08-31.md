@@ -24,14 +24,14 @@ This is a **price snapshot**, not a permanent price promise. Refresh all prices 
 | Rear fan | Noctua NF-A14x25 G2 PWM | ~0.19–0.21k lei |
 | UPS | CyberPower CP1600EPFCLCD | ~1.53–1.59k lei |
 | Existing GPU | RTX 3060 12 GB | 0 lei new spend |
-| Host OS | Windows 11 Pro x64 | **1,199 RON** official Microsoft Store if a new license is required |
+| Host OS license | **Windows 11 Pro x64 — new license required** | **1,199 RON** official Microsoft Store reference |
 | WSL Linux | Ubuntu 26.04.1 LTS | 0 lei |
 
 Selected hardware subtotal with 64 GB: approximately **17.3–18.1k lei**.
 
-If a new Windows 11 Pro license is required, selected hardware + OS is approximately **18.5–19.3k lei**.
+The user does **not** have an existing Windows license for this build, so a new legitimate Windows 11 Pro license is a required purchase. At the current official Microsoft Store Romania reference of **1,199 RON**, selected hardware + required OS is approximately **18.5–19.3k lei**.
 
-If a legitimate transferable Pro license is already available, the Windows row adds no new spend.
+This complete initial purchase remains roughly **10.7k+ lei below the ~30k planning level**.
 
 ## RAM decision
 
@@ -45,7 +45,7 @@ Selected target:
 
 The 32 GB GOODRAM `GR5600D564L46/32G` remains only an emergency/minimum-cost fallback.
 
-The 64 GB choice buys double capacity plus dual-channel bandwidth and leaves the initial build comfortably below the planning level.
+The 64 GB choice buys double capacity plus dual-channel bandwidth and leaves the initial build comfortably below the planning level, including the required Windows license.
 
 Compatibility fallback:
 
@@ -56,9 +56,9 @@ Compatibility fallback:
 
 ## Windows decision
 
-Selected:
+Selected and required for the initial purchase:
 
-- **Windows 11 Pro x64**;
+- **new Windows 11 Pro x64 license**;
 - install **Windows 11 25H2 General Availability** for the August 2026 build;
 - WSL2 + Ubuntu 26.04.1 LTS for Linux development;
 - no Pro for Workstations and no native Linux dual boot initially.
@@ -70,6 +70,8 @@ Current official Microsoft Store Romania controls:
 - Windows 11 Pro for Workstations: **1,999 RON**.
 
 The Pro premium over Home is justified by the development/virtualization/management use case. The additional Pro-for-Workstations premium is not justified for one CPU socket and a 256 GB memory target.
+
+Do not substitute a grey-market key merely to reduce the BOM. Treat the normal legitimate Windows 11 Pro license as part of the workstation cost.
 
 ## Current source controls
 
