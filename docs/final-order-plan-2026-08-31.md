@@ -1,6 +1,6 @@
 # Final Order Plan — 2026-08-31
 
-> Updated 2026-09-01 after the first order was executed.
+> Updated 2026-09-01 after the first order was executed and Windows was removed from procurement because the license is already available.
 
 Status: **partially purchased**.
 
@@ -26,7 +26,7 @@ Do not continue price-shopping these four components unless the order is cancell
 | Cooler | Thermalright Phantom Spirit 120 — standard | **Not yet purchased** |
 | Case | be quiet! Pure Base 501 Airflow Black `BG074` | **Not yet purchased** |
 | GPU | reuse existing RTX 3060 12 GB | Already owned |
-| Windows | Windows 11 Pro 64-bit English Retail/FPP USB `HAV-00163` | **Not yet purchased** |
+| Host OS | Windows 11 Pro x64 | License already available; no procurement action |
 | UPS | none | No purchase planned |
 | Dedicated surge protector | none | No purchase planned |
 
@@ -37,7 +37,8 @@ EvoMAG is now the first hardware provider.
 Preferred remaining shape:
 
 1. **One additional hardware retailer** for RAM + cooler + case if the exact selected models can be sourced at sensible delivered prices.
-2. **PROstore or equivalent trustworthy software retailer** for Windows 11 Pro Retail/FPP `HAV-00163`.
+
+No Windows/software purchase remains.
 
 Do not substitute the case or cooler merely to consolidate back into EvoMAG.
 
@@ -77,10 +78,9 @@ Before paying for the remaining components, verify:
 1. RAM is **`CP2K24G56C46U5`**, total 48 GB as **2×24 GB**.
 2. Cooler is **Thermalright Phantom Spirit 120 standard**, not SE/EVO.
 3. Case is **be quiet! Pure Base 501 Airflow Black `BG074`**.
-4. Windows is genuine **Retail/FPP English USB `HAV-00163`**.
-5. All remaining hardware is new retail product with a normal Romanian/EU warranty path.
-6. Delivered totals include shipping and realistic lead times.
-7. Preserve invoices, serial numbers and packaging through commissioning and return windows.
+4. All remaining hardware is new retail product with a normal Romanian/EU warranty path.
+5. Delivered totals include shipping and realistic lead times.
+6. Preserve invoices, serial numbers and packaging through commissioning and return windows.
 
 ## Arrival verification gates for the EvoMAG order
 
@@ -106,4 +106,4 @@ See `docs/checkout-checklist.md` for the operational verification workflow and `
 
 ## Purchase position
 
-**First hardware order completed.** CPU, motherboard, SSD and PSU are committed. Continue procurement only for RAM, cooler, case and Windows, then move to physical verification, assembly and commissioning.
+**First hardware order completed.** CPU, motherboard, SSD and PSU are committed. Windows is already available. Continue procurement only for **RAM, cooler and case**, then move to physical verification, assembly and commissioning.
