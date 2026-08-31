@@ -11,13 +11,13 @@ Selected:
 - Crucial **`CT2K64G56C46U5`**, 128 GB = 2×64 GB DDR5-5600 / 1DPC / non-ECC;
 - Thermalright **Phantom Spirit 120 standard**;
 - be quiet! **Pure Base 501 Airflow Black `BG074`**;
+- Crucial **T710 2 TB `CT2000T710SSD8`** primary NVMe;
 - existing RTX 3060 12 GB;
 - no multi-GPU requirement;
 - no UPS requirement.
 
 Open:
 
-- exact system and active-work SSDs;
 - exact premium 750/850 W PSU;
 - exact plug-in surge protector.
 
@@ -47,45 +47,43 @@ This combination provides comfortable physical tolerance. At assembly, still ver
 
 ## Motherboard ↔ storage ↔ GPU
 
-Preferred topology:
+Selected topology:
 
 ```text
 Ryzen 9 9950X3D
 ├── primary PCIe 5.0 x16 -> RTX 3060
-├── M.2_1 CPU 5.0 x4     -> active-work NVMe
-└── M.2_2 CPU 4.0 x4     -> system/tools NVMe
+├── M.2_1 CPU 5.0 x4     -> Crucial T710 2 TB primary NVMe
+└── M.2_2 CPU 4.0 x4     -> empty / future expansion
 
 B650 chipset
-├── M.2_3 PCIe 4.0 x4    -> optional future storage
+├── M.2_3 PCIe 4.0 x4    -> empty / future expansion
 ├── second full-length slot -> PCIe 4.0 x1 only
-├── 4 × SATA             -> later SSD/HDD storage
+├── 4 × SATA             -> existing/later cold storage
 └── normal platform I/O
 ```
 
-Using `M.2_1` and `M.2_2` does not require reducing the primary GPU link.
+Using `M.2_1` for the T710 does not require reducing the primary GPU link.
 
 The selected board does not provide a meaningful secondary x4 expansion path. This is accepted because no add-in high-speed NIC, HBA, capture card or second GPU is required.
 
-### Active-work drive
+### Primary SSD
 
-- preferred slot: `M.2_1`;
-- 1 TB sufficient;
-- 2 TB when price/value is attractive;
-- Gen4 TLC preferred;
-- Gen5 not required even though the slot supports it.
+- exact model: **Crucial T710 2 TB `CT2000T710SSD8`**;
+- preferred/selected slot: `M.2_1`;
+- CPU-direct PCIe 5.0 x4;
+- TLC + DRAM-equipped design;
+- install bare/non-heatsink model under the motherboard M.2 heatsink;
+- holds Windows, applications and active development/work data together.
 
-### System drive
-
-- preferred slot: `M.2_2`;
-- target ~1 TB;
-- NVMe is preferred because the selected board provides the path without trade-off;
-- SATA remains a fallback.
+Current storage use is approximately **600 GB**, so 2 TB is expected to provide substantial headroom. No second NVMe is required initially.
 
 ### Bulk/cold storage
 
-May later use `M.2_3`, SATA SSD/HDD, external storage or NAS. Existing healthy HDDs are allowed for inactive data after health checks but never as the only copy of important data.
+Use existing healthy SATA SSD/HDD devices where suitable for archives, old projects, inactive VMs, installers, media and similar infrequently accessed data. Validate SMART/health first and never rely on an old drive as the sole copy of important information.
 
-No RAID requirement.
+`M.2_2` and `M.2_3` remain available for additive future storage.
+
+No RAID, SSD cache layer or automatic tiering requirement.
 
 ## Case ↔ GPU
 
@@ -139,11 +137,12 @@ Current target:
 - UEFI, Secure Boot, TPM 2.0/fTPM, SVM, IOMMU;
 - CPU stock/conservative;
 - RAM Auto/JEDEC;
+- update/record T710 firmware and validate SMART/temperature behavior;
 - BitLocker after firmware/driver/storage stability is established.
 
 ## Provider dependencies
 
-Motherboard and RAM exact models are closed, but supplier selection remains subject to live price/stock. The RAM market is especially volatile.
+Motherboard, RAM and primary SSD exact models are closed, but supplier selection remains subject to live price/stock. The RAM market is especially volatile.
 
 Provider principles remain:
 
