@@ -1,6 +1,6 @@
 # Procurement Plan — 2026-08-31
 
-Motherboard and RAM are now closed. Procurement remains paused only for exact storage, PSU, surge-protector and final provider/price consolidation.
+Motherboard, RAM and primary storage are now closed. Procurement remains paused only for exact PSU, surge-protector and final provider/price consolidation.
 
 ## Locked principles
 
@@ -20,6 +20,7 @@ Motherboard and RAM are now closed. Procurement remains paused only for exact st
 | CPU cooler | **Thermalright Phantom Spirit 120 standard** | selected |
 | Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | selected |
 | Case fans | use two included 140 mm PWM fans only initially | selected |
+| Primary SSD | **Crucial T710 2 TB `CT2000T710SSD8`**, bare/non-heatsink, PCIe 5.0 x4 | selected; supplier price refresh pending |
 | GPU | existing RTX 3060 12 GB | reuse |
 | Windows | Windows 11 Pro Retail/FPP `HAV-00163` | selected target |
 | UPS | none | selected |
@@ -51,43 +52,37 @@ The 128 GB 2×64 market is currently unusually expensive/volatile. A recent dire
 
 The SKU remains selected; **supplier is not locked**. Recheck all intended hardware providers before ordering.
 
-## Closed motherboard/RAM topology
+## Storage acceptance gate
+
+Primary storage:
+
+- exact model: **Crucial T710 2 TB `CT2000T710SSD8`**;
+- PCIe 5.0 x4 NVMe, TLC, DRAM-equipped;
+- bare/non-heatsink version only unless a later physical review explicitly changes the heatsink policy;
+- install in CPU-direct **`M.2_1`** under the ASUS motherboard M.2 heatsink;
+- normal new retail unit, five-year-class warranty path and current firmware availability;
+- refresh live Romanian price immediately before checkout.
+
+Current storage use is approximately **600 GB**. The 2 TB target provides enough foreseeable active-storage headroom without buying unused 4 TB capacity. The roughly ~1.3k-leu step from the currently observed 2 TB T710 class to 4 TB is therefore rejected for the initial order.
+
+No second NVMe is purchased initially. No SSD cache, write-back layer, Storage Spaces tiering or RAID is required.
+
+Existing healthy SATA drives remain available for archives/cold data after SMART/health validation. `M.2_2` and `M.2_3` stay empty for later additive expansion.
+
+## Closed motherboard/storage topology
 
 Recommended slot use:
 
 - primary PCIe 5.0 x16: RTX 3060;
-- `M.2_1` CPU Gen5 x4: active-work SSD;
-- `M.2_2` CPU Gen4 x4: system/tools SSD;
-- `M.2_3` chipset Gen4 x4: optional future storage;
+- `M.2_1` CPU Gen5 x4: **Crucial T710 2 TB primary SSD**;
+- `M.2_2` CPU Gen4 x4: empty / future expansion;
+- `M.2_3` chipset Gen4 x4: empty / future expansion;
 - second physical x16 slot: chipset Gen4 x1 only, no planned use;
-- 4× SATA: later bulk/cold storage.
+- 4× SATA: existing/later cold storage.
 
 The absence of a secondary x4 expansion path is accepted because no current requirement needs one.
 
 ## Items still to optimize
-
-### Storage
-
-Active-work:
-
-- 1 TB sufficient;
-- 2 TB if incremental price/value is attractive;
-- install in CPU-direct `M.2_1`;
-- mature Gen4 TLC preferred;
-- DRAM preferred where reasonably priced;
-- Gen5 not required.
-
-System:
-
-- around 1 TB;
-- **prefer NVMe** in CPU-connected `M.2_2` because the selected board provides it without meaningful trade-off;
-- reliability/headroom/firmware/warranty/value over benchmark throughput.
-
-Bulk/cold:
-
-- buy later only when needed;
-- `M.2_3`, SATA SSD/HDD, external/NAS all valid;
-- healthy old HDD reuse allowed for inactive data, never sole copy.
 
 ### PSU
 
@@ -120,17 +115,19 @@ Select a reputable Schuko device with:
 - B850 as a platform requirement;
 - 256 GB / four-DIMM RAM;
 - ECC as a RAM purchase requirement;
-- 4 TB initial work SSD requirement;
+- separate ~1 TB system SSD;
+- separate active-work SSD;
+- dedicated SSD cache device;
+- 4 TB initial primary/work SSD requirement;
 - 5/10 GbE, x8/x8 and secondary x4 expansion requirements.
 
 ## Price envelope
 
-All earlier full-order totals are obsolete. Do not publish the final order total until exact SSDs, PSU and surge protection are selected and live Romanian pricing is refreshed for the **entire** selected BOM, especially the volatile RAM.
+All earlier full-order totals are obsolete. Do not publish the final order total until exact PSU and surge protection are selected and live Romanian pricing is refreshed for the **entire** selected BOM, especially the volatile RAM and SSD supplier availability.
 
 ## Next sequence
 
-1. exact system + active-work SSDs;
-2. exact PSU;
-3. exact surge protector;
-4. full live price/provider refresh;
-5. ≤3-provider order plan and final total.
+1. exact PSU;
+2. exact surge protector;
+3. full live price/provider refresh;
+4. ≤3-provider order plan and final total.
