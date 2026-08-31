@@ -1,167 +1,186 @@
 # Procurement Plan — 2026-08-31
 
-This document turns the selected BOM into an order plan. Prices and stock are **observations, not promises**: re-check the actual product page/cart immediately before purchase.
+This document turns the selected BOM into an order plan optimized for **total ownership friction**, not merely the lowest item-by-item checkout price.
 
-## Procurement policy
+The procurement objective is now:
 
-- **PC Garage and Altex are co-preferred Romanian retailers**; **eMAG is also acceptable**.
-- Use another established Romanian/EU retailer when a preferred source is unavailable, materially more expensive, or does not identify the exact SKU/revision clearly.
-- Exact SKU/revision, seller quality, invoice/warranty path and product condition matter more than chasing the absolute lowest indexed price.
-- Buy **new, sealed** components unless a deliberate exception is recorded.
-- Do not substitute a similar-looking SKU without rechecking compatibility.
+1. keep the initial order to **no more than three providers**;
+2. prefer **two providers** when the price premium is modest;
+3. add a third provider only when it saves roughly **300 lei or more net**, or materially improves stock, exact-SKU certainty, warranty, or revision certainty;
+4. do not swap a long-lived component merely to eliminate a provider unless the replacement is at least as strong on stability, endurance and serviceability.
 
-## Recommended initial order
+Prices and stock are observations, not promises. Re-check the live cart immediately before ordering.
 
-| Item | Exact target | Current purchase route | Observed price | Confidence / gate |
-|---|---|---|---:|---|
-| CPU | AMD Ryzen 9 9950X3D **Box/WOF `100-100000719WOF`** | **EvoMAG** | **3,349.99 lei** | High: direct indexed page showed exact code, Box, limited local stock. Do not substitute Tray `100-000000719`. |
-| Motherboard | ASUS **ProArt X870E-Creator WiFi** | **ITGalaxy** preferred for this order; ITArena is price-control alternative | ~**2,654 lei** ITGalaxy; ~2,542 lei ITArena | Medium-high: ITGalaxy offer was refreshed much more recently; paying ~112 lei over ITArena is acceptable for fresher stock evidence and consolidation. PC Garage was indexed unavailable and eMAG ~3,056 lei. |
-| Phase-1 RAM | Crucial **`CT2K32G56C46U5`**, 64 GB (2×32), DDR5-5600 CL46, 1.1 V | Buy from a reputable seller only after exact-SKU cart check | ~**4.97–5.20k lei** current market control | **Strict gate:** page/cart/invoice must say `CT2K32G56C46U5`. Reject `CT2K32G56C46S5` (SO-DIMM/laptop). Romanian indexing is inconsistent. If Crucial rises close to Kingston pricing, recompare `KF556C36BBEK2-64`. |
-| CPU cooler | Noctua **NH-D15 G2 standard `CPNTD15G2`** | **ITGalaxy** if exact standard SKU is confirmed; otherwise PC Garage/eMAG/Vexio | ~**701–730 lei** | Verify standard G2, not LBC/HBC or another variant. ITGalaxy currently indexed in stock around 701 lei. |
-| System SSD | Samsung **990 PRO 2 TB `MZ-V9P2T0BW`** | **ITGalaxy** (consolidated) or PC Garage | ~**1,953 lei** ITGalaxy / **1,949.99 lei** PC Garage | High: exact SKU broadly identified. Buy bare drive; motherboard heatsink is used. |
-| PSU | Seasonic **VERTEX GX-1200 current ATX 3.1 / PCIe 5.1 revision** | **Altex**, product code `VERTEXGX1200` | **1,289.99 lei** | High listing confidence; **receipt gate remains mandatory**: ATX 3.1 + PCIe 5.1 + supplied 12V-2x6. Reject explicit ATX 3.0/12VHPWR old inventory. |
-| Case | Fractal Design **North XL Mesh Charcoal Black `FD-C-NOR1X-01`** | **ForIT** | **1,018.51 lei** | High: direct listing explicitly says mesh and exact SKU/EAN. Reject TG Dark `FD-C-NOR1X-02` or ambiguous 'Solid' descriptions. |
-| Rear fan | Noctua **NF-A14x25 G2 PWM**, standard square frame, EAN `9010018100617` | **Vexio** or another exact single-fan listing | ~**192.99 lei** | Verify **standard PWM**, not `NF-A14x25r`, not LS-PWM, and not an unnecessary 2-pack. |
-| UPS | CyberPower **`CP1600EPFCLCD`** | **Checkout comparison required** | roughly **1.65–1.75k lei** in the latest consolidated controls | Model is closed, seller is not. Aggregators disagree materially and some direct pages are stale. Prefer an exact new unit from PC Garage/Altex/eMAG or another established seller when the checkout price is reasonable. Do not use a resigilat unit merely to hit an old low price. |
-| Windows | Microsoft **Windows 11 Pro Retail/FPP USB English `HAV-00163`** | **ForIT** for consolidation; Prostore is price-control alternative | **1,146.55 lei** ForIT; **1,123.60 lei** Prostore | High: both direct indexed pages explicitly identify Retail/FPP and exact Microsoft SKU. **Do not substitute OEM/DSP or a standalone grey-market key.** |
-| GPU | Existing RTX 3060 12 GB | Reuse | 0 lei | No purchase. |
+## Recommended provider structure
 
-## Suggested seller grouping
+### Provider 1 — EvoMAG: primary order
 
-A practical order minimizes seller count without paying large premiums:
+EvoMAG currently has a unusually strong concentration of the exact selected parts. Use it for the main order provided the live cart remains close to the current price controls.
 
-### EvoMAG
+| Item | Exact target | Current EvoMAG control | Gate |
+|---|---|---:|---|
+| CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | **3,349.99 lei** | Exact Box/WOF; do not substitute Tray. |
+| Motherboard | ASUS ProArt X870E-Creator WiFi | current feed ~**2,685 lei** | If live cart rises materially above ~2,850 lei, recompare before ordering. |
+| RAM | Crucial `CT2K32G56C46U5`, 64 GB 2×32 | **4,156.99 lei** current exact-SKU indexed offer | Strict `...U5` desktop-UDIMM gate; reject `...S5`. |
+| CPU cooler | Noctua NH-D15 G2 **standard** | **690.99 lei** | Standard version, not LBC/HBC. |
+| SSD | Samsung 990 PRO 2 TB `MZ-V9P2T0BW` | **1,899.99 lei** | Exact bare 2 TB drive. |
+| Case | Fractal North XL Charcoal Black `FD-C-NOR1X-01` | **882.99 lei** | Exact SKU controls; retailer title says “Solid”, but Fractal identifies `-01` as the Mesh model. |
+| Rear fan | Noctua NF-A14x25 G2 PWM, square frame | **200.99 lei** | Exact standard single fan is currently available, so no fan downgrade is needed for consolidation. |
+| UPS | CyberPower `CP1600EPFCLCD` | current feeds conflict around **~1.55–1.90k lei** | Buy here if live cart is reasonably close to the broader market. See third-provider trigger below. |
+| Windows | Windows 11 Pro Retail/FPP USB English `HAV-00163` | ~**1,200 lei** | Exact Retail/FPP SKU; the ~100–135 lei premium versus the lowest normal FPP offer is acceptable for consolidation. |
+| GPU | Existing RTX 3060 12 GB | 0 lei | Reuse. |
 
-- Ryzen 9 9950X3D Box `100-100000719WOF`.
-- RAM may also be bought here **only if the live cart shows exact `CT2K32G56C46U5` at a competitive price**. Cached/indexed EvoMAG RAM prices conflict, so do not rely on an old search snapshot.
+### Provider 2 — Altex: PSU
 
-### ITGalaxy
+Buy the selected PSU from Altex unless EvoMAG can explicitly confirm its unit is the current revision before shipment.
 
-- ASUS ProArt X870E-Creator WiFi.
-- Noctua NH-D15 G2 standard, after exact-SKU verification.
-- Samsung 990 PRO 2 TB `MZ-V9P2T0BW`.
+- **Seasonic VERTEX GX-1200**
+- explicit **ATX 3.1** Altex listing
+- current reference: **1,289.99 lei**
+- required receipt/box gate: PCIe 5.1 + current **12V-2x6** cable
 
-This grouping costs very little versus splitting each item across the absolute lowest seller and simplifies delivery/returns.
+This remains preferable to changing PSU simply to reach one-provider procurement. Seasonic provides a **12-year warranty**, compact 160 mm depth, complete protections and an explicitly current ATX 3.1 product definition.
 
-### Altex
+### One-provider opportunity
 
-- Seasonic VERTEX GX-1200 ATX 3.1 `VERTEXGX1200`.
+EvoMAG currently indexes a Seasonic VERTEX GX-1200 around the low-1.1k to low-1.3k lei range, but the listing does **not** identify the revision clearly enough to override the old-stock risk.
 
-### ForIT
+If EvoMAG confirms **in writing before shipment** that the exact unit is:
 
-- Fractal Design North XL Mesh `FD-C-NOR1X-01`.
-- Windows 11 Pro Retail/FPP USB `HAV-00163`.
+- ATX 3.1;
+- PCIe 5.1;
+- supplied with 12V-2x6 rather than old 12VHPWR;
 
-### Vexio / exact alternative
+then buy it from EvoMAG and collapse the entire initial BOM to **one provider**. Otherwise use Altex.
 
-- one Noctua NF-A14x25 G2 PWM standard square-frame fan.
+## Third-provider trigger
 
-### UPS seller
+Do **not** add a third retailer for a 50–150 lei saving.
 
-Choose at checkout after a direct exact-product comparison. The UPS price is the least trustworthy part of the current aggregator snapshot and is not worth forcing into a specific seller prematurely.
+A third provider becomes rational only when one of these is true:
 
-## Current total
+- net saving is roughly **300 lei or more** after delivery costs;
+- the primary retailer cannot provide the exact SKU/revision;
+- delivery/stock risk is materially better;
+- warranty terms are materially better.
 
-Using the current representative values:
+The most likely trigger is the UPS. Current CyberPower price feeds disagree materially. If EvoMAG checkout is around **1.55–1.70k lei**, keep it at EvoMAG. If EvoMAG is near **1.90k lei** while an established retailer such as Vexio remains around **1.53–1.55k lei**, using that retailer as provider #3 saves ~350 lei and is justified.
 
-- CPU 3,349.99
-- motherboard ~2,654
-- RAM ~4,974 (low current exact-SKU market control)
-- cooler ~701
-- SSD ~1,952.99
-- PSU 1,289.99
-- case 1,018.51
-- rear fan ~192.99
-- UPS ~1,666.10 representative current control
-- Windows Retail/FPP 1,146.55
+Do not create a third-provider relationship solely to save ~50 lei on Windows or ~100–150 lei on another individual component.
 
-Representative complete initial purchase: approximately **18,946 lei**, before shipping.
+## Component-swap review
 
-Because RAM and UPS listings are volatile/inconsistent, use a practical checkout envelope of approximately **18.9–19.3k lei** rather than false precision.
+The provider consolidation pass explicitly reopened plausible value substitutions. The conclusion is deliberately conservative because “performance” for this build includes stability, endurance, serviceability and long ownership.
 
-The reused RTX 3060 is excluded from purchase cost. The future 4 TB+ work SSD, future GPU, eventual 256 GB memory and future UPS enlargement remain deferred.
+| Possible swap | Approx. saving | Verdict | Why |
+|---|---:|---|---|
+| Ryzen 9 9950X3D → Ryzen 9 9950X Box | ~**650 lei** | **Keep 9950X3D** | The 9950X3D is marginally ahead in GamersNexus' Chromium compile test while also preserving substantially stronger gaming performance. Same AM5/170 W class; the saving is not enough to weaken a permanent 10-year CPU choice. |
+| ProArt X870E-Creator → ASRock X870 Taichi Creator | ~**900–1,000+ lei** | **Keep ProArt** | This is the largest cash saving but gives up the strongest explicit vendor/firmware evidence we found for the difficult eventual 4×64 GB / 256 GB and ECC-oriented stability target. It cuts against the primary goal. |
+| NH-D15 G2 → Thermalright Phantom Spirit 120 SE | ~**400–490 lei** | **Keep Noctua** | Thermalright is excellent price/performance, but Noctua brings the stronger long-term mounting/support ecosystem, soldered fin/heatpipe construction, >150k-hour fan MTTF and 6-year manufacturer warranty. Those attributes matter on a 10-year workstation. |
+| Samsung 990 PRO 2 TB → Kingston KC3000 2 TB | ~**50–60 lei** at EvoMAG | **Keep Samsung** | KC3000 is excellent and has strong endurance, but the saving is trivial. Samsung's mature firmware/tooling and already-selected topology win at this delta. |
+| Seasonic VERTEX GX-1200 → be quiet! Straight Power 12 1200W `BN339` | ~**30–80 lei** in the relevant consolidated routes | **Keep Seasonic** | Straight Power 12 is technically excellent (ATX 3.1, Platinum, Japanese 105 °C capacitors, 10-year warranty), but the small saving does not justify giving up Seasonic's 12-year warranty and more compact 160 mm chassis simply to remove Altex. |
+| Noctua NF-A14x25 G2 → ARCTIC P14/P14 Max | ~**125–160 lei** | **Keep Noctua** | A valid budget swap, but unnecessary now that EvoMAG sells the exact Noctua single fan. The Noctua's explicit >150k-hour MTTF and 6-year warranty better match the endurance-first goal for a small absolute premium. |
+| CyberPower CP1600EPFCLCD → cheaper simulated-sine UPS | several hundred lei | **Keep CyberPower** | Pure sine output, Active-PFC compatibility, AVR and USB shutdown are deliberate reliability features; do not trade them away for nominal VA-per-leu. |
+| Windows Retail/FPP → OEM/grey-market key | large headline saving | **Keep Retail/FPP** | Retail/FPP `HAV-00163` is the clean Microsoft licensing path for this DIY build and removes provenance/transfer ambiguity. |
+
+## Current consolidated cost envelope
+
+Using the current EvoMAG price controls plus the explicit Altex PSU:
+
+- EvoMAG main-order subtotal with the lower current UPS feed: approximately **16,620 lei**;
+- Altex Seasonic PSU: **1,289.99 lei**;
+- representative two-provider total: approximately **17,910 lei before shipping**.
+
+Because the EvoMAG UPS feed currently conflicts with an older direct-page price around 1.9k lei, a conservative checkout range is approximately **17.9–18.3k lei** before shipping.
+
+This is materially below the prior 18.9–19.3k snapshot, primarily because the exact Crucial 64 GB kit is now indexed at roughly **4,157 lei** rather than ~5k.
 
 ## Hard acceptance gates
 
 ### CPU
 
-- exact processor: Ryzen 9 9950X3D;
-- prefer Box/WOF `100-100000719WOF`;
-- do not accidentally order Tray because a search listing is cheaper.
+- Ryzen 9 9950X3D;
+- Box/WOF `100-100000719WOF`;
+- do not silently substitute Tray.
+
+### Motherboard
+
+- exact ASUS ProArt X870E-Creator WiFi;
+- ignore stale retailer metadata claiming a 192 GB maximum; ASUS platform selection was based on current official 256 GB support and firmware evidence.
 
 ### RAM
 
-- exact string **`CT2K32G56C46U5`**;
-- 2×32 GB;
+- exact **`CT2K32G56C46U5`**;
+- 64 GB, 2×32;
 - 288-pin desktop UDIMM;
-- reject **`CT2K32G56C46S5`**, which is SO-DIMM/laptop memory;
-- if the exact Crucial kit is no longer sensible at checkout, compare the explicitly ProArt-listed Kingston `KF556C36BBEK2-64` before substituting anything else.
+- DDR5-5600 CL46, 1.1 V;
+- reject **`CT2K32G56C46S5`** laptop SO-DIMM.
 
 ### Cooler
 
-- Noctua NH-D15 G2 **standard** base;
-- exact ordinary model `CPNTD15G2` where retailer exposes a product code;
-- do not substitute LBC/HBC without reopening the cooler decision.
+- NH-D15 G2 **standard**;
+- use included AM5 offset mount;
+- do not substitute LBC/HBC.
 
 ### SSD
 
-- exact Samsung `MZ-V9P2T0BW`;
-- 2 TB, bare M.2 2280 drive;
-- no bundled third-party heatsink required.
+- exact `MZ-V9P2T0BW`;
+- 2 TB, bare M.2 2280.
 
 ### PSU
 
-- box/listing says **ATX 3.1**;
-- PCIe 5.1 support;
-- current **12V-2x6** GPU cable included;
-- reject explicit ATX 3.0 / PCIe 5.0 / 12VHPWR old stock;
+- listing/box must say **ATX 3.1**;
+- PCIe 5.1;
+- current **12V-2x6** GPU cable supplied;
+- reject explicit old ATX 3.0 / 12VHPWR inventory;
 - use only Seasonic-approved modular cables.
 
 ### Case
 
 - exact **`FD-C-NOR1X-01`**;
-- Charcoal Black **Mesh** side panel;
-- reject `FD-C-NOR1X-02` TG Dark unless the case decision is deliberately changed.
+- Fractal official product mapping identifies this as North XL Charcoal Black **Mesh**;
+- reject `FD-C-NOR1X-02` TG Dark.
 
 ### Rear fan
 
-- exact standard **NF-A14x25 G2 PWM**, 140 mm, square frame, 1500 RPM class;
-- EAN `9010018100617` is useful confirmation;
-- reject round-frame `NF-A14x25r G2` and LS-PWM variants for this role.
+- standard square-frame **NF-A14x25 G2 PWM** single fan;
+- not round-frame `NF-A14x25r G2`;
+- not LS-PWM.
 
 ### UPS
 
 - exact **`CP1600EPFCLCD`**;
 - new/sealed;
-- current European/Schuko configuration;
-- verify delivered outlet count/configuration against current CyberPower specification.
+- European/Schuko configuration;
+- verify delivered outlet configuration against CyberPower's current specification.
 
 ### Windows
 
-- **Windows 11 Pro**;
-- **Retail/FPP**, not OEM/DSP;
-- exact target `HAV-00163`;
-- normal invoice and identifiable Microsoft packaged product;
-- do not replace it with a cheap emailed standalone key.
+- **Windows 11 Pro Retail/FPP**;
+- exact `HAV-00163`;
+- normal packaged Microsoft product/invoice;
+- not OEM/DSP and not an undocumented emailed key.
 
-## Ordering order
+## Ordering strategy
 
-1. **CPU + motherboard + RAM** first because stock and RAM pricing are the most volatile.
-2. **Cooler + SSD + PSU + case + rear fan** next; these are mature, well-identified parts.
-3. **Windows Retail/FPP** can be ordered with the case or separately; it does not constrain hardware assembly.
-4. **UPS** can be bought in the same wave, but choose the seller from a fresh direct-price check rather than an old aggregator minimum.
-5. Keep all packaging, serial labels and invoices until the full workstation passes burn-in/validation.
+Place the EvoMAG main order first, but capture screenshots/PDFs of each product page and exact SKU/price before checkout. Place the Altex PSU order in the same purchasing session. If the EvoMAG VERTEX listing can be confirmed as current ATX 3.1 stock, consolidate the PSU there instead.
 
-## Sources / current controls
+For supplier-stock items with long ETAs, do not dismantle the current working PC until CPU, motherboard, RAM, cooler and case are physically received and inspected.
 
-- EvoMAG Ryzen 9 9950X3D Box: https://www.evomag.ro/componente-pc-gaming-procesoare/amd-procesor-amd-ryzen-9-9950x3d-4.3ghz-144mb-170w-am5-box-4206997.html
-- ProArt market control: https://www.pricy.ro/ProductUrlId/placa-de-baza-asus-proart-x870e-creator-wifi--socket-am5-7E95DB2CF7553837275C1FDE2803A4E0
-- Crucial exact-kit market control: https://www.compari.ro/memorii-c3577/crucial/64gb-2x32gb-ddr5-5600mhz-ct2k32g56c46u5-p993167062/
-- NH-D15 G2 control: https://www.price.ro/preturi-noctua-nh-d15-g2-4652246
-- Samsung 990 PRO control: https://solid-state-drive-ssd-intern.compari.ro/samsung/990-pro-2tb-m-2-mz-v9p2t0bw-p885630345/
-- Seasonic Altex listing: https://altex.ro/sursa-pc-seasonic-vertex-gx-1200-atx-3-1-1200w-135mm-80-plus-gold-full-modular/cpd/VERTEXGX1200/
-- North XL Mesh ForIT: https://www.forit.ro/fractal-design-north-xl-charcoal-black-tower-case-black-mesh-version-bp939671
-- Noctua fan Vexio category control: https://www.vexio.ro/noctua/pagina10/
-- CyberPower market control: https://www.compari.ro/ups-uri-surse-neintreruptibile-c3133/cyberpower/cp1600epfclcd-1600va-p1051248901/
-- Windows Retail/FPP ForIT: https://www.forit.ro/sistem-de-operare-microsoft-windows-11-pro-64-bit-engleza-retail-fpp-usb-flash-bp414367
-- Windows Retail/FPP Prostore: https://www.prostore.ro/sisteme_de_operare/microsoft/93926-windows-11-pro-64-bit-engleza-retail-fpp-usb-flash/
+Keep invoices, serial labels, packaging and the purchase-page evidence together in a single warranty folder for the life of the build.
+
+## Current source controls
+
+- EvoMAG 9950X3D Box: https://www.evomag.ro/componente-pc-gaming-procesoare/amd-procesor-amd-ryzen-9-9950x3d-4.3ghz-144mb-170w-am5-box-4206997.html
+- ProArt current market: https://www.price.ro/preturi-asus-proart-x870e-creator-wifi-4691168
+- EvoMAG Crucial exact kit: https://www.evomag.ro/componente-pc-gaming-memorii/crucial-kit-memorii-ram-crucial-dual-channel-2x32gb-ddr5-negru-4147822.html
+- EvoMAG NH-D15 G2 standard: https://www.evomag.ro/componente-pc-gaming-coolere-coolere-cpu/noctua-cooler-procesor-noctua-nh-d15-g2-standard-compatibil-intel-amd-4175302.html
+- EvoMAG Samsung 990 PRO 2 TB: https://www.evomag.ro/componente-pc-gaming-solid-state-drive-ssd/samsung-ssd-samsung-990-pro-2tb-pci-express-4.0-x4-m.2-2280-4031722.html
+- EvoMAG North XL `FD-C-NOR1X-01`: https://www.evomag.ro/componente-pc-gaming-carcase/fractal-design-carcasa-fractal-design-north-xl-solid-middle-tower-fara-sursa-atx-e-atx-negru-4149667.html
+- Fractal official North XL product mapping: https://www.fractal-design.com/products/cases/north/north-xl/rc-charcoal-black-tg-dark/
+- EvoMAG NF-A14x25 G2 PWM: https://www.evomag.ro/componente-pc-gaming-coolere-ventilatoare/noctua-ventilator-noctua-nf-a14x25-g2-pwm-140mm-4197885.html
+- CyberPower current market control: https://www.price.ro/preturi-cyberpower-cp1600epfclcd-4589246
+- Windows `HAV-00163` price control: https://www.price.ro/preturi-microsoft-windows-11-pro-64-bit-engleza-retail-fpp-usb-flash-3737377
+- Altex explicit current Seasonic: https://altex.ro/sursa-pc-seasonic-vertex-gx-1200-atx-3-1-1200w-135mm-80-plus-gold-full-modular/cpd/VERTEXGX1200/
+- Seasonic official VERTEX GX ATX 3.1: https://seasonic.com/vertex-gx/
+- be quiet! Straight Power 12 1200W control: https://www.bequiet.com/en/powersupply/4105
