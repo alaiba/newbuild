@@ -90,6 +90,10 @@ For expensive components, ask not only whether they are faster today, but whethe
 - Location: **Iași, Romania**
 - Self-assembled
 - Existing NVIDIA GeForce RTX 3060 12 GB will be reused initially
+- **Preferred retailer: PC Garage** — use as the default procurement source when the exact suitable part/revision is available at a reasonable price.
+- **Secondary retailer: eMAG** — use when PC Garage does not stock the required part/revision or eMAG has a materially better offer/warranty path.
+- Other Romanian/EU retailers should be used only when there is a **compelling reason**, such as substantial price savings, lack of stock at both preferred retailers, a required exact hardware revision/SKU, or materially better warranty/support.
+- Price comparison sites remain useful for market context, but the final BOM should prioritize actual offers from **PC Garage first, eMAG second**, rather than blindly selecting the lowest market price.
 
 The 30,000 lei figure is **not a hard cap and not a spending target**. The preferred outcome is to remain meaningfully below it when doing so does not compromise the workstation's technical objectives.
 
