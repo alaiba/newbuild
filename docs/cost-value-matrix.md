@@ -35,9 +35,10 @@ This matrix evaluates the workstation on **utility per leu**, not benchmark perf
 | 4 TB T710 / flagship Gen5 | Double capacity | Roughly ~1.3k lei extra for capacity not expected to be used soon; expansion remains easy later | **Rejected initially on value** |
 | Existing SATA drives for cold storage | Cheap archive capacity already owned | Appropriate for old projects, media, installers and inactive data after health validation | **Selected / reuse** |
 | Later NVMe expansion | Additional fast capacity | `M.2_2` and `M.2_3` remain free; buy only when actual use justifies it | **Deferred / additive** |
-| **Premium 750 W ATX 3.1 PSU** | Plenty for current machine and substantial present-day GPU upgrades | Legitimate baseline; quality matters more than unused wattage | **Preferred baseline class** |
-| Premium 850 W ATX 3.1 PSU | More GPU headroom | Choose only for small premium or materially better exact product | **Value-dependent upgrade** |
-| 1000–1200 W PSU | Speculative GPU margin | No default justification | **Not required** |
+| **be quiet! Pure Power 13 M 850W `BP027EU`** | Premium ATX 3.1 platform, excellent acoustics, 10-year warranty and useful GPU headroom | Observed premium over 750 W sibling is only ~40–100 lei, so the extra 100 W is a rational low-cost margin rather than speculative overprovisioning | **Selected** |
+| Pure Power 13 M 750 W | Fully sufficient for current system | No longer the target because savings are too small versus selected 850 W unit | **Rejected on current value** |
+| Corsair RM850x 2024 `CP-9020270-EU` | Excellent ATX 3.1 quality/protection/fan implementation | Worth switching only if delivered price is within ~30–40 lei or warranty/retailer is materially better | **Fallback** |
+| 1000–1200 W PSU | Speculative GPU margin | No default justification; replace PSU later only if a concrete future GPU requires it | **Not required** |
 | **No UPS** | Avoids cost/battery maintenance | Short outages are acceptable; continuity not needed | **Selected** |
 | Plug-in surge protector | Point-of-use transient protection | Proportional no-installation solution | **Selected policy** |
 | Existing RTX 3060 12 GB | Current graphics/CUDA capability with no spend | Keep until failure or concrete upgrade need | **Selected / reuse** |
@@ -77,7 +78,9 @@ Gen4 remains technically sufficient, but at current pricing the selected T710's 
 
 ## PSU interpretation
 
-A premium **750 W ATX 3.1** supply is not an economy compromise. It is the baseline sized to the machine actually expected to operate. An 850 W unit wins only when the exact high-quality model has a small premium or other concrete benefits.
+A premium **750 W ATX 3.1** unit would already be sufficient. The decision moved to the **Pure Power 13 M 850 W** because the observed 750-to-850 W price step is only roughly 40–100 lei while the selected exact unit also has excellent acoustics, measured platform quality and a long warranty.
+
+That is the correct use of the project's premium rule: a small premium buys a concrete durable margin. It does **not** justify returning to 1000–1200 W sizing for an unknown future GPU.
 
 ## Premium rule
 
