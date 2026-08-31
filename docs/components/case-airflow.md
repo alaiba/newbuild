@@ -1,10 +1,12 @@
 # Case and Airflow Deep Dive
 
-Status: **Selected — be quiet! Pure Base 501 Airflow Black `BG074`**
+Status: **Purchased 2026-09-01 — be quiet! Pure Base 501 Airflow Black `BG074`**
 
 ## Selected chassis
 
 Use **be quiet! Pure Base 501 Airflow Black `BG074`**.
+
+Purchased from Vexio on 2026-09-01 for **415.99 lei including VAT** as retailer product `3137257`; shipping for the combined Vexio order was free. Arrival verification remains pending.
 
 Relevant envelope for this workstation:
 
@@ -13,7 +15,7 @@ Relevant envelope for this workstation:
 - approximately **178 mm CPU-cooler clearance**;
 - two included **140 mm PWM fans**;
 - practical support for two 3.5-inch HDDs for later cold storage;
-- dimensions approximately **450 × 231 × 463 mm**.
+- dimensions approximately **450 x 231 x 463 mm**.
 
 Manufacturer reference:
 - https://www.bequiet.com/en/case/5322
@@ -32,7 +34,7 @@ Pure Base 501 therefore provides enough useful room while avoiding roughly 20 L 
 
 ## Cooler fit
 
-Selected cooler: **Thermalright Phantom Spirit 120 standard**.
+Purchased cooler: **Thermalright Phantom Spirit 120 standard**.
 
 - cooler height: approximately **157 mm**;
 - case limit: approximately **178 mm**;
@@ -52,8 +54,8 @@ The selected 368 mm GPU-length envelope is intentionally not sized around an unk
 
 Initial layout uses **only the two included 140 mm PWM fans**:
 
-- **front:** 1×140 mm intake;
-- **rear:** 1×140 mm exhaust;
+- **front:** 1x140 mm intake;
+- **rear:** 1x140 mm exhaust;
 - additional front/top fans: none initially.
 
 Do not purchase a dedicated Noctua rear fan. The previous NF-A14x25 G2 purchase target is superseded.
@@ -88,21 +90,30 @@ Additional fans should be driven by measurements, not slot count. If closed-case
 The case preserves enough conventional storage for the simplified storage policy:
 
 - fast active work remains on CPU-direct NVMe;
-- system drive can be NVMe or SATA;
-- up to two 3.5-inch HDD positions can serve later cold/archive storage if useful.
+- up to two 3.5-inch HDD positions can serve later cold/archive storage if useful;
+- additional NVMe slots remain available on the motherboard for future additive expansion.
 
 This is sufficient; the build does not require a large storage chassis.
+
+## Arrival gate
+
+Before assembly confirm:
+
+- physical product is **Pure Base 501 Airflow Black `BG074`**;
+- non-window variant;
+- both included 140 mm PWM fans are present;
+- panels, mesh, front I/O and accessory box are complete and undamaged;
+- packaging does not indicate an open-box or substituted unit.
 
 ## Reopen conditions
 
 Reopen chassis/airflow only if:
 
-- the final motherboard exceeds ATX;
-- the exact RAM/cooler combination cannot fit within the 178 mm envelope;
+- the delivered product is not `BG074` or is damaged;
+- the final RAM/cooler combination cannot fit within the 178 mm envelope;
 - a future selected GPU actually exceeds the available physical clearance;
-- measured closed-case thermals/acoustics show the chassis itself is inadequate;
-- exact `BG074` becomes unavailable or materially overpriced before purchase.
+- measured closed-case thermals/acoustics show the chassis itself is inadequate.
 
 Otherwise:
 
-> **be quiet! Pure Base 501 Airflow Black `BG074` + its two included 140 mm PWM fans is the selected chassis/initial-airflow configuration.**
+> **be quiet! Pure Base 501 Airflow Black `BG074` + its two included 140 mm PWM fans is the purchased chassis/initial-airflow configuration.**
