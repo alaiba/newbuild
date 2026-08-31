@@ -17,7 +17,7 @@ At present, the **CPU/platform, motherboard, 256 GB architectural memory target,
 |---|---|---|---|
 | CPU | AMD Ryzen 9 9950X3D | **Selected** | AM5 platform; fixed input |
 | Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Selected** | Chosen for the strongest explicit 4×64 GB / 256 GB firmware evidence and ECC-specific firmware trail. |
-| Memory | **KLEVV FIT V 32 GB (2×16) DDR5-5600 CL30 `KD5AGU880-56K300F`** | **Provisional Phase-1 purchase target** | Phase-1 RAM is temporary. Current ~2.39k lei target because it is among the cheaper reputable 2×16 desktop kits in the distorted Aug 2026 market. Boot at Auto/JEDEC first; EXPO is optional. Replace rather than expand when moving to the 256 GB endpoint. |
+| Memory | **Kingston FURY Beast Black EXPO 32 GB (2×16) DDR5-6000 CL30 `KF560C30BBEK2-32`** | **Provisional Phase-1 purchase target** | PC Garage-first replacement for the earlier KLEVV target. Kingston explicitly lists this exact kit for the ProArt X870E-Creator WiFi. Current PC Garage price observed around 2,999 lei. Boot at Auto/JEDEC first; EXPO is optional. Replace rather than expand when moving to the 256 GB endpoint. |
 | Long-term memory | **256 GB architectural target, expected 4×64 GB** | **Target selected / purchase deferred** | Prefer ECC UDIMM only if exact 64 GB modules, four-DIMM support, stability and OS-visible ECC reporting are credible at upgrade time; otherwise use validated non-ECC. |
 | CPU cooler | **Noctua NH-D15 G2 LBC** | **Provisional target** | High-end air cooling architecture selected. Standard NH-D15 G2 is fallback if materially cheaper/easier to source. |
 | Storage | **2 TB system/tools NVMe now + 4 TB-or-larger work/VM NVMe later** | **Architecture selected** | Initial SSD should be mature TLC + DRAM PCIe 4.0. Reserve CPU-connected M.2_1 for the later work drive. |
@@ -40,15 +40,16 @@ Detailed evidence: `docs/components/motherboard-memory-promotion-gate-2026-08-30
 
 Current purchase target:
 
-- **KLEVV FIT V 32 GB (2×16 GB) DDR5-5600 CL30 — `KD5AGU880-56K300F`**;
-- current Romanian low offer observed around **2,390 lei** on 2026-08-31;
+- **Kingston FURY Beast Black EXPO 32 GB (2×16 GB) DDR5-6000 CL30 — `KF560C30BBEK2-32`**;
+- current PC Garage price observed around **2,999 lei** on 2026-08-31;
+- Kingston explicitly lists this exact kit as compatible with the **ASUS ProArt X870E-Creator WiFi**;
 - use the motherboard-recommended two-DIMM slots;
 - update BIOS before serious testing;
 - boot at **Auto/JEDEC** first;
 - do not enable EXPO until baseline stability is established;
 - leaving the kit at conservative Auto/JEDEC settings is acceptable because the kit is temporary.
 
-This exact SKU is provisional because current DDR5 prices are unusually distorted. If another reputable desktop 2×16 GB DDR5 kit is materially cheaper on order day, substitute it rather than paying a premium for the KLEVV model.
+This replaces the earlier KLEVV FIT V target because procurement now strongly prefers PC Garage first and eMAG second. The exact SKU remains provisional only in the purchase-time sense: if PC Garage stock disappears or a materially cheaper compatible kit appears at PC Garage/eMAG, substitute it rather than overpaying for temporary RAM.
 
 ### Eventual 256 GB
 
