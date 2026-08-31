@@ -13,7 +13,7 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 | Component | Current configuration |
 |---|---|
 | CPU | **AMD Ryzen 9 9950X3D**, Box/WOF `100-100000719WOF` |
-| Motherboard | **ASUS TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0`** |
+| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** |
 | RAM | **Crucial `CT2K64G56C46U5` — 128 GB (2×64), DDR5-5600 CL46, 1.1 V, non-ECC, 1DPC** |
 | CPU cooler | **Thermalright Phantom Spirit 120 standard** |
 | Case | **be quiet! Pure Base 501 Airflow Black `BG074`** |
@@ -34,10 +34,10 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 
 - 128 GB is bought once as **2×64 GB / 1DPC**; no temporary RAM and no planned 256 GB/four-DIMM endpoint.
 - Exact RAM uses **native JEDEC DDR5-5600 at 1.1 V**; no EXPO/XMP is required.
-- ECC is not used because practical 64 GB ECC UDIMM procurement is poor; the CPU/board ECC capability remains unused rather than distorting capacity/topology.
-- **B850** is sufficient: the selected TUF provides two useful CPU-connected M.2 paths, BIOS FlashBack, Q-LED, SATA and adequate stock-load VRM without Creator/X870E premiums.
+- ECC is not used because practical 64 GB ECC UDIMM procurement is poor; CPU/board ECC capability remains unused rather than distorting capacity/topology.
+- **B650 is sufficient**: the selected B650E-E provides PCIe 5.0 x16 graphics, two CPU-connected M.2 paths, a third chipset Gen4 x4 M.2, BIOS FlashBack, Q-LED, SATA and adequate stock-load power delivery without B850/Creator premiums.
 - `M.2_1` is preferred for active work; `M.2_2` naturally serves the system SSD.
-- `M.2_3` is optional future storage and may consume the secondary PCIe x4 expansion resource; that slot is not required.
+- `M.2_3` is optional future storage. The board does **not** provide a meaningful secondary PCIe x4 expansion path; its second full-length slot is chipset-connected x1. No current requirement needs more.
 - **Phantom Spirit 120 + Pure Base 501** replaces NH-D15 G2 + North XL.
 - 1 GbE is sufficient; the board's 2.5 GbE is already more than required.
 - No multi-GPU/x8+x8 requirement; retire the RTX 3060 if a future GPU replacement occurs.

@@ -7,7 +7,7 @@ This is the current source-of-truth architecture for the workstation.
 | Component | Configuration | Status |
 |---|---|---|
 | CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Selected** |
-| Motherboard | **ASUS TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0`** | **Selected** |
+| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Selected** |
 | RAM | **Crucial `CT2K64G56C46U5` — 128 GB (2×64 GB) DDR5-5600 CL46, 1.1 V, non-ECC** | **Selected** |
 | Memory topology | **1DPC / A2+B2; Auto/JEDEC first** | **Selected** |
 | CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Selected** |
@@ -27,24 +27,29 @@ This is the current source-of-truth architecture for the workstation.
 
 ## Motherboard — final
 
-Selected board: **ASUS TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0`**.
+Selected board: **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`**.
 
-It wins because it satisfies the actual workstation requirements without Creator/X870E premiums:
+It wins because it satisfies the actual workstation requirements at roughly the ~0.84k-leu reference price without paying for unused B850/Creator capabilities:
 
 - ATX, fitting the Pure Base 501;
-- mature Ryzen 9 9950X3D firmware path;
-- official high-capacity DDR5 support and continuing memory-stability firmware work;
-- CPU-connected primary PCIe x16 graphics path;
-- **M.2_1 CPU PCIe 5.0 x4** and **M.2_2 CPU PCIe 4.0 x4**, both useful without reducing the primary GPU link;
-- third chipset M.2 for optional later expansion;
+- Ryzen 9000 / 9950X3D support and an actively maintained BIOS branch;
+- 256 GB maximum platform memory support, with ASUS memory-support categories covering 2×64 GB and DDR5-5600 configurations;
+- primary **PCIe 5.0 x16** graphics path;
+- **M.2_1 CPU PCIe 5.0 x4** and **M.2_2 CPU PCIe 4.0 x4**;
+- **M.2_3 chipset PCIe 4.0 x4** for later storage;
 - four SATA ports;
 - BIOS FlashBack and Q-LED CPU/DRAM/VGA/BOOT diagnostics;
-- competent VRM for stock/conservative 9950X3D operation;
-- 2.5 GbE, already beyond the actual network requirement.
+- 8+2+1 80 A power stages with enlarged VRM heatsinks, comfortably aligned with stock/conservative 9950X3D operation;
+- 2.5 GbE and Wi-Fi 6E, already beyond the actual network requirement;
+- front-panel USB-C header at 20 Gb/s.
 
-The chipset-connected `M.2_3` shares resources with the secondary PCIe 4.0 x4 expansion slot. That is acceptable: the build has no planned add-in NIC, HBA, second GPU or other use that makes this secondary slot a requirement.
+### Accepted expansion trade-off
 
-The previous ProArt/Taichi Creator analysis is superseded as a purchase decision. 10 GbE, CPU x8/x8, multiple Gen5 M.2 slots and extreme-overclocking power delivery are not value drivers.
+The board's second physical x16 slot is chipset-connected and operates only at **PCIe 4.0 x1**. This means the build deliberately gives up a meaningful secondary x4 add-in-card path.
+
+That is accepted because there is no planned need for a high-speed discrete NIC, HBA/RAID controller, capture card or second GPU. If a concrete x4 add-in requirement appears later, motherboard replacement can be reconsidered then rather than paid for speculatively today.
+
+The previous TUF B850-PLUS and Creator-class analyses are superseded as purchase decisions. Their stronger VRM, newer wireless/network options, richer rear I/O or secondary x4 expansion are real features, but none currently maps strongly enough to the workload to justify the premium.
 
 ## Memory — final
 
@@ -59,11 +64,13 @@ Reasons:
 - native **JEDEC DDR5-5600 at 1.1 V**, so no EXPO/XMP profile is needed to reach the intended operating rate;
 - conservative timings/voltage match the stability-first objective;
 - low-profile modules fit cleanly with the Phantom Spirit 120;
-- independent Ryzen 9000/B850 evidence exists for the exact kit and native JEDEC operation.
+- AMD officially supports DDR5-5600 for two-DIMM Ryzen 9 9950X3D configurations, and the selected board explicitly supports 2×64 GB/5600-class memory configurations.
+
+The exact Crucial part remains subject to normal commissioning validation on this exact board; do not convert general platform support into a claim that every DIMM revision is pre-qualified.
 
 ### ECC verdict
 
-The 9950X3D and selected ASUS board support ECC UDIMM, and ASUS continues ECC-specific firmware work. However, the fixed 128 GB / 2×64 GB target makes ECC impractical today: mainstream 64 GB ECC **UDIMM** availability is poor, while readily available 64 GB server modules are generally **RDIMM**, which AM5 cannot use.
+The 9950X3D and selected ASUS board support ECC UDIMM. However, the fixed 128 GB / 2×64 GB target makes ECC impractical today: mainstream 64 GB ECC **UDIMM** availability is poor, while readily available 64 GB server modules are generally **RDIMM**, which AM5 cannot use.
 
 Therefore the final configuration is **non-ECC**. Do not reduce capacity, move to four DIMMs or buy an RDIMM merely to obtain ECC.
 
@@ -87,11 +94,11 @@ The cooler is ~157 mm high inside a ~178 mm case limit, leaving useful tolerance
 
 ## Storage architecture
 
-The selected motherboard improves the storage topology beyond the minimum requirement:
+The selected motherboard provides a clean three-M.2 topology:
 
 - **M.2_1 CPU x4:** preferred active-work SSD location;
 - **M.2_2 CPU x4:** natural system-drive location;
-- **M.2_3 chipset x4:** optional future storage, at the cost of the otherwise non-required secondary PCIe x4 slot;
+- **M.2_3 chipset Gen4 x4:** optional future storage;
 - **4× SATA:** later SSD/HDD bulk storage.
 
 Therefore the ~1 TB system drive can normally remain NVMe; SATA is retained only as an allowed fallback, not the preferred topology.
@@ -119,10 +126,11 @@ No UPS initially. Use a reputable point-of-use surge protector / surge-protected
 ## Hard purchase gates
 
 ### Motherboard
-- **ASUS TUF GAMING B850-PLUS WIFI**;
-- exact part `90MB1J30-M0EAY0`;
+- **ASUS TUF GAMING B650E-E WIFI**;
+- exact part `90MB1LT0-M0EAY0`;
 - current/new retail board;
-- update to a current stable production BIOS during commissioning.
+- update to a current stable production BIOS during commissioning;
+- no substitution to B650-E/B650E-PLUS or another similarly named TUF SKU without review.
 
 ### RAM
 - exact **Crucial `CT2K64G56C46U5`** matched 2×64 GB kit;

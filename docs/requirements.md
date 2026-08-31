@@ -7,7 +7,7 @@ This is a **new build from scratch** for a long-lived professional workstation.
 Fixed architecture decisions:
 
 - **CPU/platform:** AMD Ryzen 9 9950X3D on AM5;
-- **motherboard:** ASUS TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0`;
+- **motherboard:** ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`;
 - **memory:** Crucial `CT2K64G56C46U5`, **128 GB = 2×64 GB DDR5-5600 / 1DPC / non-ECC**, native 1.1 V JEDEC;
 - **cooler:** Thermalright Phantom Spirit 120 standard;
 - **chassis:** be quiet! Pure Base 501 Airflow Black `BG074`;
@@ -41,24 +41,25 @@ Prioritize stability, mature firmware, conservative operation, serviceability, a
 
 ## Motherboard requirements — satisfied
 
-Selected: **ASUS TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0`**.
+Selected: **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`**.
 
 The board satisfies:
 
 - ATX fit in the selected case;
-- mature 9950X3D BIOS/AGESA path;
-- high-capacity 2×64 GB support;
-- primary CPU-connected GPU x16 path;
-- CPU-connected `M.2_1` x4 for active work;
-- CPU-connected `M.2_2` x4 for the system SSD;
-- competent stock-load VRM behavior;
+- Ryzen 9 9950X3D / Ryzen 9000 support with an actively maintained BIOS branch;
+- 256 GB platform memory capacity and support categories covering 2×64 GB / DDR5-5600 configurations;
+- primary CPU-connected **PCIe 5.0 x16** graphics path;
+- CPU-connected `M.2_1` PCIe 5.0 x4 for active work;
+- CPU-connected `M.2_2` PCIe 4.0 x4 for the system SSD;
+- chipset-connected `M.2_3` PCIe 4.0 x4 for later storage;
+- sufficient stock/conservative 9950X3D power delivery;
 - BIOS FlashBack and Q-LED diagnostics;
-- four SATA ports and an optional third M.2;
+- four SATA ports;
 - reliable 2.5 GbE, already beyond the actual network requirement.
 
-The following are explicitly **not requirements**: 5/10 GbE, CPU x8/x8, multiple Gen5 M.2 slots, extreme-overclocking power delivery and provisioning for a hypothetical 500–600 W future GPU.
+The following are explicitly **not requirements**: B850 itself, 5/10 GbE, CPU x8/x8, a secondary PCIe x4 expansion slot, multiple Gen5 M.2 slots, extreme-overclocking power delivery and provisioning for a hypothetical 500–600 W future GPU.
 
-`M.2_3` may disable/share the secondary PCIe 4.0 x4 expansion path. This is acceptable because that secondary slot has no planned use.
+The second physical x16 slot operates at chipset PCIe 4.0 x1. This is acceptable because no high-bandwidth add-in card has a planned use.
 
 ## Memory requirements — satisfied
 
@@ -114,7 +115,7 @@ Policy:
 
 ### System drive
 
-Target about **1 TB**. The selected board provides a clean second CPU-connected M.2 path, so NVMe is now the natural choice. SATA remains an allowed fallback, not a topology requirement.
+Target about **1 TB**. The selected board provides a clean second CPU-connected M.2 path, so NVMe is the natural choice. SATA remains an allowed fallback, not a topology requirement.
 
 Prioritize reliability, capacity headroom, firmware/warranty and price over flagship sequential performance.
 
@@ -127,6 +128,8 @@ No RAID requirement; maintain independent backup/version-control protection.
 ## GPU / expansion
 
 Reuse the RTX 3060 for as long as useful/reliable. When a future replacement occurs, retire the 3060 rather than designing around dual-GPU operation.
+
+A secondary PCIe x4 path is not a requirement. If a future high-speed NIC/HBA/capture-card requirement actually appears, revisit the motherboard then rather than purchasing unused capability now.
 
 Do not pre-size today's motherboard/PSU/case for an unknown 500–600 W flagship. If a future GPU genuinely exceeds the current replaceable component envelope, revisit it then.
 

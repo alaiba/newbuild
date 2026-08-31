@@ -1,6 +1,8 @@
 # Motherboard / 256 GB Memory Promotion Gate — 2026-08-30
 
-Status: **Completed**
+> **Historical / superseded.** This gate records the decision state on 2026-08-30, when 256 GB / four-DIMM operation and ECC capability were still major requirements. On 2026-08-31 those requirements were removed; the current motherboard is ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`. See `docs/components/motherboard.md` and `docs/decisions.md`.
+
+Status: **Completed historically; superseded by later requirements**
 
 ## Decision
 

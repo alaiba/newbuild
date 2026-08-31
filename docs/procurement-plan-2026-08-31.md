@@ -15,7 +15,7 @@ Motherboard and RAM are now closed. Procurement remains paused only for exact st
 | Item | Target | Status |
 |---|---|---|
 | CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | selected |
-| Motherboard | **ASUS TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0`** | selected; supplier price refresh pending |
+| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | selected; supplier price refresh pending |
 | RAM | **Crucial `CT2K64G56C46U5`, 128 GB 2×64, DDR5-5600 CL46, 1.1 V, non-ECC** | selected; supplier price refresh pending |
 | CPU cooler | **Thermalright Phantom Spirit 120 standard** | selected |
 | Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | selected |
@@ -27,12 +27,14 @@ Motherboard and RAM are now closed. Procurement remains paused only for exact st
 
 ## Motherboard acceptance gate
 
-- exact model/part: **ASUS TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0`**;
+- exact model/part: **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`**;
 - normal new retail unit and warranty path;
-- no substitution to another TUF/B850 variant without review;
+- no substitution to B650-E, B650E-PLUS, B850-PLUS or another similarly named TUF variant without review;
 - update to current stable production BIOS during commissioning.
 
-Recent Romanian reference pricing has been around **1.06–1.07k lei**. Refresh immediately before checkout.
+Current Romanian reference pricing is approximately **~839–844 lei**. Refresh immediately before checkout.
+
+The **MSI B850 GAMING PLUS WIFI `7E56-001R`** remains the first fallback only if the selected ASUS becomes materially worse on price, stock or warranty. Its secondary x4 slot and 5 GbE are real advantages, but they are not current requirements.
 
 ## RAM acceptance gate
 
@@ -53,13 +55,14 @@ The SKU remains selected; **supplier is not locked**. Recheck all intended hardw
 
 Recommended slot use:
 
-- primary PCIe x16: RTX 3060;
-- `M.2_1` CPU x4: active-work SSD;
-- `M.2_2` CPU x4: system/tools SSD;
-- `M.2_3` chipset x4: optional future storage;
+- primary PCIe 5.0 x16: RTX 3060;
+- `M.2_1` CPU Gen5 x4: active-work SSD;
+- `M.2_2` CPU Gen4 x4: system/tools SSD;
+- `M.2_3` chipset Gen4 x4: optional future storage;
+- second physical x16 slot: chipset Gen4 x1 only, no planned use;
 - 4× SATA: later bulk/cold storage.
 
-Using `M.2_3` may consume the secondary PCIe x4 expansion resource. This is accepted because that expansion slot is not required.
+The absence of a secondary x4 expansion path is accepted because no current requirement needs one.
 
 ## Items still to optimize
 
@@ -77,7 +80,7 @@ Active-work:
 System:
 
 - around 1 TB;
-- now **prefer NVMe** in CPU-connected `M.2_2` because the selected board provides it without meaningful trade-off;
+- **prefer NVMe** in CPU-connected `M.2_2` because the selected board provides it without meaningful trade-off;
 - reliability/headroom/firmware/warranty/value over benchmark throughput.
 
 Bulk/cold:
@@ -113,10 +116,12 @@ Select a reputable Schuko device with:
 - Fractal North XL Mesh;
 - Noctua NF-A14x25 G2 rear fan;
 - Creator/X870E motherboard premium;
+- ASUS TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0` as the selected motherboard;
+- B850 as a platform requirement;
 - 256 GB / four-DIMM RAM;
 - ECC as a RAM purchase requirement;
 - 4 TB initial work SSD requirement;
-- 5/10 GbE and x8/x8 requirements.
+- 5/10 GbE, x8/x8 and secondary x4 expansion requirements.
 
 ## Price envelope
 

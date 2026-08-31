@@ -8,7 +8,7 @@ Use:
 
 > **Crucial `CT2K64G56C46U5` — 128 GB (2×64 GB) DDR5-5600 CL46, 1.1 V, non-ECC UDIMM**
 
-Install the two DIMMs in **A2/B2** on the selected ASUS TUF GAMING B850-PLUS WIFI.
+Install the two DIMMs in **A2/B2** on the selected ASUS TUF GAMING B650E-E WIFI.
 
 There is no temporary RAM stage and no planned four-DIMM/256 GB expansion.
 
@@ -31,16 +31,26 @@ The Crucial kit fits the stability-first objective particularly well:
 - conservative **1.1 V** operating voltage;
 - CL46-class JEDEC timings rather than an aggressive OC profile;
 - low-profile unbuffered modules;
-- Micron high-density DDR5 construction;
-- independent Ryzen 9000/B850 testing of the exact kit found clean training/operation at its native JEDEC setting.
+- Micron high-density DDR5 construction.
 
-There is no requirement to enable EXPO/XMP. Unlike many enthusiast 128 GB kits whose advertised 5600 rate relies on a 1.25 V profile, this kit reaches the intended rate through its normal JEDEC definition.
+There is no requirement to enable EXPO/XMP. Unlike many enthusiast 128 GB kits whose advertised 5600 rate relies on a higher-voltage profile, this kit reaches the intended rate through its normal JEDEC definition.
+
+### Compatibility basis on the selected board
+
+The motherboard change from B850 to B650E-E does not change the intended 2×64 / JEDEC-5600 topology:
+
+- AMD officially specifies the Ryzen 9 9950X3D for DDR5-5600 with two DIMMs, including both 2×1R and 2×2R cases;
+- the ASUS TUF GAMING B650E-E WIFI supports up to 256 GB DDR5 and its memory-support interface explicitly includes **2×64 GB** and **5600** validation categories;
+- ASUS continues to maintain the board's Ryzen 9000/JEDEC memory firmware path;
+- the selected Crucial kit is a conservative 1.1 V JEDEC product rather than an overclocked profile.
+
+The current public ASUS table does not surface the exact Crucial part number in the static result we can inspect, so do **not** record an unsupported claim that this exact kit is ASUS-QVL-listed for this exact board. The practical acceptance gate is successful A2/B2 training at native JEDEC plus extended validation during commissioning.
 
 ## ECC verdict
 
 The final configuration is **non-ECC**, but this is a procurement/topology decision rather than a platform limitation.
 
-The Ryzen 9 9950X3D and ASUS TUF GAMING B850-PLUS WIFI support ECC UDIMM, and ASUS has continued ECC-specific firmware work. The problem is module availability at the required density:
+The Ryzen 9 9950X3D and ASUS TUF GAMING B650E-E WIFI support ECC UDIMM. The problem is module availability at the required density:
 
 - mainstream current ECC UDIMM product families commonly stop below 64 GB per module;
 - readily available 64 GB server DDR5 modules are predominantly **RDIMM**;
@@ -55,7 +65,7 @@ Do not substitute:
 - RDIMM/server memory;
 - an expensive enthusiast kit merely for tighter timings.
 
-ECC support on the selected board remains a useful platform capability, but it is not exercised by this build.
+ECC support on the selected board remains an unused platform capability, not a motherboard selection driver.
 
 ## Physical compatibility
 

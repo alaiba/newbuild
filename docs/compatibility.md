@@ -7,7 +7,7 @@ This document captures the current cross-component constraints for the workstati
 Selected:
 
 - AMD Ryzen 9 **9950X3D**;
-- ASUS **TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0`**;
+- ASUS **TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`**;
 - Crucial **`CT2K64G56C46U5`**, 128 GB = 2×64 GB DDR5-5600 / 1DPC / non-ECC;
 - Thermalright **Phantom Spirit 120 standard**;
 - be quiet! **Pure Base 501 Airflow Black `BG074`**;
@@ -34,6 +34,8 @@ Final configuration:
 
 The CPU and board support ECC UDIMM, but the final kit is non-ECC because practical 64 GB ECC UDIMM availability is poor. **RDIMM is incompatible with AM5.**
 
+The board supports 256 GB total memory and ASUS exposes 2×64 GB / DDR5-5600 support categories. The exact Crucial kit remains subject to normal commissioning validation rather than assuming QVL coverage from category support alone.
+
 ## Cooler ↔ memory ↔ case
 
 - Phantom Spirit 120 height: ~157 mm;
@@ -49,19 +51,20 @@ Preferred topology:
 
 ```text
 Ryzen 9 9950X3D
-├── primary PCIe x16  -> RTX 3060
-├── M.2_1 CPU x4      -> active-work NVMe
-└── M.2_2 CPU x4      -> system/tools NVMe
+├── primary PCIe 5.0 x16 -> RTX 3060
+├── M.2_1 CPU 5.0 x4     -> active-work NVMe
+└── M.2_2 CPU 4.0 x4     -> system/tools NVMe
 
-B850 chipset
-├── M.2_3 PCIe 4 x4   -> optional future storage
-├── 4 × SATA          -> later SSD/HDD storage
+B650 chipset
+├── M.2_3 PCIe 4.0 x4    -> optional future storage
+├── second full-length slot -> PCIe 4.0 x1 only
+├── 4 × SATA             -> later SSD/HDD storage
 └── normal platform I/O
 ```
 
 Using `M.2_1` and `M.2_2` does not require reducing the primary GPU link.
 
-`M.2_3` shares resources with the secondary PCIe 4.0 x4 expansion path. If `M.2_3` is populated, that secondary slot may become unavailable. This is acceptable because no add-in NIC, HBA, capture card or second GPU is required.
+The selected board does not provide a meaningful secondary x4 expansion path. This is accepted because no add-in high-speed NIC, HBA, capture card or second GPU is required.
 
 ### Active-work drive
 
@@ -75,7 +78,7 @@ Using `M.2_1` and `M.2_2` does not require reducing the primary GPU link.
 
 - preferred slot: `M.2_2`;
 - target ~1 TB;
-- NVMe is now preferred because the selected board provides the path without trade-off;
+- NVMe is preferred because the selected board provides the path without trade-off;
 - SATA remains a fallback.
 
 ### Bulk/cold storage
@@ -111,7 +114,7 @@ Add another front intake only if closed-case validation shows a useful thermal/a
 
 ## VRM / CPU operation
 
-The 9950X3D runs stock/conservatively. The selected board has sufficient power delivery; do not value or enable extreme-overclocking behavior simply because electrical headroom exists.
+The 9950X3D runs stock/conservatively. The selected board uses 8+2+1 80 A stages and is specified for compatible AMD CPUs up to 200 W. This is sufficient engineering margin for the intended policy; do not value or enable extreme-overclocking behavior simply because electrical headroom exists.
 
 ## PSU
 
