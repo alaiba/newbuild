@@ -13,10 +13,9 @@ This is the current source-of-truth architecture for the workstation.
 | CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Selected** |
 | Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Selected** |
 | Case airflow | **2× included 140 mm PWM: front intake + rear exhaust** | **Selected initial layout** |
-| System storage | **~1 TB NVMe preferred**; SATA remains acceptable fallback | **Role/capacity selected; exact model open** |
-| Active-work SSD | **1 TB sufficient; 2 TB if price/value is attractive**, Gen4 TLC preferred; CPU-direct x4 | **Role selected; exact model open** |
-| Bulk/cold storage | Add later only when needed via spare NVMe/SATA SSD/HDD/external/NAS | **Expansion policy selected** |
-| Storage RAID | **No RAID** | **Selected** |
+| Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Selected** |
+| Bulk/cold storage | Reuse healthy existing SATA drives; `M.2_2` + `M.2_3` remain free for future expansion | **Selected policy** |
+| Storage RAID/cache/tiering | **None** | **Selected** |
 | PSU | **Premium 750 W or 850 W ATX 3.1** | **Reopened; exact model open** |
 | UPS | **None initially** | **Selected** |
 | Point-of-use surge protection | Reputable plug-in surge protector / protected power strip | **Selected policy; exact model open** |
@@ -92,18 +91,34 @@ Therefore the final configuration is **non-ECC**. Do not reduce capacity, move t
 
 The cooler is ~157 mm high inside a ~178 mm case limit, leaving useful tolerance for DIMM/front-fan positioning. No additional case fan is purchased until measurements justify it.
 
-## Storage architecture
+## Storage architecture — final
 
-The selected motherboard provides a clean three-M.2 topology:
+Use one primary NVMe drive from day one:
 
-- **M.2_1 CPU x4:** preferred active-work SSD location;
-- **M.2_2 CPU x4:** natural system-drive location;
-- **M.2_3 chipset Gen4 x4:** optional future storage;
-- **4× SATA:** later SSD/HDD bulk storage.
+> **Crucial T710 2 TB `CT2000T710SSD8`**, installed in **`M.2_1` CPU PCIe 5.0 x4** under the motherboard M.2 heatsink.
 
-Therefore the ~1 TB system drive can normally remain NVMe; SATA is retained only as an allowed fallback, not the preferred topology.
+The workstation currently uses about **600 GB**. Even with more ambitious projects, 2 TB is expected to provide ample active-storage headroom for the foreseeable future. The primary SSD can therefore hold Windows, applications, repositories, build caches, WSL2, containers, Android emulator data, active VMs/databases, games and other current data without requiring a second performance SSD.
 
-Active work remains 1 TB sufficient / 2 TB when good value, with mature Gen4 TLC preferred. Gen5 is not required even though `M.2_1` can support it.
+The remaining topology is deliberately left open:
+
+- **M.2_1 CPU Gen5 x4:** Crucial T710 2 TB — primary storage;
+- **M.2_2 CPU Gen4 x4:** empty — future expansion;
+- **M.2_3 chipset Gen4 x4:** empty — future expansion;
+- **4× SATA:** reuse healthy existing slower drives for archives/cold data.
+
+No separate system/work SSD split is required. No SSD cache layer or Fusion/Storage-Spaces-style automatic tiering is used. No RAID is required.
+
+### Why 2 TB rather than 4 TB
+
+A 4 TB Gen5 drive is technically attractive but currently adds roughly another ~1.3k lei over the selected 2 TB class while buying capacity that is not expected to be used soon. Storage expansion is easy and additive, so paying for that unused capacity now conflicts with the build's utility-per-leu rule.
+
+### Why Gen5 rather than premium Gen4
+
+Gen4 remains fast enough for the workload, but the current price premium for the selected T710 over credible premium Gen4 alternatives is small enough to justify using the board's already-available CPU-direct Gen5 path. This is not based on expecting 2x application performance from 2x sequential bandwidth; it is a value decision at current pricing.
+
+### Thermal/commissioning policy
+
+Use the **non-heatsink** T710 variant under the ASUS motherboard M.2 heatsink. During bring-up, update/record firmware, inspect SMART data and validate sustained-write temperatures under representative workloads.
 
 ## GPU policy
 
@@ -148,9 +163,11 @@ No UPS initially. Use a reputable point-of-use surge protector / surge-protected
 - two included 140 mm PWM fans present.
 
 ### Storage
-- active-work NVMe on CPU-direct M.2;
-- system drive target ~1 TB, preferably NVMe on the second CPU M.2;
-- no Gen5 requirement;
+- exact **Crucial T710 2 TB `CT2000T710SSD8`**;
+- bare/non-heatsink variant;
+- install in **CPU-direct `M.2_1` PCIe 5.0 x4** under motherboard heatsink;
+- no second NVMe initially;
+- no SSD cache/tiering;
 - no RAID requirement.
 
 ### PSU
@@ -167,9 +184,8 @@ No UPS initially. Use a reputable point-of-use surge protector / surge-protected
 
 ## Next decision sequence
 
-1. Select exact **system + active-work SSDs** using current Romanian prices.
-2. Select exact premium **750 W / 850 W PSU**.
-3. Select exact plug-in surge protector.
-4. Refresh all prices/provider consolidation and produce the order total.
+1. Select exact premium **750 W / 850 W PSU**.
+2. Select exact plug-in surge protector.
+3. Refresh all prices/provider consolidation and produce the order total.
 
 Detailed decisions: `docs/decisions.md`.
