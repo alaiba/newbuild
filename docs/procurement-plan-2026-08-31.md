@@ -1,6 +1,6 @@
 # Procurement Plan — 2026-08-31
 
-> Updated 2026-09-01 after the first EvoMAG order was placed.
+> Updated 2026-09-01 after the first EvoMAG order was placed and Windows was removed from procurement because the license is already available.
 
 Status: **partially purchased**. Architecture remains closed.
 
@@ -12,6 +12,7 @@ Status: **partially purchased**. Architecture remains closed.
 4. Keep AM5 memory at **two DIMMs / 1DPC**.
 5. Exact SKU/revision, warranty clarity and product condition outrank small nominal savings.
 6. **Do not re-shop components already purchased** unless an order/delivery defect requires it.
+7. Windows is already available and must not be included in remaining procurement totals.
 
 ## Executed first order
 
@@ -33,8 +34,8 @@ These four items are committed purchases. Their next gate is physical arrival ve
 
 - EvoMAG is already the first hardware provider.
 - Prefer **one additional hardware retailer** for RAM + cooler + case if exact models and delivered pricing are acceptable.
-- Use **PROstore or another equally trustworthy source** for Windows 11 Pro Retail/FPP `HAV-00163`.
 - Do not substitute the cooler/case merely to consolidate back into EvoMAG.
+- No software retailer is required for Windows.
 
 ## Selected purchase targets and state
 
@@ -49,7 +50,7 @@ These four items are committed purchases. Their next gate is physical arrival ve
 | Primary SSD | Crucial T710 2 TB `CT2000T710SSD8`, bare/non-heatsink | **purchased 2026-09-01 / arrival verification pending** |
 | PSU | be quiet! Pure Power 13 M 850W `BP027EU` | **purchased 2026-09-01 / arrival verification pending** |
 | GPU | existing RTX 3060 12 GB | reuse |
-| Windows | Windows 11 Pro Retail/FPP `HAV-00163` | **selected / not yet purchased** |
+| Host OS | Windows 11 Pro x64 | **license already available / no procurement action** |
 | UPS | none | selected |
 | Dedicated surge protector | none | selected |
 
@@ -103,18 +104,17 @@ If 48 GB later proves insufficient under measured real workloads, replace the pa
 
 **Committed spend:** **6,531.95 lei including courier** for CPU + motherboard + SSD + PSU.
 
-Remaining spend is for RAM + cooler + case + Windows only. Older full-build totals in this repository are estimates, not current checkout totals.
+Remaining spend is only for **RAM + cooler + case**. Windows is already available and is excluded from procurement cost calculations.
 
 ## Next procurement sequence
 
 1. Source exact **`CP2K24G56C46U5`** RAM.
 2. Source exact **Thermalright Phantom Spirit 120 standard**.
 3. Source exact **be quiet! Pure Base 501 Airflow Black `BG074`**.
-4. Verify Windows Retail/FPP **`HAV-00163`**.
-5. Prefer one remaining hardware provider where value and exact-model availability allow.
-6. When EvoMAG delivery arrives, verify CPU/motherboard/SSD/PSU identities before installation.
-7. Preserve invoices, serials and packaging through commissioning/return windows.
+4. Prefer one remaining hardware provider where value and exact-model availability allow.
+5. When EvoMAG delivery arrives, verify CPU/motherboard/SSD/PSU identities before installation.
+6. Preserve invoices, serials and packaging through commissioning/return windows.
 
 ## Decision status
 
-No architecture question remains open. Procurement is partially complete; continue only with the four remaining purchase items and arrival verification of the first order.
+No architecture question remains open. Procurement is partially complete; continue only with the **three remaining hardware items** and arrival verification of the first order.
