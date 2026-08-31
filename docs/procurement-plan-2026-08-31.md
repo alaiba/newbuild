@@ -1,6 +1,6 @@
 # Procurement Plan — 2026-08-31
 
-Motherboard, RAM, primary storage and PSU are closed. No UPS or dedicated surge protector is required. Procurement is now waiting only for final live price/provider consolidation.
+Status: **purchase-ready**. CPU/platform, motherboard, RAM, cooling, chassis, storage and PSU are closed. No UPS or dedicated surge protector is required. Live Romanian price/provider consolidation is complete; only same-day checkout verification remains.
 
 ## Locked principles
 
@@ -10,130 +10,158 @@ Motherboard, RAM, primary storage and PSU are closed. No UPS or dedicated surge 
 4. Exact SKU/revision, warranty clarity and product condition outrank small nominal savings.
 5. Software may use a separate provider when provenance/price justify it.
 
-## Selected purchase targets
+## Final provider split
 
-| Item | Target | Status |
-|---|---|---|
-| CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | selected |
-| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | selected; supplier price refresh pending |
-| RAM | **Crucial `CT2K64G56C46U5`, 128 GB 2×64, DDR5-5600 CL46, 1.1 V, non-ECC** | selected; supplier price refresh pending |
-| CPU cooler | **Thermalright Phantom Spirit 120 standard** | selected |
-| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | selected |
-| Case fans | use two included 140 mm PWM fans only initially | selected |
-| Primary SSD | **Crucial T710 2 TB `CT2000T710SSD8`**, bare/non-heatsink, PCIe 5.0 x4 | selected; supplier price refresh pending |
-| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | selected; supplier price refresh pending |
-| GPU | existing RTX 3060 12 GB | reuse |
-| Windows | Windows 11 Pro Retail/FPP `HAV-00163` | selected target |
-| UPS | none | selected |
-| Dedicated surge protector | none | selected |
+- **EvoMAG — hardware provider 1:** CPU, RAM, cooler, case, SSD, PSU.
+- **ForIT — hardware provider 2:** motherboard.
+- **PROstore — software provider:** Windows 11 Pro Retail/FPP.
 
-## Motherboard acceptance gate
+This meets the provider constraint exactly: **3 providers overall / 2 hardware providers**.
 
-- exact model/part: **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`**;
+## Live-priced order table
+
+Reference prices observed on 2026-08-31. Shipping excluded and all prices must be confirmed in-cart before payment.
+
+| Provider | Item | Exact target | Reference price |
+|---|---|---|---:|
+| EvoMAG | CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | **3,349.99 lei** |
+| ForIT | Motherboard | ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0` | **874.17 lei** |
+| EvoMAG | RAM | Crucial `CT2K64G56C46U5`, 128 GB 2×64, DDR5-5600 CL46, 1.1 V, non-ECC | **7,699.99 lei** |
+| EvoMAG | CPU cooler | Thermalright Phantom Spirit 120 standard | **249.99 lei** |
+| EvoMAG | Case | be quiet! Pure Base 501 Airflow Black `BG074` | **423.99 lei** |
+| EvoMAG | Primary SSD | Crucial T710 2 TB `CT2000T710SSD8`, bare/non-heatsink | **1,710.99 lei** |
+| EvoMAG | PSU | be quiet! Pure Power 13 M 850W `BP027EU` | **686.99 lei** |
+| PROstore | Windows | Windows 11 Pro 64-bit English Retail/FPP USB `HAV-00163` | **1,123.60 lei** |
+| Reuse | GPU | existing RTX 3060 12 GB | **0 lei** |
+| Reuse | Cold storage | existing healthy SATA drives | **0 lei** |
+| None | UPS / dedicated surge protector | not purchased | **0 lei** |
+
+### Current totals
+
+- EvoMAG basket: **14,121.94 lei**
+- ForIT motherboard: **874.17 lei**
+- Hardware subtotal: **14,996.11 lei**
+- PROstore Windows: **1,123.60 lei**
+- **Final selected-build reference total before shipping: 16,119.71 lei**
+
+The ~30,000 lei planning level remains neither a cap nor a target; the current selected build is approximately **13,880 lei below** that planning figure.
+
+## RAM price warning — primary checkout gate
+
+The selected exact kit **Crucial `CT2K64G56C46U5`** is currently the only materially abnormal price in the build.
+
+Current surfaced Romanian position:
+
+- exact kit at EvoMAG: approximately **7,699.99 lei**;
+- Romanian comparison data shows essentially no competing in-stock exact-SKU offer;
+- the RAM represents roughly **48% of the complete selected-build total**;
+- current European listings are also severely distorted, so this is a broader supply/market problem rather than a normal small retailer premium.
+
+The architecture and SKU remain selected, but this is the **first item to refresh before checkout**. A credible exact-SKU offer that saves hundreds or thousands of lei is worth an additional provider or a short purchase delay. Do not silently replace it with RDIMM, four DIMMs, a different capacity topology or a high-voltage enthusiast kit.
+
+## Motherboard procurement note
+
+ForIT currently surfaces the exact **TUF GAMING B650E-E WIFI** at approximately **874.17 lei** as supplier stock.
+
+ASUS's current Romanian Back-to-School Q3 2026 promotion lists this exact part (`90MB1LT0-M0EAY0`) for **90 lei cashback**, but the official eligible Romanian partner list is currently PC Garage, ITGalaxy and EvoMAG. ForIT is not listed.
+
+The cashback does not currently justify switching: the directly surfaced PC Garage price is still around 1.09k lei before cashback, leaving it above the ForIT reference even after the 90 lei refund.
+
+Also reject misleading sub-850-leu comparison-engine results unless the exact Romanian retailer and currency are verified. Some surfaced comparison data for this board traces to Polish Morele listings quoted in PLN and does not provide a trustworthy Romanian checkout price.
+
+## Windows procurement note
+
+Keep **PROstore `HAV-00163`** at approximately **1,123.60 lei**. EvoMAG currently lists the same broad SKU class around 1,200 lei, so the third software provider still saves about 76 lei while remaining within the project's maximum-three-provider rule.
+
+Do not substitute suspicious ~225–350 lei listings described using `HAV-00163` without a separate provenance/licensing review.
+
+## Exact acceptance gates
+
+### CPU
+- **AMD Ryzen 9 9950X3D Box/WOF `100-100000719WOF`**;
+- no tray substitution unless explicitly re-reviewed.
+
+### Motherboard
+- **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`**;
+- do not confuse with B650-E or B650E-PLUS;
 - normal new retail unit and warranty path;
-- no substitution to B650-E, B650E-PLUS, B850-PLUS or another similarly named TUF variant without review;
-- update to current stable production BIOS during commissioning.
+- current stable production BIOS during commissioning.
 
-Current Romanian reference pricing is approximately **~839–844 lei**. Refresh immediately before checkout.
+### RAM
+- exact **Crucial `CT2K64G56C46U5`** matched 2×64 GB kit;
+- non-ECC UDIMM;
+- DDR5-5600 CL46-class native JEDEC / 1.1 V;
+- no RDIMM or four-DIMM substitution.
 
-The **MSI B850 GAMING PLUS WIFI `7E56-001R`** remains the first fallback only if the selected ASUS becomes materially worse on price, stock or warranty. Its secondary x4 slot and 5 GbE are real advantages, but they are not current requirements.
+### Cooler
+- **Thermalright Phantom Spirit 120 standard**;
+- no silent SE/EVO substitution;
+- AM5 hardware included.
 
-## RAM acceptance gate
+### Case
+- **be quiet! Pure Base 501 Airflow Black `BG074`**;
+- two included 140 mm PWM fans present.
 
-- exact matched kit: **Crucial `CT2K64G56C46U5`**;
-- 128 GB = 2×64 GB;
-- non-ECC unbuffered DDR5;
-- native DDR5-5600 CL46-class JEDEC operation at **1.1 V**;
-- no RDIMM;
-- no substitution to 4-DIMM topology or a high-voltage enthusiast kit without review.
+### Storage
+- exact **Crucial T710 2 TB `CT2000T710SSD8`**;
+- bare/non-heatsink variant;
+- install in CPU-direct `M.2_1` under motherboard heatsink;
+- no second NVMe, cache/tiering or RAID initially.
 
-### RAM price warning
+### PSU
+- exact **be quiet! Pure Power 13 M 850W `BP027EU`**;
+- ATX 3.1;
+- new retail unit with normal 10-year manufacturer-warranty path;
+- use only the modular cables supplied with this exact PSU.
 
-The 128 GB 2×64 market is currently unusually expensive/volatile. A recent direct EvoMAG reference for the exact Crucial kit was about **7,699.99 lei**, while older cached Romanian results near **6.35–6.4k lei** are stale and must not be treated as current purchase controls.
+Fallback remains **Corsair RM850x 2024 `CP-9020270-EU`** only if checkout price/warranty is materially better.
 
-The SKU remains selected; **supplier is not locked**. Recheck all intended hardware providers before ordering.
-
-## Storage acceptance gate
-
-Primary storage:
-
-- exact model: **Crucial T710 2 TB `CT2000T710SSD8`**;
-- PCIe 5.0 x4 NVMe, TLC, DRAM-equipped;
-- bare/non-heatsink version only unless a later physical review explicitly changes the heatsink policy;
-- install in CPU-direct **`M.2_1`** under the ASUS motherboard M.2 heatsink;
-- normal new retail unit, five-year-class warranty path and current firmware availability;
-- refresh live Romanian price immediately before checkout.
-
-Current storage use is approximately **600 GB**. The 2 TB target provides enough foreseeable active-storage headroom without buying unused 4 TB capacity. The roughly ~1.3k-leu step from the currently observed 2 TB T710 class to 4 TB is therefore rejected for the initial order.
-
-No second NVMe is purchased initially. No SSD cache, write-back layer, Storage Spaces tiering or RAID is required.
-
-Existing healthy SATA drives remain available for archives/cold data after SMART/health validation. `M.2_2` and `M.2_3` stay empty for later additive expansion.
-
-## PSU acceptance gate
-
-Selected PSU:
-
-- exact model: **be quiet! Pure Power 13 M 850W `BP027EU`**;
-- 850 W, ATX 3.1;
-- native current-generation GPU-power cable supplied with the unit;
-- fully modular;
-- normal new retail unit and 10-year manufacturer-warranty path;
-- use only the modular cables supplied with this exact PSU;
-- refresh live Romanian price immediately before checkout.
-
-The current observed Romanian price class is approximately **~687–718 lei**. The 850 W model was selected because its premium over the corresponding 750 W unit was only roughly **40–100 lei**, satisfying the project's existing value rule for the larger unit.
-
-Preferred fallback: **Corsair RM850x 2024 850W `CP-9020270-EU`**, but only if delivered price is within roughly **30–40 lei** or retailer/warranty conditions are materially better.
-
-Do not substitute a 1000–1200 W unit merely for speculative future GPU margin.
+### Windows
+- exact **Windows 11 Pro Retail/FPP English USB `HAV-00163`**;
+- preserve invoice and license packaging.
 
 ## Closed motherboard/storage topology
 
-Recommended slot use:
-
 - primary PCIe 5.0 x16: RTX 3060;
-- `M.2_1` CPU Gen5 x4: **Crucial T710 2 TB primary SSD**;
+- `M.2_1` CPU Gen5 x4: Crucial T710 2 TB;
 - `M.2_2` CPU Gen4 x4: empty / future expansion;
 - `M.2_3` chipset Gen4 x4: empty / future expansion;
 - second physical x16 slot: chipset Gen4 x1 only, no planned use;
-- 4× SATA: existing/later cold storage.
-
-The absence of a secondary x4 expansion path is accepted because no current requirement needs one.
+- SATA: reuse existing healthy drives for cold storage.
 
 ## Mains-protection policy
 
-- no UPS in the initial order;
-- no dedicated surge protector in the initial order;
-- use a properly earthed wall outlet;
-- if multiple outlets are needed, use a reputable ordinary **16 A Schuko power strip** as a utility item;
-- revisit external protection only if actual power-quality problems appear.
+- no UPS;
+- no dedicated surge protector;
+- properly earthed wall outlet;
+- ordinary reputable 16 A Schuko power strip only if more sockets are needed;
+- revisit only if actual power-quality problems appear.
 
 ## Explicitly removed from the order
 
+- new GPU;
 - CyberPower PR1500ELCD;
 - dedicated plug-in surge protector;
-- 1200 W Seasonic VERTEX GX/PX targets;
-- buying 750 W instead of the selected 850 W solely to minimize nominal wattage/cost;
+- 1000–1200 W PSU targets;
+- 750 W PSU as purchase target at current pricing;
 - Noctua NH-D15 G2;
 - Fractal North XL Mesh;
-- Noctua NF-A14x25 G2 rear fan;
-- Creator/X870E motherboard premium;
-- ASUS TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0` as the selected motherboard;
-- B850 as a platform requirement;
+- extra premium rear fan;
+- Creator/X870E and B850 platform premiums;
 - 256 GB / four-DIMM RAM;
-- ECC as a RAM purchase requirement;
-- separate ~1 TB system SSD;
-- separate active-work SSD;
-- dedicated SSD cache device;
-- 4 TB initial primary/work SSD requirement;
-- 5/10 GbE, x8/x8 and secondary x4 expansion requirements.
+- ECC as RAM purchase requirement;
+- separate system/work SSDs;
+- dedicated SSD cache/tiering;
+- 4 TB primary SSD;
+- 5/10 GbE, x8/x8 and secondary x4 requirements.
 
-## Price envelope
+## Checkout sequence
 
-All earlier full-order totals are obsolete. Refresh live Romanian pricing for the **entire selected BOM**, especially the volatile RAM and SSD supplier availability, before publishing the final order total.
+1. **Refresh the exact RAM kit first.** If price remains ~7.7k lei, consciously accept the current market premium rather than assuming it is normal.
+2. Verify all EvoMAG exact SKUs and stock/lead times in one basket.
+3. Verify the ForIT motherboard is exact `90MB1LT0-M0EAY0` and obtain final delivered price.
+4. Verify PROstore `HAV-00163` Retail/FPP availability and final delivered price.
+5. Confirm total shipping and decide only then whether moving a low-value item between EvoMAG/ForIT saves enough to matter.
+6. Preserve invoices, serials and packaging through commissioning and return windows.
 
-## Next sequence
-
-1. full live price/provider refresh;
-2. ≤3-provider order plan and final total.
+Detailed priced basket: [`final-order-plan-2026-08-31.md`](final-order-plan-2026-08-31.md).
