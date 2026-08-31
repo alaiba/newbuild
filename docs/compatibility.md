@@ -1,160 +1,150 @@
 # Compatibility and Topology Tracker
 
-This document captures cross-component constraints after the 2026-08-31 simplification pass.
+This document captures the current cross-component constraints for the workstation.
 
 ## Core platform
 
 Selected:
 
 - AMD Ryzen 9 **9950X3D**;
-- **128 GB = 2×64 GB DDR5 UDIMM / 1DPC**;
-- **Thermalright Phantom Spirit 120 standard**;
-- **be quiet! Pure Base 501 Airflow Black `BG074`**;
-- existing RTX 3060 12 GB reused for as long as practical;
+- ASUS **TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0`**;
+- Crucial **`CT2K64G56C46U5`**, 128 GB = 2×64 GB DDR5-5600 / 1DPC / non-ECC;
+- Thermalright **Phantom Spirit 120 standard**;
+- be quiet! **Pure Base 501 Airflow Black `BG074`**;
+- existing RTX 3060 12 GB;
 - no multi-GPU requirement;
 - no UPS requirement.
 
 Open:
 
-- exact motherboard;
-- exact 2×64 GB memory kit and ECC verdict;
-- exact system and active-work storage devices;
+- exact system and active-work SSDs;
 - exact premium 750/850 W PSU;
 - exact plug-in surge protector.
 
-## Motherboard ↔ case
-
-The selected chassis constrains the motherboard to **ATX or smaller**.
-
-Motherboard selection must therefore not assume E-ATX. This is not a compromise for the actual workload; the previous E-ATX/Creator-class headroom was driven by requirements that have since been removed.
-
 ## Motherboard ↔ memory
 
-Requirements:
+Final configuration:
 
-- 128 GB total;
-- two 64 GB UDIMMs;
+- two 64 GB UDIMMs in **A2/B2**;
 - one DIMM per channel;
-- normally A2/B2;
+- native JEDEC DDR5-5600 / 1.1 V kit;
 - Auto/JEDEC baseline;
+- no EXPO/XMP requirement;
 - extended stability testing.
 
-No 256 GB/four-DIMM requirement. ECC remains optional and matters only if exact-module support plus OS-visible error reporting are credible.
+The CPU and board support ECC UDIMM, but the final kit is non-ECC because practical 64 GB ECC UDIMM availability is poor. **RDIMM is incompatible with AM5.**
 
 ## Cooler ↔ memory ↔ case
 
-Selected cooler/case:
+- Phantom Spirit 120 height: ~157 mm;
+- Pure Base 501 CPU-cooler limit: ~178 mm;
+- nominal vertical margin: ~21 mm;
+- Crucial modules are low-profile.
 
-- Thermalright **Phantom Spirit 120 standard**;
-- cooler height approximately **157 mm**;
-- Pure Base 501 CPU-cooler limit approximately **178 mm**;
-- nominal vertical margin approximately **21 mm** before any front-fan adjustment.
+This combination provides comfortable physical tolerance. At assembly, still verify front-fan position, DIMM clearance, motherboard heatsinks and first GPU-slot clearance before final cable management.
 
-Validate the final 2×64 GB kit for:
+## Motherboard ↔ storage ↔ GPU
 
-- DIMM height and front-fan interference;
-- any required fan lift remaining inside the case limit;
-- motherboard VRM/I/O-heatsink clearance;
-- first PCIe/GPU-slot clearance.
+Preferred topology:
 
-The selected combination deliberately provides more physical tolerance than the previous NH-D15 G2 + regular-North concept.
+```text
+Ryzen 9 9950X3D
+├── primary PCIe x16  -> RTX 3060
+├── M.2_1 CPU x4      -> active-work NVMe
+└── M.2_2 CPU x4      -> system/tools NVMe
+
+B850 chipset
+├── M.2_3 PCIe 4 x4   -> optional future storage
+├── 4 × SATA          -> later SSD/HDD storage
+└── normal platform I/O
+```
+
+Using `M.2_1` and `M.2_2` does not require reducing the primary GPU link.
+
+`M.2_3` shares resources with the secondary PCIe 4.0 x4 expansion path. If `M.2_3` is populated, that secondary slot may become unavailable. This is acceptable because no add-in NIC, HBA, capture card or second GPU is required.
+
+### Active-work drive
+
+- preferred slot: `M.2_1`;
+- 1 TB sufficient;
+- 2 TB when price/value is attractive;
+- Gen4 TLC preferred;
+- Gen5 not required even though the slot supports it.
+
+### System drive
+
+- preferred slot: `M.2_2`;
+- target ~1 TB;
+- NVMe is now preferred because the selected board provides the path without trade-off;
+- SATA remains a fallback.
+
+### Bulk/cold storage
+
+May later use `M.2_3`, SATA SSD/HDD, external storage or NAS. Existing healthy HDDs are allowed for inactive data after health checks but never as the only copy of important data.
+
+No RAID requirement.
 
 ## Case ↔ GPU
 
 Pure Base 501 GPU-length envelope is approximately **368 mm** in the normal layout.
 
-Policy:
-
-- current RTX 3060 must fit trivially;
-- do not reserve chassis volume for an unknown future 500–600 W flagship;
-- if a future GPU genuinely exceeds the selected case envelope, reconsider the case at that future upgrade rather than oversizing today.
+- current RTX 3060 fits easily;
+- no chassis volume is reserved for an unknown 500–600 W future flagship;
+- if a future replacement exceeds the envelope, revisit the case at that time.
 
 ## Case airflow
 
 Initial layout:
 
-- **front:** one included 140 mm PWM intake;
-- **rear:** one included 140 mm PWM exhaust;
-- **additional fans:** none initially.
+- front: one included 140 mm PWM intake;
+- rear: one included 140 mm PWM exhaust;
+- no additional fans initially.
 
-Add another front intake only if closed-case validation shows a useful improvement in CPU/GPU/VRM/SSD temperature or acoustics.
-
-## Storage topology
-
-### Hard requirement
-
-At least one **CPU-direct M.2 x4** connection must be available for the active-work SSD without reducing the primary GPU link.
-
-### System drive
-
-Target ~1 TB. A second M.2 slot is desirable but **not mandatory**. A SATA SSD is an acceptable system-drive fallback if that enables a materially better motherboard/value choice.
-
-### Active-work drive
-
-- 1 TB sufficient;
-- 2 TB preferred when price/value is attractive;
-- Gen4 TLC preferred;
-- CPU-direct x4 mandatory;
-- Gen5 not required.
-
-### Bulk/cold storage
-
-May later use spare M.2, SATA SSD/HDD, external storage or NAS. The selected case preserves practical 3.5-inch HDD support. Old HDD reuse is acceptable for inactive data after health checks; never as the only copy of important data.
-
-No RAID requirement.
-
-## GPU / PCIe
-
-- Reuse RTX 3060 12 GB.
-- Do not preserve dual-GPU/x8+x8 capability as a requirement.
-- When a future GPU replacement becomes worthwhile, retire the 3060.
-- Preserve one normal full-performance primary GPU slot.
+Add another front intake only if closed-case validation shows a useful thermal/acoustic improvement.
 
 ## Networking
 
 - internet <1 Gb/s;
 - LAN throughput irrelevant;
-- **1 GbE sufficient**;
-- 2.5 GbE a bonus;
-- 5/10 GbE not worth a motherboard premium.
+- board's **2.5 GbE** is already more than required;
+- 5/10 GbE carries no selection value.
 
-## VRM / CPU power delivery
+## VRM / CPU operation
 
-The 9950X3D will run stock/conservatively. Require stable power delivery and good VRM thermals; do not value extreme phase counts, LN2/OC controls or excessive current capacity.
+The 9950X3D runs stock/conservatively. The selected board has sufficient power delivery; do not value or enable extreme-overclocking behavior simply because electrical headroom exists.
 
 ## PSU
 
 Current target:
 
 - premium **750 W** or **850 W** ATX 3.1;
-- 750 W fully acceptable as baseline;
-- 850 W only when premium is modest or exact model is materially better;
+- 750 W baseline;
+- 850 W only when premium is modest or exact model materially better;
 - no speculative 1000–1200 W requirement.
 
 ## UPS / surge protection
 
 - no UPS initially;
-- point-of-use surge-protected plug/power strip selected as practical protection;
-- no electrical-installation changes required by the project.
+- use a point-of-use surge-protected Schuko plug/power strip;
+- no electrical-installation changes required.
 
-## Windows / firmware
+## Windows / firmware commissioning
 
-Selected:
-
-- Windows 11 Pro x64;
-- Windows 11 25H2 GA initial baseline;
+- Windows 11 Pro x64, initial 25H2 GA;
 - WSL2 + Ubuntu 26.04.1 LTS;
-- UEFI native, Secure Boot, TPM 2.0/fTPM, SVM and IOMMU;
-- CPU/RAM conservative during commissioning;
-- BitLocker after firmware/driver stabilization.
+- current stable production motherboard BIOS;
+- UEFI, Secure Boot, TPM 2.0/fTPM, SVM, IOMMU;
+- CPU stock/conservative;
+- RAM Auto/JEDEC;
+- BitLocker after firmware/driver/storage stability is established.
 
 ## Provider dependencies
 
-Provider grouping is not final until motherboard, RAM, SSDs and PSU are selected.
+Motherboard and RAM exact models are closed, but supplier selection remains subject to live price/stock. The RAM market is especially volatile.
 
-Still-valid procurement principles:
+Provider principles remain:
 
 - maximum three providers overall;
-- default target two hardware providers;
-- software may use a separate provider when price/provenance justify it;
-- exact SKU/revision and warranty clarity outrank small savings.
+- target two hardware providers;
+- exact SKU/revision and warranty clarity outrank small savings;
+- software may use a separate provider where provenance/price justify it.
