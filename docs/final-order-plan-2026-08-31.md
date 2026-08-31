@@ -1,36 +1,45 @@
 # Final Order Plan — 2026-08-31
 
-Status: **component selection closed; same-day checkout verification remains.**
+> Updated 2026-09-01 after the first order was executed.
 
-Prices below are reference values observed during the 2026-08-31 procurement pass. They must be rechecked immediately before payment. Shipping is excluded unless explicitly noted.
+Status: **partially purchased**.
 
-## Selected build
+## Executed EvoMAG order — 2026-09-01
 
-| Item | Exact target |
-|---|---|
-| CPU | AMD Ryzen 9 9950X3D Box/WOF `100-100000719WOF` |
-| Motherboard | ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0` |
-| RAM | Crucial Pro `CP2K24G56C46U5`, **48 GB = 2×24 GB**, DDR5-5600, non-ECC |
-| Cooler | Thermalright Phantom Spirit 120 — standard |
-| Case | be quiet! Pure Base 501 Airflow Black `BG074` |
-| Primary SSD | Crucial T710 2 TB `CT2000T710SSD8`, bare/non-heatsink |
-| PSU | be quiet! Pure Power 13 M 850W `BP027EU` |
-| GPU | reuse existing RTX 3060 12 GB |
-| Windows | Windows 11 Pro 64-bit English Retail/FPP USB `HAV-00163` |
-| UPS | none |
-| Dedicated surge protector | none |
+| Item | Ordered identity | Paid price incl. VAT | Status |
+|---|---|---:|---|
+| CPU | AMD Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | **3,349.99 lei** | Purchased; arrival verification pending |
+| Motherboard | ASUS TUF GAMING B650E-E WIFI, target SKU `90MB1LT0-M0EAY0` | **785.99 lei** | Purchased by exact model name; physical SKU verification pending |
+| Primary SSD | Crucial T710 2 TB `CT2000T710SSD8` | **1,699.99 lei** | Purchased; arrival verification pending |
+| PSU | be quiet! Pure Power 13 M 850W `BP027EU` | **683.99 lei** | Purchased; arrival verification pending |
+| **Hardware subtotal** |  | **6,519.96 lei** |  |
+| Courier |  | **11.99 lei** |  |
+| **Order total** |  | **6,531.95 lei** |  |
 
-## Provider strategy
+Do not continue price-shopping these four components unless the order is cancelled or a delivery/identity defect appears.
 
-Preferred outcome is at most **three providers overall / two hardware providers**.
+## Remaining selected build items
 
-Current procurement shape:
+| Item | Exact target | Procurement status |
+|---|---|---|
+| RAM | Crucial Pro `CP2K24G56C46U5`, **48 GB = 2×24 GB**, DDR5-5600, non-ECC | **Not yet purchased** |
+| Cooler | Thermalright Phantom Spirit 120 — standard | **Not yet purchased** |
+| Case | be quiet! Pure Base 501 Airflow Black `BG074` | **Not yet purchased** |
+| GPU | reuse existing RTX 3060 12 GB | Already owned |
+| Windows | Windows 11 Pro 64-bit English Retail/FPP USB `HAV-00163` | **Not yet purchased** |
+| UPS | none | No purchase planned |
+| Dedicated surge protector | none | No purchase planned |
 
-1. **EvoMAG** — preferred main hardware basket if all exact SKUs are confirmed in-cart, especially motherboard `90MB1LT0-M0EAY0`.
-2. **RAM supplier** — use another Romanian hardware retailer if the exact `CP2K24G56C46U5` is materially cheaper or unavailable at EvoMAG. Current research has surfaced ForIT/dataSPOT/CEL-class alternatives; refresh live availability and delivered price.
-3. **PROstore** — Windows 11 Pro Retail/FPP `HAV-00163` unless another equally trustworthy Retail/FPP source is materially better.
+## Provider strategy after first order
 
-Do not force RAM into EvoMAG merely for consolidation if doing so requires a worse kit or a large premium.
+EvoMAG is now the first hardware provider.
+
+Preferred remaining shape:
+
+1. **One additional hardware retailer** for RAM + cooler + case if the exact selected models can be sourced at sensible delivered prices.
+2. **PROstore or equivalent trustworthy software retailer** for Windows 11 Pro Retail/FPP `HAV-00163`.
+
+Do not substitute the case or cooler merely to consolidate back into EvoMAG.
 
 ## Motherboard naming warning
 
@@ -38,11 +47,13 @@ The selected board is:
 
 > **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`**
 
-EvoMAG also sells the similarly named:
+The EvoMAG order title matches **B650E-E WIFI**, but their page did not provide a trustworthy full manufacturer code. The decisive remaining check is the physical box label.
+
+Reject:
 
 > **ASUS TUF GAMING B650-E WIFI `90MB1GT0-M0EAY0`**
 
-They are distinct boards. Verify the exact manufacturer part number on the product page, in cart/order confirmation, and on the physical box.
+or B650E-PLUS / other similarly named boards.
 
 ## RAM decision — final
 
@@ -57,45 +68,32 @@ Do not substitute:
 - four DIMMs as a planned upgrade path;
 - RDIMM/server memory.
 
-Current reference price class during the decision was approximately **~2.6–2.9k lei**, depending on supplier/lead time. Treat that only as a comparison reference and refresh immediately before payment.
-
 If 48 GB later proves insufficient under measured workloads, replace the pair with a larger matched two-DIMM kit rather than adding another pair.
 
-## Reference non-RAM basket
+## Remaining checkout gates
 
-The last consolidated non-RAM reference was approximately:
+Before paying for the remaining components, verify:
 
-| Provider | Item | Exact target | Reference price |
-|---|---|---|---:|
-| EvoMAG | CPU | `100-100000719WOF` | ~3,349.99 lei |
-| EvoMAG | Motherboard | `90MB1LT0-M0EAY0` | ~843.99 lei class |
-| EvoMAG | Cooler | Phantom Spirit 120 standard | ~249.99 lei |
-| EvoMAG | Case | `BG074` | ~423.99 lei |
-| EvoMAG | SSD | `CT2000T710SSD8` | ~1,710.99 lei |
-| EvoMAG | PSU | `BP027EU` | ~686.99 lei |
-| PROstore | Windows | `HAV-00163` | ~1,123.60 lei |
+1. RAM is **`CP2K24G56C46U5`**, total 48 GB as **2×24 GB**.
+2. Cooler is **Thermalright Phantom Spirit 120 standard**, not SE/EVO.
+3. Case is **be quiet! Pure Base 501 Airflow Black `BG074`**.
+4. Windows is genuine **Retail/FPP English USB `HAV-00163`**.
+5. All remaining hardware is new retail product with a normal Romanian/EU warranty path.
+6. Delivered totals include shipping and realistic lead times.
+7. Preserve invoices, serial numbers and packaging through commissioning and return windows.
 
-Reference non-RAM subtotal including Windows: approximately **8,389.54 lei** before shipping.
+## Arrival verification gates for the EvoMAG order
 
-With RAM around **2.6–2.9k lei**, the complete build is therefore roughly **~11.0–11.3k lei before shipping**, reusing the RTX 3060 and existing SATA storage.
+When the first order arrives:
 
-This is **not a live checkout quote**.
+1. CPU: confirm **`100-100000719WOF`** / Box-WOF identity.
+2. Motherboard: confirm **`90MB1LT0-M0EAY0`** on the physical box before opening/installing.
+3. SSD: confirm **`CT2000T710SSD8`** and no factory heatsink.
+4. PSU: confirm **`BP027EU`**, Pure Power 13 M 850W.
+5. Inspect seals/packaging for damage or open-box substitution.
+6. Photograph labels/serials and retain packaging.
 
-## Checkout gates
-
-Before payment, verify all of the following:
-
-1. CPU is **`100-100000719WOF`**, Box/WOF, not tray.
-2. Motherboard is **`90MB1LT0-M0EAY0`**, not `90MB1GT0-M0EAY0` or another similarly named board.
-3. RAM is **`CP2K24G56C46U5`**, total 48 GB as **2×24 GB**.
-4. SSD is **`CT2000T710SSD8`**, the bare/non-heatsink T710 2 TB variant.
-5. PSU is **`BP027EU`**, Pure Power 13 M 850W.
-6. Windows is genuine **Retail/FPP English USB `HAV-00163`**.
-7. All hardware is new retail product with a normal Romanian/EU warranty path.
-8. Delivered totals include shipping and any lead-time implications.
-9. Preserve invoices, serial numbers and packaging through commissioning and return windows.
-
-See `docs/checkout-checklist.md` for the operational verification workflow.
+See `docs/checkout-checklist.md` for the operational verification workflow and `docs/purchases-2026-09-01.md` for the transaction record.
 
 ## Assembly-critical reminders
 
@@ -108,4 +106,4 @@ See `docs/checkout-checklist.md` for the operational verification workflow.
 
 ## Purchase position
 
-**Purchase-ready architecture.** No component-selection question remains open. Perform only same-day live verification of stock, exact SKUs, warranty, delivered prices and retailer quality before paying.
+**First hardware order completed.** CPU, motherboard, SSD and PSU are committed. Continue procurement only for RAM, cooler, case and Windows, then move to physical verification, assembly and commissioning.

@@ -1,6 +1,6 @@
-# Checkout Verification Checklist
+# Checkout / Arrival Verification Checklist
 
-Use this checklist immediately before payment and again when the physical packages arrive.
+Use this checklist for remaining purchases and again when physical packages arrive.
 
 ## Verification levels
 
@@ -12,24 +12,44 @@ For every purchased component, verify at three levels:
 
 If any level disagrees, stop and resolve the discrepancy before installation.
 
-## Exact purchase gates
+## Purchase state — 2026-09-01
 
-| Item | Required identity | Reject / special warning |
-|---|---|---|
-| CPU | AMD Ryzen 9 9950X3D **`100-100000719WOF`** | Reject silent tray/OEM substitution |
-| Motherboard | ASUS TUF GAMING B650E-E WIFI **`90MB1LT0-M0EAY0`** | Do not confuse with B650-E **`90MB1GT0-M0EAY0`** or B650E-PLUS |
-| RAM | Crucial Pro **`CP2K24G56C46U5`**, 48 GB = **2×24 GB** | Reject single-DIMM `CP24G56C46U5`, RDIMM or different topology |
-| Cooler | Thermalright **Phantom Spirit 120 standard** | Do not silently substitute SE/EVO |
-| Case | be quiet! Pure Base 501 Airflow Black **`BG074`** | Confirm both included 140 mm PWM fans are present |
-| SSD | Crucial T710 2 TB **`CT2000T710SSD8`** | Must be bare/non-heatsink variant |
-| PSU | be quiet! Pure Power 13 M 850W **`BP027EU`** | Reject Pure Power 12 M, other wattage/revision; never mix modular cables |
-| Windows | Windows 11 Pro **Retail/FPP English USB `HAV-00163`** | Reject OEM/System Builder or suspicious digital-key substitution |
+Already purchased from EvoMAG:
 
-## Retailer-page checks
+- CPU — Ryzen 9 9950X3D Box/WOF;
+- motherboard — ASUS TUF GAMING B650E-E WIFI;
+- SSD — Crucial T710 2 TB;
+- PSU — be quiet! Pure Power 13 M 850W.
 
-For each page:
+Order total: **6,531.95 lei including 11.99 lei courier**.
 
-- confirm the manufacturer part number in the specification table, not only the marketing title;
+For these four, use the **arrival checks** below; do not re-shop them unless there is a problem.
+
+Still to purchase:
+
+- RAM;
+- cooler;
+- case;
+- Windows license.
+
+## Exact purchase / arrival gates
+
+| Item | Required identity | Current state | Reject / special warning |
+|---|---|---|---|
+| CPU | AMD Ryzen 9 9950X3D **`100-100000719WOF`** | Purchased | Reject silent tray/OEM substitution |
+| Motherboard | ASUS TUF GAMING B650E-E WIFI **`90MB1LT0-M0EAY0`** | Purchased by model name; physical SKU pending | Do not confuse with B650-E **`90MB1GT0-M0EAY0`** or B650E-PLUS |
+| RAM | Crucial Pro **`CP2K24G56C46U5`**, 48 GB = **2×24 GB** | Not yet purchased | Reject single-DIMM `CP24G56C46U5`, RDIMM or different topology |
+| Cooler | Thermalright **Phantom Spirit 120 standard** | Not yet purchased | Do not silently substitute SE/EVO |
+| Case | be quiet! Pure Base 501 Airflow Black **`BG074`** | Not yet purchased | Confirm both included 140 mm PWM fans are present |
+| SSD | Crucial T710 2 TB **`CT2000T710SSD8`** | Purchased | Must be bare/non-heatsink variant |
+| PSU | be quiet! Pure Power 13 M 850W **`BP027EU`** | Purchased | Reject Pure Power 12 M, other wattage/revision; never mix modular cables |
+| Windows | Windows 11 Pro **Retail/FPP English USB `HAV-00163`** | Not yet purchased | Reject OEM/System Builder or suspicious digital-key substitution |
+
+## Remaining retailer-page checks
+
+For RAM, cooler, case and Windows:
+
+- confirm the manufacturer part number/model in the specification table, not only the marketing title;
 - confirm the product is new retail stock, not open-box/refurbished/tray unless explicitly accepted;
 - record price including VAT;
 - record stock state and realistic lead time;
@@ -39,18 +59,17 @@ For each page:
 
 If the page does not expose the exact manufacturer SKU, do not infer it from the title. Ask the retailer or choose a clearer listing.
 
-## Cart / order checks
+## Arrival checks for the EvoMAG order
 
-Before submitting an order:
+Before opening or installing the purchased hardware:
 
-- re-check every exact SKU in cart;
-- check quantities;
-- check VAT and shipping;
-- check seller identity if the retailer operates a marketplace;
-- make sure no automatic alternative/substitute has been inserted;
-- preserve the order confirmation and invoice.
+### CPU
 
-## Component-specific checks
+Required:
+
+> `100-100000719WOF` — Ryzen 9 9950X3D Box/WOF
+
+Check the box label and package identity. Reject tray/OEM substitution.
 
 ### Motherboard
 
@@ -62,24 +81,7 @@ Known naming trap:
 
 > `90MB1GT0-M0EAY0` — TUF GAMING B650-E WIFI
 
-The names differ by a single `E`, so the manufacturer part number is the purchase control.
-
-### RAM
-
-Required:
-
-> `CP2K24G56C46U5`
-
-Confirm all of:
-
-- 48 GB total;
-- **2 modules**;
-- **24 GB per module**;
-- DDR5-5600;
-- desktop UDIMM;
-- non-ECC.
-
-A listing for a single 48 GB module is not equivalent even if the frequency/timings look identical.
+The EvoMAG order text matches **B650E-E WIFI**, but the physical manufacturer part number is the final control. Do not install until `90MB1LT0-M0EAY0` is confirmed.
 
 ### SSD
 
@@ -100,10 +102,45 @@ Confirm:
 - Pure Power **13 M**;
 - **850 W**;
 - new retail unit;
-- normal manufacturer-warranty path;
-- original complete modular cable set.
+- original complete modular cable set;
+- no shipping damage or signs of prior use.
 
 Only cables supplied with this exact PSU may be used.
+
+## Remaining component-specific purchase checks
+
+### RAM
+
+Required:
+
+> `CP2K24G56C46U5`
+
+Confirm all of:
+
+- 48 GB total;
+- **2 modules**;
+- **24 GB per module**;
+- DDR5-5600;
+- desktop UDIMM;
+- non-ECC.
+
+A listing for a single 48 GB module is not equivalent even if the frequency/timings look identical.
+
+### Cooler
+
+Required:
+
+> Thermalright **Phantom Spirit 120 standard**
+
+Do not silently substitute the **SE** or **EVO** variant. A different variant requires explicit review.
+
+### Case
+
+Required:
+
+> be quiet! Pure Base 501 Airflow Black `BG074`
+
+Confirm the exact non-window Airflow Black model and both included 140 mm PWM fans.
 
 ### Windows
 
@@ -122,21 +159,21 @@ A cheap key-only/OEM listing is not an equivalent substitute.
 
 ## Provider/price consolidation
 
-Policy:
+Policy after the first order:
 
-- maximum three providers overall;
-- target at most two hardware providers;
-- use a separate RAM supplier if the exact `CP2K24G56C46U5` is materially cheaper than the main hardware retailer;
-- exact SKU, warranty and retailer quality outrank small savings.
+- EvoMAG is already the first hardware provider;
+- prefer at most one additional hardware provider for RAM + cooler + case;
+- exact SKU/model, warranty and retailer quality outrank small savings;
+- do not substitute the case/cooler merely to keep everything at EvoMAG.
 
 Calculate final cost using **delivered totals**, not product-price sums alone.
 
-## Physical arrival checks
+## Physical arrival checks — all hardware
 
 Before opening/installing components:
 
 - photograph the box label showing SKU/serial where practical;
-- compare the printed SKU to this checklist and the invoice;
+- compare the printed SKU to this checklist and the invoice/order confirmation;
 - inspect packaging/seals for signs of open-box substitution or shipping damage;
 - keep packaging, invoices and serial records through commissioning and return windows.
 

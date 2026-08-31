@@ -1,6 +1,8 @@
 # Procurement Plan — 2026-08-31
 
-Status: **purchase architecture closed**. RAM is finalized at 48 GB / 2×24 GB. Same-day price/provider verification remains before payment.
+> Updated 2026-09-01 after the first EvoMAG order was placed.
+
+Status: **partially purchased**. Architecture remains closed.
 
 ## Locked principles
 
@@ -9,27 +11,45 @@ Status: **purchase architecture closed**. RAM is finalized at 48 GB / 2×24 GB. 
 3. Preserve exact product identities where similarly named substitutes differ.
 4. Keep AM5 memory at **two DIMMs / 1DPC**.
 5. Exact SKU/revision, warranty clarity and product condition outrank small nominal savings.
+6. **Do not re-shop components already purchased** unless an order/delivery defect requires it.
 
-## Preferred provider split
+## Executed first order
 
-- **EvoMAG:** hardware, provided exact SKUs are confirmed in-cart, especially motherboard `90MB1LT0-M0EAY0`.
-- **PROstore:** Windows 11 Pro Retail/FPP `HAV-00163`.
-- RAM may come from another Romanian retailer if `CP2K24G56C46U5` is materially cheaper; current market floor is around 2,899 lei.
+EvoMAG order placed **2026-09-01**:
 
-## Selected purchase targets
+| Item | Paid price incl. VAT |
+|---|---:|
+| Ryzen 9 9950X3D Box/WOF | **3,349.99 lei** |
+| ASUS TUF GAMING B650E-E WIFI | **785.99 lei** |
+| Crucial T710 2 TB | **1,699.99 lei** |
+| be quiet! Pure Power 13 M 850W | **683.99 lei** |
+| **Hardware subtotal** | **6,519.96 lei** |
+| Courier | **11.99 lei** |
+| **Total** | **6,531.95 lei** |
+
+These four items are committed purchases. Their next gate is physical arrival verification.
+
+## Remaining provider strategy
+
+- EvoMAG is already the first hardware provider.
+- Prefer **one additional hardware retailer** for RAM + cooler + case if exact models and delivered pricing are acceptable.
+- Use **PROstore or another equally trustworthy source** for Windows 11 Pro Retail/FPP `HAV-00163`.
+- Do not substitute the cooler/case merely to consolidate back into EvoMAG.
+
+## Selected purchase targets and state
 
 | Item | Target | Status |
 |---|---|---|
-| CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | selected |
-| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | selected |
-| RAM | **Crucial Pro `CP2K24G56C46U5`, 48 GB = 2×24 GB, DDR5-5600, 1.1 V-class, non-ECC** | **selected / final** |
-| CPU cooler | Thermalright Phantom Spirit 120 standard | selected |
-| Case | be quiet! Pure Base 501 Airflow Black `BG074` | selected |
+| CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | **purchased 2026-09-01 / arrival verification pending** |
+| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **purchased 2026-09-01 by exact model name / physical SKU verification pending** |
+| RAM | **Crucial Pro `CP2K24G56C46U5`, 48 GB = 2×24 GB, DDR5-5600, 1.1 V-class, non-ECC** | **selected / not yet purchased** |
+| CPU cooler | Thermalright Phantom Spirit 120 standard | **selected / not yet purchased** |
+| Case | be quiet! Pure Base 501 Airflow Black `BG074` | **selected / not yet purchased** |
 | Case fans | two included 140 mm PWM only initially | selected |
-| Primary SSD | Crucial T710 2 TB `CT2000T710SSD8`, bare/non-heatsink | selected |
-| PSU | be quiet! Pure Power 13 M 850W `BP027EU` | selected |
+| Primary SSD | Crucial T710 2 TB `CT2000T710SSD8`, bare/non-heatsink | **purchased 2026-09-01 / arrival verification pending** |
+| PSU | be quiet! Pure Power 13 M 850W `BP027EU` | **purchased 2026-09-01 / arrival verification pending** |
 | GPU | existing RTX 3060 12 GB | reuse |
-| Windows | Windows 11 Pro Retail/FPP `HAV-00163` | selected target |
+| Windows | Windows 11 Pro Retail/FPP `HAV-00163` | **selected / not yet purchased** |
 | UPS | none | selected |
 | Dedicated surge protector | none | selected |
 
@@ -43,32 +63,34 @@ Status: **purchase architecture closed**. RAM is finalized at 48 GB / 2×24 GB. 
 - install in A2/B2;
 - do not add a second pair later.
 
-Current Romanian reference pricing is approximately **2,899 lei**, with surfaced offers including dataSPOT and CEL. Refresh immediately before checkout.
+If 48 GB later proves insufficient under measured real workloads, replace the pair with a larger matched two-DIMM kit. Do not move to four DIMMs simply to preserve the initial kit.
 
-### Future capacity rule
+## Arrival acceptance gates for purchased hardware
 
-If 48 GB later proves insufficient under measured real workloads, replace the pair with a larger matched two-DIMM kit. Do not move to four DIMMs simply to preserve the initial kit; Ryzen 9 9950X3D officially supports a lower memory rate with four populated DIMMs.
+### Motherboard
 
-## Motherboard acceptance gate
+- required physical SKU: **`90MB1LT0-M0EAY0`**;
+- order title matches **TUF GAMING B650E-E WIFI**;
+- do not accept **B650-E `90MB1GT0-M0EAY0`** or another similarly named board;
+- verify before opening/installing.
 
-- exact **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`**;
-- do not confuse with **B650-E `90MB1GT0-M0EAY0`**;
-- normal new retail condition and warranty;
-- current stable BIOS during commissioning.
+### CPU
 
-## Storage acceptance gate
+- confirm **`100-100000719WOF`** / Box-WOF identity;
+- reject tray/OEM substitution.
 
-- exact Crucial T710 2 TB `CT2000T710SSD8`;
+### Storage
+
+- confirm Crucial T710 2 TB **`CT2000T710SSD8`**;
 - bare/non-heatsink variant;
-- install in CPU-direct `M.2_1` under the ASUS heatsink;
-- no second NVMe, SSD cache/tiering or RAID initially.
+- install in CPU-direct `M.2_1` under the ASUS heatsink.
 
-## PSU acceptance gate
+### PSU
 
-- exact be quiet! Pure Power 13 M 850W `BP027EU`;
+- confirm be quiet! Pure Power 13 M 850W **`BP027EU`**;
 - ATX 3.1;
-- normal new retail unit and manufacturer-warranty path;
-- use only the modular cables supplied with this PSU.
+- complete original modular cable set;
+- use only cables supplied with this PSU.
 
 ## Mains-protection policy
 
@@ -77,21 +99,22 @@ If 48 GB later proves insufficient under measured real workloads, replace the pa
 - properly earthed wall outlet;
 - ordinary reputable 16 A Schuko strip only if additional sockets are needed.
 
-## Current price position
+## Current cost position
 
-Using the previous fixed non-RAM basket of approximately **8,389.54 lei**, replacing the 128 GB baseline with the selected ~2,899 lei 48 GB kit yields an indicative complete-build total around **11,288.54 lei before shipping**.
+**Committed spend:** **6,531.95 lei including courier** for CPU + motherboard + SSD + PSU.
 
-This is not a checkout quote; refresh all items before payment.
+Remaining spend is for RAM + cooler + case + Windows only. Older full-build totals in this repository are estimates, not current checkout totals.
 
-## Checkout sequence
+## Next procurement sequence
 
-1. Refresh **`CP2K24G56C46U5`** price and stock.
-2. Verify exact motherboard `90MB1LT0-M0EAY0`; reject the similarly named B650-E.
-3. Refresh CPU, cooler, case, SSD and PSU basket pricing.
-4. Verify Windows Retail/FPP `HAV-00163`.
-5. Recalculate delivered totals and consolidate suppliers where savings are meaningful.
-6. Preserve invoices, serials and packaging through commissioning/return windows.
+1. Source exact **`CP2K24G56C46U5`** RAM.
+2. Source exact **Thermalright Phantom Spirit 120 standard**.
+3. Source exact **be quiet! Pure Base 501 Airflow Black `BG074`**.
+4. Verify Windows Retail/FPP **`HAV-00163`**.
+5. Prefer one remaining hardware provider where value and exact-model availability allow.
+6. When EvoMAG delivery arrives, verify CPU/motherboard/SSD/PSU identities before installation.
+7. Preserve invoices, serials and packaging through commissioning/return windows.
 
 ## Decision status
 
-No component-selection question remains open. Procurement is awaiting only live checkout verification.
+No architecture question remains open. Procurement is partially complete; continue only with the four remaining purchase items and arrival verification of the first order.
