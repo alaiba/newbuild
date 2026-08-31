@@ -1,112 +1,86 @@
 # Storage Deep Dive
 
-Status: **Two-drive active-storage architecture selected / exact SSD models open / cold storage additive later**
+Status: **Single-drive active-storage architecture selected / exact primary SSD selected / cold SATA storage retained**
 
 ## Decision
 
-Buy two internal NVMe drives from day one:
+Buy **one internal NVMe drive from day one**:
 
-1. **System/tools SSD:** approximately **1 TB NVMe**, optimized for reliability, capacity headroom and price rather than flagship benchmark speed.
-2. **Active-work SSD:** **1 TB is sufficient; 2 TB is preferred when the absolute premium and price/TB are attractive**, optimized for sustained development/VM/container/database workloads, endurance and value.
+- **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4, TLC, DRAM-equipped;
+- install it in the board's CPU-direct **`M.2_1` PCIe 5.0 x4** slot;
+- use the non-heatsink SSD variant under the ASUS motherboard M.2 heatsink.
 
-Do **not** buy 4 TB of high-performance NVMe merely to hold data that is not part of the active working set.
+Do **not** buy a second NVMe merely to split Windows/tools from active work. Do **not** buy a small SSD as a cache for another SSD. Do **not** build automatic SSD tiering/Storage Spaces for the initial machine.
 
-If total local storage later becomes tight, add a third device for bulk/cold data. That device may be another chipset-connected NVMe, a SATA SSD or a healthy HDD depending capacity, price and access pattern.
-
-The exact SSD models and whether the active-work SSD is 1 TB or 2 TB remain open for the next optimization pass.
+Current storage use is approximately **600 GB**. Even with more ambitious development workloads, the foreseeable active-storage requirement is not expected to exceed **2 TB** soon. Existing slower SATA drives will remain available for cold/bulk data.
 
 ## Why the architecture changed
 
-The earlier 4 TB work-drive target conflated two different things:
+The previous two-drive plan assumed that system/tools and active development data deserved permanent physical separation. Further analysis showed that this imposed complexity without solving a concrete capacity or performance problem:
 
-- **active working data**, which benefits from low latency and strong random/sustained SSD behavior;
-- **accumulated local data**, much of which may be infrequently accessed and does not justify premium storage.
+- the current machine uses only about 600 GB in total;
+- a 2 TB primary SSD leaves roughly 1.4 TB of nominal growth headroom before filesystem overhead/free-space policy;
+- the selected motherboard leaves two additional M.2 sockets free for additive expansion;
+- existing SATA drives can hold archives, old projects, installers, inactive VMs and other cold data;
+- modern Windows already uses abundant RAM as a filesystem cache;
+- a separate SSD cache in front of another SSD provides little real benefit when the entire active working set already fits on one very fast NVMe.
 
-For the primary workload, the high-performance tier only needs to contain current repositories and the surrounding development ecosystem. Source code itself is usually modest in capacity; the larger consumers are caches, container/WSL images, Android images, active VMs and databases.
+The simpler architecture also eliminates cache warm-up, block-cache driver dependence, duplicated NAND writes, write-back failure semantics, partition/cache sizing and opaque hot/cold placement.
 
-A disciplined **1 TB active-work SSD is sufficient**. A **2 TB active-work SSD is the comfort choice** when its incremental price is modest. There is no architectural reason to jump directly to 4 TB.
+## Selected primary SSD
 
-The user's current machine also provides useful evidence: its decade-old 240 GB Intel SATA OS SSD is almost full, but boot/storage performance is not a significant pain point. The dominant issue is capacity management, not flagship throughput.
+**Crucial T710 2 TB `CT2000T710SSD8`**.
 
-With **128 GB RAM**, Windows and development tools also have abundant memory for filesystem caching and working sets, further reducing the value of premium system-drive throughput.
-
-## System/tools SSD role
-
-Target capacity: **approximately 1 TB**.
-
-Expected contents:
+Role:
 
 - Windows 11;
-- installed applications and development-tool binaries;
-- IDE binaries;
-- JDKs and general SDK/tool installations that do not need to live with project data;
-- drivers and firmware tools;
-- normal user-profile data;
-- page file and crash-dump infrastructure;
-- Windows Update and servicing working space.
-
-Do **not** move the entire Windows user profile merely to force separation. Move only large, well-understood workload stores whose applications support an explicit path/location.
-
-### System-drive quality priorities
-
-In order of importance:
-
-1. reputable manufacturer and normal warranty path;
-2. mature firmware and no unresolved reliability issue;
-3. enough capacity to keep generous free space throughout ownership;
-4. sensible price;
-5. TLC preferred where price is reasonable;
-6. normal NVMe random responsiveness;
-7. DRAM cache is useful but **not mandatory** for this role;
-8. peak sequential throughput is low priority.
-
-A good Gen3 or mainstream Gen4 NVMe drive is already more than fast enough. There is no requirement for a flagship Gen4 drive and **no justification for paying a Gen5 premium for the OS drive**.
-
-The system SSD may use a **chipset-connected M.2 x4 slot**.
-
-## Active-work SSD role
-
-Target capacity:
-
-- **1 TB is technically sufficient and is the value baseline**;
-- **2 TB is preferred when the price premium is modest enough to buy useful operating headroom without distorting the budget**;
-- **4 TB is not an initial requirement**.
-
-Expected contents include latency-sensitive and actively used data such as:
-
-- current source repositories;
-- Gradle caches and build outputs;
+- installed applications and development tools;
+- source repositories;
+- Gradle caches/build outputs;
 - Maven local repository;
-- WSL2 distributions/VHDX and Linux-native high-I/O working sets;
+- IntelliJ/Android Studio state and indexes;
+- WSL2 distributions/VHDX;
 - container images/layers/volumes;
-- Android SDK components and active AVD/emulator images where relocation is supported;
-- active virtual machines;
-- active local databases;
-- current large test datasets;
-- currently used games or AI models when appropriate;
-- other project/scratch data that materially benefits from SSD latency and throughput.
+- Android SDK and active emulator images;
+- active VMs/databases;
+- current games and other latency-sensitive data.
 
-Old projects, inactive VMs, ISO images, installers, archives and similar low-frequency data do not need to remain on this drive.
+### Why 2 TB
 
-### Active-work-drive quality priorities
+1 TB would fit today's data, but it would leave only modest headroom once Android emulators, WSL2, containers, games, caches and larger projects accumulate.
 
-Prefer:
+2 TB is therefore the capacity sweet spot: materially more operating headroom without paying the large absolute premium for 4 TB capacity that is not expected to be used soon.
 
-- **TLC NAND**;
-- **DRAM-equipped design** where the price difference is reasonable;
-- mature firmware and vendor diagnostic/update tooling;
-- strong mixed/random and sustained-write behavior;
-- solid endurance appropriate for build/cache/VM/container activity;
-- five-year-class warranty where available;
-- standard M.2 form factor compatible with motherboard heatsinks.
+4 TB is explicitly **not** an initial requirement. Storage remains additive: if a real future need appears, `M.2_2`, `M.2_3`, SATA or external/NAS storage can be added then.
 
-TBW is a useful minimum-quality/endurance signal, not a prestige metric. Do not pay a large premium merely for the largest published TBW number.
+### Why Gen5 now
 
-## Bulk/cold-storage role
+Earlier policy treated Gen5 as unnecessary because premium Gen4 drives already provide excellent workstation performance. That remains technically true.
 
-Bulk/cold storage is **not part of the initial performance requirement**.
+However, current Romanian pricing makes the premium for a credible 2 TB flagship Gen5 drive small enough that the selected T710 offers a durable benefit without distorting the budget. The board already provides CPU-direct PCIe 5.0 x4 in `M.2_1`, so using that capability requires no platform compromise.
 
-Add it only when the active/system drives actually need relief. Appropriate data includes:
+The selection is not based on expecting 2x application performance from 2x sequential bandwidth. Java/Android development will often be CPU-, memory- or cache-bound. The value case is instead:
+
+- flagship TLC NAND and DRAM-equipped design;
+- strong random/mixed and sustained-write behavior;
+- high available sequential bandwidth for large transfers/VM/container workloads;
+- no need to preserve the Gen5 slot for a hypothetical future device;
+- small current price premium over premium Gen4 alternatives.
+
+## PCIe topology
+
+With the Ryzen 9 9950X3D and selected ASUS board:
+
+- **`M.2_1`: CPU PCIe 5.0 x4 — selected T710 2 TB**;
+- **`M.2_2`: CPU PCIe 4.0 x4 — empty, future expansion**;
+- **`M.2_3`: chipset PCIe 4.0 x4 — empty, future expansion**;
+- **4× SATA — existing/later cold storage**.
+
+Populating `M.2_1` does not reduce the primary GPU from its intended x16 path on this configuration.
+
+## Cold/bulk storage
+
+Existing healthy SATA SSD/HDD devices may be reused for data whose latency is not important:
 
 - archived repositories;
 - old build artifacts;
@@ -114,82 +88,39 @@ Add it only when the active/system drives actually need relief. Appropriate data
 - ISO images and installers;
 - historical datasets;
 - media;
-- old AI models/datasets not actively used;
+- backup staging;
 - other infrequently accessed local material.
 
-Suitable device classes include:
+Before reuse, inspect SMART/health data and the physical/interface condition of old drives. Important data must not exist only on an old SATA device merely because SMART currently reports healthy.
 
-- spare chipset-connected NVMe SSD;
-- SATA SSD;
-- SATA HDD;
-- external/NAS storage depending the use case.
+The SATA devices are **not** part of an automatic tier with the NVMe drive. Data placement remains explicit and predictable.
 
-Existing spinning disks may be reused after SMART/health inspection if their interface and physical condition are suitable. They should be treated as **convenience/bulk storage**, not trusted as the sole copy of important data simply because SMART currently reports healthy.
+## Why SSD caching was rejected
 
-For old HDDs, important data must exist elsewhere as well.
+Several cache topologies were considered:
 
-## PCIe generation policy
+1. small fast NVMe caching a large HDD;
+2. small Gen5 SSD caching a larger Gen4 SSD;
+3. partitioning a flagship Gen5 SSD into L2 cache + explicit hot tier.
 
-**PCIe 4.0 is sufficient for both initial drives.**
+SSD caching can be valuable when a small fast device fronts a much larger, genuinely slow capacity tier and the active working set is much smaller than the backing store. That is not the present situation.
 
-The active-work SSD should receive the better storage connection because it is where sustained and random development I/O is expected. Prefer a **CPU-direct x4 M.2 slot** for it.
+Here the entire expected active dataset fits within the 2 TB primary SSD. An SSD-to-SSD cache would therefore add complexity while accelerating storage that is already extremely fast. Sub-1 TB high-end SSDs also often have lower NAND parallelism and sustained write performance than larger drives, so "smaller" does not automatically mean "faster."
 
-Gen5 is a bonus, not a requirement. A Gen5 work SSD should be selected only if:
+A read cache would usually be redundant with Windows' RAM cache and the fast primary NVMe. Write-back caching would add a period during which acknowledged writes exist only on the cache device, creating an unnecessary failure mode.
 
-- its price premium over a comparably credible Gen4 drive is negligible; or
-- a demonstrated workload materially benefits from the additional bandwidth.
+If future local capacity grows into the tens of terabytes and a large HDD becomes part of the active working set, SSD read caching can be revisited then.
 
-Do not select a motherboard or SSD merely to preserve a synthetic sequential-throughput number.
+## QLC / DRAM-less policy
 
-## Motherboard topology requirement
+For the selected primary drive:
 
-The motherboard optimization should require:
+- **TLC is required/preferred**;
+- **DRAM-equipped design is preferred**;
+- mature firmware and vendor support matter;
+- strong sustained writes and mixed/random behavior matter more than a peak sequential benchmark alone.
 
-1. at least **two simultaneously usable M.2 x4 slots** for the initial SSDs;
-2. one preferably **CPU-direct x4** slot for the active-work SSD;
-3. one chipset-connected x4 slot is fully acceptable for the ~1 TB system SSD;
-4. populating these two selected slots must **not reduce the primary GPU from x16**;
-5. integrated M.2 heatsinks are preferred;
-6. at least one practical later expansion route for bulk storage is desirable, whether additional M.2, SATA or both;
-7. extra high-speed M.2 capacity should not command a large motherboard premium by itself.
-
-Exact M.2 slot numbers will be assigned only after the motherboard is selected. Do not carry ProArt-specific labels into another board without checking its lane-sharing table.
-
-## Why two physical SSDs from day one
-
-The objective is operational separation rather than aggregate benchmark throughput:
-
-- **OS/recovery separation:** Windows can be repaired/reinstalled without making the active-work volume part of that operation.
-- **Workload isolation:** VMs, containers, databases, caches and build output do not share one NAND/controller with Windows housekeeping.
-- **Capacity management:** active work can be managed independently of the system volume.
-- **Thermal distribution:** sustained activity is spread across two devices and motherboard locations.
-- **Independent replacement:** either SSD can be replaced without forcing replacement of the other.
-
-This is a permanent role separation, not a temporary Phase-1 arrangement.
-
-## Expansion policy
-
-Storage capacity is deliberately **additive**.
-
-When the active-work SSD starts accumulating data that is no longer active, move that material to a bulk/cold tier instead of buying an oversized performance SSD in advance.
-
-A later third drive can be sized for capacity/value rather than latency. This may be a large inexpensive SSD or even an existing healthy HDD, depending the data.
-
-This differs from the RAM decision: RAM topology is deliberately fixed at 2×64 GB / 128 GB, while storage can expand cleanly through independent devices.
-
-## QLC and DRAM-less policy
-
-### System drive
-
-QLC or DRAM-less designs are **not automatically rejected** for the system role. A mature implementation from a reputable vendor can be adequate if the price saving is meaningful and endurance/reliability are appropriate.
-
-TLC remains preferred when the incremental cost is modest.
-
-### Active-work drive
-
-For the primary active-work SSD, **TLC is strongly preferred** and a DRAM-equipped design is preferred when reasonably priced because sustained writes, VMs, containers, databases and build caches create a more demanding workload.
-
-QLC belongs mainly in later bulk/read-heavy storage unless its price advantage becomes compelling.
+QLC and DRAM-less drives remain valid candidates for future bulk/read-heavy expansion when the price advantage is meaningful, but they are not preferred for the primary workstation SSD.
 
 ## RAID and backup
 
@@ -201,7 +132,6 @@ The reliability strategy is instead:
 
 - version control;
 - external/network/cloud backup as appropriate;
-- UPS-backed power;
 - SMART/health monitoring;
 - firmware maintenance;
 - application/filesystem consistency mechanisms.
@@ -210,7 +140,7 @@ Do not treat any internal SSD or reused HDD as the sole copy of important data.
 
 ## Thermal policy
 
-Use motherboard M.2 heatsinks where appropriate rather than paying extra for SSD heatsink variants unless the chosen drive/motherboard combination specifically benefits.
+Use the motherboard M.2 heatsink with the bare/non-heatsink T710 variant.
 
 During bring-up:
 
@@ -218,40 +148,40 @@ During bring-up:
 - monitor SMART/health data;
 - monitor sustained-write temperature;
 - verify no material thermal throttling under representative active-work loads;
-- maintain normal motherboard airflow.
+- maintain normal motherboard/case airflow.
 
 ## Explicitly superseded storage decisions
 
-The following are no longer purchase targets:
+The following are no longer purchase targets or architectural requirements:
 
 - Samsung 990 PRO 2 TB `MZ-V9P2T0BW` as the selected system SSD;
-- a 2 TB system SSD justified by a temporary one-drive phase;
+- separate approximately 1 TB system/tools SSD;
+- separate 1–2 TB active-work SSD;
+- permanent two-NVMe system/work separation;
+- buying a small SSD specifically as an L2 cache;
+- automatic SSD tiering / Storage Spaces for the initial machine;
 - a fixed 4 TB high-performance work SSD;
-- buying the active-work SSD later;
-- reserving a Gen5 drive as the preferred work-drive class;
 - buying high-performance NVMe capacity for archival/cold data;
+- reserving `M.2_1` for a hypothetical later Gen5 upgrade;
 - ProArt-specific storage slot assignments as architectural requirements.
-
-The 990 PRO remains technically credible and may still appear in price comparisons, but it must win on role-specific value rather than incumbent status.
 
 ## Selected conclusions
 
-- **Architecture:** two physical internal NVMe SSDs from initial assembly.
-- **System/tools:** approximately **1 TB**, value/reliability/capacity optimized; exact model open.
-- **Active work:** **1 TB sufficient; 2 TB preferred when the incremental cost is attractive**; high-quality Gen4 TLC preferred; exact capacity/model open.
-- **Active-work topology:** CPU-direct x4 preferred.
-- **System-drive topology:** chipset-connected x4 fully acceptable.
-- **Gen5:** not required for either initial drive.
-- **Bulk/cold storage:** add later only when needed; may use NVMe, SATA SSD or healthy HDD.
+- **Architecture:** one primary internal NVMe SSD from initial assembly.
+- **Exact SSD:** **Crucial T710 2 TB `CT2000T710SSD8`**.
+- **Topology:** CPU-direct `M.2_1` PCIe 5.0 x4 under motherboard heatsink.
+- **Capacity:** 2 TB selected; 4 TB rejected as unnecessary initial spend.
+- **Second/third M.2:** remain empty for additive future expansion.
+- **Cold storage:** reuse healthy existing SATA drives where appropriate.
+- **SSD cache/tiering:** no.
 - **RAID:** no.
-- **Future capacity:** additive; no planned replacement of the initial pair merely to expand capacity.
+- **Future capacity:** additive only when actual use justifies it.
 
-## Next optimization questions
+## Remaining storage procurement checks
 
-For the exact SSD pass:
+Before ordering:
 
-1. identify the cheapest reputable ~1 TB system-drive candidates with mature firmware and normal warranty;
-2. compare **1 TB versus 2 TB active-work SSDs on absolute premium and price/TB**, not on an arbitrary fixed capacity target;
-3. prioritize TLC, sustained behavior, endurance, warranty and firmware maturity for the active-work drive;
-4. reject Gen5 premiums that do not buy a demonstrated workload benefit;
-5. evaluate the two-drive lane topology and later bulk-storage expansion path on each motherboard finalist.
+1. verify the exact part is `CT2000T710SSD8` rather than the factory-heatsink variant;
+2. refresh Romanian price and warranty/supplier quality;
+3. confirm normal retail/new condition;
+4. during commissioning, update firmware and validate temperatures/SMART under representative workloads.
