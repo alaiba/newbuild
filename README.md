@@ -14,7 +14,7 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 |---|---|
 | CPU | **AMD Ryzen 9 9950X3D**, Box/WOF `100-100000719WOF` |
 | Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** |
-| RAM | **Crucial `CT2K64G56C46U5` — 128 GB (2×64), DDR5-5600 CL46, 1.1 V, non-ECC, 1DPC** |
+| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2×24), DDR5-5600 CL46-class, 1.1 V, non-ECC, 1DPC** |
 | CPU cooler | **Thermalright Phantom Spirit 120 standard** |
 | Case | **be quiet! Pure Base 501 Airflow Black `BG074`** |
 | Case airflow | **2× included 140 mm PWM**, front intake + rear exhaust; no extra fans initially |
@@ -22,57 +22,52 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 | Storage expansion | `M.2_2` + `M.2_3` free; reuse healthy existing SATA drives for cold/bulk data |
 | Storage RAID/cache/tiering | **None** |
 | PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 |
-| PSU fallback | Corsair RM850x 2024 `CP-9020270-EU` only if checkout value/warranty is better |
 | UPS | **None initially** |
-| Dedicated surge protector | **None required**; use a properly earthed wall outlet or a reputable ordinary 16 A Schuko strip if additional outlets are needed |
+| Dedicated surge protector | **None required** |
 | GPU | Existing **RTX 3060 12 GB**, reused for as long as useful/reliable |
-| Host OS | **Windows 11 Pro x64**, initial 25H2 GA |
-| Windows license | **Retail/FPP USB English `HAV-00163`**, current target PROstore |
+| Host OS | **Windows 11 Pro x64** |
+| Windows license | **Retail/FPP USB English `HAV-00163`** |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** |
 
 ## Key architecture choices
 
-- 128 GB is bought once as **2×64 GB / 1DPC**; no temporary RAM and no planned 256 GB/four-DIMM endpoint.
-- Exact RAM uses **native JEDEC DDR5-5600 at 1.1 V**; no EXPO/XMP is required.
-- ECC is not used because practical 64 GB ECC UDIMM procurement is poor; CPU/board ECC capability remains unused rather than distorting capacity/topology.
-- **B650 is sufficient**: the selected B650E-E provides PCIe 5.0 x16 graphics, two CPU-connected M.2 paths, a third chipset Gen4 x4 M.2, BIOS FlashBack, Q-LED, SATA and adequate stock-load power delivery without B850/Creator premiums.
-- `M.2_1` hosts the selected **2 TB Crucial T710 Gen5 primary SSD**. `M.2_2` and `M.2_3` remain free for later expansion.
-- Current storage use is about **600 GB**; 2 TB is ample foreseeable active-storage headroom. Existing SATA drives remain useful for archives/cold data.
-- No separate system/work SSD split, no SSD cache layer and no automatic tiering are required initially.
-- **Phantom Spirit 120 + Pure Base 501** replaces NH-D15 G2 + North XL.
+- **48 GB / 2×24 GB / 1DPC** is the selected RAM purchase. It preserves the full two-DIMM DDR5-5600 path while avoiding the disproportionate current cost of 64/128 GB kits.
+- RAM capacity is treated as a concurrency limit, not an intrinsic CPU-performance lever: if the working set fits, larger two-DIMM capacities should not materially accelerate the CPU.
+- If 48 GB later proves insufficient, replace the pair with a larger two-DIMM kit; **do not add a second pair** and move to four DIMMs.
+- ECC is not used.
+- `M.2_1` hosts the selected 2 TB Crucial T710 Gen5 primary SSD. `M.2_2` and `M.2_3` remain free for later expansion.
+- No separate system/work SSD split, SSD cache layer or automatic tiering is required initially.
 - 1 GbE is sufficient; the board's 2.5 GbE is already more than required.
 - No multi-GPU/x8+x8 requirement; retire the RTX 3060 if a future GPU replacement occurs.
-- **Pure Power 13 M 850W** is selected because the current premium over the 750 W sibling is small while platform quality, acoustics and ATX 3.1 compliance are strong; 1000–1200 W remains unnecessary.
-- No UPS and no dedicated surge protector are purchased initially. Revisit mains protection only if actual power-quality problems appear.
+- Pure Power 13 M 850W is selected; 1000–1200 W remains unnecessary.
+- No UPS and no dedicated surge protector are purchased initially.
 
-## Final order position — 2026-08-31
+## Procurement position — 2026-08-31
 
-Recommended provider split:
+The 48 GB Crucial Pro kit currently surfaces in Romania from approximately **2,899 lei**. Re-run same-day supplier consolidation before payment because RAM pricing remains volatile.
 
-- **EvoMAG:** CPU, RAM, cooler, case, SSD, PSU;
-- **ForIT:** exact motherboard;
-- **PROstore:** Windows 11 Pro Retail/FPP.
+The exact selected motherboard is **B650E-E `90MB1LT0-M0EAY0`**; do not confuse it with the separately sold B650-E `90MB1GT0-M0EAY0`.
 
-Reference total before shipping: **16,119.71 lei**, reusing the RTX 3060 and existing SATA storage.
+See:
 
-The exact 128 GB Crucial kit is currently the abnormal market item at approximately **7,699.99 lei**, nearly half of the selected-build total. Refresh it immediately before checkout; do not silently change memory topology merely to escape current pricing.
-
-See [`docs/final-order-plan-2026-08-31.md`](docs/final-order-plan-2026-08-31.md) for the live-priced basket, provider rationale and checkout gates.
+- [`docs/final-order-plan-2026-08-31.md`](docs/final-order-plan-2026-08-31.md)
+- [`docs/ram-capacity-sensitivity-2026-08-31.md`](docs/ram-capacity-sensitivity-2026-08-31.md)
 
 ## Current open work
 
-No component-selection work remains. Before payment, perform a same-day stock/price check, with special attention to the RAM kit.
+No architecture decision remains open. Before payment, perform a same-day stock/price/provider refresh for the selected 48 GB kit and exact motherboard.
 
 ## Repository structure
 
-- [`docs/requirements.md`](docs/requirements.md) — workload and governing requirements
-- [`docs/decisions.md`](docs/decisions.md) — closed/reopened decisions
-- [`docs/final-build.md`](docs/final-build.md) — current source-of-truth architecture
-- [`docs/procurement-plan-2026-08-31.md`](docs/procurement-plan-2026-08-31.md) — procurement state
-- [`docs/final-order-plan-2026-08-31.md`](docs/final-order-plan-2026-08-31.md) — current live-priced order plan
-- [`docs/compatibility.md`](docs/compatibility.md) — cross-component constraints
-- [`docs/components/`](docs/components/) — component deep dives
+- [`docs/requirements.md`](docs/requirements.md)
+- [`docs/decisions.md`](docs/decisions.md)
+- [`docs/final-build.md`](docs/final-build.md)
+- [`docs/procurement-plan-2026-08-31.md`](docs/procurement-plan-2026-08-31.md)
+- [`docs/final-order-plan-2026-08-31.md`](docs/final-order-plan-2026-08-31.md)
+- [`docs/ram-capacity-sensitivity-2026-08-31.md`](docs/ram-capacity-sensitivity-2026-08-31.md)
+- [`docs/compatibility.md`](docs/compatibility.md)
+- [`docs/components/`](docs/components/)
 
 ## Current stage
 
-**Purchase-ready.** Architecture and exact components are closed. Current reference order is ~**16.12k lei before shipping** across EvoMAG + ForIT + PROstore; verify same-day stock and especially RAM pricing before checkout.
+**Purchase-ready architecture.** RAM is now closed at **48 GB / 2×24 GB**; only same-day procurement verification remains.
