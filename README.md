@@ -27,8 +27,7 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 | GPU | Existing **RTX 3060 12 GB**, reused for as long as useful/reliable | Already owned |
 | UPS | **None initially** | No purchase planned |
 | Dedicated surge protector | **None required** | No purchase planned |
-| Host OS | **Windows 11 Pro x64** | Selected |
-| Windows license | **Retail/FPP USB English `HAV-00163`** | **Not yet purchased** |
+| Host OS | **Windows 11 Pro x64** | Selected; license already available |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | Selected |
 
 ## First executed order — 2026-09-01
@@ -60,6 +59,7 @@ See [`docs/purchases-2026-09-01.md`](docs/purchases-2026-09-01.md).
 - No multi-GPU/x8+x8 requirement; retire the RTX 3060 if a future GPU replacement occurs.
 - **Pure Power 13 M 850W** is purchased; 1000–1200 W remains unnecessary.
 - No UPS and no dedicated surge protector are purchased initially.
+- Windows 11 Pro remains the selected host OS, but the license is **already available and excluded from procurement**.
 
 ## Procurement position — 2026-09-01
 
@@ -72,12 +72,15 @@ Already purchased:
 - primary SSD;
 - PSU.
 
+Already available outside this hardware order:
+
+- Windows 11 Pro license.
+
 Still to purchase:
 
 - exact Crucial Pro `CP2K24G56C46U5` RAM;
 - exact Thermalright Phantom Spirit 120 standard cooler;
-- exact be quiet! Pure Base 501 Airflow Black `BG074` case;
-- Windows 11 Pro Retail/FPP English USB `HAV-00163`.
+- exact be quiet! Pure Base 501 Airflow Black `BG074` case.
 
 The exact selected motherboard remains **B650E-E `90MB1LT0-M0EAY0`**; verify that manufacturer code on the physical box before installation because the retailer order text records the model name but not a trustworthy full SKU.
 
@@ -99,4 +102,4 @@ Historical/date-stamped snapshots may contain superseded architectures. Follow t
 
 ## Current stage
 
-**Partial procurement.** Complete sourcing for RAM, cooler, case and Windows; verify purchased hardware on arrival; then move to assembly and commissioning.
+**Partial procurement.** Complete sourcing for **RAM, cooler and case**; verify purchased hardware on arrival; then move to assembly and commissioning.
