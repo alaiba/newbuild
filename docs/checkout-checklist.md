@@ -25,12 +25,13 @@ Order total: **6,531.95 lei including 11.99 lei courier**.
 
 For these four, use the **arrival checks** below; do not re-shop them unless there is a problem.
 
+Windows 11 Pro is already available and is **not a checkout item**.
+
 Still to purchase:
 
 - RAM;
 - cooler;
-- case;
-- Windows license.
+- case.
 
 ## Exact purchase / arrival gates
 
@@ -43,11 +44,10 @@ Still to purchase:
 | Case | be quiet! Pure Base 501 Airflow Black **`BG074`** | Not yet purchased | Confirm both included 140 mm PWM fans are present |
 | SSD | Crucial T710 2 TB **`CT2000T710SSD8`** | Purchased | Must be bare/non-heatsink variant |
 | PSU | be quiet! Pure Power 13 M 850W **`BP027EU`** | Purchased | Reject Pure Power 12 M, other wattage/revision; never mix modular cables |
-| Windows | Windows 11 Pro **Retail/FPP English USB `HAV-00163`** | Not yet purchased | Reject OEM/System Builder or suspicious digital-key substitution |
 
 ## Remaining retailer-page checks
 
-For RAM, cooler, case and Windows:
+For RAM, cooler and case:
 
 - confirm the manufacturer part number/model in the specification table, not only the marketing title;
 - confirm the product is new retail stock, not open-box/refurbished/tray unless explicitly accepted;
@@ -142,21 +142,6 @@ Required:
 
 Confirm the exact non-window Airflow Black model and both included 140 mm PWM fans.
 
-### Windows
-
-Required:
-
-> `HAV-00163`
-
-Confirm:
-
-- Windows 11 Pro;
-- Retail/FPP;
-- English;
-- USB package.
-
-A cheap key-only/OEM listing is not an equivalent substitute.
-
 ## Provider/price consolidation
 
 Policy after the first order:
@@ -166,7 +151,7 @@ Policy after the first order:
 - exact SKU/model, warranty and retailer quality outrank small savings;
 - do not substitute the case/cooler merely to keep everything at EvoMAG.
 
-Calculate final cost using **delivered totals**, not product-price sums alone.
+Calculate final cost using **delivered totals**, not product-price sums alone. Do not include Windows in remaining procurement cost.
 
 ## Physical arrival checks — all hardware
 
