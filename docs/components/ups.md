@@ -1,76 +1,70 @@
 # UPS / Power Protection Deep Dive
 
-Status: **No UPS in initial BOM; point-of-use surge protection selected**
+Status: **No UPS and no dedicated surge protector in the initial BOM**
 
 ## Decision
 
 Do **not** buy a UPS for the initial workstation.
 
-The previous CyberPower PR1500ELCD selection is superseded.
+Do **not** buy a dedicated point-of-use surge protector for the initial workstation.
 
-The user does not need continuity through outages: a laptop is available, and short outages are acceptable operationally. A large battery-backed UPS therefore does not provide enough value to justify its purchase price, battery maintenance and eventual replacement.
+The previous CyberPower PR1500ELCD and later plug-in surge-protector purchase ideas are superseded.
+
+Short outages are operationally acceptable, and the incremental value of a dedicated surge-protection purchase does not justify its cost for this use case and risk tolerance.
+
+## Baseline power connection
+
+Use:
+
+- a properly earthed 230 V wall outlet;
+- if additional sockets are required, a reputable ordinary **16 A Schuko power strip** as a utility item.
+
+The ordinary power strip is not treated as a special protection component in the BOM.
 
 ## What a UPS would solve
 
-A UPS is useful for:
+A UPS can provide:
 
-- riding through brief outages;
-- giving time for graceful shutdown;
-- reducing interruption to long-running jobs;
-- voltage regulation on suitable line-interactive models.
+- ride-through for brief outages;
+- time for graceful shutdown;
+- reduced interruption to long-running jobs;
+- voltage regulation on suitable models.
 
-Those benefits are currently low priority for this workstation.
+Those benefits are currently low priority.
 
-## What matters for hardware protection
+## What a dedicated surge protector would solve
 
-The more relevant physical-hardware concern is transient overvoltage/surge rather than the simple disappearance of mains power.
+A plug-in surge protector can provide an additional sacrificial transient-protection layer. It does not guarantee survival from every electrical event and does not substitute for proper building-level protection or earthing.
 
-Under the explicit constraint that the electrical installation itself will not be modified, use a **reputable plug-in surge protector / surge-protected power strip** between the wall outlet and the workstation.
+The selected PSU already contains normal input/protection circuitry. The project accepts the residual mains risk rather than buying another dedicated device without evidence of a local power-quality problem.
 
-Prefer a device with:
+## Outage / power-quality policy
 
-- clear surge-protection status indicator;
-- Schuko/Type-F grounding appropriate for the local installation;
-- reputable manufacturer and safety certifications;
-- sufficient current/power rating for the workstation and connected displays/peripherals;
-- replaceable/discard-on-expiry policy when the protection indicator shows the suppression elements are exhausted.
-
-## Important limitation
-
-Point-of-use surge protection is a practical compromise, not equivalent to coordinated building-level Type 1/Type 2 surge protection.
-
-Its effectiveness depends on a sound protective-earth connection. A plug-in protector cannot correct missing/poor earthing or absorb every severe event such as a close/direct lightning event.
-
-No electrical-installation modifications are required by this PC project.
-
-## Outage policy
-
-Occasional short outages are accepted. Consequences are primarily operational/data-consistency risks rather than expected physical destruction of PC components.
-
-Mitigations remain:
+Occasional short outages are accepted. Mitigations remain:
 
 - version control;
 - independent backups;
 - mature filesystems/applications;
 - avoiding firmware/BIOS updates during obviously unstable mains conditions;
-- saving work normally;
-- using the laptop when continuity matters.
+- saving work normally.
 
-If actual use later shows that abrupt shutdowns are annoying or harmful to VM/database workflows, add a **modest UPS sized from measured workstation wall consumption**, not from PSU nameplate wattage.
+Revisit external protection only if actual evidence appears, such as repeated unexplained equipment failures, abnormal voltage behavior or outages that materially disrupt VM/database workflows.
 
-## Superseded selection
+## Superseded selections
 
 The following are no longer purchase targets:
 
-- CyberPower PR1500ELCD 1500 VA / 1350 W;
-- the earlier 1000 W-class UPS candidates;
-- sizing a UPS around a hypothetical 900–980 W future workstation;
-- buying a UPS mainly for surge protection.
+- CyberPower PR1500ELCD;
+- earlier 1000 W-class UPS candidates;
+- sizing a UPS around a hypothetical high-power future workstation;
+- buying a UPS mainly for surge protection;
+- dedicated plug-in surge protector / surge-protected power strip as a BOM requirement.
 
 ## Selected conclusion
 
 - **UPS:** none initially.
+- **Dedicated surge protector:** none initially.
 - **Continuity requirement:** none.
-- **Point-of-use protection:** reputable surge-protected plug/power strip.
+- **Normal connection:** properly earthed wall outlet; ordinary reputable 16 A Schuko strip only if more sockets are needed.
 - **Electrical installation changes:** none required by this project.
-- **Future UPS:** reconsider only if real observed outages/workloads create a concrete need.
+- **Future reconsideration:** only if real observed power-quality/outage problems create a concrete need.
