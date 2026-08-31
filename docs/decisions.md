@@ -7,15 +7,16 @@ This file records closed decisions plus any decision explicitly reopened because
 | Area | Decision | Status | Rationale / reopen condition |
 |---|---|---|---|
 | CPU / platform | **AMD Ryzen 9 9950X3D on AM5** | **Selected** | A 9950X saves roughly 650 lei but does not improve the stability/endurance goal, is not better in the relevant compile evidence, and sacrifices substantial gaming performance. Keep the permanent CPU. |
-| Motherboard | **Exact motherboard reopened; ASUS ProArt X870E-Creator WiFi remains the incumbent reference** | **Reopened** | The ProArt was promoted largely because of the difficult 4×64 GB / 256 GB requirement. That requirement is now removed. Re-optimize the board against the final 128 GB 2×64 GB / 1DPC target and the finalized two-drive storage topology before purchase. No replacement is selected yet. |
+| Motherboard | **Exact motherboard reopened; ASUS ProArt X870E-Creator WiFi remains the incumbent reference** | **Reopened** | The ProArt was promoted largely because of the difficult 4×64 GB / 256 GB requirement. That requirement is now removed. Re-optimize the board against the final 128 GB 2×64 GB / 1DPC target and the finalized storage topology before purchase. No replacement is selected yet. |
 | Final memory capacity | **128 GB from day one** | **Selected / final** | There is no provisional RAM stage. Buy the intended lifetime capacity at initial assembly rather than buying 64 GB now and replacing or expanding it later. |
 | Final memory topology | **2×64 GB DDR5 UDIMM, one DIMM per channel (1DPC), installed A2/B2** | **Selected / final** | 128 GB is sufficient as the lifetime target and 2×64 preserves the electrically favorable 1DPC topology. This avoids the four-DIMM training/frequency compromises that drove much of the previous 256 GB motherboard analysis. |
 | Exact memory kit | **2×64 GB exact SKU to be selected in the next optimization pass** | **Open** | Optimize for stability first: conservative JEDEC behavior, board validation/QVL evidence, low voltage, module construction, warranty and, if worthwhile, end-to-end ECC support/reporting. Do not buy a temporary 2×32 GB kit. |
 | ECC policy | **ECC is optional, not a capacity requirement** | **Open within RAM optimization** | With 2×64 GB, ECC can be evaluated on its own merits. Prefer ECC UDIMM only if exact-module board support and usable OS-level error reporting are credible without materially worsening value or stability. |
 | CPU cooling | **Noctua NH-D15 G2 standard + 7 mm AM5 offset** | **Selected** | Cheaper Thermalright options are strong, but Noctua's support/mounting ecosystem, fan endurance and six-year warranty better match 10-year ownership. |
-| Storage architecture | **Two internal NVMe drives from day one: ~1 TB system/tools + 4 TB work/data** | **Selected / final architecture** | Separate OS/tools from write-heavy development data immediately. The old staged 2 TB-now / 4 TB-later plan is superseded. Storage capacity remains additively expandable later without replacing either initial drive. |
-| System SSD role | **~1 TB value/reliability-focused NVMe; exact model open** | **Selected role / model open** | With 128 GB RAM and a dedicated work SSD, the OS drive does not justify flagship sequential performance. Optimize for adequate headroom, mature firmware, reputable vendor, warranty and sensible price. A chipset-connected x4 M.2 slot is acceptable. |
-| Work SSD role | **4 TB high-quality NVMe from day one; Gen4 TLC preferred; exact model open** | **Selected role / model open** | Repositories, Maven/Gradle caches, WSL2/container data, Android SDK/AVDs, VMs, databases, games and similar high-I/O/high-capacity data belong here. Prefer CPU-direct x4, TLC, strong sustained behavior/endurance and mature firmware. Gen5 is not required and is justified only by negligible premium or demonstrated workload benefit. |
+| Storage architecture | **Two internal NVMe drives from day one: ~1 TB system/tools + 1–2 TB active-work SSD; add bulk/cold storage later only when needed** | **Selected / final architecture** | Separate OS/tools from latency-sensitive active development data immediately without buying high-performance capacity for infrequently accessed data. Storage growth is additive through another NVMe, SATA SSD or HDD rather than replacement of the initial pair. |
+| System SSD role | **~1 TB value/reliability-focused NVMe; exact model open** | **Selected role / model open** | With 128 GB RAM and a dedicated active-work SSD, the OS drive does not justify flagship sequential performance. Optimize for adequate headroom, mature firmware, reputable vendor, warranty and sensible price. A chipset-connected x4 M.2 slot is acceptable. |
+| Active-work SSD role | **1 TB is sufficient; prefer 2 TB when the absolute premium and price/TB are attractive; Gen4 TLC preferred; exact model/capacity open** | **Selected role / purchase-size open** | Current repos, Maven/Gradle caches, WSL2/container data, active Android images, active VMs/databases and other latency-sensitive working data belong here. Prefer CPU-direct x4, TLC, strong sustained behavior/endurance and mature firmware. Do not buy 4 TB merely to hold cold data. |
+| Bulk/cold storage | **Add only when needed; speed is secondary** | **Selected expansion policy** | Archived repos, old VMs, ISOs, installers, datasets and other infrequently accessed data may live on a later chipset NVMe, SATA SSD or healthy HDD. Existing old HDDs may be reused after SMART/health checks, but must not contain the only copy of important data. |
 | Storage RAID policy | **No RAID required** | **Selected** | Independent drives plus version control and real external/network backup are preferred. RAID1 does not replace backup and adds complexity without solving the main failure modes. |
 | PSU architecture | **1200 W ATX 3.1 / PCIe 5.1 / 12V-2x6** | **Selected** | Correct margin for a future single ~600 W GPU without unnecessary 1300–1600 W oversizing. |
 | PSU baseline | **Seasonic VERTEX GX-1200 current ATX 3.1 revision** | **Selected / purchase-ready** | 12-year warranty, compact 160 mm chassis and explicit Altex ATX 3.1 listing. |
@@ -32,7 +33,7 @@ This file records closed decisions plus any decision explicitly reopened because
 | Security/virtualization | **UEFI + Secure Boot + TPM 2.0 + SVM/IOMMU + BitLocker after firmware stabilization** | **Selected** | Conservative production baseline. |
 | GPU | **Reuse RTX 3060 12 GB initially** | **Selected** | Future high-VRAM GPU remains deferred. |
 | Future AI path | **One very high-performance/high-VRAM discrete GPU** | **Selected architecture** | Do not optimize current AM5 build for serious multi-GPU workloads. |
-| Cost philosophy | **Optimize utility per leu; do not spend for benchmark prestige** | **Selected** | Utility includes stability, endurance, serviceability, warranty, thermal/electrical margin and workload performance. Premiums must buy a material benefit for this workload or avoid a credible future replacement. |
+| Cost philosophy | **Optimize utility per leu; do not spend for benchmark prestige or unused capacity** | **Selected** | Utility includes stability, endurance, serviceability, warranty, thermal/electrical margin and workload performance. Premiums must buy a material benefit for this workload or avoid a credible future replacement. |
 | Provider consolidation | **Maximum 3 providers; default target 2 for hardware** | **Selected** | Hardware provider #3 normally needs roughly ≥300 lei net saving or materially better stock/SKU/revision/warranty certainty. Software such as Windows is exempt when the extra provider has negligible RMA burden. |
 
 ## Explicitly superseded decisions
@@ -53,15 +54,18 @@ The following are no longer part of the build:
 
 - Samsung 990 PRO 2 TB `MZ-V9P2T0BW` as a selected system-drive purchase;
 - a 2 TB system/tools drive bought first to carry the initial working set;
-- deferring the dedicated 4 TB work drive to a later phase;
-- reserving Gen5 performance as a requirement for the work drive.
+- a fixed 4 TB high-performance work SSD as an initial requirement;
+- deferring the active-work drive to a later phase;
+- reserving Gen5 performance as a requirement for the work drive;
+- buying fast NVMe capacity merely to hold infrequently accessed/archive data.
 
 ## Open / deferred decisions
 
-- exact motherboard after re-optimization for the 128 GB 1DPC and finalized two-drive storage topology;
+- exact motherboard after re-optimization for the 128 GB 1DPC and finalized storage topology;
 - exact matched 2×64 GB RAM kit and ECC/non-ECC verdict;
 - exact ~1 TB system SSD;
-- exact 4 TB work SSD;
+- exact 1 TB or 2 TB active-work SSD based on current price/value;
+- optional future bulk/cold-storage device when capacity actually requires it;
 - exact future high-VRAM GPU;
 - exact container runtime if licensing/workflow makes it material.
 
