@@ -1,77 +1,76 @@
 # Initial BOM Purchase Review — 2026-08-31
 
-This is a dated price snapshot. The exact order execution and acceptance gates are in `docs/procurement-plan-2026-08-31.md`.
+This is the current dated procurement/value snapshot. Exact order execution and acceptance gates are in `docs/procurement-plan-2026-08-31.md`.
 
-## Current complete-order position
+## Optimized complete-order position
 
-Representative current complete initial purchase, including the required Windows 11 Pro Retail/FPP license and excluding the reused RTX 3060, is approximately **18.9–19.3k lei before shipping**.
+The final provider/value pass optimizes both **price and useful lifetime**, with a default of **two providers**.
 
-The range is intentional: RAM and UPS listings currently show the largest price/stock inconsistencies, so quoting a single exact total would be false precision.
+Representative total with the purchase-ready **Seasonic VERTEX GX-1200**:
+
+- **~19,949 lei before shipping**.
+
+If the **VERTEX PX-1200** is in stock at the current ~160 lei premium:
+
+- **~20,109 lei before shipping**.
+
+The higher total versus the previous snapshot is mainly the deliberate UPS upgrade from a 1000 W current-system unit to a 1350 W model that is expected to remain suitable through the future high-power GPU upgrade.
 
 ## Current controls
 
-| Component | Selected target | Current working reference |
+| Component | Selected target | Working control |
 |---|---|---:|
-| CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | **3,349.99 lei** direct EvoMAG indexed page |
-| Motherboard | ASUS ProArt X870E-Creator WiFi | ~**2,542–2,654 lei** competitive in-stock controls |
-| RAM | Crucial `CT2K32G56C46U5`, 64 GB 2×32 | ~**5.0k-class** current market; strict exact-SKU gate |
-| Cooler | Noctua NH-D15 G2 standard `CPNTD15G2` | ~**701–730 lei** |
-| SSD | Samsung 990 PRO 2 TB `MZ-V9P2T0BW` | ~**1,900–1,953 lei** |
-| PSU | Seasonic VERTEX GX-1200 current ATX 3.1 | **1,289.99 lei** explicit Altex listing |
-| Case | Fractal North XL Mesh `FD-C-NOR1X-01` | **1,018.51 lei** exact ForIT listing |
-| Rear fan | Noctua NF-A14x25 G2 PWM standard single | ~**193 lei** |
-| UPS | CyberPower `CP1600EPFCLCD` | use ~**1.65–1.75k lei** checkout envelope |
-| GPU | Existing RTX 3060 12 GB | 0 lei new spend |
-| Windows | Windows 11 Pro Retail/FPP USB English `HAV-00163` | **1,123.60–1,146.55 lei** current direct retailer controls |
+| CPU | Ryzen 9 9950X3D Box/WOF `100-100000719WOF` | **3,349.99 lei** EvoMAG |
+| Motherboard | ASUS ProArt X870E-Creator WiFi | ~**2,685 lei** EvoMAG-class current control |
+| RAM | Crucial `CT2K32G56C46U5`, 64 GB 2×32 | ~**4,799.99 lei** fresh EvoMAG/comparison control |
+| Cooler | Noctua NH-D15 G2 standard | ~**690.99 lei** |
+| SSD | Samsung 990 PRO 2 TB `MZ-V9P2T0BW` | **1,899.99 lei** |
+| PSU baseline | VERTEX GX-1200 current ATX 3.1 | **1,289.99 lei** Altex |
+| PSU conditional upgrade | VERTEX PX-1200 current ATX 3.1 | **1,449.99 lei** reference, currently explicit listing out of stock |
+| Case | Fractal North XL Mesh `FD-C-NOR1X-01` | **882.99 lei** EvoMAG |
+| Rear fan | Noctua NF-A14x25 G2 PWM | **200.99 lei** EvoMAG |
+| UPS | **CyberPower PR1500ELCD, 1500 VA / 1350 W** | **2,948.99 lei** EvoMAG/current market |
+| GPU | existing RTX 3060 12 GB | 0 lei |
+| Windows | **Windows 11 Pro Retail/FPP `HAV-00197` Romanian USB** | **1,199.99 lei** EvoMAG |
 
-## RAM conclusion
+## Key value changes
 
-**64 GB remains selected.**
+### UPS — upgraded
 
-The current target is still Crucial `CT2K32G56C46U5`, 2×32 GB DDR5-5600 CL46 1.1 V. Current pricing is higher/less consistent than the earlier ~4.7–4.8k snapshot, but the complete build still remains far below the planning level.
+`CP1600EPFCLCD` was replaced by **PR1500ELCD**.
 
-Purchase gate:
+Reason: the future design case around 900–980 W would put the former 1000 W UPS near full load. The 1350 W PR1500 keeps that load around 67–73%, adds better runtime/AVR and hot-swappable battery serviceability, and may avoid buying another UPS later.
 
-- exact desktop **`CT2K32G56C46U5`** only;
-- reject laptop/SO-DIMM **`CT2K32G56C46S5`**;
-- if the Crucial checkout price approaches the price of Kingston `KF556C36BBEK2-64`, recompare Kingston because it is explicitly listed by Kingston for the ProArt.
+### PSU — conditional premium
 
-## Windows conclusion
+GX-1200 remains the purchase-ready baseline. **PX-1200 is preferred when available at ≤~200 lei premium**, because the Platinum-efficiency premium is small enough to be sensible over a long ownership period. Do not delay the build while PX is out of stock.
 
-The license decision is now exact:
+### Windows — consolidated
 
-**Microsoft Windows 11 Pro Retail/FPP USB English `HAV-00163`.**
+Use **Retail/FPP `HAV-00197` from EvoMAG** rather than creating provider #3 for the slightly cheaper English package. Windows 11 Pro can install/switch to English display language.
 
-This is a required purchase because no transferable Windows license is already available. Retail/FPP was selected instead of OEM/DSP for the strict licensing path on a DIY self-build.
+### RAM — keep Crucial
 
-Current direct retailer controls:
+The exact Crucial 64 GB kit remains the value leader at the current ~4.8k control. Kingston's explicit ProArt compatibility is attractive but not worth the present ~500–600+ lei premium; reconsider if the gap shrinks to roughly 200–250 lei.
 
-- Prostore: approximately **1,123.60 lei**, exact `HAV-00163`, Retail/FPP, supplier stock;
-- ForIT: approximately **1,146.55 lei**, exact `HAV-00163`, Retail/FPP, supplier stock;
-- Microsoft direct remains the **1,199 RON** reference.
+## Provider plan
 
-Do not substitute OEM/DSP or a cheap standalone emailed key.
+### EvoMAG
+
+CPU, motherboard, RAM, cooler, SSD, case, rear fan, PR1500ELCD and Windows Retail/FPP.
+
+### Altex
+
+Current-revision Seasonic VERTEX PSU.
+
+A third provider requires approximately **≥300 lei net saving** or materially better stock/SKU/revision/warranty certainty.
 
 ## Deferred cost
 
-Excluded from the initial total:
+Still excluded:
 
-- future 4 TB-or-larger work/VM/container SSD;
-- future high-VRAM GPU;
-- eventual 256 GB matched memory configuration;
-- any future UPS enlargement required by that GPU/load.
+- future 4 TB+ work/VM/container SSD;
+- eventual 256 GB matched RAM configuration;
+- future high-VRAM GPU.
 
-## Source controls
-
-- CPU direct: https://www.evomag.ro/componente-pc-gaming-procesoare/amd-procesor-amd-ryzen-9-9950x3d-4.3ghz-144mb-170w-am5-box-4206997.html
-- ProArt market: https://www.pricy.ro/ProductUrlId/placa-de-baza-asus-proart-x870e-creator-wifi--socket-am5-7E95DB2CF7553837275C1FDE2803A4E0
-- RAM market: https://www.compari.ro/memorii-c3577/crucial/64gb-2x32gb-ddr5-5600mhz-ct2k32g56c46u5-p993167062/
-- Kingston fallback: https://www.price.ro/preturi-kingston-memorie-fury-beast-64gb-2x32gb-ddr5-5600mhz-cl36-kf556c36bbek2-64-4046486
-- cooler: https://www.price.ro/preturi-noctua-nh-d15-g2-4652246
-- SSD: https://solid-state-drive-ssd-intern.compari.ro/samsung/990-pro-2tb-m-2-mz-v9p2t0bw-p885630345/
-- PSU: https://altex.ro/sursa-pc-seasonic-vertex-gx-1200-atx-3-1-1200w-135mm-80-plus-gold-full-modular/cpd/VERTEXGX1200/
-- case: https://www.forit.ro/fractal-design-north-xl-charcoal-black-tower-case-black-mesh-version-bp939671
-- fan: https://www.vexio.ro/noctua/pagina10/
-- UPS: https://www.compari.ro/ups-uri-surse-neintreruptibile-c3133/cyberpower/cp1600epfclcd-1600va-p1051248901/
-- Windows ForIT: https://www.forit.ro/sistem-de-operare-microsoft-windows-11-pro-64-bit-engleza-retail-fpp-usb-flash-bp414367
-- Windows Prostore: https://www.prostore.ro/sisteme_de_operare/microsoft/93926-windows-11-pro-64-bit-engleza-retail-fpp-usb-flash/
+Those remain separate future purchases.
