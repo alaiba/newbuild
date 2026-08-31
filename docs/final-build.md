@@ -21,9 +21,10 @@ This is the current source-of-truth architecture for the workstation.
 | UPS | **None initially** | **Selected** |
 | Dedicated surge protection | **None required** | **Selected** |
 | GPU | Existing **RTX 3060 12 GB** | **Reuse** |
-| Host OS | **Windows 11 Pro x64** | **Selected** |
-| Windows license | **Retail/FPP USB English `HAV-00163`** | **Selected / not yet purchased** |
+| Host OS | **Windows 11 Pro x64** | **Selected; license already available** |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** |
+
+Windows is no longer a procurement item. Do not include it in remaining shopping lists or build-cost estimates.
 
 ## Purchase record — first executed order
 
@@ -150,17 +151,16 @@ No UPS and no dedicated surge protector initially. Use a properly earthed wall o
 - be quiet! Pure Power 13 M 850W `BP027EU`;
 - **already purchased**; use only its supplied modular cables.
 
-### Windows
-- Windows 11 Pro Retail/FPP English USB `HAV-00163`.
-
 ## Procurement position — 2026-09-01
 
 Architecture and component selection are closed. Procurement is **partially complete**.
 
 Purchased from EvoMAG: **CPU + motherboard + primary SSD + PSU**, order total **6,531.95 lei including 11.99 lei courier**.
 
-Remaining to source: **RAM + CPU cooler + case + Windows license**.
+Windows 11 Pro is already available and requires no procurement action.
 
-For the four purchased components, stop price shopping and perform physical identity/condition verification when they arrive. For the remaining items, continue exact-model sourcing without relaxing the anti-substitution rules.
+Remaining to source: **RAM + CPU cooler + case**.
+
+For the four purchased components, stop price shopping and perform physical identity/condition verification when they arrive. For the three remaining items, continue exact-model sourcing without relaxing the anti-substitution rules.
 
 Detailed decisions: `docs/decisions.md`.
