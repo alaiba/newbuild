@@ -2,7 +2,7 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, the **CPU/platform, motherboard, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, exact CPU cooler, staged storage architecture, exact initial system SSD, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis, exact rear exhaust fan, Phase-1 UPS architecture and existing GPU are selected**. Several purchase-time SKUs remain provisional.
+At present, the **CPU/platform, motherboard, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, exact CPU cooler, staged storage architecture, exact initial system SSD, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis, exact rear exhaust fan, exact Phase-1 UPS and existing GPU are selected**. Several purchase-time SKUs remain provisional.
 
 ## Status vocabulary for this document
 
@@ -27,7 +27,7 @@ At present, the **CPU/platform, motherboard, 256 GB architectural memory target,
 | Rear case fan | **Noctua NF-A14x25 G2 PWM, square-frame 140 mm** | **Selected** | Permanent rear exhaust. 0–1500 RPM PWM, SSO2 bearing, >150,000 h MTTF and six-year warranty. Standard brown/beige is baseline; chromax.black is technically equivalent if similarly priced. |
 | Case-fan layout | **3× included 140 mm front intake + 1× Noctua 140 mm rear exhaust** | **Selected** | No top/side fans initially. Add only if measured thermals justify them. |
 | GPU | NVIDIA GeForce RTX 3060 12 GB | **Existing / selected** | Reuse initially; preserve future path to one very high-end/high-VRAM GPU |
-| UPS | **CyberPower CP1600EPFCLCD** | **Provisional target** | Phase-1 architecture selected: line-interactive, pure sine, ~1600 VA / 1000 W. Reassess UPS capacity when a materially higher-power GPU is installed. |
+| UPS | **CyberPower CP1600EPFCLCD** | **Selected** | 1600 VA / 1000 W, pure-sine line-interactive, Active-PFC compatible, AVR, USB HID/PowerPanel, user-replaceable `RBP0142` battery. Selected for the current RTX 3060 system; reassess at future high-power GPU upgrade. |
 | OS | — | Open | |
 
 ## Motherboard selection rationale
@@ -147,19 +147,30 @@ Add top/side fans only if measured CPU/GPU/SSD/VRM thermals justify them.
 
 ## UPS
 
-Phase-1 architecture:
+Selected Phase-1 UPS: **CyberPower CP1600EPFCLCD**.
+
+Key characteristics:
 
 - line-interactive;
 - pure sine-wave output on battery;
-- active-PFC compatible;
-- approximately **1600 VA / 1000 W**;
+- Active-PFC compatible;
+- **1600 VA / 1000 W**;
 - AVR;
-- USB monitoring / graceful shutdown;
-- user-replaceable battery.
+- six Schuko battery-backed/surge-protected outlets per the current official EU/Romanian specification;
+- USB HID monitoring plus PowerPanel Business support;
+- included USB cable;
+- user-replaceable **RBP0142** battery pack, 24 V / 2×12 V 9 Ah;
+- manufacturer runtime approximately 9.7 minutes at 500 W and 2.6 minutes at 1000 W;
+- official Romanian warranty: 2 years UPS / 2 years battery.
 
-Current provisional target: **CyberPower CP1600EPFCLCD**.
+Current purchase position on 2026-08-31:
 
-The UPS is deliberately sized for the current RTX 3060 workstation rather than the hypothetical future 600 W GPU. Reassess at the GPU upgrade.
+- PC Garage: approximately **1,589.80 lei, in stock**;
+- cheapest broader Romanian offers: roughly **1.47–1.55k lei**.
+
+The PC Garage premium is small enough to follow the retailer preference and buy there.
+
+The UPS is deliberately sized for the current RTX 3060 workstation rather than the hypothetical future 600 W GPU. Reassess the UPS at the GPU upgrade or if measured system load approaches roughly 700–800 W.
 
 ## Remaining promotion / purchase-time gates
 
@@ -195,8 +206,13 @@ The exact model is selected:
 
 ### UPS
 
-- verify Romanian warranty, replacement-battery availability and graceful-shutdown integration;
-- confirm measured post-build wall power remains comfortably below 1000 W.
+The exact hardware is selected. Bring-up/acceptance work remains:
+
+- prefer PC Garage while its premium remains small;
+- confirm exact `CP1600EPFCLCD` EU/Schuko unit and expected six outlets on receipt;
+- connect USB and configure automatic graceful shutdown;
+- measure actual load and runtime;
+- perform a controlled mains-loss shutdown test.
 
 ### SSD
 
@@ -234,4 +250,4 @@ Before purchase/assembly, verify:
 - inspect PSU/GPU power connectors for full insertion and strain-free routing;
 - sleep/resume, WSL2 and virtualization validation;
 - 10 GbE driver/firmware and sleep/resume validation;
-- UPS communication and graceful-shutdown testing.
+- connect the CP1600EPFCLCD by USB, configure graceful shutdown, measure load/runtime and perform a controlled power-loss test.
