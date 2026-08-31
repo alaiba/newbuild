@@ -2,13 +2,13 @@
 
 This document will become the final bill of materials once component decisions are closed.
 
-At present, the **CPU/platform, motherboard, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, staged storage architecture, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis, Phase-1 UPS architecture and existing GPU are selected**. Exact memory kits and several purchase-time SKUs remain open/provisional.
+At present, the **CPU/platform, motherboard, 256 GB architectural memory target, 32 GB Phase-1 memory floor, high-end air-cooling architecture, staged storage architecture, 1200 W ATX 3.1 PSU architecture, Fractal Design North XL Mesh chassis, Phase-1 UPS architecture and existing GPU are selected**. Several purchase-time SKUs remain provisional.
 
 ## Status vocabulary for this document
 
 - **Selected** — closed decision; use as a fixed input to subsequent component selection unless explicitly reopened.
 - **Target selected** — design target is fixed, but implementation details remain open.
-- **Provisional target** — preferred current candidate, intentionally not final; may change if dependent validation fails.
+- **Provisional target** — preferred current candidate, intentionally not final; may change if dependent validation fails or purchase-time pricing changes materially.
 - **Open** — no preferred model/configuration has been nominated yet.
 
 ## Selected components
@@ -16,8 +16,9 @@ At present, the **CPU/platform, motherboard, 256 GB architectural memory target,
 | Component | Selected model | Status | Notes |
 |---|---|---|---|
 | CPU | AMD Ryzen 9 9950X3D | **Selected** | AM5 platform; fixed input |
-| Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Selected** | Promotion gate completed 2026-08-30. Chosen for the strongest explicit 4×64 GB / 256 GB firmware evidence and ECC-specific firmware trail. ASRock X870 Taichi Creator remains the lower-cost alternative but did not match ASUS's exact validation evidence. |
-| Memory | **32 GB minimum Phase 1 / 256 GB architectural target** | **Target selected** | Phase-1 RAM is temporary commissioning memory. Eventual 256 GB remains a separate future purchase; prefer 4×64 GB ECC UDIMM if exact modules/QVL/observability are mature then, otherwise use a validated 4×64 GB non-ECC configuration. |
+| Motherboard | **ASUS ProArt X870E-Creator WiFi** | **Selected** | Chosen for the strongest explicit 4×64 GB / 256 GB firmware evidence and ECC-specific firmware trail. |
+| Memory | **KLEVV FIT V 32 GB (2×16) DDR5-5600 CL30 `KD5AGU880-56K300F`** | **Provisional Phase-1 purchase target** | Phase-1 RAM is temporary. Current ~2.39k lei target because it is among the cheaper reputable 2×16 desktop kits in the distorted Aug 2026 market. Boot at Auto/JEDEC first; EXPO is optional. Replace rather than expand when moving to the 256 GB endpoint. |
+| Long-term memory | **256 GB architectural target, expected 4×64 GB** | **Target selected / purchase deferred** | Prefer ECC UDIMM only if exact 64 GB modules, four-DIMM support, stability and OS-visible ECC reporting are credible at upgrade time; otherwise use validated non-ECC. |
 | CPU cooler | **Noctua NH-D15 G2 LBC** | **Provisional target** | High-end air cooling architecture selected. Standard NH-D15 G2 is fallback if materially cheaper/easier to source. |
 | Storage | **2 TB system/tools NVMe now + 4 TB-or-larger work/VM NVMe later** | **Architecture selected** | Initial SSD should be mature TLC + DRAM PCIe 4.0. Reserve CPU-connected M.2_1 for the later work drive. |
 | PSU | **Seasonic VERTEX GX-1200 ATX 3.1** | **Provisional target** | 1200 W ATX 3.1 / PCIe 5.1 architecture selected. Require native 12V-2x6 and verify exact revision at purchase. |
@@ -29,21 +30,7 @@ At present, the **CPU/platform, motherboard, 256 GB architectural memory target,
 
 ## Motherboard selection rationale
 
-The ProArt is now closed rather than provisional because the 256 GB promotion gate has been completed.
-
-Key evidence:
-
-- official maximum memory: 256 GB;
-- ECC and non-ECC unbuffered DDR5 support;
-- BIOS 1003 explicitly added support for **four 64 GB modules / 256 GB at up to 5200 MT/s** when compatible modules are used;
-- BIOS 1303 improved high-capacity memory compatibility;
-- BIOS 1504 specifically targeted all-four-DIMM compatibility and system stability;
-- BIOS 2103 added DDR5-training stability margin and Ryzen 9000 boot/stability fixes;
-- BIOS 2306 explicitly optimized ECC-UDIMM performance;
-- current firmware continues memory/system-stability work;
-- ASUS states ECC UDIMM is limited to 5200 MT/s with Ryzen 9000 on newer AGESA.
-
-The ASRock X870 Taichi Creator remains attractive on price, diagnostics, networking and PCIe/storage topology, but equivalent explicit four-64-GB validation was not found. For this build, the ASUS premium is accepted as configuration-risk reduction.
+The ProArt is closed because its firmware history explicitly addresses four-64-GB / 256 GB operation, four-DIMM stability and ECC UDIMM behavior. The ASRock X870 Taichi Creator remains attractive on price/topology but did not match ASUS's exact validation evidence.
 
 Detailed evidence: `docs/components/motherboard-memory-promotion-gate-2026-08-30.md`.
 
@@ -51,11 +38,17 @@ Detailed evidence: `docs/components/motherboard-memory-promotion-gate-2026-08-30
 
 ### Phase 1
 
-- minimum **32 GB**;
-- 2×16 GB preferred when similarly priced;
-- 1×32 GB acceptable if materially cheaper;
-- ECC not required;
-- temporary kit should not constrain the eventual 256 GB configuration.
+Current purchase target:
+
+- **KLEVV FIT V 32 GB (2×16 GB) DDR5-5600 CL30 — `KD5AGU880-56K300F`**;
+- current Romanian low offer observed around **2,390 lei** on 2026-08-31;
+- use the motherboard-recommended two-DIMM slots;
+- update BIOS before serious testing;
+- boot at **Auto/JEDEC** first;
+- do not enable EXPO until baseline stability is established;
+- leaving the kit at conservative Auto/JEDEC settings is acceptable because the kit is temporary.
+
+This exact SKU is provisional because current DDR5 prices are unusually distorted. If another reputable desktop 2×16 GB DDR5 kit is materially cheaper on order day, substitute it rather than paying a premium for the KLEVV model.
 
 ### Eventual 256 GB
 
@@ -70,9 +63,9 @@ At upgrade time:
 5. start at JEDEC/Auto settings and accept 5200 MT/s or lower if required for stability;
 6. avoid EXPO/XMP merely to preserve headline frequency at 256 GB;
 7. perform extended memory stability testing;
-8. if ECC is used, verify Windows WHEA and/or Linux EDAC/RAS reporting before treating ECC as operationally useful.
+8. if ECC is used, verify Windows WHEA and/or Linux EDAC/RAS reporting.
 
-Important: **RDIMM is incompatible with this AM5 platform.** Many 64 GB server ECC modules are RDIMM; do not confuse them with ECC UDIMM.
+**RDIMM is incompatible with this AM5 platform.**
 
 ## Cooling strategy
 
@@ -129,9 +122,7 @@ The UPS is deliberately sized for the current RTX 3060 workstation rather than t
 
 ### Cooler
 
-Before the NH-D15 G2 LBC is purchased:
-
-- verify exact Phase-1 and eventual RAM height/clearance;
+- verify exact Phase-1 RAM height/clearance;
 - verify fit within North XL's 185 mm envelope including any front-fan raising;
 - refresh LBC versus standard G2 pricing.
 
@@ -154,7 +145,7 @@ Before the NH-D15 G2 LBC is purchased:
 Before purchase/assembly, verify:
 
 - 9950X3D support on shipping ProArt BIOS or have USB BIOS FlashBack ready;
-- selected Phase-1 RAM compatibility;
+- selected Phase-1 RAM compatibility and stable Auto/JEDEC operation;
 - NH-D15 G2 / RAM / North XL clearance;
 - selected SSD firmware/warranty and M.2 placement;
 - Seasonic exact ATX 3.1 revision and native 12V-2x6 cable;
