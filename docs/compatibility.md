@@ -169,9 +169,10 @@ Purchase/receipt acceptance:
 
 Current retailer position:
 
-- PC Garage first and eMAG second when they explicitly identify the current revision;
-- current searches still do not expose a sufficiently unambiguous listing from either preferred retailer;
-- an explicit **Altex VERTEX GX-1200 ATX 3.1** listing is the current Romanian fallback at about **1,289.99 lei** and shown in stock at the latest check.
+- **PC Garage and Altex are co-preferred retailers** when they carry the exact correct current revision at a sensible price;
+- **eMAG is also acceptable**;
+- an explicit **Altex VERTEX GX-1200 ATX 3.1** listing is currently purchase-ready at about **1,289.99 lei** and shown in stock at the latest check;
+- do not choose an ambiguous listing from another retailer over an explicit current-revision unit merely because of retailer preference.
 
 ## UPS ↔ PSU / full system
 
@@ -191,10 +192,11 @@ The UPS is intentionally sized for the current RTX 3060 system, not the PSU's 12
 
 For purchase-ready parts:
 
-- prefer **PC Garage first**;
-- use **eMAG second**;
-- prefer PC Garage when the difference is small;
-- an explicit current-revision listing beats preferred-retailer loyalty when a component has materially different old/new revisions under the same family name;
+- **PC Garage and Altex are co-preferred Romanian retailers**;
+- **eMAG is also acceptable**;
+- exact SKU/revision, seller quality and normal Romanian/EU warranty take precedence over retailer order;
+- when all else is equivalent, a small price difference does not justify using a materially less convenient or less trustworthy listing;
+- an explicit current-revision listing beats retailer loyalty when a component has materially different old/new revisions under the same family name;
 - for temporary Phase-1 RAM, a material saving can override retailer/brand preference because sunk cost is intentionally minimized.
 
 For memory specifically, **do not order until the final BOM review chooses between 32 GB and 64 GB**.
