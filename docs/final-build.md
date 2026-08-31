@@ -1,183 +1,160 @@
 # Final Build
 
-This is the current source-of-truth architecture for the workstation. Memory is finalized at **128 GB / 2×64 GB / 1DPC from day one**. Storage is finalized at the role/topology level as **~1 TB system NVMe + 1–2 TB active-work NVMe from day one, with bulk/cold storage added only when needed**. The exact motherboard, RAM kit and SSD models remain to be optimized before purchase.
+This is the current source-of-truth architecture for the workstation. Memory is finalized at **128 GB / 2×64 GB / 1DPC from day one**. Storage is finalized at the role/topology level as **~1 TB system storage + 1–2 TB CPU-direct active-work NVMe from day one, with bulk/cold storage added only when needed**. Power, networking and expansion requirements have now also been simplified to avoid speculative future-proofing.
 
 ## Current build state
 
 | Component | Configuration | Status |
 |---|---|---|
 | CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Selected** |
-| Motherboard | ASUS **ProArt X870E-Creator WiFi** incumbent reference | **Reopened for optimization** because 4×64/256 GB is no longer required |
+| Motherboard | Broad AM5 search; prior Creator-class boards remain references only | **Reopened for optimization** |
 | RAM capacity | **128 GB from day one** | **Selected / final** |
 | RAM topology | **2×64 GB DDR5 UDIMM, 1DPC, A2/B2** | **Selected / final** |
 | Exact RAM kit | Exact 2×64 GB matched kit | **Open for optimization** |
-| ECC | ECC UDIMM only if end-to-end support/reporting is compelling | **Open within RAM optimization** |
+| ECC | Only if end-to-end support/reporting is compelling | **Open within RAM optimization** |
 | CPU cooler | **Noctua NH-D15 G2 standard**, 7 mm AM5 offset | **Selected** |
-| System/tools SSD | **~1 TB NVMe**, reliability/capacity/value optimized; chipset-connected x4 acceptable | **Role/capacity selected; exact model open** |
-| Active-work SSD | **1 TB sufficient; 2 TB preferred when current price/value justifies it**, Gen4 TLC preferred; CPU-direct x4 preferred | **Role selected; exact capacity/model open** |
-| Bulk/cold storage | Add later only when needed; extra NVMe/SATA SSD/HDD acceptable according to workload | **Expansion policy selected** |
-| Storage RAID | **No RAID**; external/network/cloud backup required for important data | **Selected** |
-| PSU | **Seasonic VERTEX GX-1200 current ATX 3.1 / PCIe 5.1 / 12V-2x6** | **Selected baseline** |
-| PSU value upgrade | **VERTEX PX-1200 current ATX 3.1** | **Preferred if in stock at ≤~200 lei premium** |
-| Case | **Fractal North XL Mesh `FD-C-NOR1X-01`** | **Selected** |
-| Rear fan | **Noctua NF-A14x25 G2 PWM**, standard square-frame single | **Selected** |
-| Case airflow | 3× included 140 mm front intake + 1×140 mm rear exhaust | **Selected** |
-| GPU | Existing **RTX 3060 12 GB** | **Reuse / selected** |
-| UPS | **CyberPower PR1500ELCD, 1500 VA / 1350 W** | **Selected** |
+| System storage | **~1 TB**, value/reliability/headroom optimized; NVMe preferred, SATA acceptable if topology/value warrants it | **Role/capacity selected; exact model open** |
+| Active-work SSD | **1 TB sufficient; 2 TB if price/value is attractive**, Gen4 TLC preferred; **CPU-direct x4 required** | **Role selected; exact capacity/model open** |
+| Bulk/cold storage | Add later only when needed; spare NVMe/SATA SSD/HDD/external/NAS acceptable | **Expansion policy selected** |
+| Storage RAID | **No RAID** | **Selected** |
+| PSU | **Premium 750 W or 850 W ATX 3.1** | **Reopened; exact model open** |
+| UPS | **None in initial BOM** | **Selected** |
+| Point-of-use surge protection | Reputable plug-in surge protector / protected power strip | **Selected policy** |
+| Case | **Fractal North XL Mesh `FD-C-NOR1X-01`** | **Selected for now; one final value check warranted** |
+| Rear fan | **Noctua NF-A14x25 G2 PWM** | **Selected under current case** |
+| GPU | Existing **RTX 3060 12 GB** | **Reuse for as long as useful/reliable** |
 | Host OS | **Windows 11 Pro x64** | **Selected** |
 | Windows license | **Retail/FPP USB English `HAV-00163` from PROstore** | **Selected purchase target** |
-| Initial Windows release | **Windows 11 25H2 GA** | **Selected** |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** |
 
 ## Memory architecture — final
 
-Initial assembly uses the intended lifetime memory configuration:
+Initial assembly uses **128 GB = 2×64 GB DDR5 UDIMM, one DIMM per channel**. No temporary RAM and no planned four-DIMM/256 GB endpoint.
 
-**128 GB = 2×64 GB DDR5 UDIMM, one DIMM per channel.**
-
-This permanently supersedes temporary 64 GB memory and the planned 256 GB / 4×64 GB endpoint.
-
-The exact 2×64 GB SKU remains open for the motherboard/RAM optimization. Bring-up remains conservative: current stable BIOS, A2/B2, Auto/JEDEC first, no EXPO/XMP during baseline validation, extended memory testing.
+The exact kit remains open for the motherboard/RAM optimization. Bring-up remains conservative: current stable BIOS, A2/B2, Auto/JEDEC first, no EXPO/XMP during baseline validation, extended memory testing.
 
 ## Storage architecture — final
 
-Initial assembly uses two independent internal NVMe SSDs:
+### Active-work SSD
 
-- **~1 TB system/tools SSD** for Windows, applications, IDE/tool binaries, page file, servicing and ordinary profile data;
-- **1–2 TB active-work SSD** for current repositories, Maven/Gradle caches, WSL2/container data, active Android images, VMs, databases and other latency-sensitive working data.
+The only hard M.2 requirement is:
 
-### Active-work capacity rule
+> **one CPU-direct M.2 x4 path for the active-work SSD that does not reduce the primary GPU connection.**
 
-**1 TB is accepted as sufficient.**
+1 TB is sufficient; choose 2 TB only when the incremental cost is attractive. Prefer mature Gen4 TLC with good sustained/mixed behavior and sensible endurance. Gen5 is not required.
 
-Prefer **2 TB** only when the incremental price is modest enough that the additional headroom is good value. Do not buy 4 TB merely because total accumulated local data might eventually exceed 2 TB.
+### System drive
 
-Infrequently accessed data moves to a later bulk/cold-storage tier instead.
+Target about 1 TB. NVMe is preferred when the motherboard provides an inexpensive clean second M.2 path, but **a SATA SSD is acceptable** if that allows a materially better-value motherboard without affecting the main workload.
 
-### System SSD policy
-
-The system drive is **not a performance prestige component**. With 128 GB RAM and active development data on a separate drive, a reputable mature Gen3/Gen4 NVMe is already sufficient. Optimize C: for reliability, capacity headroom, warranty and price. A chipset-connected x4 M.2 slot is fully acceptable.
-
-### Active-work SSD policy
-
-The active-work drive receives the performance/endurance priority. Prefer:
-
-- CPU-direct x4 connection;
-- TLC NAND;
-- DRAM-equipped design where reasonably priced;
-- good sustained/mixed behavior;
-- mature firmware and sensible endurance.
-
-**Gen4 is sufficient; Gen5 is a bonus only when its premium is negligible or a demonstrated workload benefits.**
+The OS drive is not a benchmark component; prioritize mature firmware, reliability, headroom, warranty and price.
 
 ### Bulk/cold storage
 
-When capacity becomes an issue, add storage rather than replacing the initial SSDs.
+Add later only when capacity is actually needed. Another NVMe, SATA SSD, SATA HDD, external storage or NAS can fill this role. Existing old HDDs may be reused after health checks for infrequently accessed data, but never as the sole copy of important data.
 
-Suitable later options include:
+## Motherboard requirements — simplified
 
-- another chipset-connected NVMe SSD;
-- SATA SSD;
-- SATA HDD;
-- external/NAS storage where appropriate.
+The board no longer needs to justify premiums through speculative workstation features.
 
-Existing old spinning disks may be reused for archived/infrequently accessed data after health/SMART checks. They must not become the only copy of important data.
+Hard/strong requirements:
 
-No RAID is required.
+1. stable 9950X3D support and mature BIOS/AGESA;
+2. stable **2×64 GB / 128 GB / 1DPC** operation;
+3. one **CPU-direct M.2 x4** path for active work without reducing the primary GPU link;
+4. competent VRM thermals for stock/conservative 9950X3D operation;
+5. BIOS Flashback/recovery strongly preferred;
+6. useful diagnostics/serviceability preferred;
+7. normal SATA expansion useful for later bulk storage;
+8. 1 GbE is sufficient; 2.5 GbE is a bonus; **5/10 GbE must not command a premium**.
 
-The old Samsung 990 PRO 2 TB system-drive selection, fixed 4 TB work-drive requirement and staged storage plans are superseded. The 990 PRO may still compete if its current price makes sense for one of the final roles.
+Not requirements:
 
-## Motherboard consequence
+- CPU x8/x8 multi-GPU support;
+- multiple Gen5 M.2 slots;
+- a clean second M.2 path at any cost;
+- 5/10 GbE;
+- extreme-overclocking VRM capability;
+- provisioning for a 500–600 W future GPU.
 
-The ASUS ProArt X870E-Creator WiFi remains the incumbent technical reference, but it is no longer final.
+## GPU policy
 
-With 128 GB / 1DPC and the simplified storage hierarchy, the motherboard can be re-optimized for stability, firmware quality, networking, PCIe/storage topology, serviceability, future high-power GPU support and value.
+Reuse the RTX 3060 for as long as it remains useful and reliable. Gaming is secondary, and cloud AI availability reduces the need to pre-buy local accelerator headroom.
 
-Storage requirements are:
+If a future replacement becomes desirable, **retire the RTX 3060 rather than designing around dual-GPU operation**. Do not distort the motherboard, PSU or chassis around a hypothetical future flagship GPU.
 
-1. at least two simultaneously usable M.2 x4 slots;
-2. one preferably CPU-direct x4 for the active-work SSD;
-3. one chipset x4 slot is sufficient for the ~1 TB system SSD;
-4. using the two selected M.2 slots must not reduce the main GPU from x16;
-5. a practical later bulk-storage path via extra M.2 and/or SATA is desirable;
-6. Gen5 M.2 bandwidth and excessive high-speed storage slots should not command a material premium.
+## PSU architecture — reopened
+
+The previous 1200 W requirement is superseded.
+
+Current optimization target:
+
+- **750 W premium ATX 3.1** is a fully legitimate long-term baseline;
+- **850 W** is preferred only when an equally good model costs modestly more or offers materially better acoustics/platform characteristics;
+- 1000–1200 W should not be purchased merely to reserve hypothetical GPU wattage.
+
+Quality priorities:
+
+- excellent electrical design and protections;
+- ATX 3.1/current GPU transient standard;
+- mature platform;
+- long warranty;
+- low noise and good fan implementation;
+- exact current cable/revision clarity.
+
+## UPS / mains protection
+
+No UPS is required in the initial BOM. Short outages are acceptable operationally and there is no need to keep the workstation running through them.
+
+For point-of-use protection, use a reputable surge-protected plug/power strip with protection-status indication. This is a practical compromise under the explicit constraint of **no electrical-installation changes**. It does not provide the same protection as coordinated building-level SPD protection and depends on a sound protective-earth connection.
+
+## Case
+
+The North XL remains selected for now, but the earlier case justification included a hypothetical very large/high-power future GPU. Since that future requirement has been relaxed, perform one final size/value check before treating the chassis as permanently closed.
 
 ## Current price envelope
 
-Previous complete-order totals are obsolete.
-
-Do not publish a new purchase total until:
-
-1. the exact 2×64 GB kit is selected;
-2. the motherboard re-optimization is complete;
-3. exact ~1 TB system SSD and 1 TB/2 TB active-work SSD are selected and priced.
+Previous complete-order totals are obsolete. Recalculate only after motherboard, exact RAM, exact SSDs and the new 750/850 W PSU are selected and the case is either reconfirmed or changed.
 
 ## Hard purchase gates that remain valid
 
 ### CPU
-- exact Ryzen 9 9950X3D;
+- Ryzen 9 9950X3D;
 - Box/WOF `100-100000719WOF` preferred.
 
 ### RAM
-- **128 GB total**;
-- **2×64 GB matched DDR5 UDIMM kit**;
-- 1DPC / A2+B2;
-- no temporary 2×32 GB purchase.
+- 128 GB total;
+- exactly 2×64 GB matched DDR5 UDIMM kit;
+- 1DPC;
+- no temporary kit.
 
 ### Storage
-- two internal NVMe SSDs from day one;
-- system drive target approximately 1 TB, reputable/mature/value-oriented;
-- active-work drive 1 TB or 2 TB based on current value, high-quality TLC preferred;
-- CPU-direct x4 preferred for active work; chipset x4 acceptable for system;
-- no requirement for Gen5;
-- selected two M.2 slots must preserve GPU x16;
-- future bulk storage must be addable through M.2/SATA without replacing the initial pair;
+- one 1–2 TB active-work NVMe with CPU-direct x4;
+- ~1 TB system storage, NVMe preferred but SATA acceptable;
+- no Gen5 requirement;
+- bulk storage added only when needed;
 - no RAID requirement.
 
-### Cooler
-- NH-D15 G2 **standard**;
-- included AM5 offset mount;
-- no LBC/HBC substitution.
-
 ### PSU
-For GX or conditional PX:
-- ATX 3.1;
-- PCIe 5.1;
-- current 12V-2x6 cable;
-- reject explicit old ATX 3.0 / 12VHPWR stock.
-
-### Case
-- exact `FD-C-NOR1X-01` North XL Charcoal Black Mesh.
+- premium 750/850 W class;
+- ATX 3.1/current PCIe GPU-power standard;
+- strong protections, mature platform and long warranty;
+- exact current revision/cabling.
 
 ### UPS
-- exact **CyberPower PR1500ELCD**;
-- 1500 VA / 1350 W;
-- new/sealed;
-- correctly rated IEC cabling;
-- USB graceful-shutdown validation.
+- **do not purchase one initially**.
 
 ### Windows
-- Windows 11 Pro;
-- **Retail/FPP**;
-- current purchase target `HAV-00163` English USB from PROstore;
-- not OEM/DSP or an undocumented activation key.
-
-## OS / firmware baseline
-
-- Windows 11 Pro 25H2 GA;
-- WSL2 + Ubuntu 26.04.1 LTS;
-- NVIDIA Studio Driver WHQL baseline;
-- current stable motherboard BIOS;
-- UEFI, Secure Boot, TPM 2.0, SVM/IOMMU;
-- RAM Auto/JEDEC during commissioning;
-- CPU stock/conservative;
-- BitLocker only after firmware/driver stabilization.
+- Windows 11 Pro Retail/FPP;
+- current target `HAV-00163` English USB from PROstore.
 
 ## Next decision sequence
 
-1. Re-optimize **motherboard** for final 128 GB 1DPC and storage topology.
-2. Select exact **2×64 GB RAM**, including ECC/non-ECC verdict.
-3. Select exact **~1 TB system SSD + 1 TB/2 TB active-work SSD** using current Romanian price/value data.
-4. Recalculate provider consolidation and purchase total.
+1. Perform the final **case value/size check** if desired.
+2. Re-optimize the **motherboard** against the simplified requirements.
+3. Select exact **2×64 GB RAM**, including ECC/non-ECC verdict.
+4. Select exact system + active-work storage.
+5. Select exact premium **750 W / 850 W PSU**.
+6. Refresh prices/providers and produce a new order total.
 
 Detailed decisions: `docs/decisions.md`.
