@@ -9,14 +9,15 @@ Selected:
 - AMD Ryzen 9 **9950X3D**;
 - final memory capacity **128 GB from day one**;
 - final memory topology **2×64 GB DDR5 UDIMM / 1DPC**;
-- final storage role topology **~1 TB system NVMe + 4 TB work NVMe from day one**.
+- initial storage topology **~1 TB system NVMe + 1–2 TB active-work NVMe**, with bulk/cold storage added later only when needed.
 
 Reopened:
 
 - exact motherboard;
 - exact 2×64 GB memory kit;
 - ECC/non-ECC verdict;
-- exact system and work SSD models.
+- exact system SSD;
+- exact 1 TB/2 TB active-work SSD.
 
 The ASUS ProArt X870E-Creator WiFi remains the incumbent reference until the next optimization pass, but its previous 4×64/256 GB-specific justification no longer controls the selection.
 
@@ -44,25 +45,26 @@ Selected:
 - included 7 mm AM5 offset;
 - Fractal North XL Mesh `FD-C-NOR1X-01`.
 
-The exact 2×64 GB kit should prefer low-profile modules where practical. The North XL provides substantial cooler-height margin, so a small front-fan lift is acceptable but should not be required merely for decorative heat spreaders.
+The exact 2×64 GB kit should prefer low-profile modules where practical. The North XL provides substantial cooler-height margin.
 
 ## Storage topology — final requirements
 
-Initial storage consists of two physical internal NVMe drives:
+Initial storage consists of two physical internal NVMe SSDs:
 
 - **~1 TB system/tools SSD**;
-- **4 TB work/data SSD**.
+- **1–2 TB active-work SSD**.
 
 Motherboard requirements:
 
 1. at least two M.2 x4 slots must be usable simultaneously;
-2. prefer one **CPU-direct x4** slot for the work SSD;
+2. prefer one **CPU-direct x4** slot for the active-work SSD;
 3. a **chipset-connected x4** slot is fully acceptable for the system SSD;
 4. using the selected pair must **not reduce the primary GPU from x16**;
 5. integrated M.2 heatsinks are preferred;
-6. extra M.2 slots are useful for future additive capacity but are not worth a large motherboard premium by themselves.
+6. at least one practical later bulk-storage path through extra M.2 and/or SATA is desirable;
+7. extra Gen5/high-speed M.2 capacity is not worth a large motherboard premium by itself.
 
-Do not assume slot labels across vendors. `M.2_1`, `M2_1`, etc. are board-specific names and their lane-sharing behavior must be checked in the selected board manual.
+Do not assume slot labels across vendors. Lane-sharing behavior must be checked in the selected board manual.
 
 ### System SSD
 
@@ -80,13 +82,18 @@ Priorities:
 
 A chipset M.2 x4 path is expected to be effectively transparent for its Windows/tools role.
 
-### Work SSD
+### Active-work SSD
 
-The work SSD receives storage-performance and endurance priority.
+The active-work SSD receives storage-performance and endurance priority.
+
+Capacity policy:
+
+- **1 TB is sufficient**;
+- **2 TB is preferred only when its incremental cost is attractive**;
+- do not buy 4 TB merely to retain inactive data on the performance tier.
 
 Prefer:
 
-- 4 TB initial capacity;
 - TLC NAND;
 - DRAM-equipped design where reasonably priced;
 - strong sustained/mixed behavior;
@@ -98,27 +105,39 @@ Prefer:
 
 ### Storage role separation
 
-Keep large/high-I/O working data on the work SSD where supported:
+Keep latency-sensitive active data on the active-work SSD where supported:
 
-- Git repositories;
+- current Git repositories;
 - Maven/Gradle caches and build outputs;
 - WSL2 VHDX and Linux-native working data;
 - containers;
-- Android SDK/AVDs;
-- VMs;
+- active Android SDK/AVDs;
+- active VMs;
 - local databases;
-- games;
-- large datasets and AI models.
+- current datasets/games/models where appropriate.
 
-Keep Windows, applications, page file/crash-dump infrastructure and ordinary user-profile data on the system SSD. Do not relocate the entire Windows user profile solely for artificial separation.
+Keep Windows, applications, page file/crash-dump infrastructure and ordinary user-profile data on the system SSD.
 
-No RAID is required. External/network/cloud backup remains mandatory for important data.
+Move archived/infrequently accessed data to bulk/cold storage when necessary rather than oversizing the active-work SSD.
+
+### Bulk/cold storage
+
+Later storage may use:
+
+- spare chipset-connected M.2;
+- SATA SSD;
+- SATA HDD;
+- external/NAS storage.
+
+Existing older HDDs are acceptable for infrequently accessed data after SMART/health checks. They must not hold the only copy of important data.
+
+No RAID is required. External/network/cloud backup remains required for important data.
 
 ## Windows / WSL storage policy
 
 - Linux-native high-I/O repos, package caches and container data should remain inside the WSL filesystem rather than `/mnt/c` where performance matters.
-- Place the WSL VHDX/container stores on the 4 TB work SSD using supported relocation mechanisms.
-- Windows-native project/cache locations may also use the work SSD when applications support explicit paths.
+- Place WSL VHDX/container stores on the active-work SSD using supported relocation mechanisms.
+- Windows-native project/cache locations may also use the active-work SSD when applications support explicit paths.
 - BitLocker is enabled only after initial firmware/driver/storage validation.
 
 ## GPU / expansion
@@ -165,8 +184,6 @@ Selected exact UPS:
 - hot-swappable battery;
 - USB/PowerPanel Business.
 
-The UPS is intended to remain useful through the future high-power GPU upgrade rather than being a temporary Phase-1 device.
-
 ## Windows ↔ firmware / security
 
 Selected:
@@ -194,8 +211,6 @@ Selected license channel: **Retail/FPP**.
 Current purchase target:
 
 - **`HAV-00163`**, Windows 11 Pro Retail/FPP USB English from PROstore.
-
-Windows is allowed to use a separate software provider because its long-term warranty/RMA burden is negligible relative to hardware.
 
 ## Provider dependencies
 
