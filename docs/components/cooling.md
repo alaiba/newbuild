@@ -1,14 +1,16 @@
 # Cooling Deep Dive
 
-Status: **Selected — Thermalright Phantom Spirit 120 standard**
+Status: **Purchased 2026-09-01 — Thermalright Phantom Spirit 120 standard**
 
 ## Decision
 
 Use the **Thermalright Phantom Spirit 120**, standard model, on the Ryzen 9 9950X3D.
 
+Purchased from Vexio on 2026-09-01 for **246.99 lei including VAT** as retailer product `2862553`; arrival verification remains pending.
+
 The CPU remains stock/conservative. The objective is sustained stability and acceptable acoustics under long Java/Gradle/Maven/test workloads, not maximum benchmark cooling capacity.
 
-Do **not** silently substitute Phantom Spirit 120 SE, EVO or another variant. Any variant change must be reviewed for dimensions, fans, acoustics, price and mounting.
+Do **not** silently substitute Phantom Spirit 120 SE, EVO or another variant. If the delivered product is a different variant, resolve it before assembly.
 
 ## Why air cooling remains correct
 
@@ -45,7 +47,7 @@ Independent reference:
 
 ## Case fit
 
-Selected chassis: **be quiet! Pure Base 501 Airflow Black `BG074`**.
+Purchased chassis: **be quiet! Pure Base 501 Airflow Black `BG074`**.
 
 Relevant geometry:
 
@@ -57,9 +59,9 @@ This is materially more forgiving than the previous NH-D15 G2 + regular-Fractal-
 
 ## RAM interaction
 
-Final memory remains **2×64 GB / 1DPC** and exact DIMM height is still open.
+Final memory selection is **Crucial Pro `CP2K24G56C46U5`, 48 GB as 2x24 GB / 1DPC**. It is the only remaining hardware purchase.
 
-The front cooler fan can interact with taller DIMMs. The final RAM selection must therefore confirm:
+The front cooler fan can interact with taller DIMMs. At assembly, confirm:
 
 - DIMM height;
 - front-fan position/lift if required;
@@ -93,6 +95,18 @@ It is no longer selected because:
 - validate with a separate synthetic thermal test;
 - do not increase CPU power limits merely because thermal headroom exists.
 
+## Arrival gate
+
+Before assembly confirm the delivered cooler is the **standard Phantom Spirit 120**:
+
+- not SE;
+- not EVO;
+- seven heatpipes;
+- approximately 157 mm height;
+- both 120 mm fans present;
+- AM5 mounting hardware complete;
+- no shipping damage or signs of prior use.
+
 ## Bring-up validation
 
 After assembly:
@@ -119,4 +133,4 @@ If closed-case thermals are higher than desired, first test adding a second fron
 
 > **Ryzen 9 9950X3D + Thermalright Phantom Spirit 120 standard, operated stock/conservatively.**
 
-This exact cooler is selected. Reopen only for a material availability/compatibility issue or if real workload validation shows the thermal/acoustic target is not being met.
+This exact cooler is now purchased. Reopen only for a delivery/compatibility defect or if real workload validation shows the thermal/acoustic target is not being met.
