@@ -19,7 +19,7 @@ This document is the current bill-of-materials and initial software-baseline vie
 | Case-fan layout | **3× included 140 mm front intake + 1× Noctua rear exhaust** | **Selected** | Front fans included |
 | GPU | NVIDIA GeForce RTX 3060 12 GB | **Existing / selected** | 0 lei initial-build spend |
 | UPS | **CyberPower CP1600EPFCLCD** | **Selected** | ~1.53–1.59k lei |
-| Host OS | **Windows 11 Pro x64** | **Selected** | 1,199 RON official Microsoft Store reference if a new license is required |
+| Host OS license | **Windows 11 Pro x64 — new license required** | **Selected / required purchase** | **1,199 RON** official Microsoft Store reference |
 | Initial Windows release | **Windows 11 25H2, General Availability** | **Selected for installation** | Included in license |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** | Free |
 
@@ -27,11 +27,9 @@ This document is the current bill-of-materials and initial software-baseline vie
 
 Current selected hardware with Crucial 64 GB remains approximately **17.3–18.1k lei**, excluding the reused RTX 3060, future 4 TB+ work SSD and future GPU.
 
-If a new Windows 11 Pro retail/digital license is required at the current official Microsoft Store Romania reference of **1,199 RON**, the initial complete hardware + OS purchase is approximately **18.5–19.3k lei**.
+A new Windows 11 Pro license is **required** for this build. At the current official Microsoft Store Romania reference of **1,199 RON**, the initial complete hardware + OS purchase is approximately **18.5–19.3k lei**.
 
-If a legitimate transferable Windows 11 Pro license is already available, the OS does not add new spend.
-
-The build therefore remains comfortably below the ~30k planning level even after selecting 64 GB and a normal Pro license.
+The build therefore remains comfortably below the ~30k planning level, leaving roughly **10.7k+ lei** of planning headroom even after selecting 64 GB and including the required Windows license.
 
 ## Memory
 
@@ -130,7 +128,7 @@ Reassess when a materially higher-power GPU is installed or measured wall load a
 
 ### Host
 
-**Windows 11 Pro x64** is selected.
+**Windows 11 Pro x64** is selected and a **new legitimate license must be purchased** for this build.
 
 Initial installation release: **Windows 11 25H2 General Availability**.
 
@@ -145,6 +143,8 @@ Why Pro:
 Do not buy Pro for Workstations for this configuration. Its premium does not materially benefit a single-socket system with a 256 GB memory target, and Windows Dev Drive is available on normal Windows 11 editions.
 
 Do not intentionally install Windows 24H2 on this new machine; Home/Pro servicing ends 2026-10-13. Do not force-install 26H1: Microsoft describes it as a new-device release rather than the normal feature-update path from 24H2/25H2. Follow normal supported feature updates after commissioning.
+
+Buy a normal legitimate retail/digital Windows 11 Pro license; do not treat grey-market keys as a BOM-saving mechanism.
 
 ### Linux environment
 
