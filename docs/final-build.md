@@ -19,7 +19,7 @@ This is the current source-of-truth architecture for the workstation.
 | PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | **Selected** |
 | PSU fallback | Corsair RM850x 2024 850W `CP-9020270-EU` | **Fallback only** |
 | UPS | **None initially** | **Selected** |
-| Point-of-use surge protection | Reputable plug-in surge protector / protected power strip | **Selected policy; exact model open** |
+| Dedicated surge protection | **None required** | **Selected** |
 | GPU | Existing **RTX 3060 12 GB** | **Reuse for as long as useful/reliable** |
 | Host OS | **Windows 11 Pro x64** | **Selected** |
 | Windows license | **Retail/FPP USB English `HAV-00163` from PROstore** | **Selected purchase target** |
@@ -137,9 +137,13 @@ This does **not** restore the former 1000–1200 W future-GPU strategy. If a con
 
 Preferred checkout fallback: **Corsair RM850x 2024 `CP-9020270-EU`** only if delivered price is within roughly 30–40 lei or retailer/warranty conditions are materially better.
 
-## UPS / mains protection
+## UPS / mains protection — final
 
-No UPS initially. Use a reputable point-of-use surge protector / surge-protected power strip with a protection-status indicator.
+No UPS and no dedicated surge protector are purchased initially.
+
+Use a properly earthed wall outlet. If multiple outlets are required, a reputable ordinary **16 A Schuko power strip** is sufficient; it is treated as a utility item rather than a protection component in the BOM.
+
+The selected PSU provides its own normal input/protection circuitry. Revisit external mains protection only if actual power-quality symptoms or failures appear in the building.
 
 ## Hard purchase gates
 
@@ -180,8 +184,9 @@ No UPS initially. Use a reputable point-of-use surge protector / surge-protected
 - use only the modular cables supplied with the exact PSU;
 - Corsair RM850x 2024 `CP-9020270-EU` is fallback only after price/warranty review.
 
-### UPS
-- **do not purchase one initially**.
+### UPS / surge protection
+- **do not purchase a UPS initially**;
+- **do not purchase a dedicated surge protector initially**.
 
 ### Windows
 - Windows 11 Pro Retail/FPP;
@@ -189,7 +194,6 @@ No UPS initially. Use a reputable point-of-use surge protector / surge-protected
 
 ## Next decision sequence
 
-1. Select exact plug-in surge protector.
-2. Refresh all prices/provider consolidation and produce the order total.
+1. Refresh all prices/provider consolidation and produce the order total.
 
 Detailed decisions: `docs/decisions.md`.
