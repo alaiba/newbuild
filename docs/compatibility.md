@@ -15,11 +15,12 @@ Selected:
 - be quiet! **Pure Power 13 M 850W `BP027EU`** PSU;
 - existing RTX 3060 12 GB;
 - no multi-GPU requirement;
-- no UPS requirement.
+- no UPS requirement;
+- no dedicated surge-protection requirement.
 
 Open:
 
-- exact plug-in surge protector.
+- final supplier/price consolidation only.
 
 ## Motherboard ↔ memory
 
@@ -129,11 +130,13 @@ Preferred fallback: **Corsair RM850x 2024 `CP-9020270-EU`** only after price/war
 
 Use only the modular cables supplied with the exact installed PSU.
 
-## UPS / surge protection
+## UPS / mains protection
 
 - no UPS initially;
-- use a point-of-use surge-protected Schuko plug/power strip;
-- no electrical-installation changes required.
+- no dedicated surge protector initially;
+- use a properly earthed wall outlet;
+- if multiple outlets are needed, use a reputable ordinary 16 A Schuko power strip;
+- revisit external mains protection only if actual power-quality problems appear.
 
 ## Windows / firmware commissioning
 
