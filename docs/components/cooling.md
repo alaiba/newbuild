@@ -1,21 +1,21 @@
 # Cooling Deep Dive
 
-Status: **High-end air cooling selected / exact cooler provisional**
+Status: **High-end air cooling selected / exact cooler selected**
 
 ## Decision
 
-For the Ryzen 9 9950X3D build, use **high-end air cooling as the selected cooling architecture**.
+For the Ryzen 9 9950X3D build, use **high-end air cooling** with the:
 
-The current provisional cooler target is:
+- **Noctua NH-D15 G2 — standard medium-convexity base**
+- installed using the included **7 mm AM5 offset mounting position**
 
-- **Noctua NH-D15 G2 LBC** — preferred AM5-specific air-cooling target
+The previously preferred **NH-D15 G2 LBC** is no longer the selected variant. It remains technically excellent on AM5, but it does not provide a meaningful advantage for this build once the standard G2 is installed with Noctua's offset mount.
 
-Keep these live alternatives:
+Keep one liquid fallback only:
 
-- **Noctua NH-D15 G2 standard** — near-equivalent fallback if it is materially easier/cheaper to source; use the included AM5 7 mm offset mount
-- **ARCTIC Liquid Freezer III Pro 360** — liquid-cooling fallback if later validation shows that sustained real development workloads need materially more thermal/acoustic headroom than the air cooler provides
+- **ARCTIC Liquid Freezer III Pro 360** — use only if measured sustained workloads later demonstrate an unacceptable thermal/acoustic result with the selected air cooler
 
-The 420 mm ARCTIC is **not a current target**. It is useful as an upper-bound cooling reference, but its small advantage over the best 360 mm AIOs at roughly stock Ryzen power does not justify the additional chassis/radiator-fit constraints for this build.
+The 420 mm ARCTIC remains outside the target architecture.
 
 ## Why air cooling wins for this workstation
 
@@ -33,150 +33,154 @@ For that objective, a top-tier tower cooler has several durable advantages:
 
 This does **not** mean liquid cooling is unreliable or inappropriate. It means its extra thermal headroom is not currently valuable enough to outweigh the additional active/mechanical complexity for this particular stability-first build.
 
-## 9950X3D thermal evidence
+## Why standard NH-D15 G2 wins over NH-D15 G2 LBC
 
-### High-end air
+Noctua currently recommends the **standard NH-D15 G2** as the best all-rounder and most versatile of the three base-convexity variants.
 
-GamersNexus' 2025 AM5 cooler suite used Ryzen 9 9950X3D loads up to 276 W. In its 9950X3D noise-normalized test, the NH-D15 G2 was the **only air cooler in the tested set able to complete the harsh test without throttling or a thermal trip**, although it was near 90 C once ambient was included. GN also found the **LBC variant best on AMD** among the D15 G2 base variants.
+For AMD AM5 specifically:
 
-Source:
-- https://gamersnexus.net/coolers/best-cpu-coolers-weve-tested-2025-thermals-noise-levels-value-26-coolers-tested
+- the standard G2 includes a **7 mm offset mounting option** that shifts the cooler toward the CCD hotspot;
+- Noctua states that the standard version provides **excellent** AM5 performance when used with this offset;
+- Noctua's own comparison reports the **best absolute AM5 results** from the standard medium-convexity base with the included offset mount;
+- the LBC version is mainly advantageous on AM5 **without** the offset mount, or for unusually flat/lapped/direct-die configurations;
+- with offset mounting, LBC is effectively on par and may only edge the standard model by a few tenths in some cases;
+- the standard base retains better versatility for future sockets and other CPU heat-spreader geometries.
 
-A 2026 independent test on an actual 9950X3D measured the NH-D15 G2 LBC at about **73.9 C plateau temperature around 198 W package power** in Cinebench 2026, illustrating that the cooler has a materially easier job at approximately stock-class sustained power than in GN's 276 W torture case.
-
-Source:
-- https://www.thelab.gr/reviews/heatsinks-coolers-watercooling-reviews/noctua-nh-d15-g2-g2-lbc-review-%CE%B7-%CE%B5%CF%80%CE%B9%CF%83%CF%84%CF%81%CE%BF%CF%86%CE%AE-%CF%84%CE%BF%CF%85-%CE%B2%CE%B1%CF%83%CE%B9%CE%BB%CE%B9%CE%AC-%CE%BC%CE%B5-%CE%B4%CF%8D%CE%BF-%CF%80%CF%81%CF%8C%CF%83%CF%89%CF%80%CE%B1-r943/
-
-The design should therefore **not enable PBO/uncapped power merely because additional cooling headroom exists**. Stock/conservative operation remains the baseline.
-
-### Liquid-cooling upper bound
-
-Tom's Hardware tested the **ARCTIC Liquid Freezer III Pro 360 directly on the 9950X3D** and found it capable of handling the CPU even with PBO enabled. The cooler is substantially more capable thermally than air when power is allowed to rise aggressively.
-
-Source:
-- https://www.tomshardware.com/pc-components/liquid-cooling/arctic-liquid-freezer-iii-pro-review
-
-For the 420 mm version, Tom's Hardware found only about a **0.9 C advantage over the best tested 360 mm AIO at roughly 200 W**. That makes the 420 mm unit unattractive for this build unless a later requirement specifically demands maximum liquid-cooling capacity.
-
-Source:
-- https://www.tomshardware.com/pc-components/liquid-cooling/arctic-liquid-freezer-iii-pro-420-review/2
-
-## Provisional target: Noctua NH-D15 G2 LBC
-
-Relevant manufacturer specifications:
-
-- AM5 support
-- 168 mm total height
-- dual 140 mm NF-A14x25r G2 PWM fans
-- eight heatpipes
-- 6-year warranty
-- fan MTTF >150,000 hours
-- AM5 offset mounting option
-- LBC coldplate specifically intended for relatively flat CPUs such as AM5
-- standard mounting ecosystem with Noctua's long-running practice of offering future-socket mounting kits when technically possible
+For a workstation intended to last around a decade, that broader future-socket flexibility is more valuable than optimizing around a specialized LBC geometry that does not improve the selected AM5 installation in a material way.
 
 Sources:
-- https://www.noctua.at/en/products/nh-d15-g2-lbc/specifications
-- https://www.noctua.at/en/products/nh-d15-g2-lbc/features
+- https://www.noctua.at/en/support/faqs/which-version-of-the-nh-d15-g2-should-i-buy-lbc-standard-or-hbc
+- https://www.noctua.at/en/expertise/tech/nh-d15-g2-versions-heatsink-contact-quality-optimisation-explained
+- https://www.noctua.at/en/products/nh-d15-g2/features
 
-### Why pay the Noctua premium
+## 9950X3D thermal evidence
 
-The NH-D15 G2 is not the best price/performance air cooler. GamersNexus explicitly notes that substantially cheaper coolers can land within a few degrees.
+GamersNexus' 2025 AM5 cooler suite used Ryzen 9 9950X3D loads up to 276 W. In its harsh 9950X3D noise-normalized test, the NH-D15 G2 was the only air cooler in the tested set able to complete the test without throttling or a thermal trip.
 
-For this build, however, the premium buys durable characteristics rather than benchmark prestige:
+That test is materially harsher than the operating point selected here. This build will run the 9950X3D at stock/conservative settings and explicitly **will not enable PBO/uncapped power merely because thermal headroom exists**.
 
-- best-in-class air performance on the tested 9950X3D suite;
-- strong noise-normalized behavior;
-- AM5-specific coldplate/mounting optimization;
-- mature mounting hardware;
-- premium replaceable fans;
-- long manufacturer support/mount ecosystem;
+A separate 2026 9950X3D test of the G2 family around stock-class package power showed substantially easier thermals than the 276 W torture condition, reinforcing that a top-tier air cooler is an appropriate fit for the intended workload.
+
+Sources:
+- https://gamersnexus.net/coolers/best-cpu-coolers-weve-tested-2025-thermals-noise-levels-value-26-coolers-tested
+- https://www.thelab.gr/reviews/heatsinks-coolers-watercooling-reviews/noctua-nh-d15-g2-g2-lbc-review-%CE%B7-%CE%B5%CF%80%CE%B9%CF%83%CF%84%CF%81%CE%BF%CF%86%CE%AE-%CF%84%CE%BF%CF%85-%CE%B2%CE%B1%CF%83%CE%B9%CE%BB%CE%B9%CE%AC-%CE%BC%CE%B5-%CE%B4%CF%8D%CE%BF-%CF%80%CF%81%CF%8C%CF%83%CF%89%CF%80%CE%B1-r943/
+
+## Selected cooler specifications
+
+Relevant manufacturer specifications for the standard NH-D15 G2:
+
+- AMD AM5 support;
+- 168 mm stock total height;
+- dual 140 mm NF-A14x25r G2 PWM fans;
+- eight heatpipes;
+- NSPR 228;
 - six-year warranty;
-- a cooler body that can plausibly remain useful through multiple fan replacements and potentially future sockets.
+- SecuFirm2+ multi-socket mounting system;
+- 7 mm AMD AM5 offset mounting option;
+- long-running Noctua mounting-kit ecosystem for future sockets when technically possible.
 
-Current Romanian pricing for the standard NH-D15 G2 is roughly **640–850 lei**, with competitive offers around 700 lei. The LBC variant may require wider EU sourcing and should not command an excessive premium over the standard model.
+Sources:
+- https://www.noctua.at/en/products/nh-d15-g2/specifications
+- https://www.noctua.at/en/products/nh-d15-g2/features
 
-Romanian price reference:
-- https://www.compari.ro/coolere-c3094/noctua/nh-d15-g2-p1101386203/
+## Motherboard compatibility
 
-If the LBC variant is difficult to source or materially overpriced, use the **standard NH-D15 G2 with the included 7 mm AM5 offset mounting** rather than paying a large premium for a small coldplate-geometry gain.
+The **ASUS ProArt X870E-Creator WiFi** is explicitly listed as compatible with the NH-D15 G2 by Noctua.
 
-## Value-control air cooler
+No motherboard-heatsink or PCIe-slot conflict is expected for the selected orientation. The G2 heatsink is designed with an offset geometry that improves top-PCIe-slot clearance relative to the original D15 generation.
 
-The **Thermalright Phantom Spirit 120 SE** remains a useful budget-control reference at roughly **200–250 lei** in Romania.
+Source:
+- https://www.noctua.at/en/compatibility/by-components/motherboards/asus-proart-x870e-creator-wifi
 
-It demonstrates how much of the Noctua price is premium engineering/support rather than simple heat dissipation. However, this workstation does not need to minimize cooler purchase price, and the NH-D15 G2's superior 9950X3D noise-normalized margin, service ecosystem and long-horizon support are worth the modest absolute premium in the context of the complete machine.
+## RAM clearance with Kingston `KF560C30BBEK2-32`
 
-Price reference:
-- https://www.compari.ro/coolere-c3094/thermalright/phantom-spirit-120-se-p1005219121/
+The selected Phase-1 RAM is:
 
-Do not replace the Noctua provisional target with the Thermalright merely to save approximately 500 lei unless final budget pressure makes that saving meaningful.
+- **Kingston FURY Beast Black EXPO 32 GB (2×16 GB) DDR5-6000 CL30**
+- exact SKU: **`KF560C30BBEK2-32`**
+- module height: **34.9 mm**
+
+The NH-D15 G2 provides roughly **32 mm RAM clearance** in the normal dual-fan configuration.
+
+Therefore:
+
+- the front fan needs to be raised by only about **3 mm**;
+- practical cooler height becomes roughly **171 mm** rather than 168 mm;
+- this is a very small adjustment and does not meaningfully compromise airflow or acoustics.
+
+The cooler can also be operated with the center fan only if a future high-density DIMM configuration ever creates an unusual clearance problem, but this is not required for the current Kingston kit.
+
+Sources:
+- https://www.kingston.com/datasheets/KF560C30BBEK2-32.pdf
+- https://www.noctua.at/en/support/faqs/what-is-the-ram-clearance-of-my-noctua-cpu-cooler
+
+## Case clearance: Fractal Design North XL Mesh
+
+The selected **Fractal Design North XL Mesh** supports CPU coolers up to **185 mm** high.
+
+With the Kingston kit:
+
+- NH-D15 G2 stock height: **168 mm**;
+- required front-fan lift: approximately **3 mm**;
+- resulting practical height: approximately **171 mm**;
+- remaining case margin: approximately **14 mm**.
+
+This is comfortably inside the chassis envelope and leaves enough tolerance for ordinary assembly variation.
+
+Source:
+- https://www.fractal-design.com/products/cases/north/north-xl/mesh/
+
+## Procurement comparison: standard vs LBC
+
+Procurement preference for the cooler is:
+
+1. **PC Garage** first;
+2. **eMAG** second;
+3. other reputable Romanian/EU retailers only if both preferred sources are materially unattractive.
+
+Current Romanian indexing confirms the standard NH-D15 G2 remains locally available, including PC Garage references. Search/indexed pricing for exact LBC versus standard listings is inconsistent enough that the decision should not rely on a few-lei snapshot.
+
+The rule is therefore simple:
+
+- buy the **standard NH-D15 G2**;
+- do **not** pay a material premium for LBC;
+- even if LBC happens to be slightly cheaper, standard remains preferred unless the price difference becomes large enough to outweigh the future-versatility advantage;
+- immediately before checkout, compare PC Garage and eMAG and prefer PC Garage when the difference is small.
+
+This choice is technical first, retailer second: the standard base is the better long-horizon fit even before price is considered.
+
+## Why pay the Noctua premium
+
+The NH-D15 G2 is not the cheapest technically adequate cooler. The premium buys durable characteristics rather than benchmark prestige:
+
+- flagship-class air-cooling margin for the 9950X3D;
+- excellent noise-normalized behavior;
+- premium replaceable fans;
+- mature mounting hardware;
+- six-year warranty;
+- broad socket support and future mounting-kit policy;
+- a heatsink body that can plausibly remain in service across multiple fan replacements and potentially future platforms.
+
+That profile matches the selected stability-first, long-service-life design better than choosing purely on price/performance.
 
 ## Liquid fallback: ARCTIC Liquid Freezer III Pro 360
 
-If later thermal validation shows air cooling is materially inadequate for our real sustained workload, prefer the **360 mm** ARCTIC over the 420 mm model.
+If real validation later shows that the NH-D15 G2 is materially inadequate for sustained development workloads at the desired acoustic target, the fallback remains the **ARCTIC Liquid Freezer III Pro 360**.
 
 Reasons:
 
-- directly demonstrated excellent 9950X3D performance;
+- direct strong 9950X3D testing;
 - six-year warranty;
-- strong noise-normalized thermal performance when fan/pump curves are controlled sensibly;
-- about **375–475 lei** in current Romanian listings, so liquid cooling is not being rejected because of price;
-- 398 x 120 x 38 mm radiator, requiring roughly 63 mm total radiator/fan clearance;
-- fits the **top 360 mm radiator envelope shared by North XL Mesh, Silent Base 802 and Meshify 3 XL**, preserving direct front intake for a future high-power GPU.
+- substantially greater extreme-load thermal headroom;
+- top 360 mm placement is compatible with the North XL architecture and preserves direct front GPU intake.
 
-Sources:
-- https://www.arctic.de/en/Liquid-Freezer-III-Pro-360/ACFRE00180A
-- https://www.compari.ro/coolere-c3094/arctic/cooler-liquid-freezer-iii-pro-360-acfre00180a-p1193101027/
+However, the AIO introduces pump/liquid dependencies that are intentionally avoided unless measurements show a real need.
 
-AIO use would require explicit validation of motherboard M.2-heatsink/block clearance because ARCTIC notes limited compatibility with some motherboards that have oversized M.2_1 heatsinks.
-
-## Why not 420 mm
-
-The ARCTIC Liquid Freezer III Pro 420 is an excellent cooler, but it is a poor architectural fit for the current build:
-
-- 458 x 138 x 38 mm radiator plus 27 mm fans creates a roughly 65 mm-thick assembly;
-- North XL Mesh and Silent Base 802 support 420 mm radiators primarily at the **front**, where the radiator would reduce the cleanest direct-air path and may reduce practical future-GPU clearance;
-- Meshify 3 XL can support a 420 mm radiator at the top, but choosing the exact chassis around a marginal 420-vs-360 cooling gain would be backwards;
-- at around 200 W, independent testing showed less than a 1 C lead over the best 360 mm AIO.
-
-Therefore **do not let 420 mm radiator support drive the case decision**.
-
-## Clearance implications
-
-### Case
-
-NH-D15 G2 height is **168 mm**.
-
-All current serious chassis candidates clear it nominally:
-
-- North XL Mesh: 185 mm CPU-cooler clearance
-- Silent Base 802: 185 mm
-- Meshify 3 XL: 182 mm
-- Corsair 7000D: about 190 mm
-
-This means the selected air-cooling architecture does not eliminate any current chassis finalist.
-
-### Memory
-
-The NH-D15 G2 provides:
-
-- about **32 mm RAM clearance in normal dual-fan configuration**;
-- at least 59 mm in single-fan mode;
-- more dual-fan RAM clearance by raising the front fan, at the cost of equal additional total cooler height.
-
-Source:
-- https://www.noctua.at/en/support/faqs/what-is-the-ram-clearance-of-my-noctua-cpu-cooler
-
-Because the current cases provide 14–17 mm of nominal height margin over the stock 168 mm cooler height, moderate fan raising is possible. Nevertheless, the eventual 256 GB memory review should strongly prefer **low-profile ECC/JEDEC UDIMMs** when technically equivalent, both for cooler clearance and for a simpler airflow path.
-
-### Motherboard / PCIe
-
-The G2 heatsink is offset toward the upper motherboard edge to improve top-PCIe-slot clearance. Exact compatibility with the final ProArt/Taichi Creator + RAM configuration must still be checked before purchase.
+The 420 mm version remains rejected because its small advantage around stock-class CPU power does not justify the additional radiator-placement and airflow constraints.
 
 ## Fan-control strategy
 
-For the air-cooled configuration:
+For the selected air-cooled configuration:
 
 - run the CPU at stock/conservative power settings;
 - use a smooth fan curve rather than chasing transient Ryzen temperature spikes;
@@ -185,6 +189,32 @@ For the air-cooled configuration:
 - validate the final curve with sustained compilation/test workloads, not just synthetic stress tests.
 
 No manual overclock/PBO policy should be adopted to exploit unused thermal margin. Additional cooling headroom is for **lower temperature, lower noise and greater environmental margin**, not higher power consumption.
+
+## Installation policy
+
+At assembly:
+
+1. confirm the cooler is the **standard NH-D15 G2**, not LBC/HBC;
+2. use Noctua's **-7 mm AM5 offset mounting position**;
+3. apply NT-H2 using Noctua's current AM5 guidance;
+4. install the center fan normally;
+5. raise the front fan only enough to clear the 34.9 mm Kingston DIMMs;
+6. confirm the fan remains comfortably inside the North XL side-panel envelope;
+7. inspect top-PCIe-slot/GPU and EPS-cable clearance before final cable management.
+
+## Bring-up validation
+
+After assembly:
+
+- verify both CPU fans report RPM and respond to PWM control;
+- run a sustained CPU workload representative of long Java/test/build activity;
+- run a synthetic CPU thermal test as a separate worst-case check;
+- log CPU package temperature, CCD temperatures, clocks and fan RPM;
+- confirm no thermal throttling at the selected stock/conservative power policy;
+- tune the fan curve for sustained loads and transient-spike tolerance;
+- repeat combined CPU/GPU thermal testing with the case closed.
+
+The target is not the lowest possible benchmark temperature. The target is **stable sustained operation with comfortable thermal margin and acceptable acoustics**.
 
 ## Long-term maintenance
 
@@ -198,16 +228,8 @@ For the selected air architecture:
 
 There is no requirement to replace the heatsink on a schedule.
 
-## Promotion gate for the exact cooler
+## Selected conclusion
 
-Promote **NH-D15 G2 LBC** from provisional target to Selected only after:
+> **Ryzen 9 9950X3D + Noctua NH-D15 G2 standard + 7 mm AM5 offset mount + Fractal North XL Mesh, operated at stock/conservative CPU settings.**
 
-1. exact motherboard compatibility is confirmed;
-2. exact initial RAM and eventual 256 GB RAM height/clearance are known;
-3. selected chassis provides adequate cooler/fan-raised height clearance;
-4. current LBC price/availability is reasonable relative to the standard G2;
-5. no new 9950X3D-specific evidence shows an unacceptable sustained thermal/acoustic limitation at stock/conservative settings.
-
-If those checks pass, the expected final cooling architecture is:
-
-> **Ryzen 9 9950X3D + Noctua NH-D15 G2 LBC + airflow-first chassis, operated at stock/conservative CPU settings.**
+This exact cooler decision is closed. Reopen it only if a material compatibility/availability problem appears or real workload validation demonstrates that the selected acoustic/thermal target cannot be met.
