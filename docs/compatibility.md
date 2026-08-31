@@ -2,7 +2,7 @@
 
 This document captures cross-component constraints that should not be evaluated in isolation.
 
-The build is greenfield. The existing RTX 3060 12 GB is reused initially; the CPU, motherboard, chassis, cooling architecture, exact CPU cooler, storage architecture, exact initial system SSD, **exact PSU**, rear exhaust fan and Phase-1 UPS are selected. The **final Phase-1 memory capacity remains open between a 32 GB baseline and optional 64 GB 2×32 configuration**.
+The build is greenfield. The existing RTX 3060 12 GB is reused initially; the CPU, motherboard, **64 GB Phase-1 memory capacity**, chassis, cooling architecture, exact CPU cooler, storage architecture, exact initial system SSD, exact PSU, rear exhaust fan and Phase-1 UPS are selected.
 
 ## CPU/platform ↔ motherboard
 
@@ -20,48 +20,40 @@ Operating policy:
 
 ## Motherboard ↔ memory
 
-Architectural target:
+Long-term architectural target:
 
 - credible path to **256 GB**, expected 4×64 GB;
 - exact long-term DIMMs deferred;
 - ECC UDIMM preferred only if exact modules, four-DIMM stability and OS-visible ECC behavior are credible.
 
-### Phase-1 baseline — 32 GB
+Selected Phase-1 capacity:
 
-- GOODRAM `GR5600D564L46/32G`
-- 1×32 GB
-- DDR5-5600 CL46, 1.1 V
-- approximately 31.25 mm tall
-- current PC Garage reference: ~2,199.99 lei.
+- **64 GB (2×32 GB)**.
 
-This is the minimum-sunk-cost commissioning baseline. It is not an instruction to buy 32 GB before the final BOM review.
+Preferred exact target:
 
-### Optional Phase-1 tier — 64 GB
+- **Crucial `CT2K32G56C46U5`**;
+- DDR5-5600 CL46;
+- 1.1 V;
+- ordinary unbuffered desktop UDIMMs;
+- low-profile bare modules.
 
-Preferred topology: **2×32 GB**.
+Why this topology is appropriate:
 
-Current serious candidates:
+- 2×32 GB restores dual-channel bandwidth;
+- two DIMMs remain a straightforward AM5 topology;
+- 5600 MT/s and 1.1 V are conservative compared with aggressive high-voltage EXPO tuning;
+- the final BOM remains far below the planning level, so the capacity upgrade does not displace permanent hardware.
 
-- **Crucial `CT2K32G56C46U5`** — 64 GB (2×32), DDR5-5600 CL46, 1.1 V; current value control around 4.7–4.8k lei in the broader Romanian market.
-- **Kingston `KF556C36BBEK2-64`** — 64 GB (2×32), DDR5-5600 CL36 EXPO; explicitly listed by Kingston for the ProArt X870E-Creator WiFi.
-- **Kingston `KF560C36BBEK2-64`** — 64 GB (2×32), DDR5-6000 CL36 EXPO; explicitly listed by Kingston for the ProArt and sometimes price-promoted close to 5.0k lei.
+Compatibility fallback:
 
-A single 64 GB `KVR56U46BD8-64` is also explicitly listed by Kingston for the ProArt and is electrically conservative at 5600 CL46 / 1.1 V, but current pricing around 5.1k lei+ makes it poor value versus 2×32 because it remains single-channel.
+- **Kingston `KF556C36BBEK2-64`**, explicitly listed by Kingston for the ProArt X870E-Creator WiFi.
 
-### Final Phase-1 memory decision
+Bring-up policy:
 
-Defer the 32-vs-64 choice until the complete initial BOM total is known.
-
-Working price guide:
-
-- ≤ ~4.5k lei for a credible 2×32 kit: 64 GB strongly attractive;
-- ~4.5–4.8k: serious consideration;
-- materially above ~5.0k: 32 GB baseline normally preferred unless remaining budget is abundant.
-
-Regardless of capacity:
-
+- install in motherboard-recommended A2/B2 slots;
 - boot at Auto/JEDEC first;
-- treat EXPO/XMP as optional;
+- do not enable EXPO/XMP during baseline validation;
 - prioritize stability over headline timings;
 - run extended memory testing.
 
@@ -83,21 +75,21 @@ Relevant envelope:
 - normal dual-fan RAM clearance: approximately **32 mm**;
 - North XL CPU-cooler limit: **185 mm**.
 
-32 GB baseline:
+Selected Crucial 64 GB kit:
 
-- GOODRAM height ~31.25 mm;
-- no fan lift;
-- cooler remains 168 mm;
-- ~17 mm case margin.
+- low-profile bare modules around the low-30-mm height class;
+- expect **zero or only minimal front-fan lift**;
+- even a ~2 mm lift would put practical cooler height around 170 mm;
+- at least ~15 mm case-side margin would remain.
 
-64 GB Kingston FURY candidates:
+Kingston fallback:
 
-- module height ~34.9 mm;
-- front fan needs only ~3 mm lift;
-- practical cooler height ~171 mm;
+- ~34.9 mm module height;
+- ~3 mm front-fan lift;
+- ~171 mm practical cooler height;
 - ~14 mm case margin.
 
-Therefore **both the 32 GB baseline and the serious 64 GB alternatives fit comfortably**. The final 256 GB purchase should still prefer reasonably low-profile modules when technically equivalent.
+Therefore both selected/preferred 64 GB paths fit comfortably.
 
 ## Motherboard ↔ storage
 
@@ -155,7 +147,6 @@ Compatibility points:
 - 1200 W provides the selected margin for a future ~600 W single GPU plus the 9950X3D platform;
 - the ProArt's motherboard and dual CPU EPS requirements are covered without adapters;
 - the PSU is about **160 mm** deep versus roughly **290 mm** available PSU clearance in North XL;
-- the current RTX 3060 can use its normal PCIe power path;
 - the future high-power GPU should use the Seasonic-supplied 12V-2x6 cable;
 - future GPU width and connector bend radius must be revalidated when that GPU is selected.
 
@@ -164,15 +155,8 @@ Purchase/receipt acceptance:
 - box/listing must say **ATX 3.1**;
 - GPU cable must be **12V-2x6**;
 - reject old ATX 3.0 / 12VHPWR VERTEX inventory;
-- retain the exact serial/model/warranty evidence;
+- retain exact serial/model/warranty evidence;
 - use only Seasonic-approved modular cables.
-
-Current retailer position:
-
-- **PC Garage and Altex are co-preferred retailers** when they carry the exact correct current revision at a sensible price;
-- **eMAG is also acceptable**;
-- an explicit **Altex VERTEX GX-1200 ATX 3.1** listing is currently purchase-ready at about **1,289.99 lei** and shown in stock at the latest check;
-- do not choose an ambiguous listing from another retailer over an explicit current-revision unit merely because of retailer preference.
 
 ## UPS ↔ PSU / full system
 
@@ -195,8 +179,11 @@ For purchase-ready parts:
 - **PC Garage and Altex are co-preferred Romanian retailers**;
 - **eMAG is also acceptable**;
 - exact SKU/revision, seller quality and normal Romanian/EU warranty take precedence over retailer order;
-- when all else is equivalent, a small price difference does not justify using a materially less convenient or less trustworthy listing;
-- an explicit current-revision listing beats retailer loyalty when a component has materially different old/new revisions under the same family name;
-- for temporary Phase-1 RAM, a material saving can override retailer/brand preference because sunk cost is intentionally minimized.
+- small price differences do not matter;
+- material price differences may justify another reputable seller, especially for temporary memory.
 
-For memory specifically, **do not order until the final BOM review chooses between 32 GB and 64 GB**.
+For Phase-1 memory:
+
+- target Crucial `CT2K32G56C46U5` around the current ~4.7–4.8k lei market class;
+- compare Kingston `KF556C36BBEK2-64` if Crucial availability/warranty/pricing degrades materially;
+- do not pay extra for 6000 MT/s merely for the headline frequency.
