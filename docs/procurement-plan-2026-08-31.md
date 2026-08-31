@@ -1,6 +1,6 @@
 # Procurement Plan — 2026-08-31
 
-Motherboard, RAM and primary storage are now closed. Procurement remains paused only for exact PSU, surge-protector and final provider/price consolidation.
+Motherboard, RAM, primary storage and PSU are now closed. Procurement remains paused only for the exact surge protector and final provider/price consolidation.
 
 ## Locked principles
 
@@ -21,6 +21,7 @@ Motherboard, RAM and primary storage are now closed. Procurement remains paused 
 | Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | selected |
 | Case fans | use two included 140 mm PWM fans only initially | selected |
 | Primary SSD | **Crucial T710 2 TB `CT2000T710SSD8`**, bare/non-heatsink, PCIe 5.0 x4 | selected; supplier price refresh pending |
+| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | selected; supplier price refresh pending |
 | GPU | existing RTX 3060 12 GB | reuse |
 | Windows | Windows 11 Pro Retail/FPP `HAV-00163` | selected target |
 | UPS | none | selected |
@@ -69,6 +70,24 @@ No second NVMe is purchased initially. No SSD cache, write-back layer, Storage S
 
 Existing healthy SATA drives remain available for archives/cold data after SMART/health validation. `M.2_2` and `M.2_3` stay empty for later additive expansion.
 
+## PSU acceptance gate
+
+Selected PSU:
+
+- exact model: **be quiet! Pure Power 13 M 850W `BP027EU`**;
+- 850 W, ATX 3.1;
+- native current-generation GPU-power cable supplied with the unit;
+- fully modular;
+- normal new retail unit and 10-year manufacturer-warranty path;
+- use only the modular cables supplied with this exact PSU;
+- refresh live Romanian price immediately before checkout.
+
+The current observed Romanian price class is approximately **~687–718 lei**. The 850 W model was selected because its premium over the corresponding 750 W unit was only roughly **40–100 lei**, satisfying the project's existing value rule for the larger unit.
+
+Preferred fallback: **Corsair RM850x 2024 850W `CP-9020270-EU`**, but only if delivered price is within roughly **30–40 lei** or retailer/warranty conditions are materially better.
+
+Do not substitute a 1000–1200 W unit merely for speculative future GPU margin.
+
 ## Closed motherboard/storage topology
 
 Recommended slot use:
@@ -82,16 +101,7 @@ Recommended slot use:
 
 The absence of a secondary x4 expansion path is accepted because no current requirement needs one.
 
-## Items still to optimize
-
-### PSU
-
-Compare premium **750 W and 850 W ATX 3.1** units.
-
-- 750 W baseline;
-- choose 850 W when premium is modest or exact model materially better;
-- do not buy 1000–1200 W for speculative GPU headroom;
-- prioritize electrical quality, protections, warranty, acoustics and current revision/cabling.
+## Item still to optimize
 
 ### Point-of-use surge protection
 
@@ -107,6 +117,7 @@ Select a reputable Schuko device with:
 
 - CyberPower PR1500ELCD;
 - 1200 W Seasonic VERTEX GX/PX targets;
+- buying 750 W instead of the selected 850 W solely to minimize nominal wattage/cost;
 - Noctua NH-D15 G2;
 - Fractal North XL Mesh;
 - Noctua NF-A14x25 G2 rear fan;
@@ -123,11 +134,10 @@ Select a reputable Schuko device with:
 
 ## Price envelope
 
-All earlier full-order totals are obsolete. Do not publish the final order total until exact PSU and surge protection are selected and live Romanian pricing is refreshed for the **entire** selected BOM, especially the volatile RAM and SSD supplier availability.
+All earlier full-order totals are obsolete. Do not publish the final order total until the surge protector is selected and live Romanian pricing is refreshed for the **entire** selected BOM, especially the volatile RAM and SSD supplier availability.
 
 ## Next sequence
 
-1. exact PSU;
-2. exact surge protector;
-3. full live price/provider refresh;
-4. ≤3-provider order plan and final total.
+1. exact surge protector;
+2. full live price/provider refresh;
+3. ≤3-provider order plan and final total.
