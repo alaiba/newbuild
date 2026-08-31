@@ -7,69 +7,66 @@ This file records closed decisions plus any decision explicitly reopened because
 | Area | Decision | Status | Rationale / reopen condition |
 |---|---|---|---|
 | CPU / platform | **AMD Ryzen 9 9950X3D on AM5** | **Selected** | Fits the very heavy Java/Android workload while retaining excellent occasional gaming performance without workstation-platform TCO/specialization. |
-| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Selected** | Meets the actual requirements at ~0.84k-leu reference pricing: PCIe 5.0 x16 graphics, two CPU-direct M.2 paths, full Gen4 x4 third M.2, 256 GB platform capacity, FlashBack/Q-LED, 4 SATA, 2.5 GbE and sufficient stock-load power delivery. B850 features do not currently justify their premium. |
-| Final memory capacity | **128 GB from day one** | **Selected / final** | Buy the intended lifetime capacity at initial assembly. |
-| Final memory topology | **2×64 GB DDR5 UDIMM, one DIMM per channel (1DPC), A2/B2** | **Selected / final** | Preserves the electrically favorable 1DPC topology. |
-| Exact memory kit | **Crucial `CT2K64G56C46U5` — 128 GB (2×64), DDR5-5600 CL46, 1.1 V** | **Selected** | Native JEDEC-5600, low voltage and low-profile modules fit the stability-first policy; commissioning will validate the exact kit on the selected board. |
-| ECC policy | **Non-ECC for the final 2×64 GB configuration** | **Selected** | CPU/board support ECC UDIMM, but practical mainstream 64 GB ECC UDIMM availability is poor; current server 64 GB parts are usually RDIMM and incompatible with AM5. Do not distort capacity/topology to obtain ECC. |
-| Memory operating policy | **Auto/JEDEC first; target native DDR5-5600 at 1.1 V; no EXPO/XMP required** | **Selected** | Stability and conservative voltage outrank tighter timings/OC profiles. |
-| Cooling architecture | **High-quality air cooling, stock/conservative CPU operation** | **Selected** | Avoid pump/liquid complexity unless a real measured thermal requirement appears. |
-| Exact CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Selected** | Strong sustained air-cooling capability at much lower cost/size than NH-D15 G2-class alternatives. |
-| Chassis | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Selected** | Normal ATX mid-tower with useful cooler/GPU/storage clearance without North XL overprovisioning. |
-| Initial case airflow | **Two included 140 mm PWM fans: one front intake + one rear exhaust** | **Selected** | Add another front intake only if measurements justify it. |
-| Storage architecture | **One primary 2 TB NVMe from day one; no separate system/work SSD, no SSD cache layer, no automatic tiering** | **Selected / final** | Current usage is ~600 GB and foreseeable active-storage demand remains below 2 TB; one fast SSD keeps all latency-sensitive data local while avoiding needless storage complexity. |
-| Exact primary SSD | **Crucial T710 2 TB `CT2000T710SSD8` in CPU-direct `M.2_1`** | **Selected** | PCIe 5.0 x4, TLC, DRAM, strong sustained behavior and a small enough premium over premium Gen4 to justify using the board's Gen5 path. Use the non-heatsink version under the motherboard heatsink. |
-| Bulk/cold storage | **Reuse existing healthy SATA drives where appropriate; add NVMe only when concretely needed** | **Selected expansion policy** | Existing slower storage is adequate for archives, old projects, media, installers, inactive VMs and other cold data. `M.2_2` and `M.2_3` remain free. |
-| 4 TB primary SSD | **Not required initially** | **Rejected on value/capacity** | Roughly doubling current selected-drive cost for capacity that is not expected to be used soon is inferior to additive expansion later. |
-| Storage RAID policy | **No RAID required** | **Selected** | Version control and real independent backup solve more relevant failure modes. |
-| Wired networking | **1 GbE sufficient; 2.5 GbE a bonus; do not pay for 5/10 GbE** | **Selected** | Internet is below 1 Gb/s and LAN throughput is irrelevant. |
-| Secondary PCIe expansion | **No x4 secondary slot requirement** | **Selected** | The selected board's second full-length slot is x1. No concrete NIC/HBA/capture/second-GPU requirement justifies paying extra to preserve x4 expansion. |
+| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Selected** | Meets the actual requirements at sub-1k-leu pricing without unused B850/Creator premiums. |
+| Final memory capacity | **48 GB from day one** | **Selected / final** | Current 128 GB pricing is economically disproportionate; 48 GB preserves full two-DIMM memory topology and is sufficient as the best current utility-per-leu point. |
+| Final memory topology | **2×24 GB DDR5 UDIMM, one DIMM per channel (1DPC), A2/B2** | **Selected / final** | Preserves the electrically favorable two-DIMM topology and Ryzen 9000 DDR5-5600 support path. |
+| Exact memory kit | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2×24), DDR5-5600 CL46, 1.1 V** | **Selected** | Conservative JEDEC-oriented 5600-class kit, low voltage, matched two-DIMM topology and current Romanian pricing around ~2.9k lei. |
+| Memory upgrade policy | **Do not add another pair later** | **Selected** | If 48 GB proves insufficient, replace the kit with a larger 2-DIMM kit rather than moving to 4 DIMMs; AMD officially rates four-DIMM Ryzen 9 9950X3D configurations at DDR5-3600. |
+| ECC policy | **Non-ECC** | **Selected** | ECC availability is not worth distorting capacity/topology. |
+| Memory operating policy | **Auto/JEDEC first; target DDR5-5600 at conservative voltage; no EXPO/XMP required** | **Selected** | Stability outranks benchmark timings. |
+| Cooling architecture | **High-quality air cooling, stock/conservative CPU operation** | **Selected** | Avoid pump/liquid complexity unless measurements justify it. |
+| Exact CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Selected** | Strong sustained cooling at good value. |
+| Chassis | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Selected** | Appropriate ATX envelope without oversizing. |
+| Initial case airflow | **Two included 140 mm PWM fans: one front intake + one rear exhaust** | **Selected** | Add another intake only if measurements justify it. |
+| Storage architecture | **One primary 2 TB NVMe from day one; no separate system/work SSD, no SSD cache layer, no automatic tiering** | **Selected / final** | Current usage is ~600 GB and foreseeable active demand remains below 2 TB. |
+| Exact primary SSD | **Crucial T710 2 TB `CT2000T710SSD8` in CPU-direct `M.2_1`** | **Selected** | PCIe 5.0 x4, TLC, DRAM and good current value. |
+| Bulk/cold storage | **Reuse existing healthy SATA drives where appropriate; add NVMe only when concretely needed** | **Selected expansion policy** | Existing slower storage is adequate for archives/cold data. |
+| Storage RAID policy | **No RAID required** | **Selected** | Version control and independent backup are more relevant. |
+| Wired networking | **1 GbE sufficient; 2.5 GbE a bonus; do not pay for 5/10 GbE** | **Selected** | LAN throughput is not a requirement. |
+| Secondary PCIe expansion | **No x4 secondary slot requirement** | **Selected** | No concrete high-bandwidth add-in requirement exists. |
 | Multi-GPU | **Not a requirement; retire RTX 3060 on future replacement** | **Selected** | CPU x8/x8 support is not needed. |
-| GPU | **Reuse RTX 3060 12 GB for as long as useful/reliable** | **Selected** | Gaming is secondary and cloud AI reduces the need to pre-buy local accelerator capability. |
-| Future GPU policy | **Do not pre-provision for a hypothetical 500–600 W flagship GPU** | **Selected** | Reconsider replaceable PSU/case only if a concrete future GPU requires it. |
-| Exact PSU | **be quiet! Pure Power 13 M 850W `BP027EU`** | **Selected** | ATX 3.1, native current-generation GPU power, 10-year warranty, excellent acoustics and measured electrical performance. The observed premium over the 750 W sibling is small enough that the extra 100 W is worthwhile without returning to speculative 1000–1200 W sizing. |
-| PSU fallback | **Corsair RM850x 2024 `CP-9020270-EU`** | **Fallback** | Reconsider only if delivered price is within roughly 30–40 lei or retailer/warranty conditions are materially better. |
-| UPS | **No UPS in the initial BOM** | **Selected** | Short outages are acceptable operationally; continuity is unnecessary. |
-| Point-of-use surge protection | **No dedicated surge protector required** | **Selected** | Given the user's risk tolerance and apartment environment, the incremental protection does not justify a dedicated purchase. The selected quality PSU already provides internal input/protection circuitry. Use a properly earthed wall outlet or a reputable ordinary 16 A Schuko strip only if additional outlets are needed. Reopen only if actual mains-quality problems appear. |
-| Motherboard VRM / OC | **Stock/conservative 9950X3D only; extreme VRM/OC capability has no value** | **Selected** | Require comfortable stock-load margin and stability, not phase-count marketing. |
-| Host OS | **Windows 11 Pro x64** | **Selected** | Best fit for development, virtualization, NVIDIA/gaming and professional host features. |
-| Windows license | **Retail/FPP `HAV-00163` English USB** | **Selected purchase target** | Clean DIY licensing path; PROstore remains current reference supplier. |
-| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** | First-class Linux userland without dual-boot friction. |
-| Cost philosophy | **Optimize utility per leu; do not spend for prestige, unused capacity or speculative future-proofing** | **Selected** | Premiums must buy a material durable benefit. |
-| Provider consolidation | **Maximum 3 providers; default target 2 for hardware** | **Selected** | Extra supplier fragmentation needs meaningful value. |
+| GPU | **Reuse RTX 3060 12 GB for as long as useful/reliable** | **Selected** | Gaming is secondary. |
+| Future GPU policy | **Do not pre-provision for a hypothetical 500–600 W flagship GPU** | **Selected** | Revisit replaceable parts only when a concrete need appears. |
+| Exact PSU | **be quiet! Pure Power 13 M 850W `BP027EU`** | **Selected** | ATX 3.1, excellent acoustics, long warranty and small premium over 750 W. |
+| PSU fallback | **Corsair RM850x 2024 `CP-9020270-EU`** | **Fallback** | Use only if checkout value/warranty becomes materially better. |
+| UPS | **No UPS in the initial BOM** | **Selected** | Continuity is unnecessary. |
+| Point-of-use surge protection | **No dedicated surge protector required** | **Selected** | Use a properly earthed wall outlet or ordinary reputable 16 A Schuko strip if needed. |
+| Motherboard VRM / OC | **Stock/conservative 9950X3D only** | **Selected** | No value in extreme OC capability. |
+| Host OS | **Windows 11 Pro x64** | **Selected** | Best fit for the workload. |
+| Windows license | **Retail/FPP `HAV-00163` English USB** | **Selected purchase target** | Clean DIY licensing path. |
+| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Selected** | First-class Linux userland without dual boot. |
+| Cost philosophy | **Optimize utility per leu; do not spend for prestige, unused capacity or speculative future-proofing** | **Selected** | Premiums must buy durable value. |
+| Provider consolidation | **Maximum 3 providers; default target 2 for hardware** | **Selected** | Extra fragmentation needs meaningful value. |
 
 ## Explicitly superseded decisions
 
-### Motherboard / memory
-- ASUS ProArt X870E-Creator WiFi as the incumbent/provisional board;
-- ASUS TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0` as the selected mainstream board;
-- treating B850 itself as a platform requirement;
-- ASRock Creator-class features as selection drivers;
+### Memory
+- 128 GB / 2×64 GB as the initial purchase;
+- Crucial `CT2K64G56C46U5` as the purchase target;
+- 64 GB / 2×32 GB as the preferred value target;
+- 96 GB / 2×48 GB;
 - 256 GB / 4×64 GB endpoint;
-- 64 GB / 2×32 GB Phase-1 RAM;
-- Crucial `CT2K32G56C46U5` as a purchase target;
-- ECC as a requirement for the 128 GB endpoint;
-- motherboard premiums for 5/10 GbE, x8/x8, a secondary x4 slot, many Gen5 M.2 slots or extreme VRM capability.
+- any planned four-DIMM upgrade path;
+- ECC as a purchase requirement.
 
-### Cooling / chassis
+### Motherboard / cooling / storage / power
+- ASUS ProArt X870E-Creator WiFi;
+- ASUS TUF GAMING B850-PLUS WIFI `90MB1J30-M0EAY0`;
+- treating B850 as a requirement;
 - Noctua NH-D15 G2;
-- Fractal North XL Mesh `FD-C-NOR1X-01`;
-- dedicated Noctua NF-A14x25 G2 rear fan.
-
-### Storage / power
-- Samsung 990 PRO 2 TB as selected system drive;
-- separate ~1 TB system SSD + 1–2 TB active-work SSD architecture;
-- a dedicated small SSD cache in front of another SSD;
-- automatic SSD tiering / Storage Spaces as an initial architecture;
-- fixed 4 TB high-performance work SSD;
-- reserving the Gen5 M.2 slot instead of using it for the initial primary SSD;
-- premium 750 W as the selected PSU target;
-- 1200 W Seasonic VERTEX GX/PX targets;
+- Fractal North XL Mesh;
+- dedicated extra premium case fan;
+- separate system/work SSDs;
+- SSD cache/tiering;
+- fixed 4 TB initial SSD;
+- premium 750 W as selected PSU target;
+- 1200 W Seasonic VERTEX targets;
 - CyberPower PR1500ELCD;
-- dedicated plug-in surge protector as a required purchase.
+- dedicated surge protector purchase.
 
 ## Open / deferred decisions
 
+- optional future RAM replacement only if measured memory pressure proves 48 GB insufficient;
 - optional future storage expansion only if actual capacity needs grow;
 - future GPU replacement only when a concrete need/failure appears;
 - mains protection only if actual power-quality problems appear.
