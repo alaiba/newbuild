@@ -8,12 +8,12 @@ The following architecture decisions are fixed:
 
 - **CPU/platform:** AMD Ryzen 9 9950X3D on AM5;
 - **memory:** **128 GB from day one as 2×64 GB DDR5 UDIMM / 1DPC**;
-- **storage roles:** **~1 TB system/tools NVMe + 4 TB work/data NVMe from day one**;
+- **storage roles:** **~1 TB system/tools NVMe + 1–2 TB active-work NVMe from day one**, with bulk/cold storage added later only when needed;
 - **GPU:** reuse the existing NVIDIA GeForce RTX 3060 12 GB initially;
 - **future GPU path:** one very high-performance/high-VRAM NVIDIA-class discrete GPU, not a multi-GPU workstation;
 - **host OS:** Windows 11 Pro x64 with WSL2 + Ubuntu 26.04.1 LTS.
 
-The exact motherboard, exact 2×64 GB memory kit, ECC/non-ECC verdict and exact SSD models remain open until the current optimization pass closes them.
+The exact motherboard, exact 2×64 GB memory kit, ECC/non-ECC verdict and exact initial SSD models remain open until the current optimization pass closes them.
 
 Previously discussed parts and configurations are candidates only unless explicitly recorded as selected in `docs/decisions.md`.
 
@@ -86,6 +86,7 @@ The 30,000 lei figure is neither a hard cap nor a spending target. Higher prices
 - System-level ECC is desirable only if implemented end-to-end, stable with the exact 2×64 GB kit and operationally observable in the OS. DDR5 on-die ECC is not equivalent.
 - Prefer cooling with sustained thermal/acoustic headroom and replaceable fans.
 - Prefer storage with mature firmware, appropriate endurance and sensible thermal behavior.
+- Do not buy high-performance storage capacity merely for cold/infrequently accessed data.
 - Maintain external/network/cloud backups as appropriate. **RAID is not backup.**
 - Treat BIOS recovery/Flashback, diagnostics and long-term firmware support as material motherboard criteria.
 
@@ -116,9 +117,7 @@ Do not pay materially for EXPO/XMP headline speed unless there is a demonstrated
 
 ## Motherboard requirements
 
-Only AM5 boards compatible with the 9950X3D and the final 2×64 GB topology are eligible.
-
-The old requirement to prove 4×64 GB / 256 GB operation is removed.
+Only AM5 boards compatible with the 9950X3D and final 2×64 GB topology are eligible.
 
 Evaluate:
 
@@ -131,19 +130,21 @@ Evaluate:
 - USB4/high-speed external I/O where useful;
 - virtualization/IOMMU behavior;
 - long-term firmware support;
-- PCIe/M.2 topology with the final two-drive storage arrangement;
+- PCIe/M.2 topology with the final storage arrangement;
 - preservation of a full-performance primary GPU path;
 - physical spacing for a future very large/high-power GPU;
-- useful extra M.2/PCIe capacity for later additive expansion;
+- useful extra M.2/SATA capacity for later additive expansion;
 - value relative to cheaper boards with equivalent relevant capabilities.
 
 ### Required storage topology
 
 The selected motherboard must support at least two M.2 x4 devices simultaneously such that:
 
-- the **4 TB work SSD** can preferably use a CPU-direct x4 connection;
+- the **active-work SSD** can preferably use a CPU-direct x4 connection;
 - the **~1 TB system SSD** can use a chipset-connected x4 connection;
 - populating the selected two M.2 slots does **not reduce the primary GPU from x16**.
+
+A practical later bulk-storage route through spare M.2 and/or SATA is desirable.
 
 Gen5 storage capability is optional. Do not pay a motherboard premium merely to obtain more Gen5 M.2 bandwidth than the workload needs.
 
@@ -151,7 +152,7 @@ CPU-connected x8/x8 bifurcation is useful future-facing functionality when inexp
 
 ## Storage requirements
 
-The final role architecture is fixed at initial assembly:
+The initial role architecture is fixed at two NVMe SSDs.
 
 ### System/tools drive
 
@@ -171,9 +172,13 @@ DRAM and flagship sequential throughput are **not requirements**. Good Gen3/Gen4
 
 The system volume contains Windows, applications/tools, page file/crash-dump infrastructure, servicing space and ordinary profile data.
 
-### Work/data drive
+### Active-work drive
 
-Target **4 TB NVMe from day one**.
+Capacity rule:
+
+- **1 TB is sufficient** for the active working set;
+- **2 TB is preferred when the incremental price and price/TB are attractive**;
+- **4 TB is not an initial requirement**.
 
 Optimize for:
 
@@ -181,18 +186,31 @@ Optimize for:
 - DRAM-equipped design preferred where the price difference is reasonable;
 - mature firmware/tooling;
 - strong sustained/mixed behavior;
-- endurance appropriate for development caches, WSL2, containers, VMs and databases;
+- endurance appropriate for development caches, WSL2, containers, active VMs and databases;
 - reasonable thermals;
 - five-year-class warranty where available;
 - CPU-direct x4 connection preferred.
 
 Gen4 is sufficient. Gen5 should be purchased only when its premium is negligible or a demonstrated workload materially benefits.
 
-Expected work-drive data includes repositories, Maven/Gradle caches/build output, WSL2 VHDX and Linux-native working sets, container stores, Android SDK/AVDs, VMs, local databases, games, datasets and AI models where practical.
+Expected active-work data includes current repositories, Maven/Gradle caches/build output, WSL2 VHDX and Linux-native working sets, container stores, Android SDK/active AVDs, active VMs, local databases and current datasets/models/games where appropriate.
+
+### Bulk/cold storage
+
+Infrequently accessed data should not drive active-work SSD sizing.
+
+When more local capacity is actually needed, add an independent bulk/cold device optimized for capacity/value rather than latency. Eligible classes include:
+
+- additional chipset-connected NVMe SSD;
+- SATA SSD;
+- SATA HDD;
+- external/NAS storage.
+
+Existing old HDDs may be reused for archived/infrequently accessed data after SMART/health checks. They must not be the only copy of important data.
 
 ### Expansion and backup
 
-The initial ~1 TB + 4 TB arrangement is not a lifetime capacity ceiling. Storage should expand additively through extra drives when needed rather than replacing the initial pair merely to add capacity.
+Storage expands additively through extra devices when needed rather than replacing the initial pair merely to add capacity.
 
 No RAID is required. Important data must have independent backup/version-control protection.
 
@@ -232,7 +250,8 @@ If future requirements become serious multi-GPU training, reopen the **platform*
 - large future-GPU clearance;
 - standard replaceable fans;
 - good dust management and service access;
-- enough motherboard/M.2 airflow for long sustained workloads.
+- enough motherboard/M.2 airflow for long sustained workloads;
+- practical support for later SATA storage is useful but should not override core airflow/serviceability requirements.
 
 ### UPS
 
