@@ -1,157 +1,103 @@
 # Cooling Deep Dive
 
-Status: **Air-cooling architecture selected / exact cooler reopened**
+Status: **Selected — Thermalright Phantom Spirit 120 standard**
 
-## Current decision
+## Decision
 
-The workstation will continue to use **air cooling** for the Ryzen 9 9950X3D, operated at stock/conservative settings.
+Use the **Thermalright Phantom Spirit 120**, standard model, on the Ryzen 9 9950X3D.
 
-The previous exact selection of the **Noctua NH-D15 G2 standard** is reopened. It remains an excellent technical reference, but it is no longer allowed to force RAM height, case size or unnecessary cooling spend.
+The CPU remains stock/conservative. The objective is sustained stability and acceptable acoustics under long Java/Gradle/Maven/test workloads, not maximum benchmark cooling capacity.
 
-The next cooler pass should compare at least:
+Do **not** silently substitute Phantom Spirit 120 SE, EVO or another variant. Any variant change must be reviewed for dimensions, fans, acoustics, price and mounting.
 
-1. **Thermalright Phantom Spirit 120-class** — value baseline;
-2. **Noctua NH-U12A** — compact premium/serviceability option;
-3. **Noctua NH-D15 G2 standard** — maximum-air-cooling reference.
+## Why air cooling remains correct
 
-Other air coolers may be considered if they materially improve the same workload/value criteria.
+The workstation prioritizes long service life and simple maintenance:
 
-## Architecture that remains selected
+- no pump as an additional wear item;
+- no coolant/tubing/seals;
+- passive heatsink body has little to fail;
+- standard fans are individually replaceable;
+- simple diagnosis and maintenance;
+- no radiator-placement constraints.
 
-Air cooling is still preferred because the build prioritizes stability, serviceability and long ownership over maximum benchmark thermal capacity.
+Liquid cooling remains a fallback only if real measurements later show that this air-cooling approach cannot meet the desired thermal/acoustic target.
 
-Advantages relevant to this workstation:
+## Why Phantom Spirit 120 wins
 
-- no pump as an additional wear/failure item;
-- no coolant, tubing or seals;
-- heatsink body has essentially no active wear mechanism;
-- standard fans are independently replaceable;
-- simpler troubleshooting and maintenance;
-- no radiator-placement dependency;
-- sufficient cooling is available for stock/conservative 9950X3D operation.
+The previous NH-D15 G2 selection was made when the build carried more speculative thermal/chassis headroom. After removing the 500–600 W future-GPU assumption and reopening the case, maximum air-cooling capacity no longer justified the additional cost and size.
 
-Liquid cooling is not prohibited, but it should be reconsidered only if real measurements show that a suitable air cooler cannot meet the desired sustained thermal/acoustic target.
+The Phantom Spirit 120 provides the relevant characteristics:
 
-## Why the exact cooler was reopened
+- AM5 support;
+- dual-tower layout;
+- seven 6 mm heatpipes;
+- two 120 mm PWM fans;
+- approximately **157 mm total height**;
+- strong high-load air-cooling performance in independent testing;
+- much lower purchase cost than NH-U12A/NH-D15 G2-class premium coolers.
 
-The original NH-D15 G2 choice was made when the build carried substantially more speculative headroom:
+Manufacturer reference:
+- https://www.thermalright.com/product/phantom-spirit-120/
 
-- a very large North XL chassis;
-- a future extremely high-power GPU assumption;
-- a stronger bias toward maximum thermal margin;
-- temporary/then-256-GB RAM assumptions that have since been removed.
+Independent reference:
+- https://www.tomshardware.com/reviews/thermalright-phantom-spirit-120-review
 
-The build has now been deliberately simplified. The CPU will remain stock/conservative, the final memory configuration is 2×64 GB, and the case itself is being value-checked.
+## Case fit
 
-The cooler should therefore be selected for the **actual sustained workload**, not for the highest cooling capacity available.
+Selected chassis: **be quiet! Pure Base 501 Airflow Black `BG074`**.
 
-## Workload requirement
+Relevant geometry:
 
-The exact cooler must:
+- case CPU-cooler limit: approximately **178 mm**;
+- Phantom Spirit 120 height: approximately **157 mm**;
+- nominal vertical margin: approximately **21 mm**.
 
-- sustain long Java/Gradle/Maven/test workloads on the 9950X3D without material thermal throttling;
-- remain acceptably quiet during typical development work;
-- tolerate synthetic worst-case testing as a validation check, not as the design workload;
-- operate reliably with normal case airflow;
-- fit cleanly with the exact 2×64 GB memory kit and final chassis.
+This is materially more forgiving than the previous NH-D15 G2 + regular-Fractal-North concept.
 
-The objective is not the lowest possible benchmark temperature. The objective is **stable sustained operation with sensible acoustics and adequate thermal margin**.
+## RAM interaction
 
-## Evaluation priority
+Final memory remains **2×64 GB / 1DPC** and exact DIMM height is still open.
 
-Rank candidates in this order:
+The front cooler fan can interact with taller DIMMs. The final RAM selection must therefore confirm:
 
-1. **sufficient sustained cooling at stock/conservative CPU settings**;
-2. **acoustics under representative sustained workload**;
-3. **clean RAM/case/motherboard compatibility**;
-4. **reliability and serviceability**;
-5. **fan/mounting ecosystem and warranty**;
-6. **purchase price and replacement-fan cost**;
-7. extra thermal capacity only when it provides a real acoustic/reliability benefit.
-
-Do not reward maximum heat-removal capacity merely because it exists.
-
-## Candidate roles
-
-### Thermalright Phantom Spirit 120-class
-
-Role: **value baseline**.
-
-Why it matters:
-
-- compact relative to giant dual-140 mm towers;
-- substantially lower purchase price than premium Noctua options;
-- strong modern air-cooling performance;
-- likely easier fit in a normal ATX case.
-
-Questions for the final pass:
-
-- exact variant/SKU and Romanian availability;
-- measured 9950X3D-class thermal/noise behavior;
-- RAM clearance with the final 2×64 GB kit;
-- fan quality and long-term replacement path;
-- warranty/support quality.
-
-### Noctua NH-U12A
-
-Role: **premium compact reference**.
-
-Why it matters:
-
-- smaller height/footprint than NH-D15 G2;
-- strong RAM compatibility;
-- premium replaceable fans;
-- mature SecuFirm mounting/support ecosystem;
-- six-year-class warranty/support tradition;
-- likely easier fit in a regular mid-tower chassis.
-
-It should win only if the Noctua support/acoustic/serviceability premium is worth the additional cost over the best value candidate.
-
-### Noctua NH-D15 G2 standard
-
-Role: **maximum-air-cooling reference**, no longer the incumbent purchase.
-
-Strengths remain:
-
-- flagship air-cooling capacity;
-- excellent noise-normalized behavior;
-- premium fans;
-- mature mounting/support ecosystem;
-- AM5 offset mounting;
-- strong warranty/serviceability.
-
-But its size and RAM/front-fan clearance are now explicit costs. It should be selected only if its extra thermal/acoustic margin is materially useful for this stock/conservative workstation.
-
-## RAM and case interaction
-
-The final memory configuration is **2×64 GB / 1DPC**. Exact DIMM height is still open.
-
-The cooler decision must not artificially constrain the RAM search to unusually short DIMMs unless there is a clear benefit. Likewise, the chassis should not be enlarged solely to make room for a cooler whose extra capacity is unnecessary.
-
-Therefore cooler + RAM + case compatibility is evaluated as a coupled physical-fit problem:
-
-- cooler total height including any fan lift;
 - DIMM height;
-- front-fan interference;
-- motherboard VRM/I/O heatsink clearance;
-- first PCIe-slot/GPU clearance;
-- case side-panel clearance.
+- front-fan position/lift if required;
+- total resulting cooler height remains below the case limit;
+- no interference with motherboard heatsinks or the first GPU slot.
+
+Because the chassis provides roughly 21 mm of nominal height margin, moderate fan lift is acceptable without forcing unusually short DIMMs. RAM electrical stability/value remains more important than decorative heat-spreader height.
+
+## Why not NH-U12A
+
+The NH-U12A remains an excellent compact premium cooler with strong Noctua mounting/support/fan quality.
+
+It loses because its substantial price premium does not buy a material workload benefit after the Phantom Spirit already satisfies the expected stock/conservative thermal requirement. The Noctua ecosystem is valuable, but not enough here to outweigh the difference in utility per leu.
+
+## Why not NH-D15 G2
+
+The NH-D15 G2 remains the maximum-air-cooling reference and has excellent acoustics, mounting and serviceability.
+
+It is no longer selected because:
+
+- its extra thermal capacity is not required by the chosen CPU operating policy;
+- it is materially more expensive;
+- its larger physical envelope creates more RAM/case interaction;
+- preserving it would encourage unnecessary chassis oversizing.
 
 ## Fan-control strategy
-
-Regardless of final cooler:
 
 - keep CPU stock/conservative;
 - use a smooth PWM curve rather than chasing short Ryzen temperature spikes;
 - tune against sustained development workloads;
 - validate with a separate synthetic thermal test;
-- do not enable extra CPU power merely because unused thermal headroom exists.
+- do not increase CPU power limits merely because thermal headroom exists.
 
 ## Bring-up validation
 
 After assembly:
 
-1. verify all CPU fans report RPM and PWM control;
+1. verify both cooler fans report RPM and respond to PWM control;
 2. run a sustained representative Java/test/build workload;
 3. run a synthetic CPU thermal test separately;
 4. log package/CCD temperatures, clocks and fan RPM;
@@ -159,18 +105,18 @@ After assembly:
 6. tune the fan curve for acceptable sustained noise;
 7. repeat with the case closed and combined CPU/GPU activity.
 
-## Long-term maintenance
+If closed-case thermals are higher than desired, first test adding a second front case intake before replacing the CPU cooler.
 
-For any selected air cooler:
+## Long-term maintenance
 
 - clean fins during normal dust maintenance;
 - inspect fan bearings/noise periodically;
-- replace individual fans when they degrade;
+- replace individual fans if they degrade;
 - repaste when the cooler is removed or sustained temperatures materially drift;
-- retain mounting hardware/documentation.
+- retain AM5 mounting hardware/documentation.
 
-## Current conclusion
+## Selected conclusion
 
-> **High-quality air cooling remains selected. Exact cooler model is open.**
+> **Ryzen 9 9950X3D + Thermalright Phantom Spirit 120 standard, operated stock/conservatively.**
 
-The NH-D15 G2 is no longer a closed purchase. The next optimization should choose the least expensive/least bulky air cooler that meets the real 9950X3D thermal, acoustic, compatibility and long-service requirements, with premium Noctua options justified only by durable benefits rather than maximum benchmark capacity.
+This exact cooler is selected. Reopen only for a material availability/compatibility issue or if real workload validation shows the thermal/acoustic target is not being met.
