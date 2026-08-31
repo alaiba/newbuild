@@ -1,254 +1,189 @@
 # Compatibility and Topology Tracker
 
-This document captures cross-component constraints that should not be evaluated in isolation.
+This document captures cross-component constraints for the selected workstation.
 
-The build is greenfield. The existing RTX 3060 12 GB is reused initially; the CPU, motherboard, **64 GB Phase-1 memory capacity**, chassis, cooling architecture, exact CPU cooler, storage architecture, exact initial system SSD, exact PSU, rear exhaust fan, Phase-1 UPS, **Windows 11 Pro host OS and WSL2 Linux environment** are selected.
-
-## CPU/platform ↔ motherboard
+## Core platform
 
 Selected:
 
-- **AMD Ryzen 9 9950X3D**
-- **ASUS ProArt X870E-Creator WiFi**
+- AMD Ryzen 9 **9950X3D**;
+- ASUS **ProArt X870E-Creator WiFi**;
+- Phase-1 **64 GB Crucial `CT2K32G56C46U5`**;
+- long-term **256 GB** target, expected 4×64 GB.
 
 Operating policy:
 
-- use current stable BIOS before serious validation;
-- keep CPU at stock/conservative power settings;
-- preserve the board's validated 256 GB memory path;
-- use USB BIOS FlashBack if the shipping BIOS is unsuitable for the CPU.
+- current stable BIOS before serious validation;
+- CPU stock/conservative;
+- RAM Auto/JEDEC during commissioning;
+- preserve the board's validated 256 GB path;
+- ECC only if exact long-term modules, four-DIMM stability and OS-visible reporting are credible.
 
 ## Motherboard ↔ memory
 
-Long-term architectural target:
+Selected Phase-1 RAM:
 
-- credible path to **256 GB**, expected 4×64 GB;
-- exact long-term DIMMs deferred;
-- ECC UDIMM preferred only if exact modules, four-DIMM stability and OS-visible ECC behavior are credible.
-
-Selected Phase-1 capacity:
-
-- **64 GB (2×32 GB)**.
-
-Preferred exact target:
-
-- **Crucial `CT2K32G56C46U5`**;
+- Crucial `CT2K32G56C46U5`;
+- 64 GB / 2×32;
 - DDR5-5600 CL46;
 - 1.1 V;
-- ordinary unbuffered desktop UDIMMs;
-- low-profile bare modules.
+- desktop UDIMM.
 
-Compatibility fallback:
+Strict purchase gate: reject `CT2K32G56C46S5` laptop/SO-DIMM.
 
-- **Kingston `KF556C36BBEK2-64`**, explicitly listed by Kingston for the ProArt X870E-Creator WiFi.
+Kingston `KF556C36BBEK2-64` remains the explicit-ProArt fallback if its price premium shrinks materially or Crucial availability deteriorates.
 
-Bring-up policy:
-
-- install A2/B2;
-- boot at Auto/JEDEC first;
-- do not enable EXPO/XMP during baseline validation;
-- prioritize stability over headline timings;
-- run extended memory testing.
-
-## CPU ↔ cooling
-
-Selected:
-
-- **Noctua NH-D15 G2 standard base**
-- included **7 mm AM5 offset mount**
-- CPU at stock/conservative settings.
-
-The **ASUS ProArt X870E-Creator WiFi is explicitly listed as compatible by Noctua**.
+Install A2/B2, boot Auto/JEDEC first and run extended memory testing.
 
 ## Cooling ↔ memory ↔ case
 
+Selected:
+
+- Noctua NH-D15 G2 standard;
+- included 7 mm AM5 offset;
+- Fractal North XL Mesh `FD-C-NOR1X-01`.
+
 Relevant envelope:
 
-- NH-D15 G2 stock height: **168 mm**;
-- normal dual-fan RAM clearance: approximately **32 mm**;
-- North XL CPU-cooler limit: **185 mm**.
+- NH-D15 G2 stock height ~168 mm;
+- North XL cooler limit ~185 mm;
+- selected Crucial DIMMs are low profile.
 
-Selected Crucial 64 GB kit:
+Expect zero or only minimal front-fan lift with ample case margin.
 
-- low-profile bare modules around the low-30-mm height class;
-- expect zero or only minimal front-fan lift;
-- even a small lift leaves ample side-panel margin.
+## Storage topology
 
-Kingston fallback:
+Selected system SSD:
 
-- ~34.9 mm module height;
-- ~3 mm front-fan lift;
-- ~171 mm practical cooler height;
-- ~14 mm case margin.
+- Samsung 990 PRO 2 TB `MZ-V9P2T0BW`;
+- install under the motherboard heatsink in **`M.2_3`**.
 
-## Motherboard ↔ storage
+Reserve:
 
-Selected initial SSD:
+- **`M.2_1`** for future 4 TB+ work/VM/container/data SSD;
+- avoid `M.2_2` unless its graphics/PCIe sharing trade-off is deliberately accepted.
 
-- **Samsung 990 PRO 2 TB `MZ-V9P2T0BW`**
-- permanent system/tools role
-- PCIe 4.0 x4, bare M.2 2280 drive under the motherboard heatsink.
+This is why a PCIe 5 system-drive upgrade such as 9100 PRO is not attractive: the selected system slot is PCIe 4 and the useful CPU-connected Gen5 slot is intentionally reserved for the future work drive.
 
-Preferred ProArt topology:
+## Windows / WSL storage policy
 
-- **`M.2_3`**: Samsung 990 PRO 2 TB system/tools SSD
-- **`M.2_1`**: future 4 TB-or-larger work/VM/container/data SSD
-- keep **`M.2_2`** unused unless its graphics-lane trade-off is intentionally accepted
-- **`M.2_4`** remains available for later lower-priority storage.
+- Windows-native source/caches stay on Windows-native storage.
+- Linux-native high-I/O repos, package caches and container data stay inside WSL rather than `/mnt/c` where performance matters.
+- Reassess WSL VHDX/container placement and a Windows Dev Drive when the future work SSD is added.
+- BitLocker is enabled only after initial firmware/driver stabilization.
 
-## Storage ↔ Windows / WSL
+## GPU / expansion
 
-Initial system disk:
+- Reuse RTX 3060 12 GB initially.
+- Preserve a future single high-power/high-VRAM GPU path.
+- North XL airflow, 1200 W PSU architecture and storage topology all preserve that path.
+- Recheck future GPU dimensions and 12V-2x6 bend clearance when the GPU is selected.
 
-- Windows 11 Pro uses the 990 PRO as the UEFI/GPT system disk;
-- do not carve the initial 2 TB SSD into a complicated permanent partition scheme merely to create a Dev Drive;
-- BitLocker is enabled only after the first firmware/driver baseline is stable.
+## Case / airflow
 
-Filesystem policy:
+Selected:
 
-- Windows-native repositories/build caches stay on Windows-native storage;
-- Linux-native repositories, package caches and container data stay inside the WSL2 filesystem when I/O is significant;
-- avoid using `/mnt/c` as the default location for Linux-native high-I/O builds merely for convenience;
-- when the future 4 TB+ work SSD is added, reassess moving WSL VHDX/container/cache data there;
-- also evaluate a Windows ReFS Dev Drive on the future work SSD for Windows-native source/caches if measured workload performance justifies it.
-
-Microsoft documents Dev Drive as available across Windows 11 editions, so this storage strategy does **not** require Windows 11 Pro for Workstations.
-
-## Motherboard ↔ GPU / expansion
-
-- Existing RTX 3060 12 GB is reused initially.
-- North XL Mesh, the selected 1200 W PSU and air cooling preserve a path to a substantially larger future high-VRAM GPU.
-- The storage topology avoids `M.2_2`, preserving the primary GPU path.
-- CPU-connected x8/x8 remains useful future headroom but is not a current requirement.
-
-## Case ↔ cooling / GPU / motherboard
-
-Selected chassis:
-
-- **Fractal Design North XL Mesh**
-
-Selected airflow:
-
-- 3×140 mm included front intake;
+- Fractal North XL Mesh `FD-C-NOR1X-01`;
+- 3× included 140 mm front intake;
 - 1× Noctua NF-A14x25 G2 PWM rear exhaust;
-- no top/side fans initially.
+- top/side empty initially.
 
-The front remains unobstructed by a radiator, preserving clean future-GPU intake.
+## PSU ↔ future GPU / UPS
 
-## PSU ↔ CPU / GPU / case
+Selected PSU architecture:
 
-Selected exact PSU:
+- **1200 W ATX 3.1 / PCIe 5.1 / 12V-2x6**.
 
-- **Seasonic VERTEX GX-1200, current ATX 3.1 / PCIe 5.1 / 12V-2x6 revision**.
+Purchase baseline:
 
-Compatibility points:
+- Seasonic **VERTEX GX-1200 current ATX 3.1**.
 
-- 1200 W provides the selected margin for a future ~600 W single GPU plus the 9950X3D platform;
-- ProArt motherboard/dual CPU EPS requirements are covered without adapters;
-- 160 mm PSU body fits easily inside the North XL;
-- future high-power GPU uses the Seasonic-supplied 12V-2x6 cable;
-- future GPU width and connector bend radius must be revalidated when that GPU is selected.
+Conditional value upgrade:
 
-Purchase/receipt acceptance:
+- prefer **VERTEX PX-1200 current ATX 3.1** when it is in stock and costs **≤~200 lei more** than the equivalent current GX;
+- do not delay the build while PX is unavailable.
 
-- box/listing says ATX 3.1;
-- GPU cable is 12V-2x6;
-- reject old ATX 3.0 / 12VHPWR inventory;
-- retain serial/model/warranty evidence;
+For either model:
+
+- box/listing must say ATX 3.1;
+- PCIe 5.1;
+- supplied GPU cable must be current 12V-2x6;
+- reject explicit old ATX 3.0 / 12VHPWR stock;
 - use only Seasonic-approved modular cables.
+
+The 160 mm VERTEX chassis fits comfortably inside North XL.
+
+## UPS ↔ full system
+
+Selected exact UPS:
+
+**CyberPower PR1500ELCD**
+
+- 1500 VA / **1350 W**;
+- line-interactive;
+- pure sine wave;
+- Active-PFC compatible;
+- Double Boost + Single Buck AVR;
+- ~4 ms transfer;
+- hot-swappable `RBP0023` battery;
+- USB/PowerPanel Business;
+- 8× IEC C13 outlets.
+
+This replaces the former 1000 W CP1600 selection.
+
+Compatibility rationale:
+
+- current RTX 3060 machine is expected around ~450–550 W worst-case artificial wall load;
+- future design case remains ~900–980 W;
+- PR1500 places that future load at ~67–73% of its 1350 W rating instead of ~90–98% on the old 1000 W UPS;
+- therefore it is likely to remain useful through the future GPU upgrade rather than becoming a Phase-1-only device.
+
+Use correctly rated IEC cabling and validate USB graceful shutdown with a controlled mains-loss test.
 
 ## Windows ↔ firmware / security
 
-Selected host:
+Selected:
 
-- **Windows 11 Pro x64**;
-- initial installation: **Windows 11 25H2 General Availability**.
+- Windows 11 Pro x64;
+- initial Windows 11 25H2 GA;
+- WSL2 + Ubuntu 26.04.1 LTS.
 
-Required firmware baseline:
+Firmware baseline:
 
-- UEFI-native boot;
+- UEFI native;
 - CSM disabled;
-- Secure Boot enabled;
-- TPM 2.0 / AMD fTPM enabled;
-- AMD SVM enabled;
-- IOMMU enabled unless a demonstrated stability issue appears;
-- CPU/memory conservative during commissioning.
+- Secure Boot;
+- TPM 2.0 / AMD fTPM;
+- SVM;
+- IOMMU unless a real stability problem appears;
+- CPU/RAM conservative during commissioning.
 
-Do the first planned BIOS update before enabling BitLocker. After the firmware baseline is stable, enable BitLocker and retain its recovery key somewhere independent of this workstation.
+Do the planned BIOS update before enabling BitLocker.
 
-Do not use Insider or preview Windows builds for the workstation baseline.
+## Windows license ↔ provider consolidation
 
-## Windows ↔ virtualization / Android / Linux
+Selected license channel: **Retail/FPP**.
 
-Selected Linux environment:
+Preferred procurement SKU:
 
-- **WSL2 + Ubuntu 26.04.1 LTS**.
+- **`HAV-00197`**, Windows 11 Pro Retail/FPP USB Romanian package from EvoMAG.
 
-Windows 11 Pro is selected rather than Home because it preserves full Hyper-V host capability and Remote Desktop hosting in addition to WSL2.
+Windows 11 Pro can add/switch display languages, so use English as the Windows display language after installation if desired. The package language does not justify a third provider when the rights/edition are otherwise equivalent.
 
-Virtualization policy:
+Fallback: English Retail/FPP `HAV-00163` if the consolidated SKU is unavailable or materially overpriced.
 
-- WSL2 for normal Linux CLI/dev/container workflows;
-- Android Emulator uses the supported Windows hypervisor path;
-- Hyper-V VMs only when a genuinely separate VM boundary is useful;
-- no native Linux dual boot unless a later workload demonstrates a bare-metal Linux requirement.
+## Provider dependencies
 
-The selected 64 GB Phase-1 memory provides useful concurrency headroom for IDE + WSL2 + emulator + moderate VM/container workloads. The eventual 256 GB configuration substantially expands that envelope.
+Default target: **two providers**.
 
-## Windows ↔ NVIDIA GPU
+### EvoMAG
 
-Default Windows GPU driver branch:
+CPU, motherboard, RAM, cooler, SSD, case, rear fan, PR1500ELCD and Windows FPP.
 
-- **current NVIDIA Studio Driver WHQL**.
+### Altex
 
-This matches the stability-first workstation policy while retaining gaming support. Switch to Game Ready only for a specific game that materially needs day-zero optimizations/fixes.
+Explicit-current Seasonic VERTEX PSU.
 
-If future local-AI tooling is installed, validate CUDA visibility and driver/toolkit compatibility as a separate acceptance test.
+A third provider requires roughly **≥300 lei net saving** or materially better stock, exact-SKU/revision certainty or warranty.
 
-## Windows edition ↔ hardware scale
-
-Standard **Windows 11 Pro** is sufficient.
-
-Do not buy Pro for Workstations merely because this is a powerful PC:
-
-- one CPU socket is far below its 4-CPU scale feature;
-- 256 GB target RAM is far below its 6 TB memory scale;
-- no current SMB Direct/RDMA requirement;
-- Windows Dev Drive does not require Pro for Workstations.
-
-## UPS ↔ PSU / full system
-
-Selected Phase-1 UPS:
-
-- **CyberPower CP1600EPFCLCD**
-- 1600 VA / 1000 W
-- line-interactive pure sine wave
-- Active-PFC compatible
-- AVR
-- USB HID / PowerPanel
-- user-replaceable `RBP0142` battery.
-
-The UPS is intentionally sized for the current RTX 3060 system, not the PSU's 1200 W nameplate. Reassess when a materially higher-power GPU is installed or measured wall load approaches roughly 700–800 W.
-
-Under Windows, connect the UPS by USB and validate actual automatic graceful shutdown with a controlled mains-loss test.
-
-## Procurement dependencies
-
-For purchase-ready parts:
-
-- **PC Garage and Altex are co-preferred Romanian retailers**;
-- **eMAG is also acceptable**;
-- exact SKU/revision, seller quality and normal Romanian/EU warranty take precedence over retailer order;
-- small price differences do not matter;
-- material price differences may justify another reputable seller.
-
-For Phase-1 memory:
-
-- target Crucial `CT2K32G56C46U5` around the current ~4.7–4.8k lei market class;
-- compare Kingston `KF556C36BBEK2-64` if Crucial availability/warranty/pricing degrades materially.
-
-For Windows:
-
-- official Microsoft Store Romania price control is **1,199 RON** for Windows 11 Pro if a new license is required;
-- reuse an existing legitimate transferable Pro license if available;
-- avoid grey-market activation keys as part of the baseline build.
+If EvoMAG can explicitly verify its Seasonic as current ATX 3.1 / PCIe 5.1 / 12V-2x6, a one-provider order is acceptable.
