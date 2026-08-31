@@ -22,7 +22,7 @@ The design philosophy is **stability first, utility per leu second, speculation 
 | CPU | **AMD Ryzen 9 9950X3D**, Box/WOF `100-100000719WOF` |
 | Motherboard | **Reopened for optimization** from a broad AM5 set; Creator-class features no longer privileged |
 | RAM | **128 GB final from day one, 2×64 GB DDR5 UDIMM / 1DPC**; exact kit/ECC verdict open |
-| CPU cooler | **Noctua NH-D15 G2 standard**, 7 mm AM5 offset |
+| Cooling | **High-quality air cooling selected; exact cooler reopened** |
 | System storage | **~1 TB**, NVMe preferred but SATA acceptable if topology/value warrants it |
 | Active-work SSD | **1 TB sufficient; 2 TB if price/value is attractive**, Gen4 TLC preferred; **CPU-direct M.2 x4 required** |
 | Bulk/cold storage | Add only when needed via spare M.2, SATA SSD/HDD or external/NAS |
@@ -39,6 +39,7 @@ The design philosophy is **stability first, utility per leu second, speculation 
 ## Key simplifications
 
 - No planned 256 GB/four-DIMM memory endpoint.
+- NH-D15 G2 is no longer a locked purchase; cooler/case/RAM fit will be optimized together.
 - No 4 TB performance SSD requirement.
 - Only **one CPU-direct M.2 x4** connection is mandatory; a second M.2 is desirable, not required.
 - 1 GbE is sufficient; do not pay for 5/10 GbE.
@@ -50,7 +51,7 @@ The design philosophy is **stability first, utility per leu second, speculation 
 
 ## Current open work
 
-1. Optional final **case size/value check**.
+1. Optimize **case + CPU cooler** together; compare a strong value air cooler against premium compact/large Noctua references.
 2. Re-optimize the **motherboard** against the simplified requirements.
 3. Select exact **2×64 GB RAM** and ECC/non-ECC verdict.
 4. Select exact system and active-work storage.
@@ -68,4 +69,4 @@ The design philosophy is **stability first, utility per leu second, speculation 
 
 ## Current stage
 
-**The build has been aggressively de-speculated. Motherboard optimization can now start from the actual workload rather than from hypothetical 256 GB, 10 GbE, multi-GPU, multiple-Gen5-M.2 or 600 W future-GPU requirements.**
+**The build has been aggressively de-speculated. Cooler/case and motherboard optimization can now start from the actual workload rather than from hypothetical maximum cooling, 256 GB, 10 GbE, multi-GPU, multiple-Gen5-M.2 or 600 W future-GPU requirements.**
