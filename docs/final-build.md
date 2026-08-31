@@ -1,6 +1,6 @@
 # Final Build
 
-This is the current source-of-truth architecture for the workstation. A requirement change on 2026-08-31 finalized memory at **128 GB / 2×64 GB / 1DPC from day one**, which reopens the exact motherboard and RAM-model optimization before purchase.
+This is the current source-of-truth architecture for the workstation. A requirement change on 2026-08-31 finalized memory at **128 GB / 2×64 GB / 1DPC from day one** and storage at **two internal NVMe drives from day one: ~1 TB system + 4 TB work**. The exact motherboard, RAM kit and SSD models remain to be optimized before purchase.
 
 ## Current build state
 
@@ -13,8 +13,9 @@ This is the current source-of-truth architecture for the workstation. A requirem
 | Exact RAM kit | Exact 2×64 GB matched kit | **Open for optimization** |
 | ECC | ECC UDIMM only if end-to-end support/reporting is compelling | **Open within RAM optimization** |
 | CPU cooler | **Noctua NH-D15 G2 standard**, 7 mm AM5 offset | **Selected** |
-| System/tools SSD | **Samsung 990 PRO 2 TB `MZ-V9P2T0BW`** in the incumbent storage architecture | **Selected incumbent; storage architecture now under requested review** |
-| Future work SSD | Current plan: 4 TB-or-larger NVMe later | **Selected incumbent; under requested storage review** |
+| System/tools SSD | **~1 TB NVMe**, reliability/capacity/value optimized; chipset-connected x4 acceptable | **Role/capacity selected; exact model open** |
+| Work/data SSD | **4 TB high-quality NVMe from day one**, Gen4 TLC preferred; CPU-direct x4 preferred | **Role/capacity selected; exact model open** |
+| Storage RAID | **No RAID**; external/network backup required | **Selected** |
 | PSU | **Seasonic VERTEX GX-1200 current ATX 3.1 / PCIe 5.1 / 12V-2x6** | **Selected baseline** |
 | PSU value upgrade | **VERTEX PX-1200 current ATX 3.1** | **Preferred if in stock at ≤~200 lei premium** |
 | Case | **Fractal North XL Mesh `FD-C-NOR1X-01`** | **Selected** |
@@ -42,9 +43,26 @@ This permanently supersedes:
 - a planned 256 GB / 4×64 GB endpoint;
 - any motherboard premium justified mainly by four-DIMM/256 GB behavior.
 
-The exact 2×64 GB SKU is intentionally not selected yet. It will be optimized together with the reopened motherboard after the requested storage discussion.
+The exact 2×64 GB SKU is intentionally not selected yet. It will be optimized together with the reopened motherboard.
 
 Bring-up remains conservative: current stable BIOS, A2/B2, Auto/JEDEC first, no EXPO/XMP during baseline validation, extended memory testing.
+
+## Storage architecture — final
+
+The workstation will also avoid a temporary storage phase.
+
+Initial assembly uses two independent internal NVMe drives:
+
+- **~1 TB system/tools SSD** for Windows, applications, IDE/tool binaries, page file, servicing and normal profile data;
+- **4 TB work/data SSD** for repositories, Maven/Gradle caches, WSL2/container data, Android SDK/AVDs, VMs, databases, games and other large/high-I/O working data.
+
+The system drive is **not a performance prestige component**. With 128 GB RAM and the heavy working set on the dedicated 4 TB drive, a reputable mature Gen3/Gen4 NVMe is already sufficient. Optimize C: for reliability, capacity headroom, warranty and price. A chipset-connected x4 M.2 slot is fully acceptable.
+
+The work drive receives the performance/endurance priority. Prefer a CPU-direct x4 slot, TLC NAND, good sustained/mixed behavior, mature firmware and sensible endurance. **Gen4 is sufficient; Gen5 is a bonus only when its premium is negligible or a demonstrated workload benefits.**
+
+The old Samsung 990 PRO 2 TB `MZ-V9P2T0BW` purchase selection and staged 2 TB-now / 4 TB-later plan are superseded. The 990 PRO may still compete in the exact-model comparison if its current price makes sense.
+
+No RAID is required. Storage capacity remains naturally additive through later M.2 expansion; the initial two drives should not need to be discarded merely to add capacity.
 
 ## Motherboard consequence
 
@@ -52,28 +70,25 @@ The ASUS ProArt X870E-Creator WiFi remains the incumbent technical reference, bu
 
 Its strongest differentiator in the previous analysis was explicit evidence for the difficult 4×64 GB / 256 GB / ECC-oriented use case. With the lifetime endpoint now 2×64 GB / 128 GB, the motherboard can be re-optimized for the remaining requirements: stability, firmware quality, networking, PCIe/storage topology, serviceability, future high-power GPU support and value.
 
+Storage requirements are now simpler and explicit:
+
+1. at least two simultaneously usable M.2 x4 slots;
+2. one preferably CPU-direct x4 for the 4 TB work SSD;
+3. one chipset x4 slot is sufficient for the ~1 TB system SSD;
+4. populating the selected two M.2 slots must not reduce the main GPU from x16;
+5. more M.2 slots are useful for additive future capacity but should not command a large premium.
+
 No replacement board has been selected yet.
-
-## Storage — incumbent architecture pending review
-
-The current storage plan remains:
-
-- Samsung 990 PRO 2 TB as permanent system/tools drive;
-- separate 4 TB-or-larger work/VM/container/data SSD later;
-- no RAID;
-- external/network backup required.
-
-The user has explicitly requested a storage-architecture optimization discussion **before** the next whole-build optimization pass. Therefore the current storage plan is an incumbent, not something to change silently.
 
 ## Current price envelope
 
-The previous complete-order totals are now **obsolete** because they assumed a 64 GB RAM kit and a final motherboard selection.
+The previous complete-order totals are **obsolete** because they assumed a 64 GB RAM kit, a final ProArt motherboard and the old single-drive-first storage purchase.
 
 Do not publish a new purchase total until:
 
 1. the exact 2×64 GB kit is selected;
 2. the motherboard re-optimization is complete;
-3. the requested storage review determines whether the SSD architecture changes.
+3. exact ~1 TB system and 4 TB work SSD models are selected and priced.
 
 ## Hard purchase gates that remain valid
 
@@ -87,6 +102,14 @@ Do not publish a new purchase total until:
 - 1DPC / A2+B2;
 - no temporary 2×32 GB purchase;
 - exact SKU selected only after motherboard/RAM optimization.
+
+### Storage
+- two internal NVMe drives from day one;
+- system drive target approximately 1 TB, reputable/mature/value-oriented;
+- work drive exactly 4 TB initial target, high-quality TLC preferred;
+- no requirement for Gen5;
+- selected two M.2 slots must preserve GPU x16;
+- no RAID requirement.
 
 ### Cooler
 - NH-D15 G2 **standard**;
@@ -129,9 +152,9 @@ For GX or conditional PX:
 
 ## Next decision sequence
 
-1. **Discuss/review storage architecture.**
-2. Re-optimize motherboard for the 128 GB 1DPC endpoint and finalized storage requirements.
-3. Select the exact 2×64 GB RAM kit, including the ECC/non-ECC verdict.
+1. Re-optimize **motherboard** for the final 128 GB 1DPC and two-drive storage topology.
+2. Select the exact **2×64 GB RAM kit**, including ECC/non-ECC verdict.
+3. Select exact **~1 TB system + 4 TB work SSDs** using current Romanian price/value data.
 4. Recalculate provider consolidation and the purchase total.
 
 Detailed decisions: `docs/decisions.md`.
