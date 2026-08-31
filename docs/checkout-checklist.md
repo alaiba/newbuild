@@ -1,6 +1,6 @@
 # Checkout / Arrival Verification Checklist
 
-Use this checklist for remaining purchases and again when physical packages arrive.
+Use this checklist for the final RAM purchase and again when physical packages arrive.
 
 ## Verification levels
 
@@ -21,17 +21,23 @@ Already purchased from EvoMAG:
 - SSD — Crucial T710 2 TB;
 - PSU — be quiet! Pure Power 13 M 850W.
 
-Order total: **6,531.95 lei including 11.99 lei courier**.
+EvoMAG total: **6,531.95 lei including 11.99 lei courier**.
 
-For these four, use the **arrival checks** below; do not re-shop them unless there is a problem.
+Already purchased from Vexio:
+
+- case — be quiet! Pure Base 501 Airflow Black `BG074`, **415.99 lei**;
+- cooler — Thermalright Phantom Spirit 120 standard, **246.99 lei**;
+- shipping — **0.00 lei**.
+
+Vexio total: **662.98 lei**.
+
+**Committed total: 7,194.93 lei including shipping.**
 
 Windows 11 Pro is already available and is **not a checkout item**.
 
 Still to purchase:
 
-- RAM;
-- cooler;
-- case.
+- **RAM only**.
 
 ## Exact purchase / arrival gates
 
@@ -39,25 +45,26 @@ Still to purchase:
 |---|---|---|---|
 | CPU | AMD Ryzen 9 9950X3D **`100-100000719WOF`** | Purchased | Reject silent tray/OEM substitution |
 | Motherboard | ASUS TUF GAMING B650E-E WIFI **`90MB1LT0-M0EAY0`** | Purchased by model name; physical SKU pending | Do not confuse with B650-E **`90MB1GT0-M0EAY0`** or B650E-PLUS |
-| RAM | Crucial Pro **`CP2K24G56C46U5`**, 48 GB = **2×24 GB** | Not yet purchased | Reject single-DIMM `CP24G56C46U5`, RDIMM or different topology |
-| Cooler | Thermalright **Phantom Spirit 120 standard** | Not yet purchased | Do not silently substitute SE/EVO |
-| Case | be quiet! Pure Base 501 Airflow Black **`BG074`** | Not yet purchased | Confirm both included 140 mm PWM fans are present |
+| RAM | Crucial Pro **`CP2K24G56C46U5`**, 48 GB = **2x24 GB** | **Not yet purchased — only remaining buy** | Reject single-DIMM `CP24G56C46U5`, RDIMM or different topology |
+| Cooler | Thermalright **Phantom Spirit 120 standard** | Purchased from Vexio | Reject SE/EVO substitution; confirm both fans and AM5 mounting hardware |
+| Case | be quiet! Pure Base 501 Airflow Black **`BG074`** | Purchased from Vexio | Confirm non-window model and both included 140 mm PWM fans |
 | SSD | Crucial T710 2 TB **`CT2000T710SSD8`** | Purchased | Must be bare/non-heatsink variant |
 | PSU | be quiet! Pure Power 13 M 850W **`BP027EU`** | Purchased | Reject Pure Power 12 M, other wattage/revision; never mix modular cables |
 
-## Remaining retailer-page checks
+## Remaining retailer-page checks — RAM only
 
-For RAM, cooler and case:
+For the RAM listing:
 
-- confirm the manufacturer part number/model in the specification table, not only the marketing title;
-- confirm the product is new retail stock, not open-box/refurbished/tray unless explicitly accepted;
+- confirm exact manufacturer part number `CP2K24G56C46U5`;
+- confirm the product is new retail stock, not open-box/refurbished;
+- confirm 48 GB total as two 24 GB desktop UDIMMs;
+- confirm DDR5-5600 and non-ECC;
 - record price including VAT;
 - record stock state and realistic lead time;
 - record warranty duration/path;
-- record delivery/shipping cost when available;
-- capture the product URL and, if useful, a screenshot/PDF before payment.
+- record delivery/shipping cost when available.
 
-If the page does not expose the exact manufacturer SKU, do not infer it from the title. Ask the retailer or choose a clearer listing.
+Do not infer equivalence from capacity/speed alone. The exact matched kit is the purchase control.
 
 ## Arrival checks for the EvoMAG order
 
@@ -107,9 +114,37 @@ Confirm:
 
 Only cables supplied with this exact PSU may be used.
 
-## Remaining component-specific purchase checks
+## Arrival checks for the Vexio order
 
-### RAM
+### Cooler
+
+Required:
+
+> Thermalright **Phantom Spirit 120 standard**
+
+Confirm:
+
+- standard model, not **SE** or **EVO**;
+- seven heatpipes;
+- approximately 157 mm tower height;
+- two 120 mm fans corresponding to the standard model;
+- AM5 mounting hardware present;
+- no shipping damage or signs of prior use.
+
+### Case
+
+Required:
+
+> be quiet! Pure Base 501 Airflow Black **`BG074`**
+
+Confirm:
+
+- exact `BG074` identity;
+- non-window Airflow Black variant;
+- both included 140 mm PWM fans present;
+- panels, mesh, connectors and accessory box undamaged/complete.
+
+## RAM purchase check
 
 Required:
 
@@ -126,32 +161,16 @@ Confirm all of:
 
 A listing for a single 48 GB module is not equivalent even if the frequency/timings look identical.
 
-### Cooler
-
-Required:
-
-> Thermalright **Phantom Spirit 120 standard**
-
-Do not silently substitute the **SE** or **EVO** variant. A different variant requires explicit review.
-
-### Case
-
-Required:
-
-> be quiet! Pure Base 501 Airflow Black `BG074`
-
-Confirm the exact non-window Airflow Black model and both included 140 mm PWM fans.
-
 ## Provider/price consolidation
 
-Policy after the first order:
+Policy after the two executed orders:
 
-- EvoMAG is already the first hardware provider;
-- prefer at most one additional hardware provider for RAM + cooler + case;
-- exact SKU/model, warranty and retailer quality outrank small savings;
-- do not substitute the case/cooler merely to keep everything at EvoMAG.
+- EvoMAG and Vexio are already the two hardware providers used;
+- a third provider is acceptable for the exact RAM kit if necessary;
+- exact SKU, warranty and retailer quality outrank small savings;
+- do not disturb already placed orders for consolidation.
 
-Calculate final cost using **delivered totals**, not product-price sums alone. Do not include Windows in remaining procurement cost.
+Calculate final cost using **delivered totals**. Do not include Windows in remaining procurement cost.
 
 ## Physical arrival checks — all hardware
 
@@ -166,4 +185,4 @@ Do not install a mismatched component merely to see whether it works; installati
 
 ## After verification
 
-Once every item passes the exact-SKU checks, proceed to assembly/commissioning using `docs/final-build.md` and the component dossiers.
+Once RAM is purchased and every item passes the exact-SKU checks, proceed to assembly/commissioning using `docs/final-build.md` and the component dossiers.
