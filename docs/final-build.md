@@ -8,7 +8,7 @@ This is the current source-of-truth architecture for the workstation.
 |---|---|---|
 | CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Purchased — EvoMAG; arrival verification pending** |
 | Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Purchased — EvoMAG; exact box SKU verification pending** |
-| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB) DDR5-5600 CL46-class, 1.1 V, non-ECC** | **Purchased — CEL.ro; arrival verification pending** |
+| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB) DDR5-5600 CL46-class, 1.1 V, non-ECC** | **Received 2026-09-02 — CEL.ro; physical identity verified from package/photo** |
 | Memory topology | **1DPC / A2+B2; Auto/JEDEC first** | Final |
 | CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Purchased — Vexio; arrival verification pending** |
 | Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Purchased — Vexio; arrival verification pending** |
@@ -69,9 +69,11 @@ Arrival gate: the physical box must identify `90MB1LT0-M0EAY0`. Reject B650-E `9
 
 ## Memory — final
 
-Purchased from CEL.ro for **2,899.00 lei**:
+Purchased from CEL.ro for **2,899.00 lei** and **received 2026-09-02**:
 
 > **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB), DDR5-5600 CL46-class, 1.1 V, non-ECC UDIMM.**
+
+Arrival verification passed from the supplied package photo: 48 GB total, 2x24 GB, DDR5-5600, CL46, UDIMM, AMD EXPO and Intel XMP 3.0 markings, with the matching Crucial Pro kit identity visible on the modules.
 
 Why 48 GB remains correct:
 
@@ -129,14 +131,14 @@ Use only the modular cables supplied with this exact PSU.
 
 - CPU: `100-100000719WOF`, Box/WOF;
 - motherboard: `90MB1LT0-M0EAY0`;
-- RAM: `CP2K24G56C46U5`, 48 GB = 2x24 GB;
+- RAM: **passed 2026-09-02** — `CP2K24G56C46U5`, 48 GB = 2x24 GB;
 - cooler: Phantom Spirit 120 standard, not SE/EVO;
 - case: `BG074`, non-window Airflow Black;
 - SSD: `CT2000T710SSD8`, bare/non-heatsink;
 - PSU: `BP027EU`, complete original modular cable set.
 
-## Procurement position — 2026-09-01
+## Procurement position — 2026-09-02
 
 **Procurement complete. No required new hardware remains to source.**
 
-Current phase: physical identity/condition verification, then assembly and commissioning.
+RAM has arrived and passed physical identity verification. Current phase: verify the remaining arrivals, then assembly and commissioning.
