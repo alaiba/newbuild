@@ -51,7 +51,7 @@ Windows 11 Pro is already available and is outside procurement. The RTX 3060 and
 |---|---|---|
 | CPU | **AMD Ryzen 9 9950X3D Box/WOF `100-100000719WOF`** | **Purchased — EvoMAG; arrival verification pending** |
 | Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Purchased — EvoMAG; exact box SKU verification pending** |
-| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB = 2x24 GB DDR5-5600, non-ECC** | **Purchased — CEL.ro; arrival verification pending** |
+| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB = 2x24 GB DDR5-5600, non-ECC** | **Received 2026-09-02 — CEL.ro; physical identity verified from package/photo** |
 | CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Purchased — Vexio; arrival verification pending** |
 | Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Purchased — Vexio; arrival verification pending** |
 | Primary SSD | **Crucial T710 2 TB `CT2000T710SSD8`**, bare/non-heatsink | **Purchased — EvoMAG; arrival verification pending** |
@@ -77,6 +77,7 @@ Windows 11 Pro is already available and is outside procurement. The RTX 3060 and
 - required: **Crucial Pro `CP2K24G56C46U5`**;
 - 48 GB total as **2x24 GB**;
 - DDR5-5600, desktop non-ECC UDIMM;
+- **arrival verification passed 2026-09-02** from the supplied package photo: Crucial Pro, 48 GB (2x24 GB), DDR5-5600 CL46 UDIMM, AMD EXPO / Intel XMP 3.0, matching kit identity visible on the modules;
 - install in **A2/B2** and commission at **Auto/JEDEC first**.
 
 Do not add a second pair later. If more capacity is eventually required, replace this pair with a larger matched two-DIMM kit.
@@ -101,7 +102,7 @@ Do not add a second pair later. If more capacity is eventually required, replace
 ## What Work should do now
 
 1. Treat every required new hardware component as **purchased**, not a shopping candidate.
-2. Verify box labels, seals, condition and accessories before installation.
+2. Treat the RAM arrival/identity gate as **passed**; verify remaining delivered components as they arrive.
 3. Record serials/photos where useful and retain packaging.
 4. Proceed to assembly after all delivered identities pass.
 5. Update to a current stable BIOS before enabling BitLocker.
