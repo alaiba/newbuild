@@ -12,28 +12,28 @@ For every purchased component, verify:
 
 If any level disagrees, do not install the part until the discrepancy is resolved.
 
-## Purchase state — 2026-09-01
+## Purchase state — 2026-09-02
 
 | Provider | Purchased items | Order total |
 |---|---|---:|
 | EvoMAG | CPU, motherboard, SSD, PSU | **6,531.95 lei** |
 | Vexio | case, CPU cooler | **662.98 lei** |
-| CEL.ro | RAM | **2,899.00 lei** |
+| CEL.ro | RAM — **received and identity-verified 2026-09-02** | **2,899.00 lei** |
 | **Total committed** | all required newly purchased hardware | **10,093.93 lei** |
 
 Windows 11 Pro is already available and is not a purchase item. RTX 3060 and suitable SATA drives are reused.
 
 ## Exact arrival gates
 
-| Item | Required identity | Reject / warning |
+| Item | Required identity | Status / reject warning |
 |---|---|---|
-| CPU | AMD Ryzen 9 9950X3D `100-100000719WOF` | Reject tray/OEM substitution |
-| Motherboard | ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0` | Reject B650-E `90MB1GT0-M0EAY0`, B650E-PLUS or other near-name variants |
-| RAM | Crucial Pro `CP2K24G56C46U5`, 48 GB = 2x24 GB | Reject single-DIMM `CP24G56C46U5`, different capacity/topology or RDIMM |
-| Cooler | Thermalright Phantom Spirit 120 standard | Reject SE/EVO substitution |
-| Case | be quiet! Pure Base 501 Airflow Black `BG074` | Confirm non-window model and both included 140 mm PWM fans |
-| SSD | Crucial T710 2 TB `CT2000T710SSD8` | Must be bare/non-heatsink variant |
-| PSU | be quiet! Pure Power 13 M 850W `BP027EU` | Reject other revision/wattage; never mix modular cables |
+| CPU | AMD Ryzen 9 9950X3D `100-100000719WOF` | Pending; reject tray/OEM substitution |
+| Motherboard | ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0` | Pending; reject B650-E `90MB1GT0-M0EAY0`, B650E-PLUS or other near-name variants |
+| RAM | Crucial Pro `CP2K24G56C46U5`, 48 GB = 2x24 GB | **PASSED 2026-09-02** — package/photo confirms Crucial Pro, 48 GB (2x24 GB), DDR5-5600 CL46 UDIMM; matching kit identity visible on modules |
+| Cooler | Thermalright Phantom Spirit 120 standard | Pending; reject SE/EVO substitution |
+| Case | be quiet! Pure Base 501 Airflow Black `BG074` | Pending; confirm non-window model and both included 140 mm PWM fans |
+| SSD | Crucial T710 2 TB `CT2000T710SSD8` | Pending; must be bare/non-heatsink variant |
+| PSU | be quiet! Pure Power 13 M 850W `BP027EU` | Pending; reject other revision/wattage; never mix modular cables |
 
 ## EvoMAG arrival checks
 
@@ -74,20 +74,24 @@ Confirm:
 - both included 140 mm PWM fans present;
 - panels, mesh, connectors and accessory box complete/undamaged.
 
-## CEL.ro RAM arrival checks
+## CEL.ro RAM arrival checks — passed 2026-09-02
 
 Required:
 
 > **Crucial Pro `CP2K24G56C46U5`**
 
-Confirm:
+Verified from the supplied package photo:
 - 48 GB total;
 - **2 modules**;
 - **24 GB per module**;
 - DDR5-5600;
+- CL46;
 - desktop UDIMM;
-- non-ECC;
-- sealed/new-retail condition.
+- Crucial Pro series;
+- AMD EXPO and Intel XMP 3.0 support markings;
+- matching kit identity visible on the module labels.
+
+Physical package appears to be the expected retail kit. Preserve the packaging and serial information through commissioning/return windows.
 
 Install the pair in **A2/B2** and commission at **Auto/JEDEC first**. Do not enable EXPO/XMP during the initial stability baseline unless later justified.
 
