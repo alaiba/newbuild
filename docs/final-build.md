@@ -10,8 +10,8 @@ This is the current source-of-truth architecture for the workstation.
 | Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Purchased — EvoMAG; exact box SKU verification pending** |
 | RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB) DDR5-5600 CL46-class, 1.1 V, non-ECC** | **Received 2026-09-02 — CEL.ro; physical identity verified from package/photo** |
 | Memory topology | **1DPC / A2+B2; Auto/JEDEC first** | Final |
-| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Purchased — Vexio; arrival verification pending** |
-| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Purchased — Vexio; arrival verification pending** |
+| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Received 2026-09-15 — Vexio; model, two 120 mm fans and AM5 mounting hardware verified from photos** |
+| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Received 2026-09-15 — Vexio; exact `BG074` box label and both included 140 mm fans verified from photos** |
 | Case airflow | **2x included 140 mm PWM: front intake + rear exhaust** | Final initial layout |
 | Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Purchased — EvoMAG; arrival verification pending** |
 | Bulk/cold storage | Reuse healthy existing SATA drives; `M.2_2` + `M.2_3` remain free | Final policy |
@@ -95,14 +95,14 @@ Bring-up:
 
 ## Cooling and chassis — final
 
-Purchased from Vexio:
+Purchased from Vexio and **received/verified 2026-09-15**:
 
 - Thermalright Phantom Spirit 120 standard — **246.99 lei**;
 - be quiet! Pure Base 501 Airflow Black `BG074` — **415.99 lei**.
 
-Initial airflow: one included 140 mm front intake + one included 140 mm rear exhaust.
+Cooler verification passed from supplied photos: standard Phantom Spirit 120 branding with no SE/EVO suffix, dual-tower seven-heatpipe heatsink, both 120 mm fans, installation guide and accessory pack containing AM5 mounting hardware. For AM5 installation, retain the motherboard's original AMD backplate; the Intel backplate included in the cooler kit is not used. Remove the protective film/sticker from the cooler base before installation.
 
-Arrival gates: cooler must be standard Phantom Spirit 120, not SE/EVO; case must be exact `BG074` with both included 140 mm PWM fans.
+Case verification passed from supplied photos: shipping-box label explicitly identifies **`BG074 (Black)`**, and the chassis interior shows both included 140 mm fans. Initial airflow remains one included 140 mm front intake + one included 140 mm rear exhaust.
 
 ## Storage architecture — final
 
@@ -132,13 +132,13 @@ Use only the modular cables supplied with this exact PSU.
 - CPU: `100-100000719WOF`, Box/WOF;
 - motherboard: `90MB1LT0-M0EAY0`;
 - RAM: **passed 2026-09-02** — `CP2K24G56C46U5`, 48 GB = 2x24 GB;
-- cooler: Phantom Spirit 120 standard, not SE/EVO;
-- case: `BG074`, non-window Airflow Black;
+- cooler: **passed 2026-09-15** — Phantom Spirit 120 standard, dual 120 mm fans and AM5 hardware verified;
+- case: **passed 2026-09-15** — `BG074` Black, both included 140 mm fans verified;
 - SSD: `CT2000T710SSD8`, bare/non-heatsink;
 - PSU: `BP027EU`, complete original modular cable set.
 
-## Procurement position — 2026-09-02
+## Procurement position — 2026-09-15
 
 **Procurement complete. No required new hardware remains to source.**
 
-RAM has arrived and passed physical identity verification. Current phase: verify the remaining arrivals, then assembly and commissioning.
+RAM, CPU cooler and case have arrived and passed physical identity/accessory verification. Current phase: verify CPU, motherboard, SSD and PSU arrivals, then assembly and commissioning.
