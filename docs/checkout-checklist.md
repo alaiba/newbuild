@@ -1,6 +1,6 @@
 # Arrival Verification Checklist
 
-Procurement is complete. Use this checklist when the physical packages arrive and before installation.
+Procurement is complete; the system was assembled and reached UEFI on 2026-10-31. This checklist distinguishes exact package-label verification from operational model detection.
 
 ## Verification levels
 
@@ -27,13 +27,13 @@ Windows 11 Pro is already available and is not a purchase item. RTX 3060 and sui
 
 | Item | Required identity | Status / reject warning |
 |---|---|---|
-| CPU | AMD Ryzen 9 9950X3D `100-100000719WOF` | Pending; reject tray/OEM substitution |
-| Motherboard | ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0` | Pending; reject B650-E `90MB1GT0-M0EAY0`, B650E-PLUS or other near-name variants |
+| CPU | AMD Ryzen 9 9950X3D `100-100000719WOF` | **Installed; model recognized by BIOS; exact Box/WOF SKU label not independently documented** |
+| Motherboard | ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0` | **Installed; board recognized by BIOS; box SKU label not independently documented** |
 | RAM | Crucial Pro `CP2K24G56C46U5`, 48 GB = 2x24 GB | **PASSED 2026-09-02** — package/photo confirms Crucial Pro, 48 GB (2x24 GB), DDR5-5600 CL46 UDIMM; matching kit identity visible on modules |
 | Cooler | Thermalright Phantom Spirit 120 standard | **PASSED 2026-09-15** — standard model, dual 120 mm fans, seven-heatpipe heatsink and AM5 mounting hardware verified from photos |
 | Case | be quiet! Pure Base 501 Airflow Black `BG074` | **PASSED 2026-09-15** — box label confirms `BG074 (Black)` and both included 140 mm fans are visible |
-| SSD | Crucial T710 2 TB `CT2000T710SSD8` | Pending; must be bare/non-heatsink variant |
-| PSU | be quiet! Pure Power 13 M 850W `BP027EU` | Pending; reject other revision/wattage; never mix modular cables |
+| SSD | Crucial T710 2 TB `CT2000T710SSD8` | **Installed; BIOS detects exact CT2000T710SSD8 (2,000.3 GB)** |
+| PSU | be quiet! Pure Power 13 M 850W `BP027EU` | **Installed and operating; verify exact EU part suffix on package/label if needed** |
 
 ## EvoMAG arrival checks
 
@@ -110,17 +110,11 @@ Before opening/installing components:
 - inspect packaging for shipping damage/open-box substitution;
 - preserve invoices, packaging and serial records through commissioning and return windows.
 
-## After verification
+## After verification — as of 2026-10-31
 
-Passed so far:
-- RAM — 2026-09-02;
-- CPU cooler — 2026-09-15;
-- case — 2026-09-15.
+- RAM passed package verification 2026-09-02; CPU cooler and case passed 2026-09-15.
+- New motherboard, CPU, SSD, PSU and fans are physically assembled; initial POST succeeded.
+- BIOS confirms 9950X3D model, ASUS B650E-E WIFI, 48 GB A2/B2, and exact T710 model `CT2000T710SSD8`.
+- CPU Box/WOF part-number label, motherboard exact box SKU, and PSU `BP027EU` suffix are **not separately recorded**; do not mark these package checks passed based on POST alone.
+- The next phase is Windows installation and stability verification rather than shopping or initial assembly. See `docs/bring-up-2026-10-31.md`.
 
-Still pending:
-- CPU;
-- motherboard;
-- SSD;
-- PSU.
-
-Once every item passes identity and condition checks, proceed to assembly/commissioning using `docs/final-build.md` and the component dossiers.

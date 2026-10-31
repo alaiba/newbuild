@@ -18,19 +18,17 @@ When repository files disagree, use this precedence order:
 
 Historical/date-stamped files may contain superseded decisions. They must never override a higher-precedence current file.
 
-## Current objective
+## Current objective — 2026-10-31
 
-The architecture is closed and **procurement is complete**.
+**Procurement complete. Assembly substantially complete, and initial UEFI POST successful with integrated Radeon graphics; no RTX 3060 installed.**
 
-All required new hardware has been purchased. Do not perform further component shopping or price optimization unless a delivered item is wrong, damaged, cancelled, or a material compatibility defect is discovered.
+Observed in ASUS UEFI BIOS 3287: AMD Ryzen 9 9950X3D (16 cores), 48 GB Crucial DDR5-5600 in A2/B2 (EXPO disabled), Crucial T710 2 TB `CT2000T710SSD8` in M.2_1, CPU temperature 36 °C and motherboard 28 °C. Monitored fans: CPU_FAN 555 RPM, CHA_FAN1 434 RPM, CHA_FAN2 406 RPM. An 8 GB UEFI USB boot device is detected.
 
-The current task is:
+**Not yet demonstrated:** Windows installation, sustained CPU/memory/storage stability, both CPU fans' rotation individually, SSD SMART/firmware/temperature, USB/network/audio operation, GPU installation, or WSL2/Ubuntu.
 
-1. verify every delivered component physically against the exact identity below;
-2. preserve invoices, serial numbers and packaging through return windows;
-3. assemble the system;
-4. perform BIOS/firmware bring-up and stability validation;
-5. install Windows 11 Pro, WSL2 and Ubuntu after hardware stability is established.
+Next: final cooler/cable/side-panel checks; Windows 11 Pro installation on the T710 with the RTX 3060 and old SATA drives disconnected; baseline validation; later GPU/WSL2 setup. Do not enable BitLocker before firmware/driver/storage stability is established.
+
+See `docs/bring-up-2026-10-31.md` for the dated observation log. Keep packaging and invoices; some exact retail-box suffix checks are not separately documented.
 
 ## Executed orders — 2026-09-01
 
@@ -49,16 +47,16 @@ Windows 11 Pro is already available and is outside procurement. The RTX 3060 and
 
 | Component | Exact current selection | Procurement status |
 |---|---|---|
-| CPU | **AMD Ryzen 9 9950X3D Box/WOF `100-100000719WOF`** | **Purchased — EvoMAG; arrival verification pending** |
-| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Purchased — EvoMAG; exact box SKU verification pending** |
-| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB = 2x24 GB DDR5-5600, non-ECC** | **Received 2026-09-02 — CEL.ro; physical identity verified from package/photo** |
-| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Received 2026-09-15 — Vexio; model, two fans and AM5 mounting hardware verified from photos** |
-| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Received 2026-09-15 — Vexio; exact `BG074` box label and both included 140 mm fans verified from photos** |
-| Primary SSD | **Crucial T710 2 TB `CT2000T710SSD8`**, bare/non-heatsink | **Purchased — EvoMAG; arrival verification pending** |
-| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`** | **Purchased — EvoMAG; arrival verification pending** |
-| GPU | existing **RTX 3060 12 GB** | Already owned / reuse |
-| Host OS | **Windows 11 Pro x64** | License already available |
-| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | Selected |
+| CPU | **AMD Ryzen 9 9950X3D Box/WOF `100-100000719WOF`** | **Installed; BIOS identifies 9950X3D, 16 cores; retail box SKU not separately checked** |
+| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Installed; UEFI POST passed, BIOS 3287; exact retail box SKU not separately checked** |
+| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB = 2x24 GB DDR5-5600, non-ECC** | **Installed A2/B2; UEFI reports 49,152 MB DDR5-5600, EXPO disabled** |
+| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Installed with TF7 paste, two CPU fans middle + rear; 36 °C BIOS idle** |
+| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Assembled; both 140 mm chassis fans connected and reporting RPM** |
+| Primary SSD | **Crucial T710 2 TB `CT2000T710SSD8`**, bare/non-heatsink | **Installed M.2_1; exact model detected by BIOS (2,000.3 GB)** |
+| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`** | **Installed and powering system; exact regional suffix not independently checked** |
+| GPU | existing **RTX 3060 12 GB** | **Intentionally not installed for iGPU-only baseline** |
+| Host OS | **Windows 11 Pro x64** | **Pending installation; UEFI USB detected** |
+| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Pending** |
 | UPS | none | No purchase planned |
 | Dedicated surge protector | none | No purchase planned |
 
@@ -104,12 +102,13 @@ Do not add a second pair later. If more capacity is eventually required, replace
 
 ## What Work should do now
 
-1. Treat every required new hardware component as **purchased**, not a shopping candidate.
-2. Treat the **RAM, CPU cooler and case** arrival/identity gates as **passed**; verify CPU, motherboard, SSD and PSU as they arrive.
-3. Record serials/photos where useful and retain packaging.
-4. Proceed to assembly after all delivered identities pass.
-5. Update to a current stable BIOS before enabling BitLocker.
-6. Install RAM in A2/B2 and begin with Auto/JEDEC.
-7. Validate memory, CPU thermals, T710 firmware/SMART/temperature, GPU, storage and sleep/network behavior.
-8. Install Windows 11 Pro + WSL2/Ubuntu after the baseline hardware is stable.
-9. Enable BitLocker only after firmware/driver/storage stability is established.
+1. Treat procurement as complete, assembly as substantially complete, and **initial POST as passed**; do not confuse this with validated stability.
+2. Refer to `docs/bring-up-2026-10-31.md` for observed values and open checks.
+3. Verify cooler mounting, both CPU fans actually spinning, no fan-wire interference, rear clearance and side-panel fit before prolonged load.
+4. Keep RAM Auto/JEDEC, EXPO disabled during baseline. Check whether BIOS 3287 merits an update to a current stable ASUS release.
+5. Boot the verified Windows installation USB and install **Windows 11 Pro** on the new T710. Leave RTX 3060 and existing SATA drives disconnected.
+6. Install AMD chipset/iGPU and other platform drivers, then check SSD SMART/firmware/temperature, memory stability, load thermals, USB/network/audio and sleep.
+7. Add existing RTX 3060 and its PCIe/VGA power cable after passing iGPU-only baseline; retest.
+8. Install WSL2/Ubuntu; enable BitLocker only after firmware/storage stability and protect recovery keys.
+9. Preserve invoices/packaging. Retail-box SKU evidence for CPU, motherboard and PSU regional suffix remains unrecorded.
+

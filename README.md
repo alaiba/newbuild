@@ -14,19 +14,19 @@ Design philosophy: **stability first, utility per leu second, speculation last**
 
 | Component | Current configuration | State |
 |---|---|---|
-| CPU | AMD Ryzen 9 **9950X3D** Box/WOF `100-100000719WOF` | **Purchased — EvoMAG** |
-| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Purchased — EvoMAG; physical SKU verification pending** |
-| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24), DDR5-5600, non-ECC, 1DPC** | **Purchased — CEL.ro** |
-| CPU cooler | **Thermalright Phantom Spirit 120 standard** | **Purchased — Vexio** |
-| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Purchased — Vexio** |
-| Case airflow | **2x included 140 mm PWM**, front intake + rear exhaust | Selected |
-| Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Purchased — EvoMAG** |
+| CPU | AMD Ryzen 9 **9950X3D** Box/WOF `100-100000719WOF` | **Installed; BIOS detects model** |
+| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Installed; UEFI first POST passed (BIOS 3287)** |
+| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24), DDR5-5600, non-ECC, 1DPC** | **Installed A2/B2; 48 GB detected, EXPO off** |
+| CPU cooler | **Thermalright Phantom Spirit 120 standard** | **Installed; initial BIOS 36 °C** |
+| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Assembled** |
+| Case airflow | **2x included 140 mm PWM**, front intake + rear exhaust | **Connected, monitored in BIOS** |
+| Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Installed, detected in BIOS** |
 | Storage expansion | `M.2_2` + `M.2_3` free; reuse healthy existing SATA drives for cold/bulk data | Selected |
 | Storage RAID/cache/tiering | **None** | Selected |
-| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | **Purchased — EvoMAG** |
-| GPU | Existing **RTX 3060 12 GB** | Already owned / reuse |
-| Host OS | **Windows 11 Pro x64** | Selected; license already available |
-| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | Selected |
+| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | **Installed and operating** |
+| GPU | Existing **RTX 3060 12 GB** | **Not installed yet (iGPU baseline)** |
+| Host OS | **Windows 11 Pro x64** | **Pending installation** |
+| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Pending** |
 | UPS | none | No purchase planned |
 | Dedicated surge protector | none | No purchase planned |
 
@@ -59,7 +59,7 @@ See [`docs/purchases-2026-09-01.md`](docs/purchases-2026-09-01.md).
 
 **Procurement is complete. No required new hardware remains to be purchased.**
 
-The current task is physical arrival verification followed by assembly and commissioning.
+The procurement statement above reflects the September order state; current assembly and commissioning status is below.
 
 Critical arrival controls:
 
@@ -74,7 +74,8 @@ Critical arrival controls:
 ## Repository structure
 
 - [`WORK.md`](WORK.md) — mandatory fresh-session / ChatGPT Work entrypoint
-- [`docs/final-build.md`](docs/final-build.md) — source-of-truth architecture and purchase state
+- [`docs/final-build.md`](docs/final-build.md) — source-of-truth architecture and commissioning state
+- [`docs/bring-up-2026-10-31.md`](docs/bring-up-2026-10-31.md) — first POST, observed BIOS readings and remaining tests
 - [`docs/decisions.md`](docs/decisions.md) — closed/reopened/superseded decisions
 - [`docs/procurement-plan-2026-08-31.md`](docs/procurement-plan-2026-08-31.md) — completed procurement plan/record
 - [`docs/final-order-plan-2026-08-31.md`](docs/final-order-plan-2026-08-31.md) — executed order record
@@ -83,6 +84,9 @@ Critical arrival controls:
 - [`docs/compatibility.md`](docs/compatibility.md) — cross-component topology/constraints
 - [`docs/components/`](docs/components/) — component deep dives
 
-## Current stage
+## Current stage — 2026-10-31
 
-**Procurement complete.** Verify deliveries, then assemble and commission the workstation.
+**Assembled; first UEFI POST passed using Ryzen integrated graphics (without RTX 3060).** ASUS BIOS 3287 identifies Ryzen 9 9950X3D, 48 GB DDR5-5600 A2/B2, and Crucial T710 2 TB in M.2_1. Initial idle temperatures: CPU **36 °C**, motherboard **28 °C**; CPU and both case fan groups report RPM.
+
+Next: install Windows 11 Pro to the T710 with RTX 3060 and old SATA drives absent, verify stability and peripheral function, then add GPU, WSL2/Ubuntu and eventually BitLocker. Windows installation and sustained-load stability have **not** yet been reported.
+

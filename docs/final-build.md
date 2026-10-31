@@ -6,22 +6,30 @@ This is the current source-of-truth architecture for the workstation.
 
 | Component | Configuration | Status |
 |---|---|---|
-| CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Purchased — EvoMAG; arrival verification pending** |
-| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Purchased — EvoMAG; exact box SKU verification pending** |
-| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB) DDR5-5600 CL46-class, 1.1 V, non-ECC** | **Received 2026-09-02 — CEL.ro; physical identity verified from package/photo** |
+| CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Installed; BIOS identifies 9950X3D; box SKU not independently recorded** |
+| Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Installed, POST passed; BIOS version 3287; retail box SKU not independently recorded** |
+| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB) DDR5-5600 CL46-class, 1.1 V, non-ECC** | **Installed A2/B2; UEFI reports 49,152 MB DDR5-5600, EXPO off** |
 | Memory topology | **1DPC / A2+B2; Auto/JEDEC first** | Final |
-| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Received 2026-09-15 — Vexio; model, two 120 mm fans and AM5 mounting hardware verified from photos** |
-| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Received 2026-09-15 — Vexio; exact `BG074` box label and both included 140 mm fans verified from photos** |
-| Case airflow | **2x included 140 mm PWM: front intake + rear exhaust** | Final initial layout |
-| Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Purchased — EvoMAG; arrival verification pending** |
+| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Mounted with TF7; fans in middle + rear configuration; 36 °C BIOS idle** |
+| Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Assembled; front/rear 140 mm fans connected** |
+| Case airflow | **2x included 140 mm PWM: front intake + rear exhaust** | **CHA_FAN2 406 RPM front / CHA_FAN1 434 RPM rear at BIOS idle** |
+| Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Installed; UEFI detects CT2000T710SSD8 (2,000.3 GB)** |
 | Bulk/cold storage | Reuse healthy existing SATA drives; `M.2_2` + `M.2_3` remain free | Final policy |
 | Storage RAID/cache/tiering | None | Final |
-| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | **Purchased — EvoMAG; arrival verification pending** |
-| GPU | Existing **RTX 3060 12 GB** | Reuse |
-| Host OS | **Windows 11 Pro x64** | Selected; license already available |
-| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | Selected |
+| PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | **Installed and operating; exact retail suffix not independently recorded** |
+| GPU | Existing **RTX 3060 12 GB** | **Not yet installed, intentionally omitted for iGPU baseline** |
+| Host OS | **Windows 11 Pro x64** | **Not yet installed; UEFI 8 GB USB detected** |
+| Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Pending after Windows commissioning** |
 | UPS | None initially | Final |
 | Dedicated surge protection | None required | Final |
+
+## Physical assembly and UEFI first-boot checkpoint — 2026-10-31
+
+**Initial POST passed** without the RTX 3060 using the CPU's integrated graphics. BIOS 3287 detected 9950X3D (16 cores), 48 GB Crucial DDR5-5600 in A2/B2 (EXPO disabled), and the Crucial T710 `CT2000T710SSD8` 2 TB in M.2_1. At BIOS idle: CPU **36 °C**, motherboard **28 °C**, CPU_FAN **555 RPM**, CHA_FAN1 **434 RPM**, CHA_FAN2 **406 RPM**. No Windows installation or prolonged stability result has been recorded.
+
+CPU cooler fans are deliberately positioned **middle + rear**, pushing toward case rear exhaust and avoiding the RAM overhang; they use a PWM Y-splitter on CPU_FAN, so only one CPU tachometer reading is expected. The 24-pin ATX and CPU EPS leads, F_PANEL, front USB-A/USB-C, HD_AUDIO and both chassis fans are connected. RTX 3060 and prior SATA drives remain disconnected for the initial OS baseline.
+
+Before further operation, confirm both cooler fans spin, wires cannot enter blades, cooler mounting and side-panel clearance are correct. See `docs/bring-up-2026-10-31.md` for detailed observations and remaining validation.
 
 ## Executed purchases — 2026-09-01
 
@@ -137,8 +145,9 @@ Use only the modular cables supplied with this exact PSU.
 - SSD: `CT2000T710SSD8`, bare/non-heatsink;
 - PSU: `BP027EU`, complete original modular cable set.
 
-## Procurement position — 2026-09-15
+## Commissioning position — 2026-10-31
 
-**Procurement complete. No required new hardware remains to source.**
+**Procurement complete; initial hardware assembly/UEFI POST passed.** Windows 11 Pro, sustained memory/CPU/SSD tests, GPU installation, WSL2/Ubuntu and BitLocker remain pending. Operational model detection is distinct from retail-box verification: CPU Box/WOF SKU, motherboard box SKU and PSU regional suffix were not independently recorded.
 
-RAM, CPU cooler and case have arrived and passed physical identity/accessory verification. Current phase: verify CPU, motherboard, SSD and PSU arrivals, then assembly and commissioning.
+Maintain Auto/JEDEC memory defaults (EXPO off) for the initial Windows baseline, check whether BIOS 3287 requires a stable-release update, and delay BitLocker until firmware/driver/storage stability is confirmed.
+
