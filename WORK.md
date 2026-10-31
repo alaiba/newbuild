@@ -28,6 +28,8 @@ Observed in ASUS UEFI BIOS 3287: AMD Ryzen 9 9950X3D (16 cores), 48 GB Crucial D
 
 Windows 11 Pro installation note: offline setup had **no working Wi-Fi or Bluetooth** out of the box. A **wired Ethernet cable was required** to obtain drivers and Windows updates. Next: confirm wireless connectivity after driver installation, perform baseline stability/thermal tests, then GPU/WSL2 work as needed. Do not enable BitLocker before firmware/driver/storage stability is established.
 
+Additional Windows CPU-Z baseline screenshots verify 9950X3D (16C/32T), ASUS B650E-E WIFI BIOS 3287, 48 GB DDR5-5600 CL46-45-45-90, Micron/Crucial 24 GB SPD module, and AMD integrated graphics. Memory controller ~1400 MHz vs DRAM ~2800 MHz (1:2). GPU status not proven by screenshots; PCIe 4.0 x16 is reported. ASUS BIOS newer than 3287 is available; evaluate only after initial stability tests.
+
 See `docs/bring-up-2026-10-31.md` for the dated observation log. Keep packaging and invoices; some exact retail-box suffix checks are not separately documented.
 
 ## Executed orders — 2026-09-01
