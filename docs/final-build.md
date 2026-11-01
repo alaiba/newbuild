@@ -17,7 +17,7 @@ This is the current source-of-truth architecture for the workstation.
 | Bulk/cold storage | Reuse healthy existing SATA drives; `M.2_2` + `M.2_3` remain free | Final policy |
 | Storage RAID/cache/tiering | None | Final |
 | PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | **Installed and operating; exact retail suffix not independently recorded** |
-| GPU | Existing **RTX 3060 12 GB** | **Not yet installed, intentionally omitted for iGPU baseline** |
+| GPU | Existing **RTX 3060 12 GB** | **Installed after successful iGPU-only baseline; recognized by Windows (2026-11-01, user confirmation); GPU load validation pending** |
 | Host OS | **Windows 11 Pro x64** | **Installed and reported working; wired Ethernet was needed for initial drivers and Windows updates because offline Wi-Fi/Bluetooth did not work** |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Pending after Windows commissioning** |
 | UPS | None initially | Final |
@@ -27,7 +27,7 @@ This is the current source-of-truth architecture for the workstation.
 
 **Initial POST passed** without the RTX 3060 using the CPU's integrated graphics. BIOS 3287 detected 9950X3D (16 cores), 48 GB Crucial DDR5-5600 in A2/B2 (EXPO disabled), and the Crucial T710 `CT2000T710SSD8` 2 TB in M.2_1. At BIOS idle: CPU **36 °C**, motherboard **28 °C**, CPU_FAN **555 RPM**, CHA_FAN1 **434 RPM**, CHA_FAN2 **406 RPM**. Windows 11 Pro was subsequently installed and reported working, but prolonged stability testing has not been recorded.
 
-CPU cooler fans are deliberately positioned **middle + rear**, pushing toward case rear exhaust and avoiding the RAM overhang; they use a PWM Y-splitter on CPU_FAN, so only one CPU tachometer reading is expected. The 24-pin ATX and CPU EPS leads, F_PANEL, front USB-A/USB-C, HD_AUDIO and both chassis fans are connected. RTX 3060 and prior SATA drives remain disconnected for the initial OS baseline.
+CPU cooler fans are deliberately positioned **middle + rear**, pushing toward case rear exhaust and avoiding the RAM overhang; they use a PWM Y-splitter on CPU_FAN, so only one CPU tachometer reading is expected. The 24-pin ATX and CPU EPS leads, F_PANEL, front USB-A/USB-C, HD_AUDIO and both chassis fans are connected. RTX 3060 and prior SATA drives were disconnected during the initial OS baseline. The RTX 3060 has since been installed and recognized by Windows; the SATA-drive status remains unverified.
 
 Before further operation, confirm both cooler fans spin, wires cannot enter blades, cooler mounting and side-panel clearance are correct. See `docs/bring-up-2026-10-31.md` for detailed observations and remaining validation.
 
@@ -145,9 +145,9 @@ Use only the modular cables supplied with this exact PSU.
 - SSD: `CT2000T710SSD8`, bare/non-heatsink;
 - PSU: `BP027EU`, complete original modular cable set.
 
-## Commissioning position — 2026-10-31
+## Commissioning position — 2026-11-01
 
-**Procurement complete; initial hardware assembly/UEFI POST passed; Windows 11 Pro installed and reported working.** During Windows 11 offline setup, neither Wi-Fi nor Bluetooth worked out of the box. The user connected wired Ethernet to download drivers and Windows updates. Post-driver Wi-Fi/Bluetooth verification, sustained memory/CPU/SSD tests, GPU installation status, WSL2/Ubuntu and BitLocker remain unverified or pending. Operational model detection is distinct from retail-box verification: CPU Box/WOF SKU, motherboard box SKU and PSU regional suffix were not independently recorded.
+**Procurement complete; initial hardware assembly/UEFI POST passed; Windows 11 Pro installed and reported working.** During Windows 11 offline setup, neither Wi-Fi nor Bluetooth worked out of the box. The user connected wired Ethernet to download drivers and Windows updates. On 2026-11-01 the RTX 3060 was confirmed mounted and recognized by Windows. Post-driver Wi-Fi/Bluetooth verification, sustained memory/CPU/SSD tests, NVIDIA driver/GPU load validation, WSL2/Ubuntu and BitLocker remain unverified or pending. Operational model detection is distinct from retail-box verification: CPU Box/WOF SKU, motherboard box SKU and PSU regional suffix were not independently recorded.
 
 Maintain Auto/JEDEC memory defaults (EXPO off) for the initial Windows baseline, check whether BIOS 3287 requires a stable-release update, and delay BitLocker until firmware/driver/storage stability is confirmed.
 
