@@ -18,17 +18,17 @@ When repository files disagree, use this precedence order:
 
 Historical/date-stamped files may contain superseded decisions. They must never override a higher-precedence current file.
 
-## Current objective — 2026-10-31
+## Current objective — 2026-11-01
 
-**Procurement complete. Assembly substantially complete; initial UEFI POST succeeded using integrated Radeon graphics without the RTX 3060. Windows 11 Pro has since been installed and the user reports that the system is working well.**
+**Procurement complete; Windows 11 Pro installed and working. Initial UEFI POST and Windows bring-up succeeded with integrated Radeon graphics; the existing ASUS RTX 3060 has since been physically installed and recognized by Windows (user confirmed 2026-11-01).**
 
 Observed in ASUS UEFI BIOS 3287: AMD Ryzen 9 9950X3D (16 cores), 48 GB Crucial DDR5-5600 in A2/B2 (EXPO disabled), Crucial T710 2 TB `CT2000T710SSD8` in M.2_1, CPU temperature 36 °C and motherboard 28 °C. Monitored fans: CPU_FAN 555 RPM, CHA_FAN1 434 RPM, CHA_FAN2 406 RPM. An 8 GB UEFI USB boot device is detected.
 
-**Not yet independently verified:** sustained CPU/memory/storage stability, both CPU fans' rotation individually, SSD SMART/firmware/temperature, peripheral/USB/audio checks, post-driver Wi-Fi/Bluetooth functionality, GPU installation, or WSL2/Ubuntu. Wired Ethernet was usable for obtaining drivers and updates.
+**Not yet independently verified:** sustained CPU/memory/storage stability, both CPU fans' rotation individually, SSD SMART/firmware/temperature, peripheral/USB/audio checks, post-driver Wi-Fi/Bluetooth functionality, NVIDIA driver version and GPU load/thermal stability, or WSL2/Ubuntu. Wired Ethernet was usable for obtaining drivers and updates.
 
-Windows 11 Pro installation note: offline setup had **no working Wi-Fi or Bluetooth** out of the box. A **wired Ethernet cable was required** to obtain drivers and Windows updates. Next: confirm wireless connectivity after driver installation, perform baseline stability/thermal tests, then GPU/WSL2 work as needed. Do not enable BitLocker before firmware/driver/storage stability is established.
+Windows 11 Pro installation note: offline setup had **no working Wi-Fi or Bluetooth** out of the box. A **wired Ethernet cable was required** to obtain drivers and Windows updates. Next: confirm wireless connectivity after driver installation, perform baseline stability/thermal tests, then RTX 3060 driver/load checks and WSL2 work as needed. Do not enable BitLocker before firmware/driver/storage stability is established.
 
-Additional Windows CPU-Z baseline screenshots verify 9950X3D (16C/32T), ASUS B650E-E WIFI BIOS 3287, 48 GB DDR5-5600 CL46-45-45-90, Micron/Crucial 24 GB SPD module, and AMD integrated graphics. Memory controller ~1400 MHz vs DRAM ~2800 MHz (1:2). GPU status not proven by screenshots; PCIe 4.0 x16 is reported. ASUS BIOS newer than 3287 is available; evaluate only after initial stability tests.
+Additional Windows CPU-Z baseline screenshots verify 9950X3D (16C/32T), ASUS B650E-E WIFI BIOS 3287, 48 GB DDR5-5600 CL46-45-45-90, Micron/Crucial 24 GB SPD module, and AMD integrated graphics. Memory controller ~1400 MHz vs DRAM ~2800 MHz (1:2). The CPU-Z screenshots alone did not establish GPU identity, but the user subsequently confirmed successful RTX 3060 installation and Windows recognition; PCIe 4.0 x16 was reported. ASUS BIOS newer than 3287 is available; evaluate only after initial stability tests.
 
 See `docs/bring-up-2026-10-31.md` for the dated observation log. Keep packaging and invoices; some exact retail-box suffix checks are not separately documented.
 
@@ -56,7 +56,7 @@ Windows 11 Pro is already available and is outside procurement. The RTX 3060 and
 | Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Assembled; both 140 mm chassis fans connected and reporting RPM** |
 | Primary SSD | **Crucial T710 2 TB `CT2000T710SSD8`**, bare/non-heatsink | **Installed M.2_1; exact model detected by BIOS (2,000.3 GB)** |
 | PSU | **be quiet! Pure Power 13 M 850W `BP027EU`** | **Installed and powering system; exact regional suffix not independently checked** |
-| GPU | existing **RTX 3060 12 GB** | **Intentionally not installed for iGPU-only baseline** |
+| GPU | existing **RTX 3060 12 GB** | **Installed after iGPU-only baseline; recognized by Windows (user confirmed 2026-11-01); driver/version/load tests not yet recorded** |
 | Host OS | **Windows 11 Pro x64** | **Installed and reported operational; offline installer lacked Wi-Fi/Bluetooth, so Ethernet was used for drivers and updates** |
 | Linux environment | **WSL2 + Ubuntu 26.04.1 LTS** | **Pending** |
 | UPS | none | No purchase planned |
@@ -110,7 +110,7 @@ Do not add a second pair later. If more capacity is eventually required, replace
 4. Keep RAM Auto/JEDEC, EXPO disabled during baseline. Check whether BIOS 3287 merits an update to a current stable ASUS release.
 5. Windows 11 Pro installation completed; preserve the observation that offline setup provided neither Wi-Fi nor Bluetooth and required wired Ethernet to obtain drivers and updates. Verify both radios now work and record their installed drivers.
 6. Confirm AMD chipset/iGPU and remaining platform drivers are correctly installed, then check SSD SMART/firmware/temperature, memory stability, load thermals, USB/network/audio and sleep.
-7. Add existing RTX 3060 and its PCIe/VGA power cable after passing iGPU-only baseline; retest.
+7. **Completed:** mount existing RTX 3060 and connect its PCIe/VGA power cable; **user confirms Windows recognizes it**. Next verify NVIDIA driver version, display outputs, GPU thermals and stability under load.
 8. Install WSL2/Ubuntu; enable BitLocker only after firmware/storage stability and protect recovery keys.
 9. Preserve invoices/packaging. Retail-box SKU evidence for CPU, motherboard and PSU regional suffix remains unrecorded.
 
