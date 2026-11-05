@@ -18,15 +18,17 @@ When repository files disagree, use this precedence order:
 
 Historical/date-stamped files may contain superseded decisions. They must never override a higher-precedence current file.
 
-## Current objective — 2026-11-01
+## Current objective — 2026-11-05
 
 **Procurement complete; Windows 11 Pro installed and working. Initial UEFI POST and Windows bring-up succeeded with integrated Radeon graphics; the existing ASUS RTX 3060 has since been physically installed and recognized by Windows (user confirmed 2026-11-01).**
 
 Observed in ASUS UEFI BIOS 3287: AMD Ryzen 9 9950X3D (16 cores), 48 GB Crucial DDR5-5600 in A2/B2 (EXPO disabled), Crucial T710 2 TB `CT2000T710SSD8` in M.2_1, CPU temperature 36 °C and motherboard 28 °C. Monitored fans: CPU_FAN 555 RPM, CHA_FAN1 434 RPM, CHA_FAN2 406 RPM. An 8 GB UEFI USB boot device is detected.
 
-**Not yet independently verified:** sustained CPU/memory/storage stability, both CPU fans' rotation individually, SSD SMART/firmware/temperature, peripheral/USB/audio checks, post-driver Wi-Fi/Bluetooth functionality, NVIDIA driver version and GPU load/thermal stability, or WSL2/Ubuntu. Wired Ethernet was usable for obtaining drivers and updates.
+**First-week update (2026-11-05):** user reports smooth daily usage and exceptionally quiet operation. Short SSE CPU stress: 100% utilization, ~4.8 GHz average effective clock, 80.5 °C CPU peak, ~200 W package power, no reported WHEA errors. HWiNFO confirms 48 GB dual-channel DDR5 at ~5590 MT/s, 46-45-45-90; MemTest86 downloaded but **not yet run/reported**. Crucial T710 NVMe confirmed PCIe 5.0 x4; CrystalDiskMark 9 (3 runs, 1 GiB) sequential read/write **14,022.52 / 12,936.93 MB/s**, SSD peak **72 °C**, SMART 100% remaining life and no warnings. Full result table and evidence limits: `docs/bring-up-2026-10-31.md`.
 
-Windows 11 Pro installation note: offline setup had **no working Wi-Fi or Bluetooth** out of the box. A **wired Ethernet cable was required** to obtain drivers and Windows updates. Next: confirm wireless connectivity after driver installation, perform baseline stability/thermal tests, then RTX 3060 driver/load checks and WSL2 work as needed. Do not enable BitLocker before firmware/driver/storage stability is established.
+**Still unverified/pending:** MemTest86 and extended system stability, individual CPU fan rotation and load RPM/curves, SSD firmware and extended write behavior, peripheral/USB/audio and post-driver Wi-Fi/Bluetooth checks, NVIDIA driver/GPU-load thermals, and WSL2/Ubuntu. Short tests do not guarantee long-term stability. Wired Ethernet was usable for obtaining drivers and updates.
+
+Windows 11 Pro installation note: offline setup had **no working Wi-Fi or Bluetooth** out of the box. A **wired Ethernet cable was required** to obtain drivers and Windows updates. Next: complete MemTest86 (four passes), confirm wireless connectivity after driver installation, RTX 3060 driver/load checks and WSL2 work as needed. Initial CPU cooling and SSD performance/SMART checks have favorable results. Do not enable BitLocker before firmware/driver/storage stability is established.
 
 Additional Windows CPU-Z baseline screenshots verify 9950X3D (16C/32T), ASUS B650E-E WIFI BIOS 3287, 48 GB DDR5-5600 CL46-45-45-90, Micron/Crucial 24 GB SPD module, and AMD integrated graphics. Memory controller ~1400 MHz vs DRAM ~2800 MHz (1:2). The CPU-Z screenshots alone did not establish GPU identity, but the user subsequently confirmed successful RTX 3060 installation and Windows recognition; PCIe 4.0 x16 was reported. ASUS BIOS newer than 3287 is available; evaluate only after initial stability tests.
 
@@ -109,7 +111,7 @@ Do not add a second pair later. If more capacity is eventually required, replace
 3. Verify cooler mounting, both CPU fans actually spinning, no fan-wire interference, rear clearance and side-panel fit before prolonged load.
 4. Keep RAM Auto/JEDEC, EXPO disabled during baseline. Check whether BIOS 3287 merits an update to a current stable ASUS release.
 5. Windows 11 Pro installation completed; preserve the observation that offline setup provided neither Wi-Fi nor Bluetooth and required wired Ethernet to obtain drivers and updates. Verify both radios now work and record their installed drivers.
-6. Confirm AMD chipset/iGPU and remaining platform drivers are correctly installed, then check SSD SMART/firmware/temperature, memory stability, load thermals, USB/network/audio and sleep.
+6. Confirm AMD chipset/iGPU and remaining platform drivers are correctly installed. Initial SSD SMART, temperature and CrystalDiskMark performance checked favorably; SSD firmware, MemTest86, longer load checks, USB/network/audio and sleep remain open.
 7. **Completed:** mount existing RTX 3060 and connect its PCIe/VGA power cable; **user confirms Windows recognizes it**. Next verify NVIDIA driver version, display outputs, GPU thermals and stability under load.
 8. Install WSL2/Ubuntu; enable BitLocker only after firmware/storage stability and protect recovery keys.
 9. Preserve invoices/packaging. Retail-box SKU evidence for CPU, motherboard and PSU regional suffix remains unrecorded.
