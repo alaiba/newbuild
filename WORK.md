@@ -8,13 +8,14 @@ When repository files disagree, use this precedence order:
 
 1. `WORK.md` — current handoff contract and operating rules.
 2. `docs/final-build.md` — current source-of-truth architecture and purchase state.
-3. `docs/decisions.md` — closed/superseded decisions and rationale.
-4. `docs/procurement-plan-2026-08-31.md` — procurement record/policy.
-5. `docs/final-order-plan-2026-08-31.md` — executed order state.
-6. `docs/purchases-2026-09-01.md` — executed purchase ledger.
-7. `docs/checkout-checklist.md` — arrival verification workflow.
-8. Component dossiers under `docs/components/`.
-9. Other date-stamped analysis/history files.
+4. `docs/commissioning-status.md` — latest detailed operating and validation status.
+4. `docs/decisions.md` — closed/superseded decisions and rationale.
+5. `docs/procurement-plan-2026-08-31.md` — procurement record/policy.
+6. `docs/final-order-plan-2026-08-31.md` — executed order state.
+7. `docs/purchases-2026-09-01.md` — executed purchase ledger.
+8. `docs/checkout-checklist.md` — arrival verification workflow.
+9. Component dossiers under `docs/components/`.
+10. Other date-stamped analysis/history files.
 
 Historical/date-stamped files may contain superseded decisions. They must never override a higher-precedence current file.
 
@@ -24,7 +25,7 @@ Historical/date-stamped files may contain superseded decisions. They must never 
 
 Observed in ASUS UEFI BIOS 3287: AMD Ryzen 9 9950X3D (16 cores), 48 GB Crucial DDR5-5600 in A2/B2 (EXPO disabled), Crucial T710 2 TB `CT2000T710SSD8` in M.2_1, CPU temperature 36 °C and motherboard 28 °C. Monitored fans: CPU_FAN 555 RPM, CHA_FAN1 434 RPM, CHA_FAN2 406 RPM. An 8 GB UEFI USB boot device is detected.
 
-**First-week update (2026-11-05):** user reports smooth daily usage and exceptionally quiet operation. Short SSE CPU stress: 100% utilization, ~4.8 GHz average effective clock, 80.5 °C CPU peak, ~200 W package power, no reported WHEA errors. HWiNFO confirms 48 GB dual-channel DDR5 at ~5590 MT/s, 46-45-45-90; MemTest86 **PASSED** (4 passes, 48/48 tests, 0 errors, 3:05:13). Crucial T710 NVMe confirmed PCIe 5.0 x4; CrystalDiskMark 9 (3 runs, 1 GiB) sequential read/write **14,022.52 / 12,936.93 MB/s**, SSD peak **72 °C**, SMART 100% remaining life and no warnings. Full result table and evidence limits: `docs/bring-up-2026-10-31.md`.
+**First-week update (2026-11-05):** user reports smooth daily usage and exceptionally quiet operation. Short SSE CPU stress: 100% utilization, ~4.8 GHz average effective clock, 80.5 °C CPU peak, ~200 W package power, no reported WHEA errors. HWiNFO confirms 48 GB dual-channel DDR5 at ~5590 MT/s, 46-45-45-90; MemTest86 **PASSED** (4 passes, 48/48 tests, 0 errors, 3:05:13). Crucial T710 NVMe confirmed PCIe 5.0 x4; CrystalDiskMark 9 (3 runs, 1 GiB) sequential read/write **14,022.52 / 12,936.93 MB/s**, SSD peak **72 °C**, SMART 100% remaining life and no warnings. Current operational summary: `docs/commissioning-status.md`; detailed test observations: `docs/bring-up-2026-10-31.md`.
 
 **Still unverified/pending:** extended system stability, individual CPU fan rotation and load RPM/curves, SSD firmware and extended write behavior, peripheral/USB/audio and post-driver Wi-Fi/Bluetooth checks, NVIDIA driver/GPU-load thermals, and WSL2/Ubuntu. Short tests do not guarantee long-term stability. Wired Ethernet was usable for obtaining drivers and updates.
 
@@ -107,7 +108,7 @@ Do not add a second pair later. If more capacity is eventually required, replace
 ## What Work should do now
 
 1. Treat procurement as complete, assembly as substantially complete, **initial POST as passed**, and **Windows 11 Pro as installed/working per user report**; this does not establish sustained stability.
-2. Refer to `docs/bring-up-2026-10-31.md` for observed values and open checks.
+2. Refer to `docs/commissioning-status.md` for the latest operational state and open checks, and `docs/bring-up-2026-10-31.md` for dated observations.
 3. Verify cooler mounting, both CPU fans actually spinning, no fan-wire interference, rear clearance and side-panel fit before prolonged load.
 4. Keep RAM Auto/JEDEC, EXPO disabled during baseline. Check whether BIOS 3287 merits an update to a current stable ASUS release.
 5. Windows 11 Pro installation completed; preserve the observation that offline setup provided neither Wi-Fi nor Bluetooth and required wired Ethernet to obtain drivers and updates. Verify both radios now work and record their installed drivers.
