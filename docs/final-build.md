@@ -25,7 +25,7 @@ This is the current source-of-truth architecture for the workstation.
 
 ## Physical assembly and UEFI first-boot checkpoint — 2026-10-31
 
-**Initial POST passed** without the RTX 3060 using the CPU's integrated graphics. BIOS 3287 detected 9950X3D (16 cores), 48 GB Crucial DDR5-5600 in A2/B2 (EXPO disabled), and the Crucial T710 `CT2000T710SSD8` 2 TB in M.2_1. At BIOS idle: CPU **36 °C**, motherboard **28 °C**, CPU_FAN **555 RPM**, CHA_FAN1 **434 RPM**, CHA_FAN2 **406 RPM**. Windows 11 Pro was subsequently installed and reported working, but prolonged stability testing has not been recorded.
+**Initial POST passed** without the RTX 3060 using the CPU's integrated graphics. BIOS 3287 detected 9950X3D (16 cores), 48 GB Crucial DDR5-5600 in A2/B2 (EXPO disabled), and the Crucial T710 `CT2000T710SSD8` 2 TB in M.2_1. At BIOS idle: CPU **36 °C**, motherboard **28 °C**, CPU_FAN **555 RPM**, CHA_FAN1 **434 RPM**, CHA_FAN2 **406 RPM**. Windows 11 Pro was subsequently installed and is working. Since initial POST, a short CPU SSE stress test, a completed four-pass MemTest86 run, and an SSD CrystalDiskMark benchmark have been recorded below; full sustained-system and GPU validation remains open.
 
 CPU cooler fans are deliberately positioned **middle + rear**, pushing toward case rear exhaust and avoiding the RAM overhang; they use a PWM Y-splitter on CPU_FAN, so only one CPU tachometer reading is expected. The 24-pin ATX and CPU EPS leads, F_PANEL, front USB-A/USB-C, HD_AUDIO and both chassis fans are connected. RTX 3060 and prior SATA drives were disconnected during the initial OS baseline. The RTX 3060 has since been installed and recognized by Windows; the SATA-drive status remains unverified.
 
