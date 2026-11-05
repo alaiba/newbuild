@@ -8,12 +8,12 @@ This is the current source-of-truth architecture for the workstation.
 |---|---|---|
 | CPU | AMD Ryzen 9 **9950X3D Box/WOF `100-100000719WOF`** | **Installed; BIOS identifies 9950X3D; box SKU not independently recorded** |
 | Motherboard | **ASUS TUF GAMING B650E-E WIFI `90MB1LT0-M0EAY0`** | **Installed, POST passed; BIOS version 3287; retail box SKU not independently recorded** |
-| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB) DDR5-5600 CL46-class, 1.1 V, non-ECC** | **Installed A2/B2; UEFI reports 49,152 MB DDR5-5600, EXPO off** |
+| RAM | **Crucial Pro `CP2K24G56C46U5` — 48 GB (2x24 GB) DDR5-5600 CL46-class, 1.1 V, non-ECC** | **Installed A2/B2; HWiNFO confirms ~DDR5-5590 CL46-45-45-90 dual-channel; MemTest86 pending; prior UEFI showed EXPO off** |
 | Memory topology | **1DPC / A2+B2; Auto/JEDEC first** | Final |
-| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Mounted with TF7; fans in middle + rear configuration; 36 °C BIOS idle** |
+| CPU cooler | **Thermalright Phantom Spirit 120 — standard model** | **Mounted with TF7; fans in middle + rear; 36 °C BIOS idle; short SSE load 80.5 °C peak at ~200 W (2026-11-05)** |
 | Case | **be quiet! Pure Base 501 Airflow Black `BG074`** | **Assembled; front/rear 140 mm fans connected** |
 | Case airflow | **2x included 140 mm PWM: front intake + rear exhaust** | **CHA_FAN2 406 RPM front / CHA_FAN1 434 RPM rear at BIOS idle** |
-| Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Installed; UEFI detects CT2000T710SSD8 (2,000.3 GB)** |
+| Primary storage | **Crucial T710 2 TB `CT2000T710SSD8`**, PCIe 5.0 x4 TLC NVMe in CPU-direct `M.2_1` | **Installed; PCIe 5.0 x4 confirmed; CrystalDiskMark sequential read/write 14,022.52 / 12,936.93 MB/s; 72 °C maximum, SMART healthy (2026-11-05)** |
 | Bulk/cold storage | Reuse healthy existing SATA drives; `M.2_2` + `M.2_3` remain free | Final policy |
 | Storage RAID/cache/tiering | None | Final |
 | PSU | **be quiet! Pure Power 13 M 850W `BP027EU`**, ATX 3.1 | **Installed and operating; exact retail suffix not independently recorded** |
@@ -145,9 +145,9 @@ Use only the modular cables supplied with this exact PSU.
 - SSD: `CT2000T710SSD8`, bare/non-heatsink;
 - PSU: `BP027EU`, complete original modular cable set.
 
-## Commissioning position — 2026-11-01
+## Commissioning position — 2026-11-05
 
-**Procurement complete; initial hardware assembly/UEFI POST passed; Windows 11 Pro installed and reported working.** During Windows 11 offline setup, neither Wi-Fi nor Bluetooth worked out of the box. The user connected wired Ethernet to download drivers and Windows updates. On 2026-11-01 the RTX 3060 was confirmed mounted and recognized by Windows. Post-driver Wi-Fi/Bluetooth verification, sustained memory/CPU/SSD tests, NVIDIA driver/GPU load validation, WSL2/Ubuntu and BitLocker remain unverified or pending. Operational model detection is distinct from retail-box verification: CPU Box/WOF SKU, motherboard box SKU and PSU regional suffix were not independently recorded.
+**Procurement complete; initial hardware assembly/UEFI POST passed; Windows 11 Pro installed and reported working.** During Windows 11 offline setup, neither Wi-Fi nor Bluetooth worked out of the box. The user connected wired Ethernet to download drivers and Windows updates. On 2026-11-01 the RTX 3060 was confirmed mounted and recognized by Windows. The first week of normal usage has been smooth and very quiet. Short HWiNFO SSE CPU load: ~4.8 GHz average effective clock at full utilization, 80.5 °C CPU peak, ~200 W package power, no WHEA errors observed. Crucial T710 passed an initial CrystalDiskMark 9 benchmark (sequential read/write 14,022.52 / 12,936.93 MB/s), with SSD maximum 72 °C, 100% SMART remaining life and no warning/failure flags. These are encouraging initial checks, not full long-duration stability certification. MemTest86 four passes, post-driver Wi-Fi/Bluetooth verification, NVIDIA driver/GPU load validation, peripheral tests, WSL2/Ubuntu and BitLocker remain unverified or pending. See `docs/bring-up-2026-10-31.md` for full measurements and test settings. Operational model detection is distinct from retail-box verification: CPU Box/WOF SKU, motherboard box SKU and PSU regional suffix were not independently recorded.
 
 Maintain Auto/JEDEC memory defaults (EXPO off) for the initial Windows baseline, check whether BIOS 3287 requires a stable-release update, and delay BitLocker until firmware/driver/storage stability is confirmed.
 
